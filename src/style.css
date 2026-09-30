@@ -1113,3 +1113,28 @@ h1[tabindex="-1"]:focus,
     margin-left: 12px;
   }
 }
+
+/* Each atlas is cached once; the clipped viewport shows one product type. */
+.product-artwork {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: clip;
+  width: 100%;
+  max-width: 440px;
+  margin-inline: auto;
+}
+.module-figure { background: #f5f1e9; }
+.module-figure .product-artwork { max-width: 260px; }
+.product-artwork img {
+  position: absolute;
+  display: block;
+  width: 200%;
+  height: 200%;
+  max-width: none;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: fill;
+  border: 0;
+  left: calc(-100% * var(--art-column));
+  top: calc(-100% * var(--art-row));
+}
