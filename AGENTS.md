@@ -18,6 +18,6 @@ The owner works from mobile Codex Cloud sessions and wants to describe website c
 - The intended stable address is `https://joeyustc.github.io/Jaford-Website/`. Verify it responds with the actual homepage, that assets and representative interactions work, and that `version.json` reports the intended source revision. Do not call deployment successful merely because a push or build succeeded. Report access or deployment blockers precisely.
 - Give the user the verified clickable website URL. Screenshots are supplemental; they do not satisfy the preview requirement. Do not present localhost or workspace paths as a user-accessible website.
 
-## Initial activation status
+## Preview hosting
 
-At the time these instructions were written, the repository remained private and Pages was not enabled. Its current plan requires a public repository for Pages. The owner has authorized using a public repository for this preview. The current Codex GitHub integration returned HTTP 403 for both visibility changes and Pages configuration, so the repository owner must apply these initial settings in GitHub. Check actual state when resuming; do not treat this note or a configured URL as evidence that the site is live.
+The owner has made this repository public and enabled GitHub Pages with GitHub Actions as the source. Initial account setup is complete; do not ask the owner to repeat it or create another hosting account. New pushes to main trigger the existing workflow. Check workflow completion and the live site's version.json on each delivery; repository settings alone do not establish that the current revision is live.

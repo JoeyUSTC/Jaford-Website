@@ -32,7 +32,7 @@ The owner reviews website iterations from mobile Codex sessions using one stable
 
 The normal workflow is: implement the requested change, validate it, and push to `main`. `.github/workflows/preview.yml` then runs lint, build and browser tests and publishes the site. No extra hosting account or manual upload is needed for each iteration. `AGENTS.md` records this workflow for future Codex tasks.
 
-Initial setup requires GitHub Pages to be available for the repository and **Settings → Pages → Source → GitHub Actions** to be selected. On the current GitHub plan, the repository must be public to use Pages. Repository visibility is a separate, explicit user decision. The site has not yet been verified live.
+Initial setup is complete: the owner has made the repository public and selected **Settings → Pages → Source → GitHub Actions**. Future iterations use this configuration automatically.
 
 After publication, check `https://joeyustc.github.io/Jaford-Website/` and its `version.json`; the revision must match the intended source commit. A successful Git push alone does not establish a working preview.
 
