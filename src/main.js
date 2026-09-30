@@ -108,7 +108,7 @@ dialog.addEventListener("click", (event) => {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const fields = Object.fromEntries(new FormData(form));
-  inquiryText = `JAFORD — Product / R&D inquiry\n\nName: ${fields.name.trim()}\nEmail: ${fields.email.trim()}\nOrganization: ${fields.organization.trim() || "Not specified"}\nArea of interest: ${fields.topic}\n${fields.item ? `Product / service: ${fields.item}\n` : ""}\nRequirements:\n${fields.requirements.trim()}`;
+  inquiryText = `JAFORD — Product / R&D inquiry\n\nName: ${fields.name.trim()}\nEmail: ${fields.email.trim()}\nOrganization: ${fields.organization.trim() || "Not specified"}\nArea of interest: ${fields.topic}\n${fields.item ? `Product / service: ${fields.item}\n` : ""}\nQuantity: ${fields.quantity.trim() || "To discuss"}\nRequired timeline: ${fields.timeline.trim() || "To discuss"}\n\nRequirements:\n${fields.requirements.trim()}`;
   document.querySelector("#inquiry-preview").textContent = inquiryText;
   const email = document.querySelector("#email-inquiry");
   email.href = `mailto:kiki.li@jaford.com?subject=${encodeURIComponent(`JAFORD inquiry — ${fields.topic}`)}&body=${encodeURIComponent(inquiryText)}`;
@@ -164,7 +164,7 @@ function renderRoute(focus = false) {
     html = serviceCatalog();
     title = "Custom R&D & Services — JAFORD";
   } else if (product) {
-    html = productDetail(product, params.get("area"));
+    html = productDetail(product, params.get("area"), params);
     title = `${product.name} — JAFORD`;
   } else if (service) {
     html = serviceDetail(service, params.get("area"));

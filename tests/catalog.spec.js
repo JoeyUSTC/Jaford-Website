@@ -55,6 +55,8 @@ test("selected product model is carried into the email draft without sending", a
   await page
     .getByLabel("Your requirements")
     .fill("Please provide the specification for this selected grade.");
+  await page.getByLabel("Required quantity").fill("20 samples");
+  await page.getByLabel("Required timeline").fill("Within 6 weeks");
   await page.getByRole("button", { name: "Prepare my inquiry" }).click();
   const mail = new URL(
     await page
@@ -62,6 +64,8 @@ test("selected product model is carried into the email draft without sending", a
       .getAttribute("href"),
   );
   expect(mail.pathname).toBe("kiki.li@jaford.com");
+  expect(mail.searchParams.get("body")).toContain("Quantity: 20 samples");
+  expect(mail.searchParams.get("body")).toContain("Required timeline: Within 6 weeks");
   expect(mail.searchParams.get("body")).toContain(
     "Resin-derived — grade to confirm",
   );
@@ -175,4 +179,16 @@ test("every product and service has a working detail route and an inquiry", asyn
   await expect(page.locator("h1")).toHaveText("Page not found");
   await page.getByRole("link", { name: "Browse products" }).click();
   await expect(page.locator(".catalog-row")).toHaveCount(25);
+});
+
+test("multi-keyword search preserves filters through the detail return link", async ({ page }) => {
+  await page.goto("/#/products?category=binders-electrolytes&q=electrolyte%20qms029d");
+  await expect(page.locator(".catalog-row")).toHaveCount(1);
+  await expect(page.locator(".catalog-models")).toContainText("QMS029D");
+  await page.getByRole("link", { name: "QMS029D electrolyte", exact: true }).click();
+  await page.reload();
+  await page.getByRole("link", { name: "Back to search results" }).click();
+  await expect(page.getByLabel("Search products")).toHaveValue("electrolyte qms029d");
+  await expect(page.getByLabel("Category", { exact: true })).toHaveValue("binders-electrolytes");
+  await expect(page.locator(".catalog-row")).toHaveCount(1);
 });

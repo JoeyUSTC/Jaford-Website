@@ -969,3 +969,12 @@ h1[tabindex="-1"]:focus,
     gap: 4px;
   }
 }
+
+.catalog-row .catalog-models {
+  margin: 10px 0 14px;
+  overflow-wrap: anywhere;
+}
+.detail-page > .text-link {
+  display: inline-block;
+  margin-bottom: 20px;
+}
