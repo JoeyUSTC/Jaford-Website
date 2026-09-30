@@ -10,6 +10,8 @@ The owner works from mobile Codex Cloud sessions and wants to describe website c
 
 ## Make and deliver changes
 
+- All visitor-facing website content must be English only, including captions, specifications, navigation, accessibility labels and inquiry messages. Do not add bilingual Chinese labels.
+
 - The primary audience is early-stage startups and research teams. Keep the site practical and technical: plain sans-serif typography, visible product information, a warm ivory background (#f5f1e9) with coordinated warm surfaces instead of bright white, restrained color, simple navigation and concise capability descriptions. The owner explicitly rejected decorative material/molecular illustrations, orbit graphics, oversized italic headings, numbered displays, large dark sections and marketing slogans. Do not reintroduce these in routine iterations. Preserve the provided business scope; do not invent products, certifications, clients, facilities, or performance claims.
 - Organize primary navigation by technology area, not by "standard products" versus "custom services". Each area groups relevant products and development/processing services together; preserve all existing detail URLs. `src/technologies.js` defines this hierarchy. Full product/service indexes are secondary reference tools.
 - Product listings use individual clickable modules leading to specification/detail pages; keep technology navigation as the primary hierarchy.

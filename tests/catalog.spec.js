@@ -122,7 +122,7 @@ test("representative detail pages preserve technical boundaries and fit the view
       await expect(page.locator("table")).toContainText(
         "Mass loading (mg/cm²)",
       );
-      await expect(page.locator("figcaption")).toContainText("示意图");
+      await expect(page.locator("figcaption")).toContainText("AI-generated illustration");
     }
     if (route === "products/glass-reactor-2000ml")
       await expect(page.locator("main")).toContainText(
@@ -223,7 +223,7 @@ test("product modules open specs from the image or keyboard and retain inquiry c
       }),
     });
   await expect(module).toContainText("View specs");
-  await expect(module.locator("figcaption")).toContainText("示意图");
+  await expect(module.locator("figcaption")).toContainText("AI-generated illustration");
   await module.locator("img").click();
   await expect(page.locator("h1")).toHaveText("NFPP cathode powder");
   await page
