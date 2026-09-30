@@ -65,7 +65,9 @@ test("selected product model is carried into the email draft without sending", a
   );
   expect(mail.pathname).toBe("kiki.li@jaford.com");
   expect(mail.searchParams.get("body")).toContain("Quantity: 20 samples");
-  expect(mail.searchParams.get("body")).toContain("Required timeline: Within 6 weeks");
+  expect(mail.searchParams.get("body")).toContain(
+    "Required timeline: Within 6 weeks",
+  );
   expect(mail.searchParams.get("body")).toContain(
     "Resin-derived — grade to confirm",
   );
@@ -104,8 +106,12 @@ test("representative detail pages preserve technical boundaries and fit the view
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBeLessThanOrEqual(page.viewportSize().width);
     for (const img of await page.locator("main img").all()) {
+      await img.scrollIntoViewIfNeeded();
       expect(
-        await img.evaluate((el) => el.complete && el.naturalWidth > 0),
+        await img.evaluate(async (el) => {
+          await el.decode();
+          return el.naturalWidth > 0;
+        }),
       ).toBe(true);
     }
     if (route === "products/p2-electrode") {
@@ -181,14 +187,68 @@ test("every product and service has a working detail route and an inquiry", asyn
   await expect(page.locator(".catalog-row")).toHaveCount(25);
 });
 
-test("multi-keyword search preserves filters through the detail return link", async ({ page }) => {
-  await page.goto("/#/products?category=binders-electrolytes&q=electrolyte%20qms029d");
+test("multi-keyword search preserves filters through the detail return link", async ({
+  page,
+}) => {
+  await page.goto(
+    "/#/products?category=binders-electrolytes&q=electrolyte%20qms029d",
+  );
   await expect(page.locator(".catalog-row")).toHaveCount(1);
   await expect(page.locator(".catalog-models")).toContainText("QMS029D");
-  await page.getByRole("link", { name: "QMS029D electrolyte", exact: true }).click();
+  await page
+    .getByRole("link", { name: "QMS029D electrolyte", exact: true })
+    .click();
   await page.reload();
   await page.getByRole("link", { name: "Back to search results" }).click();
-  await expect(page.getByLabel("Search products")).toHaveValue("electrolyte qms029d");
-  await expect(page.getByLabel("Category", { exact: true })).toHaveValue("binders-electrolytes");
+  await expect(page.getByLabel("Search products")).toHaveValue(
+    "electrolyte qms029d",
+  );
+  await expect(page.getByLabel("Category", { exact: true })).toHaveValue(
+    "binders-electrolytes",
+  );
   await expect(page.locator(".catalog-row")).toHaveCount(1);
+});
+
+test("product modules open specs from the image or keyboard and retain inquiry context", async ({
+  page,
+}) => {
+  await page.goto("/#/technologies/battery-materials");
+  await expect(page.locator(".product-module")).toHaveCount(11);
+  const module = page
+    .locator(".product-module")
+    .filter({
+      has: page.getByRole("heading", {
+        name: "NFPP cathode powder",
+        exact: true,
+      }),
+    });
+  await expect(module).toContainText("View specs");
+  await expect(module.locator("figcaption")).toContainText("示意图");
+  await module.locator("img").click();
+  await expect(page.locator("h1")).toHaveText("NFPP cathode powder");
+  await page
+    .getByRole("button", { name: "View specifications", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Specifications", exact: true }),
+  ).toBeFocused();
+  await expect(page.locator("table")).toBeVisible();
+  await page
+    .getByRole("button", { name: "Request a quotation", exact: true })
+    .click();
+  await expect(
+    page.getByLabel("Product / service and selected option"),
+  ).toHaveValue(/NFPP cathode powder/);
+  await page
+    .getByRole("button", { name: "Close inquiry", exact: true })
+    .click();
+  await page
+    .getByRole("link", { name: "Back to technology area", exact: true })
+    .click();
+  const productLink = page
+    .locator(".product-module")
+    .getByRole("link", { name: "NFPP cathode powder", exact: true });
+  await productLink.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("h1")).toHaveText("NFPP cathode powder");
 });

@@ -60,3 +60,7 @@ The inquiry dialog includes the selected product/service and model, prepares a t
 ## Cloud tasks
 
 Use the existing `/workspace/Jaford-Website` checkout; cloud tasks are already isolated, so do not create another worktree unless explicitly requested. Dependencies and `dist/` may persist in an environment snapshot; running processes do not. Start the dev server with `npm run dev -- --port 5173 --strictPort` and check that an HTTP request returns the JAFORD page. Use the browser tests above to verify interaction behavior.
+
+## Product modules
+
+Products appear as individual clickable modules in the full catalog and technology-area pages. Each module shows a labeled illustration placeholder, product name, short description and model options, and opens the existing specification/inquiry detail page. Product modules retain search/technology context; related services remain listed within their technology area. The requested reference electrohy.com was blocked by the environment network proxy during this iteration, so this layout implements the owner's module-to-spec interaction brief without claiming to reproduce the inaccessible reference.

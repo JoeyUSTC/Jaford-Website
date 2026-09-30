@@ -70,6 +70,13 @@ document.addEventListener("click", (event) => {
     window.scrollTo(0, 0);
     return;
   }
+  if (event.target.closest("[data-show-spec]")) {
+    const spec = document.querySelector("#spec-title");
+    spec.setAttribute("tabindex", "-1");
+    spec.focus({ preventScroll: true });
+    spec.scrollIntoView({ block: "start" });
+    return;
+  }
   const button = event.target.closest("[data-inquiry]");
   if (!button) return;
   form.elements.topic.value =
