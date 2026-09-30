@@ -437,7 +437,7 @@ textarea {
 [hidden] {
   display: none !important;
 }
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .container {
     width: calc(100% - 56px);
   }
@@ -852,7 +852,7 @@ textarea {
 #inquiry-item-label input {
   background: #f5f7f6;
 }
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .catalog-filters {
     grid-template-columns: 1fr 1fr;
   }
@@ -928,4 +928,44 @@ textarea {
 h1[tabindex="-1"]:focus,
 #main:focus {
   outline: none;
+}
+/* Navigation follows technology areas rather than product/service type. */
+#navigation {
+  gap: 18px;
+  font-size: 13px;
+}
+#navigation a {
+  white-space: nowrap;
+}
+.area-breadcrumb {
+  padding-top: 24px;
+}
+.area-breadcrumb + .hero {
+  padding-top: 24px;
+}
+.area-range {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 24px;
+}
+.area-range h2,
+.related-areas h2 {
+  font-size: 19px;
+  margin-bottom: 12px;
+}
+.area-range .text-link,
+.related-areas .text-link {
+  margin-right: 24px;
+}
+.related-areas {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  margin-top: 24px;
+}
+.service-content > p + p {
+  margin-top: 16px;
+}
+@media (max-width: 1100px) {
+  #navigation {
+    gap: 4px;
+  }
 }

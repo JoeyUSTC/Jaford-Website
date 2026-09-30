@@ -7,8 +7,8 @@ test("homepage presents readable product information without errors or overflow"
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD — Advanced Materials & R&D Solutions");
-  await expect(page.locator("main > section")).toHaveCount(5);
-  await expect(page.locator(".product-item")).toHaveCount(4);
+  await expect(page.locator("main > section")).toHaveCount(4);
+  await expect(page.locator(".product-item")).toHaveCount(6);
   await expect(page.locator("h1")).toContainText("R&D support.");
   for (const product of await page.locator(".product-item").all()) {
     await expect(product.getByRole("heading", { level: 3 })).toBeVisible();
@@ -40,19 +40,51 @@ test("homepage presents readable product information without errors or overflow"
   }
 });
 
-test("homepage category links open the filtered catalog", async ({ page }) => {
+test("technology navigation groups products and related services", async ({
+  page,
+}) => {
   await page.goto("/");
   const links = await page
-    .locator(".product-item .text-link")
-    .evaluateAll((items) => items.map((a) => a.getAttribute("href")));
-  expect(links).toHaveLength(4);
-  for (const href of links) {
-    await page.goto("/" + href);
-    await expect(page.locator("#category-filter")).toHaveValue(
-      href.split("=")[1],
+    .locator(".product-item h3 a")
+    .evaluateAll((items) =>
+      items.map((a) => ({ href: a.getAttribute("href"), name: a.textContent })),
     );
+  expect(links).toHaveLength(6);
+  for (const item of links) {
+    await page.goto("/" + item.href);
+    await expect(page.locator("h1")).toHaveText(item.name);
     await expect(page.locator(".catalog-row").first()).toBeVisible();
   }
+  await page.goto("/#/technologies/battery-materials");
+  await expect(
+    page.getByRole("link", {
+      name: "Hard carbon for sodium-ion batteries",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Electrode processing", exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("link", { name: "Electrode processing", exact: true })
+    .click();
+  await expect(page.locator("h1")).toHaveText("Electrode processing");
+  await expect(
+    page.getByRole("navigation", { name: "Breadcrumb" }),
+  ).toContainText("Battery materials & electrodes");
+  await page
+    .locator(".related-areas")
+    .getByRole("link", { name: "Battery materials & electrodes", exact: true })
+    .click();
+  await expect(page).toHaveURL(/#\/technologies\/battery-materials$/);
+  await page.goto("/#/technologies/advanced-materials");
+  await page
+    .getByRole("link", { name: "Spherical porous carbon", exact: true })
+    .click();
+  await page.reload();
+  await expect(
+    page.getByRole("navigation", { name: "Breadcrumb" }),
+  ).toContainText("Advanced materials & synthesis");
 });
 
 test("inquiry validates fields, creates a brief, supports editing and downloads it", async ({
@@ -113,15 +145,15 @@ test("inquiry validates fields, creates a brief, supports editing and downloads 
 
 test("navigation reaches services and mobile menu closes", async ({ page }) => {
   await page.goto("/");
-  const mobile = page.viewportSize().width <= 900;
+  const mobile = page.viewportSize().width <= 1100;
   if (mobile)
     await page.getByRole("button", { name: "Open navigation" }).click();
   await page
     .getByRole("navigation", { name: "Main navigation" })
-    .getByRole("link", { name: "Custom R&D & Services" })
+    .getByRole("link", { name: "Advanced materials", exact: true })
     .click();
-  await expect(page).toHaveURL(/#\/services$/);
-  await expect(page.locator(".catalog-row")).toHaveCount(9);
+  await expect(page).toHaveURL(/#\/technologies\/advanced-materials$/);
+  await expect(page.locator("h1")).toHaveText("Advanced materials & synthesis");
   if (mobile) {
     await expect(
       page.getByRole("button", { name: "Open navigation" }),

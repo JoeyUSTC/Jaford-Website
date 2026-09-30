@@ -1,6 +1,9 @@
+import { technologies } from "./technologies.js";
 import { products, services } from "./catalog.js";
 import {
   home,
+  technologyDirectory,
+  technologyDetail,
   productCatalog,
   productDetail,
   serviceCatalog,
@@ -8,6 +11,9 @@ import {
   notFound,
 } from "./pages.js";
 
+document.querySelector("#navigation").innerHTML = technologies
+  .map((t) => `<a href="#/technologies/${t.id}">${t.nav}</a>`)
+  .join("");
 document.querySelector("#year").textContent = new Date().getFullYear();
 const menu = document.querySelector(".menu-toggle");
 const nav = document.querySelector("#navigation");
@@ -34,7 +40,7 @@ document.addEventListener("keydown", (event) => {
     menu.focus();
   }
 });
-window.matchMedia("(min-width: 901px)").addEventListener("change", closeMenu);
+window.matchMedia("(min-width: 1101px)").addEventListener("change", closeMenu);
 
 const dialog = document.querySelector("#inquiry-dialog");
 const form = document.querySelector("#inquiry-form");
@@ -140,21 +146,28 @@ function renderRoute(focus = false) {
   const raw = location.hash.slice(1) || "/";
   const [path, query = ""] = raw.split("?");
   const params = new URLSearchParams(query);
+  const area = technologies.find((t) => path === `/technologies/${t.id}`);
   const product = products.find((p) => path === `/products/${p.id}`);
   const service = services.find((s) => path === `/services/${s.id}`);
   let html;
   let title = "JAFORD — Advanced Materials & R&D Solutions";
-  if (path === "/products") {
+  if (path === "/technologies") {
+    html = technologyDirectory();
+    title = "Technology areas — JAFORD";
+  } else if (area) {
+    html = technologyDetail(area);
+    title = `${area.name} — JAFORD`;
+  } else if (path === "/products") {
     html = productCatalog(params);
     title = "Products — JAFORD";
   } else if (path === "/services") {
     html = serviceCatalog();
     title = "Custom R&D & Services — JAFORD";
   } else if (product) {
-    html = productDetail(product);
+    html = productDetail(product, params.get("area"));
     title = `${product.name} — JAFORD`;
   } else if (service) {
-    html = serviceDetail(service);
+    html = serviceDetail(service, params.get("area"));
     title = `${service.name} — JAFORD`;
   } else if (
     [

@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { products, services } from "../src/catalog.js";
+import { technologies } from "../src/technologies.js";
 
 test("catalog filtering, search, empty state and browser history", async ({
   page,
@@ -137,6 +138,12 @@ test("every product and service has a working detail route and an inquiry", asyn
   test.skip(
     testInfo.project.name !== "desktop",
     "Full route coverage once; responsive checks run on every viewport.",
+  );
+  expect(new Set(technologies.flatMap((t) => t.productIds))).toEqual(
+    new Set(products.map((p) => p.id)),
+  );
+  expect(new Set(technologies.flatMap((t) => t.serviceIds))).toEqual(
+    new Set(services.map((s) => s.id)),
   );
   for (const product of products) {
     await page.goto("/#/products/" + product.id);
