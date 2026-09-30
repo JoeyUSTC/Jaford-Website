@@ -11,7 +11,7 @@ Reviewed on 2026-09-30 from JAFORD's existing public website. The previous V1 us
 | https://www.jaford.com/products/membranes-polymers         | Resin/polymer and membrane synthesis; MOF/COF and functional intermediates; route feasibility, preparation, purification and basic characterization                        |
 | https://www.jaford.com/contact                             | Singapore location and public business contact kiki.li@jaford.com                                                                                                          |
 
-The homepage stays at six sections and five broad product rows. Category and R&D links open the existing site's real pages in a new tab; no SKU catalog or unverified specification has been recreated. The established material and molecular illustrations remain abstract, not product photographs.
+The simplified homepage has five sections and five broad product rows. Category and R&D links open the existing site's real pages in a new tab; no SKU catalog or unverified specification has been recreated. Decorative illustrations and marketing-only sections were removed at the owner's request. Product details are directly visible rather than hidden in accordions.
 
 The existing site's promotional statements about personnel, clients and achievements are not repeated. No clients, certifications, production volumes, facility ownership or quantitative performance claims have been added.
 

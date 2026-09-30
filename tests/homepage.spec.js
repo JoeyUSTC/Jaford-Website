@@ -1,24 +1,18 @@
 import { test, expect } from "@playwright/test";
 
-test("homepage renders all sections and local artwork without errors or overflow", async ({
+test("homepage presents readable product information without errors or overflow", async ({
   page,
 }, testInfo) => {
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD — Advanced Materials & R&D Solutions");
-  await expect(page.locator("main > section")).toHaveCount(6);
+  await expect(page.locator("main > section")).toHaveCount(5);
   await expect(page.locator(".product-item")).toHaveCount(5);
-  await expect(page.locator("h1")).toContainText("R&D solutions.");
-  for (const image of await page.locator("main img").all()) {
-    await image.scrollIntoViewIfNeeded();
-    await expect
-      .poll(() =>
-        image.evaluate(
-          (element) => element.complete && element.naturalWidth > 0,
-        ),
-      )
-      .toBe(true);
+  await expect(page.locator("h1")).toContainText("R&D support.");
+  for (const product of await page.locator(".product-item").all()) {
+    await expect(product.getByRole("heading", { level: 3 })).toBeVisible();
+    await expect(product.locator(".product-detail p")).toBeVisible();
   }
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
@@ -43,12 +37,11 @@ test("homepage renders all sections and local artwork without errors or overflow
   }
 });
 
-test("product categories expand and prefill the correct inquiry", async ({
+test("product categories link to their ranges and prefill the correct inquiry", async ({
   page,
 }) => {
   await page.goto("/");
   for (const item of await page.locator(".product-item").all()) {
-    await item.locator("summary").click();
     await expect(item.locator(".product-detail")).toBeVisible();
     const catalogue = item.getByRole("link", { name: /on jaford.com/ });
     await expect(catalogue).toHaveAttribute(
@@ -146,7 +139,7 @@ test("navigation reaches sections and mobile menu closes after selecting a link"
     ).toHaveAttribute("aria-expanded", "false");
     await expect(page.getByRole("navigation")).not.toBeVisible();
   }
-  await page.getByRole("button", { name: "Tell us what you need" }).click();
+  await page.getByRole("button", { name: "Discuss custom synthesis" }).click();
   await expect(page.getByLabel("Area of interest")).toHaveValue(
     "Custom synthesis",
   );

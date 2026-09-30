@@ -1,6 +1,6 @@
 # JAFORD website
 
-A responsive English homepage for JAFORD's advanced materials and R&D offering. Built with Vite, vanilla JavaScript and CSS. Artwork is local SVG; no third-party fonts or image services are needed.
+A responsive English homepage for JAFORD's advanced materials and R&D offering, aimed at startups and research teams. Built with Vite, vanilla JavaScript and CSS. The layout uses plain typography and directly visible product information, without decorative imagery or external fonts.
 
 ## Develop
 
@@ -49,7 +49,7 @@ For this manual fallback only, GitHub Pages would use **Deploy from a branch →
 
 ## Content and inquiries
 
-The five product categories in `src/main.js` use the owner's business brief and the existing JAFORD website's actual product and service descriptions. See `docs/content-sources.md` for provenance. Product rows expand with representative materials and capabilities, link to the existing live category pages, and offer a category-specific inquiry. No SKU catalog, client claims or quantitative product specifications have been invented.
+The five product categories in `src/main.js` use the owner's business brief and the existing JAFORD website's actual product and service descriptions. See `docs/content-sources.md` for provenance. Product rows directly show representative materials and capabilities, link to the existing live category pages, and offer a category-specific inquiry. No SKU catalog, client claims or quantitative product specifications have been invented.
 
 The inquiry dialog prepares a text brief locally and opens a `mailto:` draft to the old site's verified public contact, `kiki.li@jaford.com`. The user reviews and sends it in their own email application. Copy and download are available as alternatives. It **does not automatically submit inquiries or send email**, and does not claim delivery. No personal data is persisted by this page.
 
