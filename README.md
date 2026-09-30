@@ -49,11 +49,11 @@ For this manual fallback only, GitHub Pages would use **Deploy from a branch →
 
 ## Content and inquiries
 
-The five product categories in `src/main.js` come from the supplied business brief. The homepage does not claim specific SKUs, certifications, clients or product specifications. Product rows expand and offer a category-specific inquiry.
+The five product categories in `src/main.js` use the owner's business brief and the existing JAFORD website's actual product and service descriptions. See `docs/content-sources.md` for provenance. Product rows expand with representative materials and capabilities, link to the existing live category pages, and offer a category-specific inquiry. No SKU catalog, client claims or quantitative product specifications have been invented.
 
-The inquiry dialog prepares a text brief locally. Users can copy or download it. It **does not submit inquiries or send email**, and says so before and after preparation. Connect an approved receiving address or backend before using it as a live lead collection channel. No personal data is persisted by this page.
+The inquiry dialog prepares a text brief locally and opens a `mailto:` draft to the old site's verified public contact, `kiki.li@jaford.com`. The user reviews and sends it in their own email application. Copy and download are available as alternatives. It **does not automatically submit inquiries or send email**, and does not claim delivery. No personal data is persisted by this page.
 
-There were no existing product pages, application routes or catalog in this repository. Navigation currently targets homepage sections. Future catalog and inquiry integrations can replace these targets without changing the visual system.
+There were no existing product pages, application routes or catalog in this repository. Main navigation targets homepage sections; product and R&D detail links open the existing pages on www.jaford.com. Future catalog and inquiry integrations can replace these targets without changing the visual system.
 
 ## Cloud tasks
 

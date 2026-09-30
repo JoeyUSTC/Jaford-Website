@@ -11,7 +11,7 @@ The owner works from mobile Codex Cloud sessions and wants to describe website c
 ## Make and deliver changes
 
 - Preserve the scientific, minimal visual direction and the provided business scope. Do not invent products, certifications, clients, facilities, or performance claims.
-- The inquiry form currently prepares a local brief. Do not claim that it sends inquiries until a real receiving channel is implemented and verified.
+- The inquiry form prepares a local brief and opens a user-reviewed email draft to the verified public contact kiki.li@jaford.com. It does not send messages automatically or confirm delivery. Keep the copy/download fallback. Content provenance is in docs/content-sources.md.
 - For website changes, run `npm run lint`, `npm run build`, and the relevant browser checks. The complete suite is `npm test`; in the prepared cloud environment use `CHROMIUM_PATH=/usr/bin/chromium npm test`.
 - The owner's normal iteration workflow includes publishing requested website changes to the preview. Unless the user asks for a draft, local-only work, or a read-only review, commit the completed changes and push to `main` with a normal, non-force push. Preserve concurrent changes. Do not push to an unrelated repository or change visibility, domain, account, or billing settings as part of routine iteration.
 - `.github/workflows/preview.yml` runs the checks and deploys changes on `main` to GitHub Pages after initial Pages activation. The repository's Pages source must be **GitHub Actions** for this workflow.

@@ -50,6 +50,12 @@ test("product categories expand and prefill the correct inquiry", async ({
   for (const item of await page.locator(".product-item").all()) {
     await item.locator("summary").click();
     await expect(item.locator(".product-detail")).toBeVisible();
+    const catalogue = item.getByRole("link", { name: /on jaford.com/ });
+    await expect(catalogue).toHaveAttribute(
+      "href",
+      /^https:\/\/www\.jaford\.com\/products\//,
+    );
+    await expect(catalogue).toHaveAttribute("target", "_blank");
     const button = item.getByRole("button", {
       name: "Ask about this category",
     });
@@ -90,6 +96,18 @@ test("inquiry validates fields, creates a brief, supports editing and downloads 
   await expect(page.locator("#inquiry-result")).toContainText(
     "Nothing has been sent.",
   );
+  const emailDraft = new URL(
+    await page
+      .getByRole("link", { name: "Open email draft" })
+      .getAttribute("href"),
+  );
+  expect(emailDraft.protocol).toBe("mailto:");
+  expect(emailDraft.pathname).toBe("kiki.li@jaford.com");
+  expect(emailDraft.searchParams.get("subject")).toBe(
+    "JAFORD inquiry — Custom synthesis",
+  );
+  expect(emailDraft.searchParams.get("body")).toContain("custom polymer");
+  expect(emailDraft.searchParams.get("body")).toContain("research@example.com");
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Download .txt" }).click();
   const download = await downloadPromise;

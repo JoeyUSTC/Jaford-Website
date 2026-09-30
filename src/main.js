@@ -1,41 +1,46 @@
 const products = [
   {
     name: "Li / Na battery materials & components",
-    label: "ENERGY STORAGE",
+    label: "CATHODES · ANODES · ELECTROLYTES",
     description:
-      "Materials and components for lithium-ion and sodium-ion battery research and development. Share your target chemistry, specifications and application.",
+      "LFP, NMC and NFPP cathodes; graphite, silicon-carbon and hard-carbon anodes. We also supply separators, electrolytes, binders and conductive additives for Li-ion and Na-ion research.",
+    url: "https://www.jaford.com/products/battery-and-materials#battery-materials",
     topic: "Li / Na battery materials & components",
     symbol: "layers",
   },
   {
-    name: "Battery cells",
-    label: "CELLS & DEVELOPMENT",
+    name: "Pouch, cylindrical & prismatic cells",
+    label: "CUSTOM BATTERY CELLS",
     description:
-      "Battery cells for research and industrial R&D. Tell us the cell format, chemistry and performance requirements you’re working with.",
+      "Custom cells matched to your chemistry, capacity, packaging and performance targets. Discuss dry-cell builds, finished pouch cells, and development for energy density, cycle life or safety validation.",
+    url: "https://www.jaford.com/products/battery-and-materials#battery-cells",
     topic: "Battery cells",
     symbol: "cell",
   },
   {
     name: "Fuel cells & electrolyzers",
-    label: "ELECTROCHEMICAL SYSTEMS",
+    label: "COMPONENTS · STACKS · FIXTURES",
     description:
-      "Materials and components for fuel cell and electrolyzer applications. Start with your system requirements and the component you need.",
+      "Membranes, gas diffusion layers, flow-field plates, gaskets and stack hardware. From matched component kits to custom fuel-cell fixtures, electrolyzer stacks and device-level solutions.",
+    url: "https://www.jaford.com/products/fuel-cell-and-electrolyzer#electrolyzer-solutions",
     topic: "Fuel cells & electrolyzers",
     symbol: "stack",
   },
   {
     name: "Electrocatalysis",
-    label: "MATERIALS & EQUIPMENT",
+    label: "CO₂RR · HER · OER",
     description:
-      "Materials and equipment for electrocatalysis research. Discuss the reaction, setup and technical requirements for your work.",
+      "Catalysts for CO₂ reduction, hydrogen evolution and oxygen evolution. Catalyst-coated substrates and membranes (CCS/CCM), nickel or titanium felt, custom high-pressure electrolysis equipment and precision fixtures.",
+    url: "https://www.jaford.com/products/fuel-cell-and-electrolyzer#electrocatalysis-solutions",
     topic: "Electrocatalysis",
     symbol: "nodes",
   },
   {
     name: "Advanced materials",
-    label: "RESEARCH & APPLICATION",
+    label: "POLYMERS · FRAMEWORKS · INTERMEDIATES",
     description:
-      "Specialized materials for scientific research and industrial development. Bring us your target properties or a non-standard material requirement.",
+      "Functional polymers, membrane materials, MOF/COF frameworks and advanced intermediates. Share the structure, target properties or application you need, and discuss a custom preparation route.",
+    url: "https://www.jaford.com/products/membranes-polymers",
     topic: "Advanced materials",
     symbol: "lattice",
   },
@@ -58,7 +63,7 @@ document.querySelector("#product-list").innerHTML = products
     (product, index) => `
   <details class="product-item">
     <summary><span class="product-index">0${index + 1}</span><span class="product-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round">${icons[product.symbol]}</svg></span><span class="product-name"><span class="product-label">${product.label}</span><h3>${product.name}</h3></span><span class="product-arrow" aria-hidden="true">↗</span></summary>
-    <div class="product-detail"><p>${product.description}</p><button class="text-link" data-inquiry data-topic="${product.topic}">Ask about this category <span aria-hidden="true">↗</span></button></div>
+    <div class="product-detail"><p>${product.description}</p><div class="product-detail-actions"><a class="text-link catalogue-link" href="${product.url}" target="_blank" rel="noopener noreferrer" aria-label="View ${product.name} on jaford.com (opens in a new tab)">View product range <span aria-hidden="true">↗</span></a><button class="text-link" data-inquiry data-topic="${product.topic}">Ask about this category <span aria-hidden="true">↗</span></button></div></div>
   </details>
 `,
   )
@@ -160,9 +165,11 @@ form.addEventListener("submit", (event) => {
   const fields = Object.fromEntries(new FormData(form));
   inquiryText = `JAFORD — Product / R&D inquiry\n\nName: ${fields.name.trim()}\nEmail: ${fields.email.trim()}\nOrganization: ${fields.organization.trim() || "Not specified"}\nArea of interest: ${fields.topic}\n\nRequirements:\n${fields.requirements.trim()}`;
   document.querySelector("#inquiry-preview").textContent = inquiryText;
+  const email = document.querySelector("#email-inquiry");
+  email.href = `mailto:kiki.li@jaford.com?subject=${encodeURIComponent(`JAFORD inquiry — ${fields.topic}`)}&body=${encodeURIComponent(inquiryText)}`;
   form.hidden = true;
   result.hidden = false;
-  document.querySelector("#copy-inquiry").focus();
+  email.focus();
 });
 document.querySelector("#copy-inquiry").addEventListener("click", async () => {
   try {
