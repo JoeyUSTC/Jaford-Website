@@ -1,57 +1,12 @@
-const products = [
-  {
-    name: "Li / Na battery materials & components",
-    description:
-      "LFP, NMC and NFPP cathodes; graphite, silicon-carbon and hard-carbon anodes. We also supply separators, electrolytes, binders and conductive additives for Li-ion and Na-ion research.",
-    url: "https://www.jaford.com/products/battery-and-materials#battery-materials",
-    topic: "Li / Na battery materials & components",
-  },
-  {
-    name: "Pouch, cylindrical & prismatic cells",
-    description:
-      "Custom cells matched to your chemistry, capacity, packaging and performance targets. Discuss dry-cell builds, finished pouch cells, and development for energy density, cycle life or safety validation.",
-    url: "https://www.jaford.com/products/battery-and-materials#battery-cells",
-    topic: "Battery cells",
-  },
-  {
-    name: "Fuel cells & electrolyzers",
-    description:
-      "Membranes, gas diffusion layers, flow-field plates, gaskets and stack hardware. From matched component kits to custom fuel-cell fixtures, electrolyzer stacks and device-level solutions.",
-    url: "https://www.jaford.com/products/fuel-cell-and-electrolyzer#electrolyzer-solutions",
-    topic: "Fuel cells & electrolyzers",
-  },
-  {
-    name: "Electrocatalysis",
-    description:
-      "Catalysts for CO₂ reduction, hydrogen evolution and oxygen evolution. Catalyst-coated substrates and membranes (CCS/CCM), nickel or titanium felt, custom high-pressure electrolysis equipment and precision fixtures.",
-    url: "https://www.jaford.com/products/fuel-cell-and-electrolyzer#electrocatalysis-solutions",
-    topic: "Electrocatalysis",
-  },
-  {
-    name: "Advanced materials",
-    description:
-      "Functional polymers, membrane materials, MOF/COF frameworks and advanced intermediates. Share the structure, target properties or application you need, and discuss a custom preparation route.",
-    url: "https://www.jaford.com/products/membranes-polymers",
-    topic: "Advanced materials",
-  },
-];
-
-document.querySelector("#product-list").innerHTML = products
-  .map(
-    (product) => `
-    <article class="product-item">
-      <h3>${product.name}</h3>
-      <div class="product-detail">
-        <p>${product.description}</p>
-        <div class="product-detail-actions">
-          <a class="text-link catalogue-link" href="${product.url}" target="_blank" rel="noopener noreferrer" aria-label="View ${product.name} on jaford.com (opens in a new tab)">View product range</a>
-          <button class="text-link" data-inquiry data-topic="${product.topic}">Ask about this category</button>
-        </div>
-      </div>
-    </article>
-  `,
-  )
-  .join("");
+import { products, services } from "./catalog.js";
+import {
+  home,
+  productCatalog,
+  productDetail,
+  serviceCatalog,
+  serviceDetail,
+  notFound,
+} from "./pages.js";
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 const menu = document.querySelector(".menu-toggle");
@@ -102,16 +57,30 @@ for (const [name, minLength, message] of [
   });
 }
 
-document.querySelectorAll("[data-inquiry]").forEach((button) =>
-  button.addEventListener("click", () => {
-    if (button.dataset.topic) form.elements.topic.value = button.dataset.topic;
-    form.hidden = false;
-    result.hidden = true;
-    status.textContent = "";
-    dialog.showModal();
-    document.body.classList.add("dialog-open");
-  }),
-);
+document.addEventListener("click", (event) => {
+  if (event.target.closest('a[href="#main"]')) {
+    event.preventDefault();
+    document.querySelector("#main").focus({ preventScroll: true });
+    window.scrollTo(0, 0);
+    return;
+  }
+  const button = event.target.closest("[data-inquiry]");
+  if (!button) return;
+  form.elements.topic.value =
+    button.dataset.topic || "Other technical requirement";
+  const model = document.querySelector("#product-model");
+  form.elements.namedItem("item").value = button.dataset.item
+    ? button.dataset.item + (model ? " — " + model.value : "")
+    : "";
+  document.querySelector("#inquiry-item-label").hidden =
+    !form.elements.namedItem("item").value;
+  form.hidden = false;
+  result.hidden = true;
+  status.textContent = "";
+  dialog.showModal();
+  document.body.classList.add("dialog-open");
+});
+
 document
   .querySelector(".dialog-close")
   .addEventListener("click", () => dialog.close());
@@ -133,7 +102,7 @@ dialog.addEventListener("click", (event) => {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const fields = Object.fromEntries(new FormData(form));
-  inquiryText = `JAFORD — Product / R&D inquiry\n\nName: ${fields.name.trim()}\nEmail: ${fields.email.trim()}\nOrganization: ${fields.organization.trim() || "Not specified"}\nArea of interest: ${fields.topic}\n\nRequirements:\n${fields.requirements.trim()}`;
+  inquiryText = `JAFORD — Product / R&D inquiry\n\nName: ${fields.name.trim()}\nEmail: ${fields.email.trim()}\nOrganization: ${fields.organization.trim() || "Not specified"}\nArea of interest: ${fields.topic}\n${fields.item ? `Product / service: ${fields.item}\n` : ""}\nRequirements:\n${fields.requirements.trim()}`;
   document.querySelector("#inquiry-preview").textContent = inquiryText;
   const email = document.querySelector("#email-inquiry");
   email.href = `mailto:kiki.li@jaford.com?subject=${encodeURIComponent(`JAFORD inquiry — ${fields.topic}`)}&body=${encodeURIComponent(inquiryText)}`;
@@ -166,3 +135,79 @@ document.querySelector("#edit-inquiry").addEventListener("click", () => {
   status.textContent = "";
   form.elements.requirements.focus();
 });
+
+function renderRoute(focus = false) {
+  const raw = location.hash.slice(1) || "/";
+  const [path, query = ""] = raw.split("?");
+  const params = new URLSearchParams(query);
+  const product = products.find((p) => path === `/products/${p.id}`);
+  const service = services.find((s) => path === `/services/${s.id}`);
+  let html;
+  let title = "JAFORD — Advanced Materials & R&D Solutions";
+  if (path === "/products") {
+    html = productCatalog(params);
+    title = "Products — JAFORD";
+  } else if (path === "/services") {
+    html = serviceCatalog();
+    title = "Custom R&D & Services — JAFORD";
+  } else if (product) {
+    html = productDetail(product);
+    title = `${product.name} — JAFORD`;
+  } else if (service) {
+    html = serviceDetail(service);
+    title = `${service.name} — JAFORD`;
+  } else if (
+    [
+      "/",
+      "/contact",
+      "main",
+      "products",
+      "custom-rd",
+      "synthesis",
+      "contact",
+    ].includes(path)
+  )
+    html = home();
+  else {
+    html = notFound();
+    title = "Page not found — JAFORD";
+  }
+  document.querySelector("#main").innerHTML = html;
+  document.title = title;
+  closeMenu();
+  if (dialog.open) dialog.close();
+  for (const a of nav.querySelectorAll("a")) {
+    if (location.hash.startsWith(a.hash))
+      a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
+  }
+  const anchor =
+    path === "/contact" ? "contact" : !path.startsWith("/") ? path : null;
+  const target = anchor
+    ? document.getElementById(anchor)
+    : document.querySelector("h1");
+  if (focus && target) {
+    target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+  }
+  if (anchor && target) target.scrollIntoView();
+  else window.scrollTo(0, 0);
+  const filters = document.querySelector("#catalog-filters");
+  if (filters) {
+    const apply = () => {
+      const next = new URLSearchParams();
+      if (filters.elements.category.value)
+        next.set("category", filters.elements.category.value);
+      if (filters.elements.q.value.trim())
+        next.set("q", filters.elements.q.value.trim());
+      location.hash = "/products" + (next.size ? "?" + next.toString() : "");
+    };
+    filters.addEventListener("submit", (event) => {
+      event.preventDefault();
+      apply();
+    });
+    filters.elements.category.addEventListener("change", apply);
+  }
+}
+window.addEventListener("hashchange", () => renderRoute(true));
+renderRoute();

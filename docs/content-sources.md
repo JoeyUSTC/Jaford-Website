@@ -11,7 +11,13 @@ Reviewed on 2026-09-30 from JAFORD's existing public website. The previous V1 us
 | https://www.jaford.com/products/membranes-polymers         | Resin/polymer and membrane synthesis; MOF/COF and functional intermediates; route feasibility, preparation, purification and basic characterization                        |
 | https://www.jaford.com/contact                             | Singapore location and public business contact kiki.li@jaford.com                                                                                                          |
 
-The simplified homepage has five sections and five broad product rows. Category and R&D links open the existing site's real pages in a new tab; no SKU catalog or unverified specification has been recreated. Decorative illustrations and marketing-only sections were removed at the owner's request. Product details are directly visible rather than hidden in accordions.
+## Owner-supplied catalog brief
+
+The current catalog is curated from the owner's explicit product/service list supplied in this conversation on 2026-09-30. The brief is the source of model codes, the 2,000 mL reactor volume and the P2 7.5 × 5.4 cm double-sided electrode option. Raw order files and formal model specification sheets were not supplied or independently reviewed. Do not infer other specifications from model names or from earlier marketing text.
+
+The homepage now highlights four product categories and custom services; the full directory holds 25 products and nine services with individual hash routes. The existing public ranges above remain available via links, but are not converted into unsupported SKU entries. Historical procurement, delivery and project discussions are not stock evidence or generalized performance guarantees. Services are explicitly coordinated through partner factories and laboratories.
+
+No product photographs or authorized supplier images were supplied. All detail pages use the neutral `public/product-placeholder.svg`, labeled Illustration / 示意图 and explicitly not a photograph or technical drawing. No generated imitation photographs, client process drawings, chat screenshots or unsupported document downloads are used. See `catalog-readiness.md` for pending source material and technical confirmations.
 
 The existing site's promotional statements about personnel, clients and achievements are not repeated. No clients, certifications, production volumes, facility ownership or quantitative performance claims have been added.
 

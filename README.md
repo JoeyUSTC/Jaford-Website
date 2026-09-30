@@ -49,11 +49,13 @@ For this manual fallback only, GitHub Pages would use **Deploy from a branch →
 
 ## Content and inquiries
 
-The five product categories in `src/main.js` use the owner's business brief and the existing JAFORD website's actual product and service descriptions. See `docs/content-sources.md` for provenance. Product rows directly show representative materials and capabilities, link to the existing live category pages, and offer a category-specific inquiry. No SKU catalog, client claims or quantitative product specifications have been invented.
+The English homepage highlights four product categories and the Custom R&D & Services entry. `src/catalog.js` contains 25 quote-only products and nine services from the owner's supplied catalog brief. `src/pages.js` renders the homepage, searchable/filterable product directory, individual product pages, service directory and service detail pages. Existing fuel-cell, electrolyzer, electrocatalysis and advanced-material information remains linked from the homepage and product directory.
 
-The inquiry dialog prepares a text brief locally and opens a `mailto:` draft to the old site's verified public contact, `kiki.li@jaford.com`. The user reviews and sends it in their own email application. Copy and download are available as alternatives. It **does not automatically submit inquiries or send email**, and does not claim delivery. No personal data is persisted by this page.
+Routes use hashes (`#/products`, `#/products/{id}`, `#/services`, `#/services/{id}`), so direct links and refreshes work on GitHub Pages without server rewrites. Product filters and search are encoded in the route, preserving them when returning from a detail page. Unknown routes show a recovery page.
 
-There were no existing product pages, application routes or catalog in this repository. Main navigation targets homepage sections; product and R&D detail links open the existing pages on www.jaford.com. Future catalog and inquiry integrations can replace these targets without changing the visual system.
+All items require quotation; the catalog does not promise stock. Missing model specifications explicitly invite contact. No formal specification files or authorized product photos were supplied, so there are no datasheet download links and every detail image is labeled as a neutral illustration. See `docs/catalog-readiness.md` for the complete specification, image and confirmation checklist, and `docs/content-sources.md` for provenance. No raw private order data is stored in this public repository.
+
+The inquiry dialog includes the selected product/service and model, prepares a text brief locally and opens a `mailto:` draft to `kiki.li@jaford.com`. The user reviews and sends it in their own email application. Copy and download remain available. It does not automatically submit inquiries, send email or claim delivery. No personal data is persisted by the site.
 
 ## Cloud tasks
 
