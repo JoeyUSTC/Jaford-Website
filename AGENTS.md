@@ -10,6 +10,7 @@ The owner works from mobile Codex Cloud sessions and wants to describe website c
 
 ## Make and deliver changes
 
+- Use only the owner-supplied logo in `public/brand/jaford-brand.png` and the exact brand lines “From Innovation to Industrial Impact” and “Your Long-term Partner in Technology Translation”. Do not invent alternative logos, favicons or slogans. Homepage project descriptions distinguish client-specified synthesis from specification-based contract R&D; never publish client-specific workbook responses.
 - All visitor-facing website content must be English only, including captions, specifications, navigation, accessibility labels and inquiry messages. Do not add bilingual Chinese labels.
 
 - The primary audience is early-stage startups and research teams. Keep the site practical and technical: plain sans-serif typography, visible product information, a warm ivory background (#f5f1e9) with coordinated warm surfaces instead of bright white, restrained color, simple navigation and concise capability descriptions. The owner explicitly rejected decorative material/molecular illustrations, orbit graphics, oversized italic headings, numbered displays, large dark sections and marketing slogans. Do not reintroduce these in routine iterations. Preserve the provided business scope; do not invent products, certifications, clients, facilities, or performance claims.

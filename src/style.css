@@ -1138,3 +1138,45 @@ h1[tabindex="-1"]:focus,
   left: calc(-100% * var(--art-column));
   top: calc(-100% * var(--art-row));
 }
+
+/* Use the supplied brand artwork intact, displaying its logo region in the header. */
+.wordmark { flex-shrink: 0; }
+.brand-logo {
+  display: block;
+  width: 137px;
+  height: 29px;
+  overflow: clip;
+  background: var(--canvas);
+}
+.brand-logo img {
+  mix-blend-mode: multiply;
+  display: block;
+  width: 490px;
+  max-width: none;
+  height: auto;
+}
+.home-hero h1 { max-width: 850px; }
+.brand-slogan {
+  max-width: 750px;
+  margin: 0 0 24px;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.5;
+  color: var(--accent);
+}
+.engagement-models {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+}
+.engagement-models article { border-top: 1px solid var(--line); padding-top: 22px; }
+.engagement-models h3 { font-size: 22px; margin: 0 0 8px; }
+.engagement-models p { color: var(--muted); font-size: 15px; line-height: 1.8; }
+.engagement-models .engagement-label { color: var(--ink); margin-top: 0; font-weight: 500; }
+.engagement-models .button { margin-top: 10px; }
+.project-brief { margin: 26px 0; }
+.project-brief > div { padding: 18px 0; border-top: 1px solid var(--line); }
+.project-brief dt { font-weight: 600; margin-bottom: 8px; }
+.project-brief dd { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
+@media (max-width: 640px) {
+  .engagement-models { grid-template-columns: 1fr; gap: 30px; }
+}

@@ -22,3 +22,9 @@ No product photographs or authorized supplier images were supplied. The owner re
 The existing site's promotional statements about personnel, clients and achievements are not repeated. No clients, certifications, production volumes, facility ownership or quantitative performance claims have been added.
 
 The inquiry interface opens a user-reviewed `mailto:` draft to the verified business address. Opening a draft does not send an inquiry. Copy and download remain available when no mail application is configured; there is no backend submission or delivery confirmation.
+
+## Owner-supplied brand and project framework (2026-09-30)
+
+The owner supplied a material synthesis requirement workbook and authorized use of its logo and slogans. `public/brand/jaford-brand.png` is the unmodified embedded image extracted from that workbook. The header displays its logo region; the two exact English brand lines are rendered as accessible, responsive text in the homepage hero. The former decorative favicon was removed; the favicon now references the supplied artwork.
+
+The homepage summarizes only the generic engagement framework: client-specified-route custom synthesis and specification-based contract R&D, with agreed deliverables, testing, acceptance, iteration limits and confidentiality. No client names, target material responses, private project details or original workbook are published. These are ways of scoping work, not completed case studies or unconditional performance guarantees.

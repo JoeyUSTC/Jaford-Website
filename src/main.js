@@ -157,7 +157,7 @@ function renderRoute(focus = false) {
   const product = products.find((p) => path === `/products/${p.id}`);
   const service = services.find((s) => path === `/services/${s.id}`);
   let html;
-  let title = "JAFORD — Advanced Materials & R&D Solutions";
+  let title = "JAFORD — From Innovation to Industrial Impact";
   if (path === "/technologies") {
     html = technologyDirectory();
     title = "Technology areas — JAFORD";
