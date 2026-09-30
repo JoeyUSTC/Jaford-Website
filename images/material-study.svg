@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="780" viewBox="0 0 720 780" fill="none">
+  <defs>
+    <radialGradient id="bg" cx=".28" cy=".22" r=".95"><stop stop-color="#f2f1e9"/><stop offset="1" stop-color="#d6dace"/></radialGradient>
+    <linearGradient id="graphite" x1="130" y1="170" x2="565" y2="540" gradientUnits="userSpaceOnUse"><stop stop-color="#6c746d"/><stop offset=".25" stop-color="#303a34"/><stop offset=".6" stop-color="#454e46"/><stop offset="1" stop-color="#1d2621"/></linearGradient>
+    <linearGradient id="copper" x1="110" y1="250" x2="620" y2="610" gradientUnits="userSpaceOnUse"><stop stop-color="#b57650"/><stop offset=".27" stop-color="#debc92"/><stop offset=".5" stop-color="#a3623e"/><stop offset=".75" stop-color="#e0b286"/><stop offset="1" stop-color="#865638"/></linearGradient>
+    <linearGradient id="edge" x1="114" y1="600" x2="560" y2="480" gradientUnits="userSpaceOnUse"><stop stop-color="#263029"/><stop offset=".35" stop-color="#626b5f"/><stop offset=".5" stop-color="#1b241d"/><stop offset="1" stop-color="#424e40"/></linearGradient>
+    <linearGradient id="silver" x1="100" y1="400" x2="540" y2="670" gradientUnits="userSpaceOnUse"><stop stop-color="#c6ccc0"/><stop offset=".45" stop-color="#808e79"/><stop offset=".8" stop-color="#b9c2ad"/><stop offset="1" stop-color="#697861"/></linearGradient>
+    <filter id="shadow" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="20"/></filter>
+    <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".15"/></feComponentTransfer><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+    <pattern id="lines" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-25)"><path d="M0 0v5" stroke="#e6eddb" stroke-opacity=".14" stroke-width=".5"/></pattern>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h720v780H0z"/>
+  <g stroke="#aab49e" stroke-opacity=".3" stroke-width=".7"><circle cx="352" cy="382" r="251"/><circle cx="352" cy="382" r="290" stroke-dasharray="2 8"/><path d="M42 382h26m568 0h26M352 72v26m0 568v26"/></g>
+  <ellipse cx="367" cy="608" rx="228" ry="36" fill="#535d4a" opacity=".24" filter="url(#shadow)" transform="rotate(-14 367 608)"/>
+  <g filter="url(#grain)">
+    <path d="m111 493 319-135 187 170-321 147Z" fill="url(#silver)"/>
+    <path d="m111 493 185 182v8L111 502Z" fill="#6a7861"/>
+    <path d="m296 675 321-147v8L296 683Z" fill="#7e8d70"/>
+    <path d="m102 445 320-133 193 157-321 151Z" fill="url(#graphite)"/>
+    <path d="m102 445 192 175v22L102 467Z" fill="#344031"/>
+    <path d="m294 620 321-151v21L294 642Z" fill="url(#edge)"/>
+    <g stroke="#93a083" stroke-width=".7" opacity=".5"><path d="m103 450 191 175 320-151m-510-18 190 174 320-151m-510-18 190 174 320-151m-510-18 190 174 320-151"/></g>
+    <path d="m102 445 320-133 193 157-321 151Z" fill="url(#lines)"/>
+    <path d="m118 366 306-119 183 154-307 149Z" fill="url(#copper)"/>
+    <path d="m118 366 182 184v5L118 371Z" fill="#a57953"/>
+    <path d="m300 550 307-149v5L300 555Z" fill="#855437"/>
+    <path d="m118 366 306-119 183 154-307 149Z" fill="url(#lines)" opacity=".7"/>
+    <path d="m134 282 297-118 163 137-295 151Z" fill="url(#graphite)"/>
+    <path d="m134 282 165 170v25L134 307Z" fill="#354231"/>
+    <path d="m299 452 295-151v25L299 477Z" fill="url(#edge)"/>
+    <g stroke="#8a987c" stroke-width=".7" opacity=".55"><path d="m135 287 164 170 294-151m-458-13 164 170 294-151m-458-13 164 170 294-151m-458-13 164 170 294-151"/></g>
+    <path d="m134 282 297-118 163 137-295 151Z" fill="url(#lines)"/>
+    <path d="m136 282 295-116 161 135" stroke="#a5b296" stroke-width=".8" opacity=".65"/>
+  </g>
+  <g stroke="#8b947f" stroke-width=".7" opacity=".7"><path d="m487 202 39-55h82M155 581l-45 44H64"/><circle cx="487" cy="202" r="3" fill="#e5e7dc"/><circle cx="155" cy="581" r="3" fill="#e5e7dc"/></g>
+  <g fill="#727c66" font-family="Arial,sans-serif" font-size="7" letter-spacing="1.5"><text x="531" y="138">FORM / 01</text><text x="64" y="641">MATTER / 02</text></g>
+</svg>
