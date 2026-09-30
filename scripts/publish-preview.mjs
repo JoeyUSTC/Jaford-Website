@@ -19,7 +19,7 @@ try {
   git(["--work-tree", output, "-C", output, "add", "--all", "--", "."], env);
   const tree = git(["write-tree"], env);
   const files = git(["ls-tree", "-r", "--name-only", tree]).split("\n");
-  if (!files.includes("index.html") || files.some((file) => !/^(index\.html|favicon\.svg|\.nojekyll|assets\/[^/]+|images\/[^/]+)$/.test(file))) {
+  if (!files.includes("index.html") || files.some((file) => !/^(index\.html|version\.json|favicon\.svg|\.nojekyll|assets\/[^/]+|images\/[^/]+)$/.test(file))) {
     throw new Error("Unexpected files in the preview artifact; publication stopped.");
   }
   const commit = git(["commit-tree", tree, ...(previous ? ["-p", previous] : []), "-m", "Publish JAFORD homepage preview"]);

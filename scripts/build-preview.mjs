@@ -8,4 +8,8 @@ const output = new URL("../.preview-dist/", import.meta.url);
 const index = new URL("index.html", output);
 writeFileSync(index, readFileSync(index, "utf8").replace("</head>", '<meta name="robots" content="noindex, nofollow" />\n</head>'));
 writeFileSync(new URL(".nojekyll", output), "");
+writeFileSync(new URL("version.json", output), JSON.stringify({
+  revision: execFileSync("git", ["rev-parse", "HEAD"], { cwd: root, encoding: "utf8" }).trim(),
+  builtAt: new Date().toISOString(),
+}) + "\n");
 console.log("Built the independent GitHub Pages preview. Search indexing is discouraged; this is not access control.");
