@@ -77,9 +77,10 @@ export const technologies = [
     nav: "Advanced materials",
     name: "Advanced materials & synthesis",
     description:
-      "Functional materials, polymer and resin synthesis, small molecules, ligands and process scale-up.",
+      "MOF / COF development, functional materials, polymer and resin synthesis, ligands and process scale-up.",
     productIds: ["spherical-porous-carbon"],
     serviceIds: [
+      "functional-materials-development",
       "polymer-resin-synthesis",
       "small-molecule-synthesis",
       "synthesis-scale-up",

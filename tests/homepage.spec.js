@@ -7,14 +7,19 @@ test("homepage presents readable product information without errors or overflow"
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD — From Innovation to Industrial Impact");
-  await expect(page.locator("main > section")).toHaveCount(5);
+  await expect(page.locator("main > section")).toHaveCount(6);
   await expect(page.locator(".product-item")).toHaveCount(6);
   await expect(page.locator("h1")).toHaveText("From Innovation to Industrial Impact");
   await expect(page.locator(".brand-slogan")).toHaveText("Your Long-term Partner in Technology Translation");
   expect(await page.locator(".brand-logo img").evaluate(async (img) => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
   await expect(page.locator("#custom-rd")).toContainText("Client-specified route");
   await expect(page.locator("#custom-rd")).toContainText("Agreed target specifications");
+  await expect(page.locator("#functional-materials")).toContainText("MOFs & COFs");
+  await expect(page.locator("#completed-projects article")).toHaveCount(2);
+  await expect(page.locator("#completed-projects")).toContainText("11 kg of resin");
   for (const product of await page.locator(".product-item").all()) {
+    await product.locator("img").scrollIntoViewIfNeeded();
+    expect(await product.locator("img").evaluate(async img => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
     await expect(product.getByRole("heading", { level: 3 })).toBeVisible();
     await expect(product.locator(".product-detail p")).toBeVisible();
   }

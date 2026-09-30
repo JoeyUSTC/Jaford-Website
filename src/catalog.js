@@ -457,6 +457,26 @@ const s = (id, name, description, scope, inputs, deliverables, boundary) => ({
 });
 export const services = [
   s(
+    "functional-materials-development",
+    "Functional materials development",
+    "Custom development of MOFs, COFs, polymers and functional intermediates through partner laboratories.",
+    [
+      "Route assessment and synthesis coordination for metal–organic frameworks (MOFs) and covalent organic frameworks (COFs).",
+      "Functional polymers, resins, ligands and related intermediates; process reproduction or optimization when agreed.",
+      "Coordination of purification, agreed characterization and project-specific material preparation.",
+    ],
+    [
+      "Target structure or composition, intended function and required quantity.",
+      "Approved procedure or literature references, prior results where available, and confidentiality requirements.",
+      "Material form, packaging, timeline, test methods, reference data and acceptable tolerances.",
+    ],
+    [
+      "Material batches and characterization results defined in the agreed scope.",
+      "Acceptance against procedure compliance, material specifications, or both, as agreed before starting.",
+    ],
+    "Each framework and route requires feasibility review. Quantity, iteration limits and terms for unmet targets are agreed in advance. Specific structure, porosity, purity, performance or scale-up outcomes are not blanket guarantees.",
+  ),
+  s(
     "polymer-resin-synthesis",
     "Polymer & resin synthesis",
     "Synthesis organized around your target structure or SOP.",

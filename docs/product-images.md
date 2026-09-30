@@ -11,3 +11,5 @@ Five original 2×2 PNG atlases are in `public/images/products/`; `src/product-im
 - powders-instrument: generic electrochemical instrument, conceptual porous carbon spheres, silicon-carbon powder, cathode powder.
 
 All images are labeled AI-generated illustrations. Model geometry, terminals, interfaces, packing, color, scale and included accessories are unconfirmed. Porous spheres are not microscopy. Boat and lid are separate quoted items. Real approved model photos and datasheets remain outstanding for all products; use the existing catalog-readiness list. Replace the image mapping with approved model photos when supplied, and update captions/provenance then.
+
+The homepage reuses these drawings for category thumbnails. `fuel-cell-components.png` is an additional AI-generated generic drawing of a flow-field plate, membrane and gas-diffusion sheet, created on 2026-09-30. It represents the category only, not a tested configuration or an exact product photograph.
