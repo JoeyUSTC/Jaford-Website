@@ -18,7 +18,7 @@ test("homepage presents readable product information without errors or overflow"
   await expect(page.locator("#testing-characterization")).toContainText("SEM & TEM");
   await expect(page.locator("#testing-characterization")).toContainText("Wind & solar direct coupling");
   await expect(page.locator("#completed-projects")).toHaveCount(0);
-  await expect(page.locator("main [data-inquiry]")).toHaveCount(1);
+  await expect(page.locator("#home-contact-form")).toHaveCount(1);
   await expect(page.locator(".home-hero a, .home-hero button")).toHaveCount(0);
   for (const sector of await page.locator(".home-sector").all()) {
     await expect(sector.locator(".sector-card")).toHaveCount(6);
@@ -113,7 +113,7 @@ test("technology navigation groups products and related services", async ({
 test("inquiry validates fields, creates a brief, supports editing and downloads it", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/#/products");
   await page
     .getByRole("button", { name: "Send an Inquiry", exact: true })
     .click();
@@ -199,7 +199,7 @@ test("prepared inquiry can be copied and whitespace-only requirements are reject
   context,
 }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-  await page.goto("/");
+  await page.goto("/#/products");
   await page
     .getByRole("button", { name: "Send an Inquiry", exact: true })
     .click();
@@ -214,10 +214,36 @@ test("prepared inquiry can be copied and whitespace-only requirements are reject
     .fill("I need a material suitable for electrochemical research.");
   await page.getByRole("button", { name: "Prepare my inquiry" }).click();
   await page.getByRole("button", { name: "Copy inquiry" }).click();
-  await expect(page.getByRole("status")).toHaveText(
+  await expect(page.locator("#copy-status")).toHaveText(
     "Copied. Your inquiry is ready to share.",
   );
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(
     "electrochemical research",
   );
+});
+
+
+test("inline contact prepares an email, retains edits and rejects blank enquiries", async ({ page }) => {
+  await page.goto("/#/contact");
+  const contact = page.locator("#home-contact-form");
+  await contact.getByRole("button", { name: "Prepare email" }).click();
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+  await contact.getByLabel("Your Name").fill("Research Team");
+  await contact.getByLabel("E-Mail Address").fill("team@example.com");
+  await contact.getByRole("textbox", { name: "Enquiry", exact: true }).fill("            ");
+  await contact.getByRole("button", { name: "Prepare email" }).click();
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+  const message = "Scale up our synthesis <sample> & validate the process.";
+  await contact.getByRole("textbox", { name: "Enquiry", exact: true }).fill(message);
+  await contact.getByRole("button", { name: "Prepare email" }).click();
+  await expect(page.locator("#inquiry-result")).toContainText("Nothing has been sent.");
+  const email = new URL(await page.getByRole("link", { name: "Open email draft" }).getAttribute("href"));
+  expect(email.pathname).toBe("kiki.li@jaford.com");
+  expect(email.searchParams.get("body")).toContain(message);
+  await expect(page.locator("#inquiry-preview sample")).toHaveCount(0);
+  await page.getByRole("button", { name: "Edit your inquiry" }).click();
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+  await expect(contact.getByRole("textbox", { name: "Enquiry", exact: true })).toHaveValue(message);
+  await expect(contact.getByRole("textbox", { name: "Enquiry", exact: true })).toBeFocused();
+  await expect(page.locator(".contact-direct a")).toHaveAttribute("href", "mailto:kiki.li@jaford.com");
 });

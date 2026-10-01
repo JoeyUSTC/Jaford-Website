@@ -50,6 +50,7 @@ const form = document.querySelector("#inquiry-form");
 const result = document.querySelector("#inquiry-result");
 const status = document.querySelector("#copy-status");
 let inquiryText = "";
+let homeContactSource = null;
 
 for (const [name, minLength, message] of [
   ["name", 1, "Please enter your name."],
@@ -82,6 +83,7 @@ document.addEventListener("click", (event) => {
   }
   const button = event.target.closest("[data-inquiry]");
   if (!button) return;
+  homeContactSource = null;
   form.elements.topic.value =
     button.dataset.topic || "Other technical requirement";
   const model = document.querySelector("#product-model");
@@ -146,10 +148,44 @@ document.querySelector("#download-inquiry").addEventListener("click", () => {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 document.querySelector("#edit-inquiry").addEventListener("click", () => {
+  if (homeContactSource?.isConnected) {
+    dialog.close();
+    homeContactSource.elements.enquiry.focus();
+    return;
+  }
   result.hidden = true;
   form.hidden = false;
   status.textContent = "";
   form.elements.requirements.focus();
+});
+
+// The inline homepage form prepares a reviewable email; it never claims delivery.
+document.addEventListener("input", (event) => {
+  if (event.target.closest("#home-contact-form")) event.target.setCustomValidity("");
+});
+document.addEventListener("submit", (event) => {
+  if (event.target.id !== "home-contact-form") return;
+  event.preventDefault();
+  const source = event.target;
+  for (const [field, minimum, message] of [
+    ["name", 1, "Please enter your name."],
+    ["enquiry", 10, "Please describe your enquiry in at least 10 characters."],
+  ]) {
+    source.elements[field].setCustomValidity(source.elements[field].value.trim().length >= minimum ? "" : message);
+  }
+  if (!source.reportValidity()) return;
+  const fields = Object.fromEntries(new FormData(source));
+  homeContactSource = source;
+  inquiryText = `JAFORD enquiry\n\nName: ${fields.name.trim()}\nEmail: ${fields.email.trim()}\n\nEnquiry:\n${fields.enquiry.trim()}`;
+  document.querySelector("#inquiry-preview").textContent = inquiryText;
+  const email = document.querySelector("#email-inquiry");
+  email.href = `mailto:kiki.li@jaford.com?subject=${encodeURIComponent("JAFORD enquiry")}&body=${encodeURIComponent(inquiryText)}`;
+  form.hidden = true;
+  result.hidden = false;
+  status.textContent = "";
+  dialog.showModal();
+  document.body.classList.add("dialog-open");
+  email.focus();
 });
 
 function renderRoute(focus = false) {

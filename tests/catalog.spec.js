@@ -76,15 +76,14 @@ test("selected material is carried into the email draft without sending", async 
     .getByRole("button", { name: "Close inquiry", exact: true })
     .click();
   await page.getByRole("link", { name: "Contact JAFORD", exact: true }).click();
-  await page
-    .getByRole("button", { name: "Send an Inquiry", exact: true })
-    .click();
-  await expect(
-    page.getByLabel("Product / service and selected option"),
-  ).toBeHidden();
-  await expect(page.getByLabel("Area of interest")).toHaveValue(
-    "Other technical requirement",
-  );
+  const contact = page.locator("#home-contact-form");
+  await contact.getByLabel("Your Name").fill("New Researcher");
+  await contact.getByLabel("E-Mail Address").fill("new@example.com");
+  await contact.getByRole("textbox", { name: "Enquiry", exact: true }).fill("Please discuss a new synthesis project.");
+  await contact.getByRole("button", { name: "Prepare email" }).click();
+  await expect(page.locator("#inquiry-preview")).not.toContainText("Resin-Derived Hard Carbon");
+  await expect(page.locator("#inquiry-preview")).toContainText("New Researcher");
+
 });
 
 test("representative detail pages preserve technical boundaries and fit the viewport", async ({

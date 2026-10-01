@@ -1366,3 +1366,21 @@ h1[tabindex="-1"]:focus,
  .home-contact .contact-panel { padding: 24px 18px; }
  .home-contact .contact-address { font-size: 22px; }
 }
+
+/* Inline contact form, matching the owner's simple label-and-field reference. */
+.home-contact { display: block; border-top: 1px solid var(--line); padding-block: 40px; }
+.home-contact h2 { font-size: 25px; color: var(--ink); padding-bottom: 16px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+.simple-contact-form { max-width: 1050px; }
+.contact-field { display: grid; grid-template-columns: 150px minmax(0, 1fr); align-items: start; gap: 24px; margin-bottom: 16px; }
+.contact-field label { padding-top: 11px; text-align: right; color: var(--ink); font-size: 13px; }
+.contact-field label span { color: #a44336; }
+.contact-field input, .contact-field textarea { width: 100%; min-width: 0; border: 1px solid #c9c4bb; border-radius: 3px; padding: 10px 12px; color: var(--ink); background: var(--surface); font: inherit; font-size: 15px; }
+.contact-field textarea { min-height: 165px; resize: vertical; }
+.contact-form-actions { margin-left: 174px; }
+.contact-direct { margin: 22px 0 0 174px; font-size: 14px; color: var(--muted); }
+.contact-direct a { color: var(--brand-blue); text-decoration: underline; text-underline-offset: 4px; }
+@media(max-width:640px) {
+ .contact-field { grid-template-columns: 1fr; gap: 8px; }
+ .contact-field label { text-align: left; padding-top: 0; }
+ .contact-form-actions, .contact-direct { margin-left: 0; }
+}

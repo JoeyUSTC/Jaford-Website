@@ -68,3 +68,9 @@ Fuel Cell Store and ElectroHy contact URLs returned proxy CONNECT 403. Their pre
 ## Caption and contact simplification
 
 At the owner’s request, visible AI-generation captions are removed from homepage and catalog thumbnails. Detail pages keep a neutral representative-illustration note, and asset provenance remains documented internally. The homepage Contact Us block now contains only its heading, verified email and the existing inquiry action.
+
+## Inline contact and scale-up imagery
+
+The owner supplied a contact-form screenshot as a visual reference. The homepage now shows three required fields (name, email, enquiry), an email preparation action and the verified direct email below an “or” alternative. Submission produces a local reviewable email draft with copy/download fallbacks, never a server-delivery claim. Existing product inquiry flows remain independent; homepage enquiries do not inherit product details.
+
+Custom R&D images now represent polymer and target-molecule reactors, synthesis scale-up equipment, a rotary furnace, electrode coating and pouch-cell stacking machinery. They communicate partner-coordinated process development, not finished products or ownership of the depicted equipment. No process capacities or facility availability are inferred from illustrations.

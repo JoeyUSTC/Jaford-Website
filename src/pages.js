@@ -63,13 +63,13 @@ export function home() {
   const fuelURL = "https://www.jaford.com/products/fuel-cell-and-electrolyzer";
   return `<section class="hero container home-hero"><div class="brand-statement"><p class="brand-lead">From Innovation to Industry Impact:</p><h1 tabindex="-1">Long-term Partner in Technology Translation</h1></div><p class="hero-description">JAFORD partners with startups and research teams to bridge the gap between lab innovation and industrial application. Together, we combine technical knowledge with materials and facilities from established industrial supply chains to accelerate technology validation, process scale-up and the path to commercialization.</p></section>
   ${homeSector("custom-rd", "Custom R&D", [
-    serviceCard("Polymer & resin synthesis", "polymer-resin-synthesis", "functional-polymer"),
-    serviceCard("Small molecules & ligands", "small-molecule-synthesis", "solid-samples"),
-    serviceCard("Synthesis scale-up", "synthesis-scale-up", "glass-reactor-2000ml"),
-    serviceCard("Carbonization & activation", "carbonization-activation", "spherical-porous-carbon"),
-    serviceCard("Electrode processing", "electrode-processing", "nfpp-electrode"),
-    serviceCard("Pouch cell development", "pouch-cell-customization", "research-pouch-cells"),
-  ], "From material synthesis to prototypes: we coordinate development, processing and validation with partner factories and laboratories.")}
+    serviceCard("Polymer & resin synthesis", "polymer-resin-synthesis", "rd-polymer-reactor"),
+    serviceCard("Target molecule synthesis", "small-molecule-synthesis", "rd-molecule-reactor"),
+    serviceCard("Synthesis scale-up", "synthesis-scale-up", "rd-scale-up"),
+    serviceCard("Carbonization & activation", "carbonization-activation", "rd-rotary-furnace"),
+    serviceCard("Electrode processing", "electrode-processing", "rd-coating"),
+    serviceCard("Pouch cell development", "pouch-cell-customization", "rd-stacking"),
+  ], "From small lab batches to pilot-scale processes: synthesis, processing and cell development coordinated with partner factories and laboratories.")}
   ${homeSector("battery-technology", "Battery Technology", ["resin-derived-hard-carbon", "biomass-derived-hard-carbon", "spherical-porous-carbon", "cvd-silicon-carbon", "nfpp-powder", "al-3001a"].map(id => [products.find(p => p.id === id).name, productURL(id, "battery-technology"), id]))}
   ${homeSector("fuel-cells-electrolyzers", "Fuel Cells & Electrolyzers", [
     ["Membranes", fuelURL, "fuel-membranes"],
@@ -103,7 +103,7 @@ export function home() {
     ["Nickel sample boats", productURL("nickel-boat"), "nickel-boat"],
     ["Laboratory fittings", productURL("imperial-reducer"), "imperial-reducer"],
   ])}
-  <section class="section container home-contact" id="contact"><h2>Contact Us</h2><div class="contact-panel"><a class="contact-address" href="mailto:kiki.li@jaford.com">kiki.li@jaford.com</a><div class="contact-actions">${inquiry("Send an Inquiry", "Other technical requirement")}</div></div></section>`;
+  <section class="section container home-contact" id="contact"><h2>Contact Us</h2><form id="home-contact-form" class="simple-contact-form"><div class="contact-field"><label for="contact-name"><span aria-hidden="true">*</span> Your Name</label><input id="contact-name" name="name" autocomplete="name" required maxlength="120"></div><div class="contact-field"><label for="contact-email"><span aria-hidden="true">*</span> E-Mail Address</label><input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="200"></div><div class="contact-field"><label for="contact-enquiry"><span aria-hidden="true">*</span> Enquiry</label><textarea id="contact-enquiry" name="enquiry" required minlength="10" maxlength="5000" rows="6"></textarea></div><div class="contact-form-actions"><button class="button button-outline" type="submit">Prepare email</button></div></form><p class="contact-direct">or email <a href="mailto:kiki.li@jaford.com">kiki.li@jaford.com</a></p></section>`;
 }
 export function technologyDirectory() {
   return `${header("JAFORD", "Technology areas", "Explore the materials, equipment and related development support for your research area.")}<section class="container catalog-section" aria-label="Technology directory"><div class="product-list">${areaRows()}</div></section>${contact()}`;

@@ -34,4 +34,6 @@ The owner has made this repository public and enabled GitHub Pages with GitHub A
 
 - Homepage headline uses logo blue #3b6ea5 and restrained sizing. Illustrations must show visible materials, not opaque reagent bottles. Equipment appears before supplies, with generic homepage names and actual model data retained on detail pages. Testing is partner-coordinated and project-assessed, not a self-owned facility claim.
 
-- Contact Us on the homepage contains only its heading, verified email and inquiry action; do not reintroduce promotional paragraphs, topic lists or “Work with JAFORD”. No visible “AI-generated illustration” text on pages.
+- Contact Us on the homepage uses an inline three-field form (name, email, enquiry), Prepare email action and an “or email” fallback; do not reintroduce promotional paragraphs, topic lists or “Work with JAFORD”. No visible “AI-generated illustration” text on pages.
+
+- Custom R&D homepage images depict pilot-scale synthesis and processing equipment, not finished material or cell products. Use representative equipment imagery without claiming JAFORD ownership or universal process availability.
