@@ -67,7 +67,7 @@ test("technology navigation groups products and related services", async ({
   await page.goto("/#/technologies/battery-materials");
   await expect(
     page.getByRole("link", {
-      name: "Hard carbon for sodium-ion batteries",
+      name: "Resin-Derived Hard Carbon",
       exact: true,
     }),
   ).toBeVisible();

@@ -57,15 +57,21 @@ const p = (
 });
 export const products = [
   p(
-    "sodium-hard-carbon",
+    "resin-derived-hard-carbon",
     "battery-materials",
-    "Hard carbon for sodium-ion batteries",
-    "Biomass-derived and resin-derived hard carbon for sodium-ion anode development.",
-    ["Biomass-derived", "Resin-derived"],
-    {
-      "Feedstock type":
-        "Biomass-derived or resin-derived",
-    },
+    "Resin-Derived Hard Carbon",
+    "Resin-derived hard carbon for sodium-ion battery anode research.",
+    [],
+    { "Feedstock type": "Resin-derived", Application: "Sodium-ion battery anode research" },
+    powderFields,
+  ),
+  p(
+    "biomass-derived-hard-carbon",
+    "battery-materials",
+    "Biomass-Derived Hard Carbon",
+    "Biomass-derived hard carbon for sodium-ion battery anode research.",
+    [],
+    { "Feedstock type": "Biomass-derived", Application: "Sodium-ion battery anode research" },
     powderFields,
   ),
   p(

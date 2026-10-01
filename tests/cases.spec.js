@@ -27,5 +27,5 @@ test("product category navigation filters the quote-only modules", async ({page}
   await expect(page.locator(".product-module")).toHaveCount(5);
   await expect(page.getByLabel("Category",{exact:true})).toHaveValue("binders-electrolytes");
   await expect(page.locator('.catalog-sidebar a[aria-current="page"]')).toContainText("Binders & electrolytes");
-  await expect(page.locator(".quote-label").first()).toHaveText("Quotation on request");
+  await expect(page.locator(".quote-label")).toHaveCount(0);
 });

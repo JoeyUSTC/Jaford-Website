@@ -1,6 +1,9 @@
 // Representative AI-generated artwork, not model photographs. See docs/product-images.md.
 export const productImages = {
-  "sodium-hard-carbon": {
+  "biomass-derived-hard-carbon": {
+    sheet: "materials", column: 0, row: 0, alt: "Carbon powder and sample jar"
+  },
+  "resin-derived-hard-carbon": {
     "sheet": "materials",
     "column": 0,
     "row": 0,

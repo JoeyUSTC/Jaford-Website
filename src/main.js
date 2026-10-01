@@ -155,6 +155,10 @@ document.querySelector("#edit-inquiry").addEventListener("click", () => {
 function renderRoute(focus = false) {
   const raw = location.hash.slice(1) || "/";
   const [path, query = ""] = raw.split("?");
+  if (path === "/products/sodium-hard-carbon") {
+    location.replace("#/products?category=battery-materials&q=hard+carbon");
+    return;
+  }
   const params = new URLSearchParams(query);
   const area = technologies.find((t) => path === `/technologies/${t.id}`);
   const product = products.find((p) => path === `/products/${p.id}`);

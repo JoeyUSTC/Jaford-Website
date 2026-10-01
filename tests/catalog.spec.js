@@ -6,7 +6,7 @@ test("catalog filtering, search, empty state and browser history", async ({
   page,
 }) => {
   await page.goto("/#/products");
-  await expect(page.locator(".catalog-row")).toHaveCount(25);
+  await expect(page.locator(".catalog-row")).toHaveCount(26);
   await page
     .getByLabel("Category", { exact: true })
     .selectOption("binders-electrolytes");
@@ -31,16 +31,14 @@ test("catalog filtering, search, empty state and browser history", async ({
     page.getByRole("heading", { name: "No products match these filters" }),
   ).toBeVisible();
   await page.getByRole("link", { name: "Reset filters" }).click();
-  await expect(page.locator(".catalog-row")).toHaveCount(25);
+  await expect(page.locator(".catalog-row")).toHaveCount(26);
 });
 
-test("selected product model is carried into the email draft without sending", async ({
+test("selected material is carried into the email draft without sending", async ({
   page,
 }) => {
-  await page.goto("/#/products/sodium-hard-carbon");
-  await page
-    .getByLabel("Model / option")
-    .selectOption("Resin-derived");
+  await page.goto("/#/products/resin-derived-hard-carbon");
+  await expect(page.locator("#product-model")).toHaveCount(0);
   await page.getByRole("button", { name: "Request a quotation" }).click();
   await expect(page.getByLabel("Area of interest")).toHaveValue(
     "Battery materials",
@@ -48,7 +46,7 @@ test("selected product model is carried into the email draft without sending", a
   await expect(
     page.getByLabel("Product / service and selected option"),
   ).toHaveValue(
-    "Hard carbon for sodium-ion batteries — Resin-derived",
+    "Resin-Derived Hard Carbon",
   );
   await page.getByLabel("Your name").fill("Test Researcher");
   await page.getByLabel("Work email").fill("research@example.com");
@@ -69,7 +67,7 @@ test("selected product model is carried into the email draft without sending", a
     "Required timeline: Within 6 weeks",
   );
   expect(mail.searchParams.get("body")).toContain(
-    "Resin-derived",
+    "Resin-Derived Hard Carbon",
   );
   await expect(page.locator("#inquiry-result")).toContainText(
     "Nothing has been sent.",
@@ -77,6 +75,7 @@ test("selected product model is carried into the email draft without sending", a
   await page
     .getByRole("button", { name: "Close inquiry", exact: true })
     .click();
+  await page.getByRole("link", { name: "Contact JAFORD", exact: true }).click();
   await page
     .getByRole("button", { name: "Send an Inquiry", exact: true })
     .click();
@@ -187,7 +186,7 @@ test("every product and service has a working detail route and an inquiry", asyn
   await page.goto("/#/products/does-not-exist");
   await expect(page.locator("h1")).toHaveText("Page not found");
   await page.getByRole("link", { name: "Browse products" }).click();
-  await expect(page.locator(".catalog-row")).toHaveCount(25);
+  await expect(page.locator(".catalog-row")).toHaveCount(26);
 });
 
 test("multi-keyword search preserves filters through the detail return link", async ({
@@ -216,7 +215,7 @@ test("product modules open specs from the image or keyboard and retain inquiry c
   page,
 }) => {
   await page.goto("/#/technologies/battery-materials");
-  await expect(page.locator(".product-module")).toHaveCount(11);
+  await expect(page.locator(".product-module")).toHaveCount(12);
   const module = page
     .locator(".product-module")
     .filter({
@@ -246,7 +245,7 @@ test("product modules open specs from the image or keyboard and retain inquiry c
     .getByRole("button", { name: "Close inquiry", exact: true })
     .click();
   await page
-    .getByRole("link", { name: "Back to technology area", exact: true })
+    .getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", { name: "Battery materials & electrodes", exact: true })
     .click();
   const productLink = page
     .locator(".product-module")
@@ -266,4 +265,22 @@ test("missing specifications stay absent while known specifications and inquiry 
   await expect(page.locator(".spec-table tbody tr")).toHaveCount(2);
   await expect(page.locator(".spec-table")).toContainText("7.5 × 5.4 cm");
   await expect(page.locator(".spec-table")).toContainText("Double-sided");
+});
+
+
+test("hard carbon forms are separate and product pages keep a technical focus", async ({page}) => {
+  await page.goto("/#/products/sodium-hard-carbon?area=battery-materials");
+  await expect(page.locator(".product-module")).toHaveCount(2);
+  for (const [name, feedstock] of [["Resin-Derived Hard Carbon", "Resin-derived"], ["Biomass-Derived Hard Carbon", "Biomass-derived"]]) {
+    await page.getByRole("link", {name,exact:true}).click();
+    await page.reload();
+    await expect(page.locator("h1")).toHaveText(name);
+    await expect(page.locator(".spec-table")).toContainText(feedstock);
+    await expect(page.locator("#product-model, .related-areas, #contact, .detail-next")).toHaveCount(0);
+    const action=page.getByRole("button", {name:"Request a quotation",exact:true});
+    await expect(action).not.toHaveClass(/button-dark/);
+    await action.click();
+    await expect(page.getByLabel("Product / service and selected option")).toHaveValue(name);
+    await page.goto("/#/products?category=battery-materials&q=hard+carbon");
+  }
 });
