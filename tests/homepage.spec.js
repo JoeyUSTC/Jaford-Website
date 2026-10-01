@@ -61,7 +61,9 @@ test("homepage presents readable product information without errors or overflow"
 test("technology navigation groups products and related services", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/#/technologies");
+  await expect(page).toHaveURL(/#\/$/);
+  await expect(page.locator('a[href="#/technologies"]')).toHaveCount(0);
   const links = await page
     .locator('[aria-label="Main navigation"] a')
     .evaluateAll((items) =>

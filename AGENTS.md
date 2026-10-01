@@ -39,3 +39,5 @@ The owner has made this repository public and enabled GitHub Pages with GitHub A
 - Custom R&D homepage images depict pilot-scale synthesis and processing equipment, not finished material or cell products. Use representative equipment imagery without claiming JAFORD ownership or universal process availability.
 
 - R&D service detail pages show a title, one concise capability paragraph, representative image and quiet inquiry action. Do not display scope/input/deliverable/acceptance checklists, repeated contact sections or related-area blocks. Keep detailed reference data internally for later discussion.
+
+- No technology-area overview page or “All technology areas” entry. Navigation goes directly to individual categories; old `#/technologies` links redirect to the homepage. Detail breadcrumbs use Home and their specific category.

@@ -5,7 +5,6 @@ import {
   home,
   caseCatalog,
   caseDetail,
-  technologyDirectory,
   technologyDetail,
   productCatalog,
   productDetail,
@@ -191,6 +190,10 @@ document.addEventListener("submit", (event) => {
 function renderRoute(focus = false) {
   const raw = location.hash.slice(1) || "/";
   const [path, query = ""] = raw.split("?");
+  if (path === "/technologies" || path === "/technologies/") {
+    location.replace("#/");
+    return;
+  }
   if (path === "/products/sodium-hard-carbon") {
     location.replace("#/products?category=battery-materials&q=hard+carbon");
     return;
@@ -208,10 +211,7 @@ function renderRoute(focus = false) {
   const caseItem = cases.find((item) => path === `/cases/${item.id}`);
   let html;
   let title = "JAFORD — From Innovation to Industrial Impact";
-  if (path === "/technologies") {
-    html = technologyDirectory();
-    title = "Technology areas — JAFORD";
-  } else if (area) {
+  if (area) {
     html = technologyDetail(area);
     title = `${area.name} — JAFORD`;
   } else if (path === "/products") {
