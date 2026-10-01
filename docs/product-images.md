@@ -29,3 +29,7 @@ Three new AI-generated atlases: `materials-visible.png` shows a binder dispersio
 ## MOF and COF structure-plus-powder illustrations
 
 At the owner's request, `frameworks-powders.png` pairs conceptual network schematics with representative powder samples. Top left: generic MOF coordination network; top right: generic layered COF covalent network. These do not specify a compound, crystal structure, measured morphology, composition or powder color. The two homepage cards retain their functional-material development link.
+
+## Functional material structure-and-sample illustrations
+
+The owner approved extending the MOF/COF visual format to the other four functional-material cards. `functional-structures.png` pairs a conceptual polymer chain, cross-linked resin network, ligand skeleton and small-molecule intermediate with representative granules or powder. These are family-level explanatory illustrations, not identified chemical structures, formulations, measured morphology or confirmed product colors. Homepage links and specifications are unchanged.

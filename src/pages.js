@@ -82,10 +82,10 @@ export function home() {
   ${homeSector("functional-materials", "Functional Materials", [
     serviceCard("MOFs", "functional-materials-development", "mof-framework"),
     serviceCard("COFs", "functional-materials-development", "cof-framework"),
-    serviceCard("Functional polymers", "polymer-resin-synthesis", "functional-polymer"),
-    serviceCard("Resins", "polymer-resin-synthesis", "resin-granules"),
-    serviceCard("Ligands", "small-molecule-synthesis", "solid-samples"),
-    serviceCard("Functional intermediates", "functional-materials-development", "solid-samples"),
+    serviceCard("Functional polymers", "polymer-resin-synthesis", "polymer-structure"),
+    serviceCard("Resins", "polymer-resin-synthesis", "resin-structure"),
+    serviceCard("Ligands", "small-molecule-synthesis", "ligand-structure"),
+    serviceCard("Functional intermediates", "functional-materials-development", "intermediate-structure"),
   ])}
   ${homeSector("testing-characterization", "Testing & Characterization", [
     ["SEM & TEM", serviceURL("material-characterization"), "sem-testing", "Surface morphology and microstructure imaging."],

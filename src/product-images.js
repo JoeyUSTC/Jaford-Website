@@ -1,5 +1,9 @@
 // Representative AI-generated artwork, not model photographs. See docs/product-images.md.
 export const productImages = {
+  "polymer-structure": { sheet: "functional-structures", column: 0, row: 0, alt: "Conceptual polymer chain with representative granules; not a specific composition" },
+  "resin-structure": { sheet: "functional-structures", column: 1, row: 0, alt: "Conceptual cross-linked resin network with representative resin granules" },
+  "ligand-structure": { sheet: "functional-structures", column: 0, row: 1, alt: "Conceptual ligand skeleton and donor groups with a representative powder sample" },
+  "intermediate-structure": { sheet: "functional-structures", column: 1, row: 1, alt: "Conceptual small-molecule intermediate skeleton with representative crystalline powder" },
   "mof-framework": { sheet: "frameworks-powders", column: 0, row: 0, alt: "Conceptual MOF coordination network with a representative powder sample; not a specific compound" },
   "cof-framework": { sheet: "frameworks-powders", column: 1, row: 0, alt: "Conceptual layered COF network with a representative powder sample; not a specific compound" },
   "rd-polymer-reactor": { sheet: "rd-synthesis", column: 0, row: 0, alt: "Representative pilot polymer synthesis reactor" },
