@@ -40,7 +40,7 @@ test("selected product model is carried into the email draft without sending", a
   await page.goto("/#/products/sodium-hard-carbon");
   await page
     .getByLabel("Model / option")
-    .selectOption("Resin-derived — grade to confirm");
+    .selectOption("Resin-derived");
   await page.getByRole("button", { name: "Request a quotation" }).click();
   await expect(page.getByLabel("Area of interest")).toHaveValue(
     "Battery materials",
@@ -48,7 +48,7 @@ test("selected product model is carried into the email draft without sending", a
   await expect(
     page.getByLabel("Product / service and selected option"),
   ).toHaveValue(
-    "Hard carbon for sodium-ion batteries — Resin-derived — grade to confirm",
+    "Hard carbon for sodium-ion batteries — Resin-derived",
   );
   await page.getByLabel("Your name").fill("Test Researcher");
   await page.getByLabel("Work email").fill("research@example.com");
@@ -69,7 +69,7 @@ test("selected product model is carried into the email draft without sending", a
     "Required timeline: Within 6 weeks",
   );
   expect(mail.searchParams.get("body")).toContain(
-    "Resin-derived — grade to confirm",
+    "Resin-derived",
   );
   await expect(page.locator("#inquiry-result")).toContainText(
     "Nothing has been sent.",
@@ -116,10 +116,10 @@ test("representative detail pages preserve technical boundaries and fit the view
     }
     if (route === "products/p2-electrode") {
       await expect(page.locator("table")).toContainText("7.5 × 5.4 cm");
-      await expect(page.locator("table")).toContainText(
+      await expect(page.locator("table")).not.toContainText(
         "Areal capacity (mAh/cm²)",
       );
-      await expect(page.locator("table")).toContainText(
+      await expect(page.locator("table")).not.toContainText(
         "Mass loading (mg/cm²)",
       );
       await expect(page.locator("figcaption")).toContainText("AI-generated illustration");
@@ -158,8 +158,11 @@ test("every product and service has a working detail route and an inquiry", asyn
   for (const product of products) {
     await page.goto("/#/products/" + product.id);
     await expect(page.locator("h1")).toHaveText(product.name);
-    await expect(page.locator("table")).toBeVisible();
-    await expect(page.getByLabel("Model / option")).toBeVisible();
+    if (Object.keys(product.specs).length) await expect(page.locator("table")).toBeVisible();
+    else await expect(page.locator(".spec-section")).toHaveCount(0);
+    await expect(page.getByLabel("Model / option")).toHaveCount(product.models.length ? 1 : 0);
+    await expect(page.locator("main")).not.toContainText("Contact us for the specification");
+    await expect(page.locator("main")).not.toContainText("to confirm");
     await expect(
       page.getByRole("button", { name: "Request a quotation" }),
     ).toBeVisible();
@@ -251,4 +254,16 @@ test("product modules open specs from the image or keyboard and retain inquiry c
   await productLink.focus();
   await page.keyboard.press("Enter");
   await expect(page.locator("h1")).toHaveText("NFPP cathode powder");
+});
+
+
+test("missing specifications stay absent while known specifications and inquiry remain usable", async ({ page }) => {
+  await page.goto("/#/products/vacuum-sealer");
+  await expect(page.locator(".spec-section, #product-model, [data-show-spec]")).toHaveCount(0);
+  await page.getByRole("button", {name: "Request a quotation", exact:true}).click();
+  await expect(page.getByLabel("Product / service and selected option")).toHaveValue("Vacuum sealing machine");
+  await page.goto("/#/products/p2-electrode");
+  await expect(page.locator(".spec-table tbody tr")).toHaveCount(2);
+  await expect(page.locator(".spec-table")).toContainText("7.5 × 5.4 cm");
+  await expect(page.locator(".spec-table")).toContainText("Double-sided");
 });

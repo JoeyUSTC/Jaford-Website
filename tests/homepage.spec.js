@@ -8,7 +8,7 @@ test("homepage presents readable product information without errors or overflow"
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD — From Innovation to Industrial Impact");
   await expect(page.locator("main > section")).toHaveCount(6);
-  await expect(page.locator(".product-item")).toHaveCount(6);
+  await expect(page.locator(".home-product-grid .product-module")).toHaveCount(6);
   await expect(page.locator("h1")).toHaveText("From Innovation to Industrial Impact");
   await expect(page.locator(".brand-slogan")).toHaveText("Your Long-term Partner in Technology Translation");
   expect(await page.locator(".brand-logo img").evaluate(async (img) => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
@@ -17,11 +17,11 @@ test("homepage presents readable product information without errors or overflow"
   await expect(page.locator("#functional-materials")).toContainText("MOFs & COFs");
   await expect(page.locator("#completed-projects article")).toHaveCount(2);
   await expect(page.locator("#completed-projects")).toContainText("11 kg of resin");
-  for (const product of await page.locator(".product-item").all()) {
+  for (const product of await page.locator(".home-product-grid .product-module").all()) {
     await product.locator("img").scrollIntoViewIfNeeded();
     expect(await product.locator("img").evaluate(async img => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
-    await expect(product.getByRole("heading", { level: 3 })).toBeVisible();
-    await expect(product.locator(".product-detail p")).toBeVisible();
+    await expect(product.getByRole("heading", { level: 2 })).toBeVisible();
+    await expect(product.locator(".module-description")).toBeVisible();
   }
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
@@ -54,7 +54,7 @@ test("technology navigation groups products and related services", async ({
 }) => {
   await page.goto("/");
   const links = await page
-    .locator(".product-item h3 a")
+    .locator(".home-technology-nav a")
     .evaluateAll((items) =>
       items.map((a) => ({ href: a.getAttribute("href"), name: a.textContent })),
     );

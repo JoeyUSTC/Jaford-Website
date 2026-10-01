@@ -1233,3 +1233,20 @@ h1[tabindex="-1"]:focus,
 @media(max-width: 640px) {
  .catalog-results .product-grid, .catalog-results .catalog-filters { grid-template-columns: 1fr; }
 }
+
+/* Uploaded references: image-led modules and concise outcome-led case previews. */
+.home-technology-nav { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 0 0 28px; }
+.home-technology-nav a { font-size: 13px; color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
+.module-content { padding: 18px; }
+.module-content h2 { font-size: 17px; line-height: 1.4; }
+.module-description { font-size: 13px; line-height: 1.7; }
+.module-models { font-size: 12px; }
+.module-figure .product-artwork { max-width: 220px; }
+.catalog-results .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.case-summary { display: flex; flex-direction: column; }
+.case-summary > .text-link { margin-top: auto; }
+.case-card-facts { display: grid; grid-template-columns: 1fr 1.4fr; gap: 18px; padding: 16px 0; border-top: 1px solid var(--line); }
+.case-card-facts dt { margin-top: 0; }
+.case-study .case-chapter p { max-width: 65ch; }
+@media(max-width: 1100px) { .catalog-results .product-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width: 640px) { .catalog-results .product-grid { grid-template-columns: 1fr; } }

@@ -1,6 +1,4 @@
 // Curated from the owner's supplied catalog brief. No unverified numeric specs.
-export const pending =
-  "Contact us for the specification of your selected model.";
 export const categories = [
   {
     id: "battery-materials",
@@ -53,7 +51,8 @@ const p = (
   name,
   description,
   models,
-  specs: Object.fromEntries(fields.map((key) => [key, specs[key] || pending])),
+  specs,
+  missingSpecs: fields.filter((key) => !Object.hasOwn(specs, key)),
   note,
 });
 export const products = [
@@ -62,10 +61,10 @@ export const products = [
     "battery-materials",
     "Hard carbon for sodium-ion batteries",
     "Biomass-derived and resin-derived hard carbon for sodium-ion anode development.",
-    ["Biomass-derived — grade to confirm", "Resin-derived — grade to confirm"],
+    ["Biomass-derived", "Resin-derived"],
     {
       "Feedstock type":
-        "Biomass-derived or resin-derived; confirm the selected grade.",
+        "Biomass-derived or resin-derived",
     },
     powderFields,
   ),
@@ -75,12 +74,12 @@ export const products = [
     "Spherical porous carbon",
     "Porous carbon for silicon–carbon anode research and as a host for silicon deposition.",
     [
-      "Alkali-activated — grade to confirm",
-      "Water-activated — grade to confirm",
+      "Alkali-activated",
+      "Water-activated",
     ],
     {
       "Activation type":
-        "Alkali-activated or water-activated; route and grade to be confirmed.",
+        "Alkali-activated or water-activated",
     },
     [...powderFields, "Activation type"],
   ),
@@ -89,10 +88,10 @@ export const products = [
     "battery-materials",
     "CVD silicon–carbon anode powder",
     "Silicon–carbon powder for anode research, including spherical material with a secondary carbon coating.",
-    ["Spherical, secondary carbon coating — grade to confirm"],
+    ["Spherical, secondary carbon coating"],
     {
       "Morphology / coating":
-        "Spherical; secondary carbon coating. Confirm against the selected grade specification.",
+        "Spherical; secondary carbon coating",
     },
     [...powderFields, "Morphology / coating"],
   ),
@@ -101,8 +100,8 @@ export const products = [
     "battery-materials",
     "NFPP cathode powder",
     "NFPP powder for sodium-ion research and electrode processing, including a rate-oriented material option.",
-    ["NFPP — grade to confirm", "Rate-oriented NFPP — grade to confirm"],
-    {},
+    ["NFPP", "Rate-oriented NFPP"],
+    { "Material": "NFPP" },
     powderFields,
     "Rate capability depends on the selected grade and agreed test conditions; no performance value is specified.",
   ),
@@ -130,7 +129,7 @@ export const products = [
     "jone-174",
     "binders-electrolytes",
     "JONE-174 battery binder",
-    "Battery binder identified by the supplied model code. Formal product naming and compatible chemistries require specification confirmation.",
+    "Battery binder supplied as JONE-174.",
     ["JONE-174"],
     { Model: "JONE-174" },
     [
@@ -147,7 +146,7 @@ export const products = [
       model.toLowerCase(),
       "binders-electrolytes",
       `${model} electrolyte`,
-      "Battery research electrolyte supplied by model. Confirm chemistry compatibility and the model specification before selection.",
+      "Battery research electrolyte supplied by model.",
       [model],
       { Model: model },
       [
@@ -164,9 +163,9 @@ export const products = [
     "nfm-electrolyte",
     "binders-electrolytes",
     "Electrolyte for NFM sodium-ion systems",
-    "Electrolyte selection for NFM sodium-ion development. The exact model remains to be confirmed.",
-    ["NFM-compatible — model to confirm"],
-    { Application: "NFM sodium-ion development; compatibility to confirm." },
+    "Electrolyte for NFM sodium-ion development.",
+    ["NFM-compatible"],
+    { Application: "NFM sodium-ion development" },
     [
       "Model",
       "Application",
@@ -180,8 +179,8 @@ export const products = [
     "nfpp-electrode",
     "electrodes-cells",
     "NFPP cathode electrodes",
-    "NFPP cathode electrodes for sodium-ion experiments. Coating configuration and dimensions are confirmed for each model.",
-    ["Single-sided — model to confirm", "Double-sided — model to confirm"],
+    "NFPP cathode electrodes for sodium-ion experiments.",
+    ["Single-sided", "Double-sided"],
     { "Active material": "NFPP" },
     [
       "Model",
@@ -210,7 +209,7 @@ export const products = [
       "Current collector",
       "Packaging",
     ],
-    "Confirm loading and capacity data for the selected model, including whether values refer to one side or both sides. Areal capacity and mass loading are separate quantities.",
+    "Areal capacity and mass loading are separate quantities; one-sided and two-sided values use different bases.",
   ),
   p(
     "research-pouch-cells",
@@ -233,7 +232,7 @@ export const products = [
       "Test conditions",
       "Packaging",
     ],
-    "Availability and platform specifications are confirmed by quotation. Bespoke electrode matching or cell design belongs to our pouch-cell customization service.",
+    "Bespoke electrode matching or cell design is available through our pouch-cell customization service.",
   ),
   p(
     "eve-lf100la",
@@ -261,7 +260,7 @@ export const products = [
     "glass-fiber-1823-047",
     "lab-supplies",
     "Glass-fiber filter media 1823-047",
-    "Glass-fiber filter membrane / paper for laboratory workflows. Confirm the exact product designation and filtration requirements.",
+    "Glass-fiber filter membrane / paper for laboratory workflows.",
     ["1823-047"],
     { Model: "1823-047" },
     [
@@ -278,7 +277,7 @@ export const products = [
     "lab-supplies",
     "Nickel boats",
     "Nickel boats for laboratory processing. Share dimensions and intended operating conditions for selection.",
-    ["Dimensions to confirm"],
+    [],
     { Material: "Nickel" },
     [
       "Model",
@@ -294,7 +293,7 @@ export const products = [
     "lab-supplies",
     "Nickel boat lids",
     "Nickel lids matched to the selected boat geometry.",
-    ["Matching lid — dimensions to confirm"],
+    ["Matching lid"],
     { Material: "Nickel" },
     ["Model", "Material", "Dimensions", "Boat compatibility", "Packaging"],
   ),
@@ -302,8 +301,8 @@ export const products = [
     "glass-reactor-2000ml",
     "lab-supplies",
     "2,000 mL glass reaction assembly",
-    "Laboratory glass reaction assembly with a specified volume of 2,000 mL. Confirm configuration, connections and operating conditions.",
-    ["2,000 mL — configuration to confirm"],
+    "Laboratory glass reaction assembly with a volume of 2,000 mL.",
+    ["2,000 mL"],
     { Volume: "2,000 mL" },
     [
       "Model",
@@ -320,7 +319,7 @@ export const products = [
     "emf10",
     "lab-supplies",
     "EMF10 filter cartridge",
-    "Filter cartridge supplied by model. Confirm media, connections and compatibility with your system.",
+    "EMF10 filter cartridge.",
     ["EMF10"],
     { Model: "EMF10" },
     [
@@ -337,7 +336,7 @@ export const products = [
     "un050",
     "lab-supplies",
     "UN050 ultrafiltration membrane",
-    "Ultrafiltration membrane supplied by model. Selection requires confirmation of feed compatibility and operating conditions.",
+    "UN050 ultrafiltration membrane.",
     ["UN050"],
     { Model: "UN050" },
     [
@@ -354,7 +353,7 @@ export const products = [
     "lab-supplies",
     "Laboratory copper sheets",
     "Copper sheets for laboratory and prototype work, selected against your size and material requirements.",
-    ["Dimensions / grade to confirm"],
+    [],
     { Material: "Copper" },
     [
       "Grade",
@@ -371,7 +370,7 @@ export const products = [
     "lab-supplies",
     "Laboratory check valves",
     "Check valves selected for the required medium and laboratory connection format.",
-    ["Connection / model to confirm"],
+    [],
     {},
     [
       "Model",
@@ -386,8 +385,8 @@ export const products = [
     "imperial-reducer",
     "lab-supplies",
     "Imperial-size reducing fittings",
-    "Reducing fittings for laboratory setups. Thread or tube dimensions and sealing details must be confirmed.",
-    ["Size pair / model to confirm"],
+    "Reducing fittings for laboratory setups.",
+    [],
     {},
     [
       "Model",
@@ -403,7 +402,7 @@ export const products = [
     "lab-supplies",
     "Adapter plugs",
     "Adapter plugs for laboratory equipment. Provide the source and destination connector formats for matching.",
-    ["Connector pair / model to confirm"],
+    [],
     {},
     [
       "Model",
@@ -417,7 +416,7 @@ export const products = [
     "chi760f",
     "lab-supplies",
     "CHI760F electrochemical workstation",
-    "Electrochemical workstation for laboratory research. Confirm the required measurement configuration and accessories.",
+    "Electrochemical workstation for laboratory research.",
     ["CHI760F"],
     { Model: "CHI760F" },
     [
@@ -434,7 +433,7 @@ export const products = [
     "lab-supplies",
     "Vacuum sealing machine",
     "Vacuum sealing equipment selected for the intended packaging and laboratory process.",
-    ["Model to confirm"],
+    [],
     {},
     [
       "Model",
