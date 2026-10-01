@@ -128,7 +128,7 @@ test("representative detail pages preserve technical boundaries and fit the view
       );
     if (route === "services/sintering-heat-treatment")
       await expect(page.locator("main")).toContainText(
-        "Subject to project assessment",
+        "evaluate kilogram-scale sintering",
       );
     if (["desktop", "mobile"].includes(testInfo.project.name)) {
       await page.screenshot({
@@ -169,15 +169,9 @@ test("every product and service has a working detail route and an inquiry", asyn
   for (const service of services) {
     await page.goto("/#/services/" + service.id);
     await expect(page.locator("h1")).toHaveText(service.name);
-    for (const title of [
-      "What we can organize",
-      "What you provide",
-      "Agreed deliverables",
-      "Project assessment",
-    ])
-      await expect(
-        page.getByRole("heading", { name: title, exact: true }),
-      ).toBeVisible();
+    await expect(page.locator(".detail-description")).toHaveText(service.description);
+    await expect(page.locator(".service-scope, .related-areas, .technical-note, .contact-section")).toHaveCount(0);
+    await expect(page.locator(".service-overview img")).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Discuss this service" }),
     ).toBeVisible();

@@ -10,7 +10,7 @@ export const areaAliases = {
 export const technologies = [
   {
     id: "custom-rd", nav: "Custom R&D", name: "Custom R&D",
-    description: "Custom synthesis, material development, process replication, electrode and cell development, coordinated through partner laboratories and factories.",
+    description: "Connect your lab innovation with specialist synthesis, processing and validation resources—from small samples to larger batches and working prototypes.",
     productIds: [], serviceIds: services.map(s => s.id), links: [],
   },
   {

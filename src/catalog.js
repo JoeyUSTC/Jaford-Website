@@ -464,7 +464,7 @@ export const services = [
   s(
     "material-characterization",
     "Material characterization",
-    "Project-specific characterization coordinated through partner laboratories.",
+    "Connect your material development with specialist characterization resources, including SEM and TEM, to understand structure and morphology as you validate samples and scale your process.",
     ["SEM and TEM imaging to examine surface morphology and microstructure, subject to sample and method assessment.", "Review of the material, characterization objective and suitable test methods.", "Coordination of the agreed measurements and reporting scope."],
     ["Sample composition, form, quantity, handling and safety information.", "Characterization objectives, requested methods, reference data and acceptance criteria."],
     ["Agreed characterization results and available raw data.", "Method and test-condition information within the agreed reporting scope."],
@@ -473,7 +473,7 @@ export const services = [
   s(
     "functional-materials-development",
     "Functional materials development",
-    "Custom development of MOFs, COFs, polymers and functional intermediates through partner laboratories.",
+    "We connect synthesis expertise, equipment and characterization resources to advance MOFs, COFs and functional materials from milligram-scale discovery toward gram- and kilogram-scale development.",
     [
       "Route assessment and synthesis coordination for metal–organic frameworks (MOFs) and covalent organic frameworks (COFs).",
       "Functional polymers, resins, ligands and related intermediates; process reproduction or optimization when agreed.",
@@ -493,7 +493,7 @@ export const services = [
   s(
     "polymer-resin-synthesis",
     "Polymer & resin synthesis",
-    "Synthesis organized around your target structure or SOP.",
+    "We bring together specialist synthesis facilities and process experience to advance your polymer or resin from milligram-scale lab work to gram- and kilogram-scale development, with characterization alongside scale-up.",
     [
       "PEG derivatives, cyclodextrin-related polymers and resin precursors.",
       "Repeat synthesis and agreed batch preparation through partner laboratories and factories.",
@@ -511,7 +511,7 @@ export const services = [
   s(
     "small-molecule-synthesis",
     "Small-molecule & ligand synthesis",
-    "Route assessment, synthesis and purification coordination.",
+    "We connect synthesis, purification and analytical expertise to accelerate the development of your target molecules and ligands, from milligram-scale experiments toward gram- and kilogram-scale batches.",
     [
       "Route review, reaction work and separation / purification.",
       "Coordination of agreed characterization.",
@@ -529,7 +529,7 @@ export const services = [
   s(
     "synthesis-scale-up",
     "Synthesis scale-up & process replication",
-    "From laboratory samples to kilogram-scale batches, subject to process review.",
+    "We connect your lab-scale material or catalyst synthesis with partner equipment and process expertise to develop repeatable gram- and kilogram-scale processes and validate the material as scale increases.",
     [
       "Raw-material procurement and SOP replication.",
       "Process iteration and planned batch delivery with partner facilities.",
@@ -547,7 +547,7 @@ export const services = [
   s(
     "carbonization-activation",
     "Carbonization & activation",
-    "Resin carbonization and custom porous-carbon processing.",
+    "We connect your lab-scale carbon work with larger furnaces, activation equipment and processing experience to develop larger batches and validate the resulting carbon structure and properties.",
     [
       "Resin carbonization and alkali activation.",
       "Steam or CO₂ activation routes assessed against feedstock and partner-facility conditions.",
@@ -565,7 +565,7 @@ export const services = [
   s(
     "sintering-heat-treatment",
     "Scale-up sintering & heat treatment",
-    "Kilogram-scale and larger-batch requirements assessed by project.",
+    "We match your material and thermal process with suitable partner furnaces and process expertise to evaluate kilogram-scale sintering and heat treatment beyond the laboratory.",
     [
       "Review of feedstock, atmosphere, temperature profile and batch handling.",
       "Coordination of suitable partner processing capacity.",
@@ -583,7 +583,7 @@ export const services = [
   s(
     "electrode-processing",
     "Electrode processing",
-    "Material sourcing or customer-supplied powders through to cut electrodes.",
+    "We connect your materials with slurry, roll-to-roll coating and finishing expertise to advance lab electrodes toward square-metre and larger pilot coating trials, validating uniformity and performance as scale increases.",
     [
       "Slurry and coating coordination, calendaring and cutting.",
       "NFPP, P2, layered-oxide and hard-carbon systems reviewed individually.",
@@ -601,7 +601,7 @@ export const services = [
   s(
     "pouch-cell-customization",
     "Pouch-cell customization",
-    "Electrode matching and cell assembly for a defined research objective.",
+    "We connect electrode processing, cell assembly and testing expertise to advance your coin-cell results into pouch-cell prototypes and validate the technology before the next step toward pack-level development.",
     [
       "Cathode / anode matching and stacked-cell assembly.",
       "Dry-cell delivery, or electrolyte filling, formation and capacity grading.",
@@ -619,7 +619,7 @@ export const services = [
   s(
     "battery-testing",
     "Battery testing",
-    "Coordinated charge–discharge, cycling, rate and comparative validation.",
+    "We connect lithium-ion, solid-state and pouch-cell development with cycling, rate and comparative testing to validate performance as your technology moves into larger cell formats.",
     [
       "Lithium-ion, solid-state and pouch cell testing, with fixtures and safety requirements reviewed for each cell format.",
       "Test protocol review and test coordination with partner laboratories.",
@@ -637,7 +637,7 @@ export const services = [
   ),
   s(
     "stack-testing", "Fuel-cell & electrolyzer stack testing",
-    "Partner-coordinated short-stack and full-stack testing for fuel cells and water electrolysis.",
+    "We connect fuel-cell and electrolyzer development with suitable short-stack and full-stack test facilities to evaluate performance as you move from individual cells to larger systems.",
     ["Review of stack configuration, interfaces and operating envelope.", "Agreed performance, operating stability and system-level validation protocols."],
     ["Stack chemistry, cell count, dimensions and electrical / fluid interfaces.", "Operating conditions, safety documentation, test objectives and reporting needs."],
     ["Agreed test records, raw data and performance curves.", "Test configuration and operating-condition summary."],
@@ -645,7 +645,7 @@ export const services = [
   ),
   s(
     "renewable-coupled-testing", "Wind & solar direct-coupling tests",
-    "Project-assessed testing of electrolyzers coupled to wind and solar power.",
+    "We bring together electrolysis and power-system expertise to assess wind and solar coupling and validate operation under variable renewable power, matching the test setup to your technology.",
     ["Review of the proposed power source, electrical interfaces and electrolysis configuration.", "Coordination of variable-power operation and direct-coupling validation where facilities and interfaces are compatible."],
     ["Electrical architecture, power profiles, control strategy and electrolyzer specifications.", "Safety requirements, validation criteria and requested data."],
     ["Agreed operating data and test-condition records.", "Observations against the agreed validation objectives."],
@@ -654,7 +654,7 @@ export const services = [
   s(
     "research-procurement",
     "Research procurement",
-    "Materials, consumables and equipment sourcing for R&D teams.",
+    "We connect your research team with materials, equipment and specialist suppliers so you can move from lab experiments to larger-scale development with the right technical resources.",
     [
       "Material selection, small-batch procurement and equipment sourcing.",
       "Coordination of custom molds, heating mantles and related accessories.",

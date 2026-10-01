@@ -10,7 +10,7 @@ The owner works from mobile Codex Cloud sessions and wants to describe website c
 
 ## Make and deliver changes
 
-- Use only the owner-supplied logo in `public/brand/jaford-brand.png` and the owner-approved homepage statement “From Innovation to Industry Impact: Long-term Partner in Technology Translation”. Do not invent alternative logos, favicons or slogans. The homepage uses the first brand line as a smaller lead and the partner statement as the primary headline. Keep engagement models and case summaries off the homepage; never publish client-specific workbook responses.
+- Use only the owner-supplied logo in `public/brand/jaford-brand.png` with the current partner headline; the owner requested a new short scale-up headline for discussion. Do not invent alternative logos, favicons or slogans. Remove the old “From Innovation…” lead. The primary message is scaling and validating laboratory innovations. Keep engagement models and case summaries off the homepage; never publish client-specific workbook responses.
 - All visitor-facing website content must be English only, including captions, specifications, navigation, accessibility labels and inquiry messages. Do not add bilingual Chinese labels.
 
 - Prioritize desktop usability and visual layout when desktop/mobile design tradeoffs arise. Homepage products should read as a horizontal collection on wide PC screens, with responsive readable layouts on mobile; avoid making desktop inherit narrow mobile composition.
@@ -37,3 +37,5 @@ The owner has made this repository public and enabled GitHub Pages with GitHub A
 - Contact Us on the homepage uses an inline three-field form (name, email, enquiry), Prepare email action and an “or email” fallback; do not reintroduce promotional paragraphs, topic lists or “Work with JAFORD”. No visible “AI-generated illustration” text on pages.
 
 - Custom R&D homepage images depict pilot-scale synthesis and processing equipment, not finished material or cell products. Use representative equipment imagery without claiming JAFORD ownership or universal process availability.
+
+- R&D service detail pages show a title, one concise capability paragraph, representative image and quiet inquiry action. Do not display scope/input/deliverable/acceptance checklists, repeated contact sections or related-area blocks. Keep detailed reference data internally for later discussion.

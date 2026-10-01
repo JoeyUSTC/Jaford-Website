@@ -49,8 +49,6 @@ const areaRows = () =>
 // Family entries describe established ranges, not newly invented model specifications.
 const homeCard = (name, href, imageId, description = "") => `<article class="sector-card"><a href="${e(href)}"><figure>${productArtwork({ id: imageId })}</figure><h3>${e(name)}</h3>${description ? `<p class="sector-card-description">${e(description)}</p>` : ""}</a></article>`;
 const homeSector = (id, title, cards, description = "") => `<section class="section container home-sector" id="${id}"><div class="sector-heading"><h2>${title}</h2>${link(areaURL(id), "Browse all")}</div>${description ? `<p class="sector-description">${description}</p>` : ""}<div class="sector-grid">${cards.map(card => homeCard(...card)).join("")}</div></section>`;
-const relatedAreas = (areas) =>
-  `<aside class="related-areas"><h2>Related technology areas</h2>${areas.map((t) => link(areaURL(t.id), t.name)).join("")}</aside>`;
 const caseSummaries = () => cases.map((item) => `<article class="case-summary"><p class="eyebrow">Case study · ${e(item.category)}</p><h3><a href="#/cases/${item.id}">${e(item.title)}</a></h3><p>${e(item.summary)}</p><dl class="case-card-facts"><div><dt>Project</dt><dd>${e(item.category)}</dd></div><div><dt>Outcome</dt><dd>${e(item.deliverable)} delivered</dd></div></dl>${link(`#/cases/${item.id}`, "Read case study")}</article>`).join("");
 export function caseCatalog() {
   return `${header("Project experience", "Completed custom projects", "Selected custom synthesis projects coordinated through our partner network. Client identities and proprietary formulations remain confidential.")}<section class="container catalog-section"><div class="completed-project-list">${caseSummaries()}</div></section>${contact()}`;
@@ -61,7 +59,7 @@ export function caseDetail(item) {
 export function home() {
   const serviceCard = (name, id, image) => [name, serviceURL(id), image];
   const fuelURL = "https://www.jaford.com/products/fuel-cell-and-electrolyzer";
-  return `<section class="hero container home-hero"><div class="brand-statement"><p class="brand-lead">From Innovation to Industry Impact:</p><h1 tabindex="-1">Long-term Partner in Technology Translation</h1></div><p class="hero-description">JAFORD partners with startups and research teams to bridge the gap between lab innovation and industrial application. Together, we combine technical knowledge with materials and facilities from established industrial supply chains to accelerate technology validation, process scale-up and the path to commercialization.</p></section>
+  return `<section class="hero container home-hero"><div class="brand-statement"><h1 tabindex="-1">Long-term Partner in Technology Translation</h1></div><p class="hero-description">We partner with research teams to scale and validate their lab innovations. By connecting specialist facilities, industrial materials and process expertise, we accelerate the move from small samples to larger batches, working prototypes and industrial application.</p></section>
   ${homeSector("custom-rd", "Custom R&D", [
     serviceCard("Polymer & resin synthesis", "polymer-resin-synthesis", "rd-polymer-reactor"),
     serviceCard("Target molecule synthesis", "small-molecule-synthesis", "rd-molecule-reactor"),
@@ -69,7 +67,7 @@ export function home() {
     serviceCard("Carbonization & activation", "carbonization-activation", "rd-rotary-furnace"),
     serviceCard("Electrode processing", "electrode-processing", "rd-coating"),
     serviceCard("Pouch cell development", "pouch-cell-customization", "rd-stacking"),
-  ], "From small lab batches to pilot-scale processes: synthesis, processing and cell development coordinated with partner factories and laboratories.")}
+  ], "Scale your materials and processes with partner facilities and expertise—from lab samples to larger batches, electrodes and cell prototypes.")}
   ${homeSector("battery-technology", "Battery Technology", ["resin-derived-hard-carbon", "biomass-derived-hard-carbon", "spherical-porous-carbon", "cvd-silicon-carbon", "nfpp-powder", "al-3001a"].map(id => [products.find(p => p.id === id).name, productURL(id, "battery-technology"), id]))}
   ${homeSector("fuel-cells-electrolyzers", "Fuel Cells & Electrolyzers", [
     ["Membranes", fuelURL, "fuel-membranes"],
@@ -110,7 +108,7 @@ export function technologyDirectory() {
 }
 export function technologyDetail(area) {
   const items = itemsForArea(area);
-  return `<div class="container area-breadcrumb">${link("#/technologies", "All technology areas")}</div>${header("Technology area", area.name, area.description)}<section class="container catalog-section" aria-label="Materials, equipment and development support">${area.id === "custom-rd" ? `<div class="section-heading"><h2>Completed projects</h2></div><div class="completed-project-list">${caseSummaries()}</div><h2 class="area-services-heading">Capabilities</h2>` : ""}${area.links.length ? `<div class="area-range"><h2>Materials & capabilities</h2>${area.links.map((item) => `<a class="text-link" href="${item.url}">${item.name}</a>`).join("")}</div>` : ""}${items.products.length ? `<div class="product-grid" aria-label="Products">${items.products.map((p) => productModule(p, productURL(p.id, area.id))).join("")}</div>` : ""}${items.services.length ? `<div class="area-services"><h2 class="area-services-heading">Related development & services</h2>${items.services.map((s) => `<article class="catalog-row"><h3><a href="${serviceURL(s.id, area.id)}">${e(s.name)}</a></h3><div><p>${e(s.description)}</p>${link(serviceURL(s.id, area.id), "Scope, inputs & deliverables")}</div></article>`).join("")}</div>` : ""}</section>${contact()}`;
+  return `<div class="container area-breadcrumb">${link("#/technologies", "All technology areas")}</div>${header("Technology area", area.name, area.description)}<section class="container catalog-section" aria-label="Materials, equipment and development support">${area.links.length ? `<div class="area-range"><h2>Materials & capabilities</h2>${area.links.map((item) => `<a class="text-link" href="${item.url}">${item.name}</a>`).join("")}</div>` : ""}${items.products.length ? `<div class="product-grid" aria-label="Products">${items.products.map((p) => productModule(p, productURL(p.id, area.id))).join("")}</div>` : ""}${items.services.length ? `<div class="area-services"><h2 class="area-services-heading">Development capabilities</h2>${items.services.map((s) => `<article class="catalog-row"><h3><a href="${serviceURL(s.id, area.id)}">${e(s.name)}</a></h3><div><p>${e(s.description)}</p>${link(serviceURL(s.id, area.id), "Explore this capability")}</div></article>`).join("")}</div>` : ""}</section>${contact()}`;
 }
 export function productCatalog(params) {
   const selected = categories.some((c) => c.id === params.get("category"))
@@ -165,24 +163,26 @@ export function productDetail(p, areaId, params = new URLSearchParams()) {
     )}</tbody></table></section>` : ""}${p.note ? `<p class="technical-note">${e(p.note)}</p>` : ""}<div class="product-contact"><button class="text-link product-inquiry" data-inquiry data-topic="${e(c.name)}" data-item="${e(p.name)}">Request a quotation</button></div></section>`;
 }
 export function serviceCatalog() {
-  return `${header("Service index", "All services", "JAFORD coordinates custom work through partner factories and laboratories. Each project starts with a feasibility review and an agreed scope, quality criteria and delivery plan.")}<section class="container catalog-section" aria-label="Service directory">${services.map((s) => `<article class="catalog-row"><h2><a href="${serviceURL(s.id)}">${s.name}</a></h2><div><p>${s.description}</p>${link(serviceURL(s.id), "Scope, inputs & deliverables")}</div></article>`).join("")}</section>${contact()}`;
+  return `${header("Service index", "All services", "Specialist resources and process expertise to scale and validate your lab innovations.")}<section class="container catalog-section" aria-label="Service directory">${services.map((s) => `<article class="catalog-row"><h2><a href="${serviceURL(s.id)}">${s.name}</a></h2><div><p>${s.description}</p>${link(serviceURL(s.id), "Explore this capability")}</div></article>`).join("")}</section>${contact()}`;
 }
+const serviceArtwork = {
+  "polymer-resin-synthesis": "rd-polymer-reactor",
+  "small-molecule-synthesis": "rd-molecule-reactor",
+  "synthesis-scale-up": "rd-scale-up",
+  "carbonization-activation": "rd-rotary-furnace",
+  "sintering-heat-treatment": "rd-rotary-furnace",
+  "electrode-processing": "rd-coating",
+  "pouch-cell-customization": "rd-stacking",
+  "functional-materials-development": "mof-framework",
+  "material-characterization": "sem-testing",
+  "battery-testing": "battery-cycling",
+  "stack-testing": "full-stack",
+  "renewable-coupled-testing": "renewable-testing",
+  "research-procurement": "glass-reactor-2000ml",
+};
 export function serviceDetail(s, areaId) {
-  const area =
-    areasForService(s.id).find((t) => t.id === areaId) ||
-    areasForService(s.id)[0];
-  return `<section class="container detail-page service-detail"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/technologies">Technology areas</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><p class="eyebrow">Coordinated through partner factories and laboratories</p><h1 tabindex="-1">${s.name}</h1><p class="detail-description">${s.description}</p><div class="hero-actions">${inquiry("Discuss this service", "Custom R&D project", s.name)}</div>${[
-    ["What we can organize", s.scope],
-    ["What you provide", s.inputs],
-    ["Agreed deliverables", s.deliverables],
-  ]
-    .map(
-      ([title, items]) =>
-        `<section class="service-scope"><h2>${title}</h2><ul>${items.map((item) => `<li>${e(item)}</li>`).join("")}</ul></section>`,
-    )
-    .join(
-      "",
-    )}<aside class="technical-note"><h2>Project assessment</h2><p>${s.boundary}</p><p>Scope, acceptance criteria, schedule and price are agreed before work begins.</p></aside>${relatedAreas(areasForService(s.id))}${link("#/services", "All services")}</section>${contact()}`;
+  const area = areasForService(s.id).find(t => t.id === areaId) || areasForService(s.id)[0];
+  return `<section class="container detail-page service-detail concise-service"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/technologies">Technology areas</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><div class="service-overview"><div><h1 tabindex="-1">${e(s.name)}</h1><p class="detail-description">${e(s.description)}</p><button class="text-link service-inquiry" data-inquiry data-topic="Custom R&D project" data-item="${e(s.name)}">Discuss this service</button></div><figure>${productArtwork({id:serviceArtwork[s.id]},true)}</figure></div></section>`;
 }
 export function notFound() {
   return `${header("JAFORD", "Page not found", "This product or service link is not in the current catalog.")}<div class="container detail-next">${link("#/products", "Browse products")}${link("#/services", "Browse services")}</div>`;

@@ -10,9 +10,9 @@ test("homepage presents readable product information without errors or overflow"
   await expect(page.locator("main > section")).toHaveCount(8);
   await expect(page.locator(".sector-card")).toHaveCount(36);
   await expect(page.locator("h1")).toHaveText("Long-term Partner in Technology Translation");
-  await expect(page.locator(".brand-lead")).toHaveText("From Innovation to Industry Impact:");
+  await expect(page.locator(".brand-lead")).toHaveCount(0);
   expect(await page.locator(".brand-logo img").evaluate(async (img) => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
-  await expect(page.locator("#custom-rd")).toContainText("partner factories and laboratories");
+  await expect(page.locator("#custom-rd")).toContainText("partner facilities and expertise");
   await expect(page.locator("#functional-materials")).toContainText("MOFs");
   await expect(page.locator("#equipment-supplies .sector-card h3").first()).toHaveText("Electrochemical workstation");
   await expect(page.locator("#testing-characterization")).toContainText("SEM & TEM");
@@ -96,7 +96,7 @@ test("technology navigation groups products and related services", async ({
     page.getByRole("navigation", { name: "Breadcrumb" }),
   ).toContainText("Custom R&D");
   await page
-    .locator(".related-areas")
+    .getByRole("navigation", { name: "Breadcrumb" })
     .getByRole("link", { name: "Custom R&D", exact: true })
     .click();
   await expect(page).toHaveURL(/#\/technologies\/custom-rd$/);

@@ -1384,3 +1384,16 @@ h1[tabindex="-1"]:focus,
  .contact-field label { text-align: left; padding-top: 0; }
  .contact-form-actions, .contact-direct { margin-left: 0; }
 }
+
+/* R&D detail pages explain the opportunity, leaving project terms to conversation. */
+.service-overview { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 64px; align-items: center; padding-block: 34px 60px; }
+.concise-service h1 { font-size: clamp(28px, 3vw, 42px); line-height: 1.2; }
+.concise-service .detail-description { font-size: 18px; line-height: 1.8; max-width: 55ch; }
+.service-overview figure { margin: 0; }
+.service-overview .product-artwork { max-width: 400px; margin-inline: auto; }
+.service-inquiry { background: transparent; border: 0; padding: 0; cursor: pointer; font: inherit; font-size: 14px; color: var(--brand-blue); text-decoration: underline; text-underline-offset: 4px; margin-top: 24px; }
+@media(max-width:640px) {
+ .service-overview { grid-template-columns: 1fr; gap: 26px; padding-block: 20px 30px; }
+ .concise-service .detail-description { font-size: 16px; }
+ .service-overview .product-artwork { max-width: 280px; }
+}
