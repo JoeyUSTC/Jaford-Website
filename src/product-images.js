@@ -1,5 +1,7 @@
 // Representative AI-generated artwork, not model photographs. See docs/product-images.md.
 export const productImages = {
+  "mof-framework": { sheet: "frameworks-powders", column: 0, row: 0, alt: "Conceptual MOF coordination network with a representative powder sample; not a specific compound" },
+  "cof-framework": { sheet: "frameworks-powders", column: 1, row: 0, alt: "Conceptual layered COF network with a representative powder sample; not a specific compound" },
   "rd-polymer-reactor": { sheet: "rd-synthesis", column: 0, row: 0, alt: "Representative pilot polymer synthesis reactor" },
   "rd-molecule-reactor": { sheet: "rd-synthesis", column: 1, row: 0, alt: "Representative target molecule synthesis reactor and condenser" },
   "rd-scale-up": { sheet: "rd-synthesis", column: 0, row: 1, alt: "Representative multi-vessel synthesis scale-up equipment" },

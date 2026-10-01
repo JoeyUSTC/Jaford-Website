@@ -80,8 +80,8 @@ export function home() {
     ["CCS / CCM electrodes", fuelURL, "nfpp-electrode"],
   ])}
   ${homeSector("functional-materials", "Functional Materials", [
-    serviceCard("MOFs", "functional-materials-development", "nfpp-powder"),
-    serviceCard("COFs", "functional-materials-development", "cvd-silicon-carbon"),
+    serviceCard("MOFs", "functional-materials-development", "mof-framework"),
+    serviceCard("COFs", "functional-materials-development", "cof-framework"),
     serviceCard("Functional polymers", "polymer-resin-synthesis", "functional-polymer"),
     serviceCard("Resins", "polymer-resin-synthesis", "resin-granules"),
     serviceCard("Ligands", "small-molecule-synthesis", "solid-samples"),

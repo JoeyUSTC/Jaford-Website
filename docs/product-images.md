@@ -25,3 +25,7 @@ Three new AI-generated atlases: `materials-visible.png` shows a binder dispersio
 ## R&D process illustrations
 
 `rd-synthesis.png` and `rd-processing.png` are generated representative process-equipment atlases. Homepage Custom R&D cards use the first three quadrants of each: polymer reactor, target-molecule reactor, multi-vessel scale-up skid; rotary furnace, electrode coating line, pouch-cell stacking machine. They are conceptual equipment types and do not document an owned or specific partner facility. No finished-cell or finished-material images are used for these process cards.
+
+## MOF and COF structure-plus-powder illustrations
+
+At the owner's request, `frameworks-powders.png` pairs conceptual network schematics with representative powder samples. Top left: generic MOF coordination network; top right: generic layered COF covalent network. These do not specify a compound, crystal structure, measured morphology, composition or powder color. The two homepage cards retain their functional-material development link.
