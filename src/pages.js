@@ -46,11 +46,9 @@ const areaRows = () =>
         `<article class="product-item"><h3><a href="${areaURL(t.id)}">${t.name}</a></h3><div class="product-detail"><p>${t.description}</p>${link(areaURL(t.id), "Explore this area")}</div></article>`,
     )
     .join("");
-const featuredProducts = ["resin-derived-hard-carbon", "biomass-derived-hard-carbon", "al-3001a", "research-pouch-cells", "glass-reactor-2000ml", "chi760f"];
-const homeProductRows = () => featuredProducts.map(id => {
-  const p = products.find(item => item.id === id);
-  return productModule(p, productURL(id));
-}).join("");
+// Family entries describe established ranges, not newly invented model specifications.
+const homeCard = (name, href, imageId) => `<article class="sector-card"><a href="${e(href)}"><figure>${productArtwork({ id: imageId })}<figcaption>AI-generated illustration</figcaption></figure><h3>${e(name)}</h3></a></article>`;
+const homeSector = (id, title, cards, description = "") => `<section class="section container home-sector" id="${id}"><div class="sector-heading"><h2>${title}</h2>${link(areaURL(id), "Browse all")}</div>${description ? `<p class="sector-description">${description}</p>` : ""}<div class="sector-grid">${cards.map(card => homeCard(...card)).join("")}</div></section>`;
 const relatedAreas = (areas) =>
   `<aside class="related-areas"><h2>Related technology areas</h2>${areas.map((t) => link(areaURL(t.id), t.name)).join("")}</aside>`;
 const caseSummaries = () => cases.map((item) => `<article class="case-summary"><p class="eyebrow">Case study · ${e(item.category)}</p><h3><a href="#/cases/${item.id}">${e(item.title)}</a></h3><p>${e(item.summary)}</p><dl class="case-card-facts"><div><dt>Project</dt><dd>${e(item.category)}</dd></div><div><dt>Outcome</dt><dd>${e(item.deliverable)} delivered</dd></div></dl>${link(`#/cases/${item.id}`, "Read case study")}</article>`).join("");
@@ -61,11 +59,35 @@ export function caseDetail(item) {
   return `<article class="container detail-page case-study"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/cases">Case studies</a><span>/</span><span>${e(item.category)}</span></nav><p class="eyebrow">${e(item.category)} · Completed</p><h1 tabindex="-1">${e(item.title)}</h1><p class="detail-description">${e(item.summary)}</p><div class="case-layout"><div>${[["The project",item.requirement],["How JAFORD supported the work",item.scope],["Delivery & outcome",item.outcome]].map(([heading,body])=>`<section class="case-chapter"><h2>${heading}</h2><p>${e(body)}</p></section>`).join("")}</div><aside class="case-facts"><h2>Project overview</h2><dl><dt>Field</dt><dd>${e(item.category)}</dd><dt>Engagement</dt><dd>Partner-coordinated custom synthesis</dd><dt>Status</dt><dd>Completed and delivered</dd><dt>Deliverable</dt><dd>${e(item.deliverable)}</dd></dl></aside></div><p class="technical-note">This anonymized summary describes the confirmed delivery. It does not disclose client specifications or formulations. Requirements and acceptance criteria for a new project are agreed separately.</p><div class="detail-next">${link(`#/services/${item.serviceId}`,item.serviceName)}${inquiry("Discuss a similar project","Custom R&D project",item.title)}</div>${link("#/cases","All case studies")}</article>`;
 }
 export function home() {
-  return `<section class="hero container home-hero"><p class="eyebrow">Materials supply & collaborative R&D</p><h1 tabindex="-1">From Innovation to Industrial Impact</h1><p class="brand-slogan">Your Long-term Partner in Technology Translation</p><p class="hero-description">JAFORD supplies materials, consumables and equipment for startups and research teams. Through partner factories and laboratories, we coordinate custom synthesis, process development and testing—from your specified procedure or an agreed material requirement.</p><div class="hero-actions"><a class="button button-dark" href="#/technologies">Explore technology areas</a><button class="button button-outline" data-inquiry data-topic="Custom R&D project">Discuss a Project</button></div></section>
-  <section class="section container" id="custom-rd"><div class="section-heading"><h2>Custom R&D</h2><p>Two ways to define a project, depending on whether you have an established procedure or a target specification.</p></div><div class="engagement-models"><article><h3>Custom synthesis</h3><p class="engagement-label">Client-specified route</p><p>Provide your approved synthesis procedure, references and any prior results. We coordinate material preparation and agreed characterization through suitable partners.</p><p>Delivery includes the material and agreed test results. Acceptance is based on procedure compliance, material specifications, or both. Route changes require your approval; optimization is included only when agreed.</p>${link("#/technologies/custom-rd", "Explore Custom R&D")}</article><article><h3>Contract R&D</h3><p class="engagement-label">Agreed target specifications</p><p>Provide the target material, required properties and intended application. We assess the project with partners and define a scope for process development or optimization.</p><p>Before starting, we agree quantity, test methods, acceptance tolerances, timeline, budget and iteration limits—including how unmet requirements will be handled. Targets are assessed, not presented as guaranteed results.</p>${inquiry("Discuss an R&D requirement", "Custom R&D project")}</article></div></section>
-  <section class="section container" id="products"><div class="section-heading"><h2>Selected products</h2><p>Materials, components and equipment for laboratory research.</p></div><nav class="home-technology-nav" aria-label="Browse technology areas">${technologies.map(t=>`<a href="${areaURL(t.id)}">${t.name}</a>`).join("")}</nav><div class="product-grid home-product-grid">${homeProductRows()}</div><div class="catalog-entry">${link("#/products", "Browse all standard products")}<p>Search by model, compare available options and request a quotation.</p></div></section>
-  <section class="section container service-section" id="functional-materials"><div class="section-heading"><h2>Functional materials development</h2><p>MOFs, COFs, polymers & functional intermediates</p></div><div class="service-content"><p>Bring a target framework, functional requirement or literature route. We coordinate synthesis and development through partner laboratories, with feasibility and the acceptance basis agreed for each project.</p><dl class="project-brief"><div><dt>MOFs & COFs</dt><dd>Metal–organic frameworks and covalent organic frameworks: route review, synthesis coordination and agreed characterization.</dd></div><div><dt>Polymers & related materials</dt><dd>Custom polymers, resins, ligands and functional intermediates, with process reproduction or optimization where agreed.</dd></div><div><dt>A defined material deliverable</dt><dd>Specify structure or composition, quantity, material form, test methods and acceptance tolerances. Agreed work may deliver material batches with characterization results; scale-up is assessed separately.</dd></div></dl>${link("#/services/functional-materials-development", "Scope, inputs & deliverables")}</div></section>
-  <section class="section container" id="completed-projects"><div class="section-heading"><h2>Completed custom projects</h2><p>Selected partner-coordinated work, shared without client names or proprietary formulations.</p></div><div class="completed-project-list">${caseSummaries()}</div>${link("#/cases", "All case studies")}</section>${contact()}`;
+  const serviceCard = (name, id, image) => [name, serviceURL(id), image];
+  const fuelURL = "https://www.jaford.com/products/fuel-cell-and-electrolyzer";
+  return `<section class="hero container home-hero"><div class="brand-statement"><p class="brand-lead">From Innovation to Industrial Impact</p><h1 tabindex="-1">Your Long-term Partner in Technology Translation</h1></div><p class="hero-description">JAFORD partners with startups and research teams to bring lab innovation toward industrial impact. We connect materials and facilities from established industrial supply chains with technical knowledge—helping you validate ideas quickly, scale processes and take early steps toward commercialization.</p></section>
+  ${homeSector("custom-rd", "Custom R&D", [
+    serviceCard("Polymer & resin synthesis", "polymer-resin-synthesis", "al-3001a"),
+    serviceCard("Small molecules & ligands", "small-molecule-synthesis", "qms029d"),
+    serviceCard("Synthesis scale-up", "synthesis-scale-up", "glass-reactor-2000ml"),
+    serviceCard("Carbonization & activation", "carbonization-activation", "spherical-porous-carbon"),
+    serviceCard("Electrode processing", "electrode-processing", "nfpp-electrode"),
+    serviceCard("Pouch cell development", "pouch-cell-customization", "research-pouch-cells"),
+  ], "From material synthesis to prototypes: we coordinate development, processing and validation with partner factories and laboratories.")}
+  ${homeSector("battery-technology", "Battery Technology", ["resin-derived-hard-carbon", "biomass-derived-hard-carbon", "spherical-porous-carbon", "cvd-silicon-carbon", "nfpp-powder", "al-3001a"].map(id => [products.find(p => p.id === id).name, productURL(id, "battery-technology"), id]))}
+  ${homeSector("fuel-cells-electrolyzers", "Fuel Cells & Electrolyzers", [
+    ["Membranes", fuelURL, "fuel-membranes"],
+    ["Gas diffusion layers", fuelURL, "gas-diffusion-layers"],
+    ["Flow-field plates", fuelURL, "flow-field-plates"],
+    ["Gaskets & seals", fuelURL, "gaskets-seals"],
+    ["Electrocatalysts", fuelURL + "#electrocatalysis-solutions", "cvd-silicon-carbon"],
+    ["CCS / CCM electrodes", fuelURL, "nfpp-electrode"],
+  ])}
+  ${homeSector("functional-materials", "Functional Materials", [
+    serviceCard("MOFs", "functional-materials-development", "nfpp-powder"),
+    serviceCard("COFs", "functional-materials-development", "cvd-silicon-carbon"),
+    serviceCard("Functional polymers", "polymer-resin-synthesis", "al-3001a"),
+    serviceCard("Resins", "polymer-resin-synthesis", "jone-174"),
+    serviceCard("Ligands", "small-molecule-synthesis", "qms029d"),
+    serviceCard("Functional intermediates", "functional-materials-development", "xyss-dghykj118"),
+  ])}
+  <section class="section container home-contact" id="contact"><h2>Contact Us</h2><div class="contact-actions">${inquiry("Send an Inquiry", "Other technical requirement")}<a class="contact-email" href="mailto:kiki.li@jaford.com">kiki.li@jaford.com</a></div></section>`;
 }
 export function technologyDirectory() {
   return `${header("JAFORD", "Technology areas", "Explore the materials, equipment and related development support for your research area.")}<section class="container catalog-section" aria-label="Technology directory"><div class="product-list">${areaRows()}</div></section>${contact()}`;

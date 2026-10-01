@@ -68,3 +68,5 @@ Products appear as individual clickable modules in the full catalog and technolo
 The homepage prioritizes PC browsing: a wider two-column hero and six products in one row from 1280px, with fewer columns on smaller viewports. Product details and catalog navigation retain their existing behavior.
 
 Primary navigation: Custom R&D, Battery Technology, Fuel Cells & Electrolyzers, Functional Materials, Testing & Characterization, Equipment & Supplies. Older category routes redirect to their new equivalents. Testing and characterization are partner-coordinated services, with method and reporting scope agreed per project.
+
+The homepage now uses four concise six-image rows: Custom R&D, Battery Technology, Fuel Cells & Electrolyzers and Functional Materials. Each has a Browse all link. The partner statement is the primary headline, contact appears only at the bottom, and engagement-model and completed-project content remains off the homepage. Fuel-cell and functional-material families do not imply new model-specific specifications.

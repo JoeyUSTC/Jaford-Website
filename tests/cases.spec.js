@@ -2,8 +2,8 @@ import { test, expect } from "@playwright/test";
 import { cases } from "../src/cases.js";
 
 test("case summaries open independently addressable cases and retain inquiry context", async ({ page }) => {
-  await page.goto("/");
-  await page.locator('#completed-projects a[href="#/cases/resin-batch-11kg"]').first().click();
+  await page.goto("/#/cases");
+  await page.locator('.completed-project-list a[href="#/cases/resin-batch-11kg"]').first().click();
   for (const item of cases) {
     await page.goto(`/#/cases/${item.id}`);
     await page.reload();

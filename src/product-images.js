@@ -1,5 +1,9 @@
 // Representative AI-generated artwork, not model photographs. See docs/product-images.md.
 export const productImages = {
+  "gas-diffusion-layers": { sheet: "fuel-materials", column: 0, row: 0, alt: "Generic carbon gas diffusion sheets" },
+  "flow-field-plates": { sheet: "fuel-materials", column: 1, row: 0, alt: "Generic graphite flow-field plate" },
+  "gaskets-seals": { sheet: "fuel-materials", column: 0, row: 1, alt: "Generic frame gaskets" },
+  "fuel-membranes": { sheet: "fuel-materials", column: 1, row: 1, alt: "Generic ion exchange membrane films" },
   "biomass-derived-hard-carbon": {
     sheet: "materials", column: 0, row: 0, alt: "Carbon powder and sample jar"
   },

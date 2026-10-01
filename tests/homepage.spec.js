@@ -8,20 +8,26 @@ test("homepage presents readable product information without errors or overflow"
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD — From Innovation to Industrial Impact");
   await expect(page.locator("main > section")).toHaveCount(6);
-  await expect(page.locator(".home-product-grid .product-module")).toHaveCount(6);
-  await expect(page.locator("h1")).toHaveText("From Innovation to Industrial Impact");
-  await expect(page.locator(".brand-slogan")).toHaveText("Your Long-term Partner in Technology Translation");
+  await expect(page.locator(".sector-card")).toHaveCount(24);
+  await expect(page.locator("h1")).toHaveText("Your Long-term Partner in Technology Translation");
+  await expect(page.locator(".brand-lead")).toHaveText("From Innovation to Industrial Impact");
   expect(await page.locator(".brand-logo img").evaluate(async (img) => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
-  await expect(page.locator("#custom-rd")).toContainText("Client-specified route");
-  await expect(page.locator("#custom-rd")).toContainText("Agreed target specifications");
-  await expect(page.locator("#functional-materials")).toContainText("MOFs & COFs");
-  await expect(page.locator("#completed-projects article")).toHaveCount(2);
-  await expect(page.locator("#completed-projects")).toContainText("11 kg of resin");
-  for (const product of await page.locator(".home-product-grid .product-module").all()) {
+  await expect(page.locator("#custom-rd")).toContainText("partner factories and laboratories");
+  await expect(page.locator("#functional-materials")).toContainText("MOFs");
+  await expect(page.locator("#completed-projects")).toHaveCount(0);
+  await expect(page.locator("main [data-inquiry]")).toHaveCount(1);
+  await expect(page.locator(".home-hero a, .home-hero button")).toHaveCount(0);
+  for (const sector of await page.locator(".home-sector").all()) {
+    await expect(sector.locator(".sector-card")).toHaveCount(6);
+    if (page.viewportSize().width >= 1280) {
+      const tops = await sector.locator("figure").evaluateAll(items => items.map(item => item.getBoundingClientRect().top));
+      expect(new Set(tops).size).toBe(1);
+    }
+  }
+  for (const product of await page.locator(".sector-card").all()) {
     await product.locator("img").scrollIntoViewIfNeeded();
     expect(await product.locator("img").evaluate(async img => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
-    await expect(product.getByRole("heading", { level: 2 })).toBeVisible();
-    await expect(product.locator(".module-description")).toBeVisible();
+    await expect(product.getByRole("heading", { level: 3 })).toBeVisible();
   }
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
@@ -54,7 +60,7 @@ test("technology navigation groups products and related services", async ({
 }) => {
   await page.goto("/");
   const links = await page
-    .locator(".home-technology-nav a")
+    .locator('[aria-label="Main navigation"] a')
     .evaluateAll((items) =>
       items.map((a) => ({ href: a.getAttribute("href"), name: a.textContent })),
     );
@@ -106,7 +112,7 @@ test("inquiry validates fields, creates a brief, supports editing and downloads 
 }) => {
   await page.goto("/");
   await page
-    .getByRole("button", { name: "Discuss a Project", exact: true })
+    .getByRole("button", { name: "Send an Inquiry", exact: true })
     .click();
   await page.getByRole("button", { name: "Prepare my inquiry" }).click();
   await expect(page.locator("#inquiry-result")).not.toBeVisible();
@@ -153,7 +159,7 @@ test("inquiry validates fields, creates a brief, supports editing and downloads 
   await expect(page.getByRole("dialog")).not.toBeVisible();
   await expect(page.locator("body")).not.toHaveClass("dialog-open");
   await expect(
-    page.getByRole("button", { name: "Discuss a Project", exact: true }),
+    page.getByRole("button", { name: "Send an Inquiry", exact: true }),
   ).toBeFocused();
 });
 
@@ -192,7 +198,7 @@ test("prepared inquiry can be copied and whitespace-only requirements are reject
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
   await page.goto("/");
   await page
-    .getByRole("button", { name: "Discuss a Project", exact: true })
+    .getByRole("button", { name: "Send an Inquiry", exact: true })
     .click();
   await page.getByLabel("Your name").fill("Research User");
   await page.getByLabel("Work email").fill("research@example.com");

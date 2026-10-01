@@ -10,7 +10,7 @@ The owner works from mobile Codex Cloud sessions and wants to describe website c
 
 ## Make and deliver changes
 
-- Use only the owner-supplied logo in `public/brand/jaford-brand.png` and the exact brand lines “From Innovation to Industrial Impact” and “Your Long-term Partner in Technology Translation”. Do not invent alternative logos, favicons or slogans. Homepage project descriptions distinguish client-specified synthesis from specification-based contract R&D; never publish client-specific workbook responses.
+- Use only the owner-supplied logo in `public/brand/jaford-brand.png` and the exact brand lines “From Innovation to Industrial Impact” and “Your Long-term Partner in Technology Translation”. Do not invent alternative logos, favicons or slogans. The homepage uses the first brand line as a smaller lead and the partner statement as the primary headline. Keep engagement models and case summaries off the homepage; never publish client-specific workbook responses.
 - All visitor-facing website content must be English only, including captions, specifications, navigation, accessibility labels and inquiry messages. Do not add bilingual Chinese labels.
 
 - Prioritize desktop usability and visual layout when desktop/mobile design tradeoffs arise. Homepage products should read as a horizontal collection on wide PC screens, with responsive readable layouts on mobile; avoid making desktop inherit narrow mobile composition.
@@ -29,3 +29,5 @@ The owner works from mobile Codex Cloud sessions and wants to describe website c
 ## Preview hosting
 
 The owner has made this repository public and enabled GitHub Pages with GitHub Actions as the source. Initial account setup is complete; do not ask the owner to repeat it or create another hosting account. New pushes to main trigger the existing workflow. Check workflow completion and the live site's version.json on each delivery; repository settings alone do not establish that the current revision is live.
+
+- Homepage: four six-image rows (Custom R&D, Battery Technology, Fuel Cells & Electrolyzers, Functional Materials), each with Browse all. Keep copy short and contact actions only at the bottom. Buttons use restrained outlines, never black fills. Family illustrations do not create new catalog models or specifications.
