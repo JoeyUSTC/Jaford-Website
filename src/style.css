@@ -1199,3 +1199,37 @@ h1[tabindex="-1"]:focus,
 @media (max-width: 640px) {
  .home-area-grid, .completed-project-list { grid-template-columns: 1fr; gap: 28px; }
 }
+
+.catalog-layout { display: grid; grid-template-columns: 205px minmax(0, 1fr); gap: 30px; }
+.catalog-results { min-width: 0; }
+.catalog-sidebar h2 { font-size: 16px; margin: 0 0 18px; }
+.catalog-sidebar nav { display: grid; }
+.catalog-sidebar nav a { display: flex; justify-content: space-between; gap: 12px; padding: 13px 10px; border-bottom: 1px solid var(--line); font-size: 13px; line-height: 1.5; }
+.catalog-sidebar a[aria-current] { background: var(--surface-muted); color: var(--accent); font-weight: 600; }
+.catalog-sidebar p { color: var(--muted); font-size: 12px; line-height: 1.8; margin-top: 24px; }
+.catalog-results .catalog-filters { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+.catalog-results .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.module-purchase { margin-top: auto; padding-top: 18px; }
+.module-purchase .module-cta { margin-top: 8px; }
+.quote-label { font-size: 12px; color: var(--muted); }
+.catalog-entry { margin-top: 24px; }
+.catalog-entry p { color: var(--muted); font-size: 14px; }
+.case-summary h3 a:hover { color: var(--accent); text-decoration: underline; }
+.case-result { border-left: 2px solid var(--accent); padding-left: 14px; }
+.case-result strong { color: var(--ink); display: block; font-size: 12px; }
+.case-study h1 { max-width: 880px; }
+.case-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 64px; margin-top: 44px; }
+.case-chapter { margin-bottom: 36px; }
+.case-chapter h2, .case-facts h2 { font-size: 20px; }
+.case-chapter p, .case-facts dd { color: var(--muted); line-height: 1.8; font-size: 15px; }
+.case-facts { align-self: start; border-top: 2px solid var(--accent); padding-top: 16px; }
+.case-facts dt { font-size: 12px; font-weight: 600; margin-top: 18px; }
+.case-facts dd { margin: 4px 0 0; }
+@media(max-width: 900px) {
+ .catalog-layout, .case-layout { grid-template-columns: 1fr; gap: 28px; }
+ .catalog-sidebar nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ .catalog-sidebar p { display: none; }
+}
+@media(max-width: 640px) {
+ .catalog-results .product-grid, .catalog-results .catalog-filters { grid-template-columns: 1fr; }
+}

@@ -1,7 +1,10 @@
+import { cases } from "./cases.js";
 import { technologies } from "./technologies.js";
 import { products, services } from "./catalog.js";
 import {
   home,
+  caseCatalog,
+  caseDetail,
   technologyDirectory,
   technologyDetail,
   productCatalog,
@@ -156,6 +159,7 @@ function renderRoute(focus = false) {
   const area = technologies.find((t) => path === `/technologies/${t.id}`);
   const product = products.find((p) => path === `/products/${p.id}`);
   const service = services.find((s) => path === `/services/${s.id}`);
+  const caseItem = cases.find((item) => path === `/cases/${item.id}`);
   let html;
   let title = "JAFORD — From Innovation to Industrial Impact";
   if (path === "/technologies") {
@@ -167,6 +171,12 @@ function renderRoute(focus = false) {
   } else if (path === "/products") {
     html = productCatalog(params);
     title = "Products — JAFORD";
+  } else if (path === "/cases") {
+    html = caseCatalog();
+    title = "Case studies — JAFORD";
+  } else if (caseItem) {
+    html = caseDetail(caseItem);
+    title = `${caseItem.title} — JAFORD`;
   } else if (path === "/services") {
     html = serviceCatalog();
     title = "Custom R&D & Services — JAFORD";
