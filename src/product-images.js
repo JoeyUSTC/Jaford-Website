@@ -13,36 +13,22 @@ export const productImages = {
     "row": 0,
     "alt": "Carbon powder and sample jar"
   },
-  "al-3001a": {
-    "sheet": "materials",
-    "column": 1,
-    "row": 0,
-    "alt": "Plain polymer reagent bottle"
-  },
-  "jone-174": {
-    "sheet": "materials",
-    "column": 1,
-    "row": 0,
-    "alt": "Plain polymer reagent bottle"
-  },
-  "qms029d": {
-    "sheet": "materials",
-    "column": 0,
-    "row": 1,
-    "alt": "Amber reagent bottle"
-  },
-  "xyss-dghykj118": {
-    "sheet": "materials",
-    "column": 0,
-    "row": 1,
-    "alt": "Amber reagent bottle"
-  },
-  "nfm-electrolyte": {
-    "sheet": "materials",
-    "column": 0,
-    "row": 1,
-    "alt": "Amber reagent bottle"
-  },
+  "al-3001a": { sheet: "materials-visible", column: 0, row: 0, alt: "Visible binder dispersion in a clear vial and sample dish" },
+  "jone-174": { sheet: "materials-visible", column: 0, row: 1, alt: "Representative polymer material samples, not model-specific physical form" },
+  "qms029d": { sheet: "materials-visible", column: 1, row: 1, alt: "Visible liquid sample in a clear vial" },
+  "xyss-dghykj118": { sheet: "materials-visible", column: 1, row: 1, alt: "Visible liquid sample in a clear vial" },
+  "nfm-electrolyte": { sheet: "materials-visible", column: 1, row: 1, alt: "Visible liquid sample in a clear vial" },
+  "functional-polymer": { sheet: "materials-visible", column: 0, row: 1, alt: "Representative polymer granules and powder" },
+  "solid-samples": { sheet: "materials-visible", column: 0, row: 1, alt: "Representative solid material samples, not a specific composition" },
+  "resin-granules": { sheet: "materials-visible", column: 1, row: 0, alt: "Representative resin granules in a sample dish" },
+  "sem-testing": { sheet: "testing-lab", column: 0, row: 0, alt: "Generic scanning electron microscope" },
+  "tem-testing": { sheet: "testing-lab", column: 1, row: 0, alt: "Generic transmission electron microscope" },
+  "battery-cycling": { sheet: "testing-lab", column: 0, row: 1, alt: "Representative battery cycling setup" },
+  "pouch-testing": { sheet: "testing-lab", column: 1, row: 1, alt: "Representative pouch cell testing fixture" },
+  "short-stack": { sheet: "testing-energy", column: 0, row: 0, alt: "Representative short stack test setup" },
+  "full-stack": { sheet: "testing-energy", column: 1, row: 0, alt: "Representative larger stack test setup" },
+  "renewable-testing": { sheet: "testing-energy", column: 0, row: 1, alt: "Conceptual wind and solar coupled electrolysis test setup" },
+  "solid-state-testing": { sheet: "testing-energy", column: 1, row: 1, alt: "Generic solid-state cell pressure test fixture" },
   "nfpp-electrode": {
     "sheet": "materials",
     "column": 1,

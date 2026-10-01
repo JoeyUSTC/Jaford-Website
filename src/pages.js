@@ -47,7 +47,7 @@ const areaRows = () =>
     )
     .join("");
 // Family entries describe established ranges, not newly invented model specifications.
-const homeCard = (name, href, imageId) => `<article class="sector-card"><a href="${e(href)}"><figure>${productArtwork({ id: imageId })}<figcaption>AI-generated illustration</figcaption></figure><h3>${e(name)}</h3></a></article>`;
+const homeCard = (name, href, imageId, description = "") => `<article class="sector-card"><a href="${e(href)}"><figure>${productArtwork({ id: imageId })}<figcaption>AI-generated illustration</figcaption></figure><h3>${e(name)}</h3>${description ? `<p class="sector-card-description">${e(description)}</p>` : ""}</a></article>`;
 const homeSector = (id, title, cards, description = "") => `<section class="section container home-sector" id="${id}"><div class="sector-heading"><h2>${title}</h2>${link(areaURL(id), "Browse all")}</div>${description ? `<p class="sector-description">${description}</p>` : ""}<div class="sector-grid">${cards.map(card => homeCard(...card)).join("")}</div></section>`;
 const relatedAreas = (areas) =>
   `<aside class="related-areas"><h2>Related technology areas</h2>${areas.map((t) => link(areaURL(t.id), t.name)).join("")}</aside>`;
@@ -61,10 +61,10 @@ export function caseDetail(item) {
 export function home() {
   const serviceCard = (name, id, image) => [name, serviceURL(id), image];
   const fuelURL = "https://www.jaford.com/products/fuel-cell-and-electrolyzer";
-  return `<section class="hero container home-hero"><div class="brand-statement"><p class="brand-lead">From Innovation to Industrial Impact</p><h1 tabindex="-1">Your Long-term Partner in Technology Translation</h1></div><p class="hero-description">JAFORD partners with startups and research teams to bring lab innovation toward industrial impact. We connect materials and facilities from established industrial supply chains with technical knowledge—helping you validate ideas quickly, scale processes and take early steps toward commercialization.</p></section>
+  return `<section class="hero container home-hero"><div class="brand-statement"><p class="brand-lead">From Innovation to Industry Impact:</p><h1 tabindex="-1">Long-term Partner in Technology Translation</h1></div><p class="hero-description">JAFORD partners with startups and research teams to bridge the gap between lab innovation and industrial application. Together, we combine technical knowledge with materials and facilities from established industrial supply chains to accelerate technology validation, process scale-up and the path to commercialization.</p></section>
   ${homeSector("custom-rd", "Custom R&D", [
-    serviceCard("Polymer & resin synthesis", "polymer-resin-synthesis", "al-3001a"),
-    serviceCard("Small molecules & ligands", "small-molecule-synthesis", "qms029d"),
+    serviceCard("Polymer & resin synthesis", "polymer-resin-synthesis", "functional-polymer"),
+    serviceCard("Small molecules & ligands", "small-molecule-synthesis", "solid-samples"),
     serviceCard("Synthesis scale-up", "synthesis-scale-up", "glass-reactor-2000ml"),
     serviceCard("Carbonization & activation", "carbonization-activation", "spherical-porous-carbon"),
     serviceCard("Electrode processing", "electrode-processing", "nfpp-electrode"),
@@ -82,12 +82,28 @@ export function home() {
   ${homeSector("functional-materials", "Functional Materials", [
     serviceCard("MOFs", "functional-materials-development", "nfpp-powder"),
     serviceCard("COFs", "functional-materials-development", "cvd-silicon-carbon"),
-    serviceCard("Functional polymers", "polymer-resin-synthesis", "al-3001a"),
-    serviceCard("Resins", "polymer-resin-synthesis", "jone-174"),
-    serviceCard("Ligands", "small-molecule-synthesis", "qms029d"),
-    serviceCard("Functional intermediates", "functional-materials-development", "xyss-dghykj118"),
+    serviceCard("Functional polymers", "polymer-resin-synthesis", "functional-polymer"),
+    serviceCard("Resins", "polymer-resin-synthesis", "resin-granules"),
+    serviceCard("Ligands", "small-molecule-synthesis", "solid-samples"),
+    serviceCard("Functional intermediates", "functional-materials-development", "solid-samples"),
   ])}
-  <section class="section container home-contact" id="contact"><h2>Contact Us</h2><div class="contact-actions">${inquiry("Send an Inquiry", "Other technical requirement")}<a class="contact-email" href="mailto:kiki.li@jaford.com">kiki.li@jaford.com</a></div></section>`;
+  ${homeSector("testing-characterization", "Testing & Characterization", [
+    ["SEM & TEM", serviceURL("material-characterization"), "sem-testing", "Surface morphology and microstructure imaging."],
+    ["Li-ion & solid-state batteries", serviceURL("battery-testing"), "battery-cycling", "Cycling, rate performance and protocol-based comparison."],
+    ["Pouch cell testing", serviceURL("battery-testing"), "pouch-testing", "Cell-level capacity, cycling and validation."],
+    ["Short-stack testing", serviceURL("stack-testing"), "short-stack", "Fuel-cell and electrolyzer stack performance evaluation."],
+    ["Full-stack testing", serviceURL("stack-testing"), "full-stack", "Larger-stack operation and system-level validation."],
+    ["Wind & solar direct coupling", serviceURL("renewable-coupled-testing"), "renewable-testing", "Electrolysis validation under variable renewable power."],
+  ], "Testing coordinated with partner facilities; sample requirements, methods and operating conditions are agreed per project.")}
+  ${homeSector("equipment-supplies", "Equipment & Supplies", [
+    ["Electrochemical workstation", productURL("chi760f"), "chi760f"],
+    ["Vacuum sealer", productURL("vacuum-sealer"), "vacuum-sealer"],
+    ["Glass reaction assembly", productURL("glass-reactor-2000ml"), "glass-reactor-2000ml"],
+    ["Filtration membranes", productURL("glass-fiber-1823-047"), "glass-fiber-1823-047"],
+    ["Nickel sample boats", productURL("nickel-boat"), "nickel-boat"],
+    ["Laboratory fittings", productURL("imperial-reducer"), "imperial-reducer"],
+  ])}
+  <section class="section container home-contact" id="contact"><div class="contact-intro"><p class="eyebrow">Work with JAFORD</p><h2>Contact Us</h2><p>Bring your material requirement, testing plan or next development challenge. Let’s define the next step together.</p><div class="contact-topics"><span>Materials & equipment</span><span>Custom R&D</span><span>Testing & characterization</span></div></div><div class="contact-panel"><p class="contact-label">Email our team</p><a class="contact-address" href="mailto:kiki.li@jaford.com">kiki.li@jaford.com</a><p>Include your application, technical requirements and timeline.</p><div class="contact-actions">${inquiry("Send an Inquiry", "Other technical requirement")}<span class="contact-note">Prepare a brief to send by email.</span></div></div></section>`;
 }
 export function technologyDirectory() {
   return `${header("JAFORD", "Technology areas", "Explore the materials, equipment and related development support for your research area.")}<section class="container catalog-section" aria-label="Technology directory"><div class="product-list">${areaRows()}</div></section>${contact()}`;

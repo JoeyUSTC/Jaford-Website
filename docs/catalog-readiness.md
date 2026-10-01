@@ -63,3 +63,7 @@ CVD 沉硅一体化代工、控氧浸出、回收石墨、特殊硬碳、干法�
 - 产品：`#/products`、`#/products/{id}`；服务：`#/services`、`#/services/{id}`。Hash 路由支持 GitHub Pages 子路径下直接分享、刷新及浏览器返回。
 - 询价继承产品/服务及所选型号，生成本地文本与发往 `kiki.li@jaford.com` 的邮件草稿。用户需在邮件客户端发送；网页不会自动提交或确认成功。
 - 合作工厂/实验室用于组织服务；JAFORD 为网站品牌。没有将合作伙伴品牌用作 JAFORD 品牌，也没有自有实验室/自产/授权代理声明。
+
+## Testing scopes added at owner request
+
+Confirm partner access and method/sample compatibility for SEM/TEM; cell fixtures and test conditions for Li-ion, solid-state and pouch tests; stack interfaces, power ranges and gas/safety requirements for short/full-stack tests; and actual renewable source versus reproduced profiles and interface feasibility for direct-coupling tests. No fixed capacity is published.

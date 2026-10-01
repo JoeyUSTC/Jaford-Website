@@ -17,3 +17,7 @@ The homepage reuses these drawings for category thumbnails. `fuel-cell-component
 ## Fuel-cell family illustrations (2026-10-01)
 
 `fuel-materials.png` is a new AI-generated 2×2 atlas: gas diffusion sheets, graphite flow-field plate, frame gaskets and membrane films. Each is a representative family illustration, not an exact model or supplier photograph. Homepage captions retain explicit AI illustration labels. Existing generic sample-container and coated-sheet drawings represent the remaining families; their appearance does not specify composition or performance.
+
+## Visible materials and testing illustrations (2026-10-01)
+
+Three new AI-generated atlases: `materials-visible.png` shows a binder dispersion, resin granules, polymer solids and a visible liquid sample; `testing-lab.png` shows representative SEM, TEM, cycling and pouch-cell testing equipment; `testing-energy.png` shows representative stack and renewable-coupling configurations. They are illustrative families, not exact model appearances, supplied packaging, self-owned equipment, facilities, or validated wiring diagrams. Liquid and solid sample depictions imply no formulation, purity or measured properties. All remain explicitly labeled AI-generated illustrations.

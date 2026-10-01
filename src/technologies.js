@@ -38,12 +38,12 @@ export const technologies = [
   {
     id: "testing-characterization", nav: "Testing & Characterization", name: "Testing & Characterization",
     description: "Battery testing, comparative validation and project-specific material characterization coordinated through partner laboratories.",
-    productIds: [], serviceIds: ["battery-testing", "material-characterization"], links: [],
+    productIds: [], serviceIds: ["material-characterization", "battery-testing", "stack-testing", "renewable-coupled-testing"], links: [],
   },
   {
     id: "equipment-supplies", nav: "Equipment & Supplies", name: "Equipment & Supplies",
     description: "Laboratory equipment, reaction assemblies, filtration media, consumables and accessories.",
-    productIds: products.filter(p => p.category === "lab-supplies").map(p => p.id), serviceIds: [], links: [],
+    productIds: ["chi760f", "vacuum-sealer", "glass-reactor-2000ml", ...products.filter(p => p.category === "lab-supplies" && !["chi760f", "vacuum-sealer", "glass-reactor-2000ml"].includes(p.id)).map(p => p.id)], serviceIds: [], links: [],
   },
 ];
 export const areasForProduct = id => technologies.filter(t => t.productIds.includes(id));

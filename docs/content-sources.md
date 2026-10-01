@@ -56,3 +56,11 @@ The owner approved Custom R&D as the first category and then requested Testing &
 ## Concise sector homepage (2026-10-01)
 
 The owner requested a smaller introductory brand line and larger partner statement, a concise lab-to-industry positioning paragraph, and four six-image rows. Battery entries link to existing model pages. Fuel-cell entries describe existing material families and link to the established company range; they do not introduce SKU specifications or stock promises. Functional-material entries link to the relevant coordinated synthesis/development service. Generic bottles and powders represent material families, not actual MOF/COF compositions or measured morphology. Homepage engagement-model explanations and completed-case previews are removed; existing service and case routes remain available. Only the bottom contact section opens the homepage inquiry form.
+
+## Testing scope and contact refinement (2026-10-01)
+
+The owner requested SEM/TEM, lithium-ion/solid-state/pouch testing, short/full stack testing and wind/solar direct-coupled testing. Homepage cards summarize these as six groups. Existing characterization and battery services are expanded; two new service pages describe stack testing and renewable-coupled testing. Every scope is coordinated through partners and assessed for sample, method, interface and safety compatibility. No equipment ownership, test capacity, accreditation or performance outcome is claimed.
+
+The latest owner wording replaces the homepage brand statement with “From Innovation to Industry Impact: Long-term Partner in Technology Translation”. Its blue #3b6ea5 is sampled from the supplied logo. Equipment is ordered before consumables, and the homepage workstation label omits the model while preserving the confirmed model on its detail page.
+
+Fuel Cell Store and ElectroHy contact URLs returned proxy CONNECT 403. Their previously uploaded HTML was reviewed instead: Fuel Cell Store groups contact details and customer-service links; ElectroHy exposes email and contact information in its footer. The new contact section uses a concise partnership invitation, visible verified email and existing inquiry-draft action. No phone, street address or response-time promise was invented.
