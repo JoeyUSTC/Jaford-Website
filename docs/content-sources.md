@@ -48,3 +48,7 @@ The JAFORD homepage now features six actual catalog products with technology nav
 ## Product focus and hard-carbon forms (2026-10-01)
 
 The owner requested a technical rather than purchasing emphasis on material pages. Product detail pages retain the material introduction, image, known specifications and one quiet inquiry action; related-area and generic contact sections are removed. Resin-derived and biomass-derived hard carbon are separate entries with the previously confirmed feedstock information. Both use the same generic carbon illustration, not distinct grade photographs. The old sodium-hard-carbon route opens the filtered list containing both entries, preserving existing bookmarks without choosing a material on the visitor's behalf. No new performance claims are added.
+
+## Navigation and testing category (2026-10-01)
+
+The owner approved Custom R&D as the first category and then requested Testing & Characterization. The six-category navigation follows the approved order, combining lithium/sodium battery materials and cells in Battery Technology. Custom R&D groups services and completed project cases; fuel-cell and electrolyzer categories retain existing material-range links. Testing & Characterization groups battery testing with a general material-characterization coordination service already within the stated scope. No instrument inventory, accredited methods or new measured outcomes are claimed. Legacy category routes redirect to the corresponding current category.

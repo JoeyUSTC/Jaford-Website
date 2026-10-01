@@ -1,5 +1,5 @@
 import { cases } from "./cases.js";
-import { technologies } from "./technologies.js";
+import { technologies, areaAliases } from "./technologies.js";
 import { products, services } from "./catalog.js";
 import {
   home,
@@ -159,7 +159,13 @@ function renderRoute(focus = false) {
     location.replace("#/products?category=battery-materials&q=hard+carbon");
     return;
   }
+  const oldArea = path.startsWith("/technologies/") ? path.slice("/technologies/".length) : null;
+  if (areaAliases[oldArea]) {
+    location.replace(`#/technologies/${areaAliases[oldArea]}${query ? `?${query}` : ""}`);
+    return;
+  }
   const params = new URLSearchParams(query);
+  if (areaAliases[params.get("area")]) params.set("area", areaAliases[params.get("area")]);
   const area = technologies.find((t) => path === `/technologies/${t.id}`);
   const product = products.find((p) => path === `/products/${p.id}`);
   const service = services.find((s) => path === `/services/${s.id}`);

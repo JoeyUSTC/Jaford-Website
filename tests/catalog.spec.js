@@ -215,7 +215,7 @@ test("product modules open specs from the image or keyboard and retain inquiry c
   page,
 }) => {
   await page.goto("/#/technologies/battery-materials");
-  await expect(page.locator(".product-module")).toHaveCount(12);
+  await expect(page.locator(".product-module")).toHaveCount(14);
   const module = page
     .locator(".product-module")
     .filter({
@@ -245,7 +245,7 @@ test("product modules open specs from the image or keyboard and retain inquiry c
     .getByRole("button", { name: "Close inquiry", exact: true })
     .click();
   await page
-    .getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", { name: "Battery materials & electrodes", exact: true })
+    .getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", { name: "Battery Technology", exact: true })
     .click();
   const productLink = page
     .locator(".product-module")

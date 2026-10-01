@@ -58,11 +58,15 @@ test("technology navigation groups products and related services", async ({
     .evaluateAll((items) =>
       items.map((a) => ({ href: a.getAttribute("href"), name: a.textContent })),
     );
-  expect(links).toHaveLength(6);
+  expect(links.map(item => item.name)).toEqual([
+    "Custom R&D", "Battery Technology", "Fuel Cells & Electrolyzers",
+    "Functional Materials", "Testing & Characterization", "Equipment & Supplies",
+  ]);
+  await expect(page.locator("main > section").nth(1)).toHaveAttribute("id", "custom-rd");
   for (const item of links) {
     await page.goto("/" + item.href);
     await expect(page.locator("h1")).toHaveText(item.name);
-    await expect(page.locator(".catalog-row").first()).toBeVisible();
+    await expect(page.locator(".catalog-section")).toBeVisible();
   }
   await page.goto("/#/technologies/battery-materials");
   await expect(
@@ -71,6 +75,7 @@ test("technology navigation groups products and related services", async ({
       exact: true,
     }),
   ).toBeVisible();
+  await page.goto("/#/technologies/custom-rd");
   await expect(
     page.getByRole("link", { name: "Electrode processing", exact: true }),
   ).toBeVisible();
@@ -80,20 +85,20 @@ test("technology navigation groups products and related services", async ({
   await expect(page.locator("h1")).toHaveText("Electrode processing");
   await expect(
     page.getByRole("navigation", { name: "Breadcrumb" }),
-  ).toContainText("Battery materials & electrodes");
+  ).toContainText("Custom R&D");
   await page
     .locator(".related-areas")
-    .getByRole("link", { name: "Battery materials & electrodes", exact: true })
+    .getByRole("link", { name: "Custom R&D", exact: true })
     .click();
-  await expect(page).toHaveURL(/#\/technologies\/battery-materials$/);
-  await page.goto("/#/technologies/advanced-materials");
+  await expect(page).toHaveURL(/#\/technologies\/custom-rd$/);
+  await page.goto("/#/technologies/battery-cells");
   await page
     .getByRole("link", { name: "Spherical porous carbon", exact: true })
     .click();
   await page.reload();
   await expect(
     page.getByRole("navigation", { name: "Breadcrumb" }),
-  ).toContainText("Advanced materials & synthesis");
+  ).toContainText("Battery Technology");
 });
 
 test("inquiry validates fields, creates a brief, supports editing and downloads it", async ({
@@ -159,10 +164,10 @@ test("navigation reaches services and mobile menu closes", async ({ page }) => {
     await page.getByRole("button", { name: "Open navigation" }).click();
   await page
     .getByRole("navigation", { name: "Main navigation" })
-    .getByRole("link", { name: "Advanced materials", exact: true })
+    .getByRole("link", { name: "Custom R&D", exact: true })
     .click();
-  await expect(page).toHaveURL(/#\/technologies\/advanced-materials$/);
-  await expect(page.locator("h1")).toHaveText("Advanced materials & synthesis");
+  await expect(page).toHaveURL(/#\/technologies\/custom-rd$/);
+  await expect(page.locator("h1")).toHaveText("Custom R&D");
   if (mobile) {
     await expect(
       page.getByRole("button", { name: "Open navigation" }),

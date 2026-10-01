@@ -462,6 +462,15 @@ const s = (id, name, description, scope, inputs, deliverables, boundary) => ({
 });
 export const services = [
   s(
+    "material-characterization",
+    "Material characterization",
+    "Project-specific characterization coordinated through partner laboratories.",
+    ["Review of the material, characterization objective and suitable test methods.", "Coordination of the agreed measurements and reporting scope."],
+    ["Sample composition, form, quantity, handling and safety information.", "Characterization objectives, requested methods, reference data and acceptance criteria."],
+    ["Agreed characterization results and available raw data.", "Method and test-condition information within the agreed reporting scope."],
+    "Methods, sample requirements, data format and interpretation scope are assessed for each project. No specific instrument availability or accreditation is implied.",
+  ),
+  s(
     "functional-materials-development",
     "Functional materials development",
     "Custom development of MOFs, COFs, polymers and functional intermediates through partner laboratories.",
