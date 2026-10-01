@@ -1355,3 +1355,14 @@ h1[tabindex="-1"]:focus,
  .contact-panel { padding: 24px 18px; }
  .contact-address { font-size: 22px; }
 }
+
+/* Contact details only, without promotional copy. */
+.home-contact { align-items: center; padding-block: 40px; }
+.home-contact h2 { margin: 0; font-size: 30px; }
+.home-contact .contact-panel { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; padding: 26px 30px; }
+.home-contact .contact-address { font-size: 23px; }
+@media(max-width:640px) {
+ .home-contact { align-items: start; }
+ .home-contact .contact-panel { padding: 24px 18px; }
+ .home-contact .contact-address { font-size: 22px; }
+}

@@ -64,3 +64,7 @@ The owner requested SEM/TEM, lithium-ion/solid-state/pouch testing, short/full s
 The latest owner wording replaces the homepage brand statement with “From Innovation to Industry Impact: Long-term Partner in Technology Translation”. Its blue #3b6ea5 is sampled from the supplied logo. Equipment is ordered before consumables, and the homepage workstation label omits the model while preserving the confirmed model on its detail page.
 
 Fuel Cell Store and ElectroHy contact URLs returned proxy CONNECT 403. Their previously uploaded HTML was reviewed instead: Fuel Cell Store groups contact details and customer-service links; ElectroHy exposes email and contact information in its footer. The new contact section uses a concise partnership invitation, visible verified email and existing inquiry-draft action. No phone, street address or response-time promise was invented.
+
+## Caption and contact simplification
+
+At the owner’s request, visible AI-generation captions are removed from homepage and catalog thumbnails. Detail pages keep a neutral representative-illustration note, and asset provenance remains documented internally. The homepage Contact Us block now contains only its heading, verified email and the existing inquiry action.
