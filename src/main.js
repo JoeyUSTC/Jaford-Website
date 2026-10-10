@@ -210,7 +210,7 @@ function renderRoute(focus = false) {
   const service = services.find((s) => path === `/services/${s.id}`);
   const caseItem = cases.find((item) => path === `/cases/${item.id}`);
   let html;
-  let title = "JAFORD — From Innovation to Industrial Impact";
+  let title = "JAFORD";
   if (area) {
     html = technologyDetail(area);
     title = `${area.name} — JAFORD`;

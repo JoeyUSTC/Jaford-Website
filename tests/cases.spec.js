@@ -40,7 +40,7 @@ test("homepage case collection scrolls and opens the new validation stories", as
   await expect(track.locator("article")).toHaveCount(4);
   await expect(track.getByRole("link", {name: "Read more", exact:true})).toHaveCount(0);
   await expect(track.locator(".case-meta")).toHaveCount(0);
-  await expect(page.locator("main > section").nth(1)).toHaveAttribute("id", "project-cases");
+  await expect(page.locator("main > section").first()).toHaveAttribute("id", "project-cases");
   await expect(track.locator(".project-code")).toHaveText(["PBT-001", "PBT-002", "PBT-003", "PBT-004"]);
   await expect(page.getByRole("button",{name:"Previous cases",exact:true})).toBeDisabled();
   await page.getByRole("button",{name:"Next cases",exact:true}).click();
