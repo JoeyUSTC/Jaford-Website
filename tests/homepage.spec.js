@@ -9,7 +9,7 @@ test("homepage presents readable product information without errors or overflow"
   await expect(page).toHaveTitle("JAFORD");
   await expect(page.locator("main > section")).toHaveCount(9);
   await expect(page.locator(".sector-card")).toHaveCount(36);
-  await expect(page.locator("h1")).toHaveText("We scale up innovation");
+  await expect(page.locator("h1")).toHaveText("We scale innovation");
   await expect(page.locator(".impact-stats dd")).toHaveText(["15", "32", "109"]);
   await expect(page.locator("#impact-preview-note")).toBeVisible();
   await expect(page.locator("#impact-preview-note")).toHaveText("Illustrative figures for layout preview.");

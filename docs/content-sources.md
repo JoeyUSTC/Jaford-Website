@@ -124,3 +124,8 @@ The owner identified a mismatch between illustrated homepage offerings and an em
 ## Homepage and full-directory consistency across all six areas
 
 The owner requested that every homepage sector be a selection from a larger corresponding directory. Homepage selections now come from the same records as category and detail pages. Functional Materials has seven focused development views (the six existing homepage families plus previously described advanced membranes). Testing & Characterization has ten focused views, including the existing six homepage scopes and previously described spectroscopy, XRD, surface-area/porosity and thermal analysis. These use existing representative artwork and approved capability scope; they do not establish instrument ownership, standard-product models, availability or verified performance. Older broad-service URLs remain available. No specifications, cases or numeric capacity claims were added.
+
+
+## Slogan correction
+
+The owner confirmed the exact slogan is “We scale innovation”. This supersedes the earlier “We scale up innovation” wording.
