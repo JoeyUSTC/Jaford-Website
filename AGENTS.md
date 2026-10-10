@@ -10,7 +10,7 @@ The owner works from mobile Codex Cloud sessions and wants to describe website c
 
 ## Make and deliver changes
 
-- Use only the owner-supplied logo in `public/brand/jaford-brand.png` without a homepage slogan or hero introduction. Do not invent alternative logos, favicons or slogans. Remove the old “From Innovation…” lead. The primary message is scaling and validating laboratory innovations. Keep engagement-model explanations off the homepage; the owner now requests a scrollable anonymous case-study collection directly below navigation, before Custom R&D; never publish client-specific workbook responses.
+- Use only the owner-supplied logo in `public/brand/jaford-brand.png` with the owner-approved headline “We scale up innovation”. Do not invent alternative logos, favicons or slogans. Remove the old “From Innovation…” lead. The primary message is scaling and validating laboratory innovations. Keep engagement-model explanations off the homepage; the owner now requests a scrollable anonymous case-study collection after the slogan/statistics preview, before Custom R&D; never publish client-specific workbook responses.
 - All visitor-facing website content must be English only, including captions, specifications, navigation, accessibility labels and inquiry messages. Do not add bilingual Chinese labels.
 
 - Prioritize desktop usability and visual layout when desktop/mobile design tradeoffs arise. Homepage products should read as a horizontal collection on wide PC screens, with responsive readable layouts on mobile; avoid making desktop inherit narrow mobile composition.
@@ -50,4 +50,4 @@ The owner has made this repository public and enabled GitHub Pages with GitHub A
 
 - Custom R&D category uses image-and-text rows: linked representative image with title on the left, concise explanation on the right. Order synthesis, scale-up and processing first, then procurement support, then testing; material characterization is last. No Technology area eyebrow on category pages. Use existing representative artwork, and describe additional methods/material routes as project-assessed partner capabilities, not accredited or in-house facilities.
 
-- The homepage has no slogan/hero statement or introductory side copy. Innovation in practice is the first content section and the page h1. Keep the wide desktop layout independent of the removed hero. The homepage browser title is JAFORD.
+- The homepage starts with “We scale up innovation” and a three-column statistics preview, followed by Innovation in practice. Do not restore introductory side copy. Keep the wide desktop layout and the browser title JAFORD. The owner requested example figures 15 countries/regions, 32 research teams and 109 delivered projects for layout exploration. Keep these explicitly labeled as illustrative; they are not verified company metrics. Do not add savings or animated counters.

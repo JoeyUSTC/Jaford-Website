@@ -7,9 +7,12 @@ test("homepage presents readable product information without errors or overflow"
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD");
-  await expect(page.locator("main > section")).toHaveCount(8);
+  await expect(page.locator("main > section")).toHaveCount(9);
   await expect(page.locator(".sector-card")).toHaveCount(36);
-  await expect(page.locator("h1")).toHaveText("Innovation in practice");
+  await expect(page.locator("h1")).toHaveText("We scale up innovation");
+  await expect(page.locator(".impact-stats dd")).toHaveText(["15", "32", "109"]);
+  await expect(page.locator("#impact-preview-note")).toBeVisible();
+  await expect(page.locator("#impact-preview-note")).toHaveText("Illustrative figures for layout preview.");
   await expect(page.locator(".home-hero, .brand-statement, .brand-lead")).toHaveCount(0);
   expect(await page.locator(".brand-logo img").evaluate(async (img) => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
   await expect(page.locator("#custom-rd")).toContainText("partner facilities and expertise");
@@ -73,7 +76,7 @@ test("technology navigation groups products and related services", async ({
     "Custom R&D", "Battery Technology", "Fuel Cells & Electrolyzers",
     "Functional Materials", "Testing & Characterization", "Equipment & Supplies",
   ]);
-  await expect(page.locator("main > section").nth(1)).toHaveAttribute("id", "custom-rd");
+  await expect(page.locator("main > section").nth(2)).toHaveAttribute("id", "custom-rd");
   for (const item of links) {
     await page.goto("/" + item.href);
     await expect(page.locator("h1")).toHaveText(item.name);

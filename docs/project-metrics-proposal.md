@@ -1,10 +1,10 @@
 # Project evidence and cumulative metrics — proposal
 
-Not approved for publication. No aggregate counters are rendered on the website.
+Verified aggregate totals remain unapproved. The owner has requested a layout preview using example figures: 15 countries/regions, 32 research teams and 109 projects delivered. These appear with a visible illustrative-figures notice and are not derived from the case collection or represented as confirmed results. No research-spend savings are shown.
 
 ## Suggested homepage placement
 
-Hero → featured project stories → Custom R&D capabilities → standard product sectors → contact. Once the owner approves verified totals, add a restrained three-column metrics strip alongside the story section. No animated counters or implied success rate.
+Slogan and example statistics → featured project stories → Custom R&D capabilities → standard product sectors → contact. Once the owner approves verified totals, add a restrained three-column metrics strip alongside the story section. No animated counters or implied success rate.
 
 ## Recommended initial measures
 

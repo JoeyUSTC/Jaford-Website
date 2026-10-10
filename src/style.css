@@ -1469,3 +1469,19 @@ h1[tabindex="-1"]:focus,
 /* Homepage starts with the project stories, directly below navigation. */
 .home-cases:first-child { border-top: 0; padding-top: 44px; }
 @media(max-width:640px) { .home-cases:first-child { padding-top: 30px; } }
+
+/* Owner-requested slogan and clearly identified example statistics. */
+.scale-intro { padding-block: 52px 36px; }
+.scale-intro h1 { margin: 0 0 32px; color: var(--brand-blue); font-size: clamp(32px, 3.2vw, 46px); font-weight: 600; line-height: 1.2; letter-spacing: -.025em; }
+.impact-preview-note { margin: 0 0 22px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.impact-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; margin: 0; }
+.impact-stats > div { display: flex; flex-direction: column; gap: 10px; }
+.impact-stats dt { color: var(--brand-blue); font-size: 16px; line-height: 1.5; }
+.impact-stats dd { order: -1; margin: 0; color: var(--brand-blue); font-size: clamp(48px, 5vw, 72px); font-weight: 500; line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+@media(max-width:640px) {
+ .scale-intro { padding-block: 32px; }
+ .scale-intro h1 { margin-bottom: 24px; font-size: 32px; }
+ .impact-stats { gap: 14px; }
+ .impact-stats dd { font-size: 43px; }
+ .impact-stats dt { font-size: 12px; }
+}
