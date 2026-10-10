@@ -19,7 +19,7 @@ test("homepage presents readable product information without errors or overflow"
   await expect(page.locator("#functional-materials")).toContainText("MOFs");
   await expect(page.locator("#equipment-supplies .sector-card h3").first()).toHaveText("Electrochemical workstation");
   await expect(page.locator("#testing-characterization")).toContainText("SEM & TEM");
-  await expect(page.locator("#testing-characterization")).toContainText("Wind & solar direct coupling");
+  await expect(page.locator("#testing-characterization")).toContainText("Wind & solar direct-coupling tests");
   await expect(page.locator("#completed-projects")).toHaveCount(0);
   await expect(page.locator("#home-contact-form")).toHaveCount(1);
   await expect(page.locator(".home-hero a, .home-hero button")).toHaveCount(0);

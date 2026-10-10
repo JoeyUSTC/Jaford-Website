@@ -119,3 +119,8 @@ The older repeat-polymer and 11 kg resin cases have no provided internal numbers
 ## Fuel-cell and electrolysis navigation parity
 
 The owner identified a mismatch between illustrated homepage offerings and an empty category destination, explicitly naming MEA and CCM. Eight family-level entries now represent the established scope: membranes, gas diffusion layers, MEA, CCM, CCS, electrocatalysts, flow-field plates and gaskets/seals. Names, descriptions, images and internal routes are shared between homepage, category and detail renderers. These are product families, not newly verified stock models; no numeric performance, loading, dimensions, inventory or ownership claims were introduced. Existing CCS/CCM and electrocatalysis scope is supported by the earlier owner brief and recorded source summary. No new live-site retrieval was needed for these changes.
+
+
+## Homepage and full-directory consistency across all six areas
+
+The owner requested that every homepage sector be a selection from a larger corresponding directory. Homepage selections now come from the same records as category and detail pages. Functional Materials has seven focused development views (the six existing homepage families plus previously described advanced membranes). Testing & Characterization has ten focused views, including the existing six homepage scopes and previously described spectroscopy, XRD, surface-area/porosity and thermal analysis. These use existing representative artwork and approved capability scope; they do not establish instrument ownership, standard-product models, availability or verified performance. Older broad-service URLs remain available. No specifications, cases or numeric capacity claims were added.

@@ -1,4 +1,3 @@
-import { featuredFuelCellProducts } from "./fuel-cell-products.js";
 import { cases } from "./cases.js";
 import { productImages } from "./product-images.js";
 import { categories, products, services } from "./catalog.js";
@@ -6,6 +5,8 @@ import {
   areasForProduct,
   areasForService,
   itemsForArea,
+  featuredItemsForArea,
+  technologies,
 } from "./technologies.js";
 export const escapeHtml = (value) =>
   String(value).replace(
@@ -38,7 +39,7 @@ const contact = () =>
 const header = (eyebrow, title, text) =>
   `<section class="hero container">${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ""}<h1 tabindex="-1">${title}</h1><p class="hero-description">${text}</p></section>`;
 const legacy = () =>
-  `<aside class="legacy-ranges"><h3>Other JAFORD ranges</h3><p>Existing information on fuel cells, electrolyzers, electrocatalysis and advanced materials remains available.</p>${link("#/technologies/fuel-cells-electrolyzers", "Fuel cells, electrolyzers & electrocatalysis")}${link("https://www.jaford.com/products/membranes-polymers", "Advanced materials & synthesis")}</aside>`;
+  `<aside class="legacy-ranges"><h3>Other JAFORD ranges</h3><p>Existing information on fuel cells, electrolyzers, electrocatalysis and advanced materials remains available.</p>${link("#/technologies/fuel-cells-electrolyzers", "Fuel cells, electrolyzers & electrocatalysis")}${link("#/technologies/functional-materials", "Advanced materials & synthesis")}</aside>`;
 const areaURL = (id) => `#/technologies/${id}`;
 // Family entries describe established ranges, not newly invented model specifications.
 const homeCard = (name, href, imageId, description = "") => `<article class="sector-card"><a href="${e(href)}"><figure>${productArtwork({ id: imageId })}</figure><h3>${e(name)}</h3>${description ? `<p class="sector-card-description">${e(description)}</p>` : ""}</a></article>`;
@@ -53,43 +54,9 @@ export function caseDetail(item) {
   return `<article class="container detail-page case-study"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="#/cases">Case studies</a></nav><h1 tabindex="-1">${e(item.title)}</h1>${item.projectCode ? `<p class="project-code">${e(item.projectCode)}</p>` : ""}<div class="case-narrative"><p>${e(item.story)}</p></div></article>`;
 }
 export function home() {
-  const serviceCard = (name, id, image) => [name, serviceURL(id), image];
   return `<section class="container scale-intro" aria-labelledby="scale-title"><h1 id="scale-title" tabindex="-1">We scale up innovation</h1><div class="impact-preview" aria-describedby="impact-preview-note"><p id="impact-preview-note" class="impact-preview-note">Illustrative figures for layout preview.</p><dl class="impact-stats"><div><dt>Countries & regions</dt><dd>15</dd></div><div><dt>Research teams</dt><dd>32</dd></div><div><dt>Projects delivered</dt><dd>109</dd></div></dl></div></section>
   ${homeCases()}
-  ${homeSector("custom-rd", "Custom R&D", [
-    serviceCard("Polymer & resin synthesis", "polymer-resin-synthesis", "rd-polymer-reactor"),
-    serviceCard("Target molecule synthesis", "small-molecule-synthesis", "rd-molecule-reactor"),
-    serviceCard("Synthesis scale-up", "synthesis-scale-up", "rd-scale-up"),
-    serviceCard("Carbonization & activation", "carbonization-activation", "rd-rotary-furnace"),
-    serviceCard("Electrode processing", "electrode-processing", "rd-coating"),
-    serviceCard("Pouch cell development", "pouch-cell-customization", "rd-stacking"),
-  ], "Scale your materials and processes with partner facilities and expertise—from lab samples to larger batches, electrodes and cell prototypes.")}
-  ${homeSector("battery-technology", "Battery Technology", ["resin-derived-hard-carbon", "biomass-derived-hard-carbon", "spherical-porous-carbon", "cvd-silicon-carbon", "nfpp-powder", "al-3001a"].map(id => [products.find(p => p.id === id).name, productURL(id, "battery-technology"), id]))}
-  ${homeSector("fuel-cells-electrolyzers", "Fuel Cells & Electrolyzers", featuredFuelCellProducts.map(p => [p.name, productURL(p.id, "fuel-cells-electrolyzers"), p.image]))}
-  ${homeSector("functional-materials", "Functional Materials", [
-    serviceCard("MOFs", "functional-materials-development", "mof-framework"),
-    serviceCard("COFs", "functional-materials-development", "cof-framework"),
-    serviceCard("Functional polymers", "polymer-resin-synthesis", "polymer-structure"),
-    serviceCard("Resins", "polymer-resin-synthesis", "resin-structure"),
-    serviceCard("Ligands", "small-molecule-synthesis", "ligand-structure"),
-    serviceCard("Functional intermediates", "functional-materials-development", "intermediate-structure"),
-  ])}
-  ${homeSector("testing-characterization", "Testing & Characterization", [
-    ["SEM & TEM", serviceURL("material-characterization"), "sem-testing", "Surface morphology and microstructure imaging."],
-    ["Li-ion & solid-state batteries", serviceURL("battery-testing"), "battery-cycling", "Cycling, rate performance and protocol-based comparison."],
-    ["Pouch cell testing", serviceURL("battery-testing"), "pouch-testing", "Cell-level capacity, cycling and validation."],
-    ["Short-stack testing", serviceURL("stack-testing"), "short-stack", "Fuel-cell and electrolyzer stack performance evaluation."],
-    ["Full-stack testing", serviceURL("stack-testing"), "full-stack", "Larger-stack operation and system-level validation."],
-    ["Wind & solar direct coupling", serviceURL("renewable-coupled-testing"), "renewable-testing", "Electrolysis validation under variable renewable power."],
-  ], "Testing coordinated with partner facilities; sample requirements, methods and operating conditions are agreed per project.")}
-  ${homeSector("equipment-supplies", "Equipment & Supplies", [
-    ["Electrochemical workstation", productURL("chi760f"), "chi760f"],
-    ["Vacuum sealer", productURL("vacuum-sealer"), "vacuum-sealer"],
-    ["Glass reaction assembly", productURL("glass-reactor-2000ml"), "glass-reactor-2000ml"],
-    ["Filtration membranes", productURL("glass-fiber-1823-047"), "glass-fiber-1823-047"],
-    ["Nickel sample boats", productURL("nickel-boat"), "nickel-boat"],
-    ["Laboratory fittings", productURL("imperial-reducer"), "imperial-reducer"],
-  ])}
+  ${technologies.map(area => homeSector(area.id, area.name, featuredItemsForArea(area).map(({kind, item}) => [area.homeLabels?.[item.id] || item.name, kind === "product" ? productURL(item.id, area.id) : serviceURL(item.id, area.id), kind === "product" ? item.image || item.id : item.image || serviceArtwork[item.id], item.preview || ""]), area.homeDescription || "")).join("")}
   <section class="section container home-contact" id="contact"><h2>Contact Us</h2><form id="home-contact-form" class="simple-contact-form"><div class="contact-field"><label for="contact-name"><span aria-hidden="true">*</span> Your Name</label><input id="contact-name" name="name" autocomplete="name" required maxlength="120"></div><div class="contact-field"><label for="contact-email"><span aria-hidden="true">*</span> E-Mail Address</label><input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="200"></div><div class="contact-field"><label for="contact-enquiry"><span aria-hidden="true">*</span> Enquiry</label><textarea id="contact-enquiry" name="enquiry" required minlength="10" maxlength="5000" rows="6"></textarea></div><div class="contact-form-actions"><button class="button button-outline" type="submit">Prepare email</button></div></form><p class="contact-direct">or email <a href="mailto:kiki.li@jaford.com">kiki.li@jaford.com</a></p></section>`;
 }
 export function technologyDetail(area) {
@@ -166,10 +133,10 @@ const serviceArtwork = {
   "renewable-coupled-testing": "renewable-testing",
   "research-procurement": "glass-reactor-2000ml",
 };
-const servicePreview = (s, areaId) => `<article class="capability-row"><a class="capability-visual" href="${serviceURL(s.id, areaId)}" aria-label="${e(s.name)}"><figure>${productArtwork({id: serviceArtwork[s.id]})}</figure><h3>${e(s.name)}</h3></a><p>${e(s.description)}</p></article>`;
+const servicePreview = (s, areaId) => `<article class="capability-row"><a class="capability-visual" href="${serviceURL(s.id, areaId)}" aria-label="${e(s.name)}"><figure>${productArtwork({id: s.image || serviceArtwork[s.id]})}</figure><h3>${e(s.name)}</h3></a><p>${e(s.description)}</p></article>`;
 export function serviceDetail(s, areaId) {
   const area = areasForService(s.id).find(t => t.id === areaId) || areasForService(s.id)[0];
-  return `<section class="container detail-page service-detail concise-service"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><div class="service-overview"><div><h1 tabindex="-1">${e(s.name)}</h1><p class="detail-description">${e(s.description)}</p></div><figure>${productArtwork({id:serviceArtwork[s.id]},true)}</figure></div></section>`;
+  return `<section class="container detail-page service-detail concise-service"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><div class="service-overview"><div><h1 tabindex="-1">${e(s.name)}</h1><p class="detail-description">${e(s.description)}</p></div><figure>${productArtwork({id:s.image || serviceArtwork[s.id]},true)}</figure></div></section>`;
 }
 export function notFound() {
   return `${header("JAFORD", "Page not found", "This product or service link is not in the current catalog.")}<div class="container detail-next">${link("#/products", "Browse products")}${link("#/services", "Browse services")}</div>`;

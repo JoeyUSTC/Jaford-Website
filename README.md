@@ -49,7 +49,7 @@ For this manual fallback only, GitHub Pages would use **Deploy from a branch →
 
 ## Content and inquiries
 
-The English homepage and main navigation follow technology areas: battery materials and electrodes, battery cells, fuel cells and electrolyzers, electrocatalysis, advanced materials and synthesis, and lab supplies and equipment. Each area brings together relevant products and services; standard/custom is not the primary hierarchy. `src/technologies.js` maps all products and services into these areas. `src/catalog.js` contains 26 quote-only products and eleven services from the owner's supplied catalog brief. `src/pages.js` renders the homepage, searchable/filterable product directory, individual product pages, service directory and service detail pages. Existing fuel-cell, electrolyzer, electrocatalysis and advanced-material information remains linked from the homepage and product directory.
+The homepage and navigation follow six technology areas: Custom R&D, Battery Technology, Fuel Cells & Electrolyzers, Functional Materials, Testing & Characterization, and Equipment & Supplies. `src/technologies.js` defines each complete directory and its six homepage selections. `src/catalog.js` contains 34 product entries and 29 service views (13 broad services plus 16 focused functional-material/testing views). `src/pages.js` renders these shared records into the homepage, directories and detail pages.
 
 Routes use hashes (`#/technologies/{id}`, `#/products`, `#/products/{id}`, `#/services`, `#/services/{id}`), so direct links and refreshes work on GitHub Pages without server rewrites. Product filters and search are encoded in the route, preserving them when returning from a detail page. Unknown routes show a recovery page.
 
@@ -65,13 +65,9 @@ Use the existing `/workspace/Jaford-Website` checkout; cloud tasks are already i
 
 Products appear as individual clickable modules in the full catalog and technology-area pages. Each module shows a labeled representative product illustration, product name, short description and model options, and opens the existing specification/inquiry detail page. Product modules retain search/technology context; related services remain listed within their technology area. The requested reference electrohy.com was blocked by the environment network proxy during this iteration, so this layout implements the owner's module-to-spec interaction brief without claiming to reproduce the inaccessible reference.
 
-The homepage prioritizes PC browsing: a wider two-column hero and six products in one row from 1280px, with fewer columns on smaller viewports. Product details and catalog navigation retain their existing behavior.
+The homepage prioritizes PC browsing, with six image-led entries per sector from 1280px and fewer columns on smaller viewports. It opens with the owner-approved slogan and explicitly illustrative statistics, followed by the scrollable Innovation in practice stories and six technology sectors. Contact appears at the bottom and uses the local email-draft workflow.
 
-Primary navigation: Custom R&D, Battery Technology, Fuel Cells & Electrolyzers, Functional Materials, Testing & Characterization, Equipment & Supplies. Older category routes redirect to their new equivalents. Testing and characterization are partner-coordinated services, with method and reporting scope agreed per project.
-
-The homepage now uses four concise six-image rows: Custom R&D, Battery Technology, Fuel Cells & Electrolyzers and Functional Materials. Each has a Browse all link. The partner statement is the primary headline, contact appears only at the bottom, and engagement-model and completed-project content remains off the homepage. Fuel-cell and functional-material families do not imply new model-specific specifications.
-
-The latest homepage adds Testing & Characterization and Equipment & Supplies after Functional Materials. All six sectors have six image-led entries; testing cards include short descriptions. Testing services now number thirteen, including project-assessed stack and renewable-coupling tests. The contact section retains the existing local email-draft workflow.
+Every sector's Browse all opens a larger internal directory: Custom R&D 13, Battery Technology 14, Fuel Cells & Electrolyzers 8, Functional Materials 7, Testing & Characterization 10, Equipment & Supplies 12. Featured items are selected from those same records using `featuredItemsForArea`; links, images and descriptions stay consistent. Functional-material families and testing methods have focused service pages, while earlier broad-service URLs remain valid. These focused views describe project-assessed partner capabilities and do not introduce new stock models, facilities or measured results.
 
 The standalone technology overview is removed. Old `#/technologies` links redirect to home; category and detail routes remain available directly.
 

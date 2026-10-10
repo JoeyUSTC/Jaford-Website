@@ -1,3 +1,4 @@
+import { functionalCapabilities, testingCapabilities } from "./specialist-capabilities.js";
 import { fuelCellProducts } from "./fuel-cell-products.js";
 // Curated from the owner's supplied catalog brief. No unverified numeric specs.
 export const categories = [
@@ -464,6 +465,7 @@ const s = (id, name, description, scope, inputs, deliverables, boundary) => ({
   boundary,
 });
 export const services = [
+  ...functionalCapabilities, ...testingCapabilities,
   s(
     "material-characterization",
     "Material characterization",
@@ -673,3 +675,5 @@ export const services = [
     "Price, availability, lead time and documentation are confirmed by quotation. No stock or authorized-distributor status is implied.",
   ),
 ];
+
+services.find(s => s.id === "renewable-coupled-testing").preview = "Electrolysis validation under variable renewable power.";
