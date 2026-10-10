@@ -1473,7 +1473,6 @@ h1[tabindex="-1"]:focus,
 /* Owner-requested slogan and clearly identified example statistics. */
 .scale-intro { padding-block: 52px 36px; }
 .scale-intro h1 { margin: 0 0 32px; color: var(--brand-blue); font-size: clamp(32px, 3.2vw, 46px); font-weight: 600; line-height: 1.2; letter-spacing: -.025em; }
-.impact-preview-note { margin: 0 0 22px; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .impact-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; margin: 0; }
 .impact-stats > div { display: flex; flex-direction: column; gap: 10px; }
 .impact-stats dt { color: var(--brand-blue); font-size: 16px; line-height: 1.5; }

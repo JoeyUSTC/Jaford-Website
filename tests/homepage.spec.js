@@ -11,8 +11,7 @@ test("homepage presents readable product information without errors or overflow"
   await expect(page.locator(".sector-card")).toHaveCount(36);
   await expect(page.locator("h1")).toHaveText("We scale innovation");
   await expect(page.locator(".impact-stats dd")).toHaveText(["15", "32", "109"]);
-  await expect(page.locator("#impact-preview-note")).toBeVisible();
-  await expect(page.locator("#impact-preview-note")).toHaveText("Illustrative figures for layout preview.");
+  await expect(page.locator("#impact-preview-note")).toHaveCount(0);
   await expect(page.locator(".home-hero, .brand-statement, .brand-lead")).toHaveCount(0);
   expect(await page.locator(".brand-logo img").evaluate(async (img) => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
   await expect(page.locator("#custom-rd")).toContainText("partner facilities and expertise");
