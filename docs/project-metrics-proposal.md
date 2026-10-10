@@ -29,9 +29,6 @@ Keep raw financial, customer and acceptance records private, outside this public
 
 ## Public case codes
 
-- PBT-001: small-batch-dry-pouch-cells
-- PBT-002: electrolyte-validation-platform
-- PBT-003: resin-to-hard-carbon
-- PBT-004: sodium-ion-pouch-validation
+Public references now follow the owner’s internal business numbers: PBT for battery technology, PFM for functional/advanced materials, plus the original number padded to three digits, without a hyphen. The seven new references are PBT005, PBT012, PFM014, PFM016, PBT040, PFM044 and PBT054. The owner confirmed business 5 is a battery-material project.
 
-These are stable public references assigned in the owner's supplied order, not dates or a representation of total projects. Preserve codes and URLs if sorting or titles change; never recycle codes. PWE (water electrolysis), PFC (fuel cells), and PFM (functional materials) are reserved for later owner-approved cases. The older synthesis stories retain their existing URLs without being forced into the battery category.
+The four older battery stories use PBTXX pending internal-number reconciliation. The two older synthesis stories use PFMXX pending assignment of their own internal business numbers. Preserve their existing detail URLs. The owner confirmed the two older synthesis projects are distinct from businesses 14 and 16. Aggregate completion metrics still require a reconciled ledger. Numbered case references do not imply a project count or chronological order.

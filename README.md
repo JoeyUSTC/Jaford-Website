@@ -75,4 +75,4 @@ The latest homepage adds Testing & Characterization and Equipment & Supplies aft
 
 The standalone technology overview is removed. Old `#/technologies` links redirect to home; category and detail routes remain available directly.
 
-Case studies are at `#/cases` with individual `#/cases/{id}` routes. The homepage now features four owner-supplied development stories in a horizontal, manually scrollable collection immediately after the hero, before Custom R&D; the two earlier synthesis cases remain in the full directory.
+Case studies are at `#/cases` with individual `#/cases/{id}` routes. The homepage opens with all published project stories in a horizontal, manually scrollable collection, before Custom R&D. Project references preserve internal business numbers with PBT/PFM prefixes and no hyphen; unmapped references use XX.

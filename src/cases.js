@@ -1,8 +1,9 @@
 // Anonymous project accounts based on owner-confirmed records.
+// Public codes preserve internal business numbers; XX means the mapping is not yet confirmed.
 export const cases = [
   {
     "id": "small-batch-dry-pouch-cells",
-    "projectCode": "PBT-001",
+    "projectCode": "PBTXX",
     "title": "Turning a cell concept into a platform for pouch-cell research",
     "category": "Pouch cell development",
     "summary": "A research team gained a custom dry pouch-cell platform for its next stage of battery development, translating its chosen electrode system into a 50-cell research batch.",
@@ -18,8 +19,38 @@ export const cases = [
     "story": "A research team wanted to take its proposed electrode system into a pouch-cell format so it could pursue the next stage of battery development. Working with JAFORD, the team translated that concept into a custom cell build, bringing its chosen materials and cell configuration together with specialist manufacturing experience. The collaboration resulted in a batch of 50 dry pouch cells. With those cells in hand, the researchers had a physical platform for further experiments on the proposed system, moving their work from a specification toward validation in a larger cell format."
   },
   {
+    "id": "resin-route-process-scale-up",
+    "projectCode": "PFM014",
+    "category": "Resin synthesis and scale-up",
+    "serviceId": "synthesis-scale-up",
+    "serviceName": "Synthesis scale-up",
+    "title": "Taking a proposed resin route into kilogram-scale synthesis",
+    "summary": "A materials team moved from a theoretical synthesis route to a verified procedure and larger resin batches, gaining a basis for reproducible scale-up.",
+    "story": "A research team had a proposed route for a custom resin and wanted to take the material into kilogram-scale preparation. The starting point was a theoretical synthesis method rather than a complete, demonstrated procedure. JAFORD brought the team together with synthesis specialists to develop and verify a practical SOP, then progress through a 1 kg trial before moving to a 10 kg batch. Alongside the resin, the customer received the validated synthesis procedure. The collaboration turned a route on paper into material at a larger working scale and a documented process that the team could use for reproduction and further scale-up."
+  },
+  {
+    "id": "nfpp-pouch-formation-validation",
+    "projectCode": "PBT012",
+    "category": "Sodium-ion cell development",
+    "serviceId": "pouch-cell-customization",
+    "serviceName": "Pouch-cell customization",
+    "title": "Turning sodium-ion pouch-cell results into a better validation process",
+    "summary": "A team took its hard-carbon material into NFPP pouch cells and, through a review of cell formation, reached the experimental objective after an initially disappointing result.",
+    "story": "A research team wanted to evaluate its hard-carbon material in an NFPP sodium-ion pouch-cell system. JAFORD worked with the team and development partners to bring the cathode and anode coating into a stacked pouch-cell build. When the customer’s initial tests fell short of expectations, the collaboration continued with a review of the experimental and testing process, particularly cell formation. Together, we clarified and improved the formation procedure, after which the customer repeated the tests and reached the intended experimental objective. The project gave the team both a pouch-cell platform for its material and a more reliable process for evaluating the proposed system."
+  },
+  {
+    "id": "peg-polymer-synthesis-characterization",
+    "projectCode": "PFM016",
+    "category": "Custom polymer development",
+    "serviceId": "polymer-resin-synthesis",
+    "serviceName": "Polymer & resin synthesis",
+    "title": "Turning a PEG polymer route into characterized research samples",
+    "summary": "A team gained custom PEG-related polymer samples, a more complete synthesis procedure and analytical data to support further material development.",
+    "story": "A research team needed a custom PEG-related polymer prepared from specified starting materials and a proposed synthesis route. JAFORD worked with the team and synthesis partners to carry that route into sample preparation, filling in the practical details that became clear during the work. Those refinements were brought together in a more complete, reproducible SOP, and the finished samples were sent for independent infrared and NMR characterization. The customer received the polymer samples, the refined procedure and the analytical reports. This gave the team a documented material platform and evidence with which to assess the synthesis and plan its next experiments."
+  },
+  {
     "id": "electrolyte-validation-platform",
-    "projectCode": "PBT-002",
+    "projectCode": "PBTXX",
     "title": "Creating a pouch-cell platform for electrolyte development",
     "category": "Electrolyte validation",
     "summary": "A research team gained the custom dry cells and supporting electrolyte needed to take its electrolyte study into a pouch-cell platform.",
@@ -35,8 +66,38 @@ export const cases = [
     "story": "A research team wanted to investigate an electrolyte in a defined pouch-cell system. Together, we refined the cell specification and research batch size around that question, then brought the custom dry cells and supporting electrolyte together. The collaboration gave the team the materials and cell platform needed to move its planned study into experimental work. With the platform in place, the researchers could focus their next experiments on how the electrolyte interacted with the chosen electrode system in pouch cells."
   },
   {
+    "id": "carbon-activation-research",
+    "projectCode": "PBT005",
+    "category": "Battery carbon materials development",
+    "serviceId": "carbonization-activation",
+    "serviceName": "Carbonization & activation",
+    "title": "Building an experimental platform for carbon activation",
+    "summary": "A materials team gained a practical setting for repeated carbon-activation trials, turning a proposed laboratory experiment into a programme of rapid material validation.",
+    "story": "A research team wanted to explore carbon activation through small-scale experiments, but its available laboratory facilities could not support the proposed work. JAFORD worked with the team to establish suitable experimental conditions and turn the initial plan into practical steps, bringing together the equipment, facilities and processing experience needed for the study. The collaboration supported dozens of carbon-activation experiments. This gave the researchers a working platform for repeated trials, allowing them to investigate their material ideas and refine the process through experimental evidence."
+  },
+  {
+    "id": "rate-focused-nfpp-cell-development",
+    "projectCode": "PBT040",
+    "category": "Sodium-ion cell development",
+    "serviceId": "pouch-cell-customization",
+    "serviceName": "Pouch-cell customization",
+    "title": "Designing a sodium-ion pouch-cell study around rate performance",
+    "summary": "A team’s rate-performance research objective shaped NFPP material selection, electrode processing and a custom pouch-cell development plan.",
+    "story": "A research team wanted to investigate rate performance using its own hard-carbon anode material in an NFPP sodium-ion system. The cell platform needed to reflect that objective from the outset, including the choice of cathode powder and the specified separator. JAFORD worked through material selection and the electrode-processing and assembly requirements with development partners, translating the team’s research priorities into a tailored pouch-cell preparation plan. The work brought material properties and cell design into the same development discussion, establishing a practical route toward evaluating the proposed system in a pouch-cell format."
+  },
+  {
+    "id": "literature-molecule-synthesis-scale-up",
+    "projectCode": "PFM044",
+    "category": "Target molecule synthesis",
+    "serviceId": "small-molecule-synthesis",
+    "serviceName": "Target molecule synthesis",
+    "title": "Taking a published synthesis from a small trial to a research batch",
+    "summary": "A team reproduced a literature route, reviewed an initial sample and progressed to a larger target-molecule batch with NMR data for product assessment.",
+    "story": "A research team wanted to reproduce a compound from a published synthesis route and obtain enough material for further investigation. JAFORD worked with the team to make product characterization part of the project from the start. An initial synthesis produced about 1.9 g of sample; after the customer reviewed and accepted that stage, the preparation was expanded to approximately 10 g. The target material was delivered with proton and carbon NMR data. The collaboration carried the idea from a literature method through a reviewed small trial to a larger research batch, giving the team both material and analytical evidence for its next stage of work."
+  },
+  {
     "id": "resin-to-hard-carbon",
-    "projectCode": "PBT-003",
+    "projectCode": "PBTXX",
     "title": "Taking a hard-carbon process beyond small laboratory trials",
     "category": "Carbonization & activation",
     "summary": "A sodium-ion materials team turned a proposed resin-to-carbon route into a practical processing study, with experimental data to inform further material development.",
@@ -52,8 +113,18 @@ export const cases = [
     "story": "A sodium-ion materials team wanted to take a proposed resin-to-hard-carbon route beyond very small laboratory trials. The project involved kilogram-scale resin feedstock, so the process needed to be adapted to practical equipment and batch conditions. JAFORD worked with the researchers, processing specialists and a laboratory to turn the proposed carbonization and activation sequence into an executable study. The team gained a workable processing route and supporting experimental data, creating a basis for evaluating the material at a larger working scale and deciding how to refine the process next."
   },
   {
+    "id": "anode-processing-cycling-development",
+    "projectCode": "PBT054",
+    "category": "Electrode and cell development",
+    "serviceId": "electrode-processing",
+    "serviceName": "Electrode processing",
+    "title": "Using electrode-processing feedback to advance a battery material",
+    "summary": "A team brought its anode material into cell development, addressed processing difficulties and reached its project-specific cycling requirements.",
+    "story": "A research team wanted to evaluate its own anode material in a cell system designed around rate and cycling objectives. During electrode preparation, the material’s large and uneven particles emerged as a concern for coating and subsequent cell behavior. JAFORD brought those observations back to the customer and worked with processing partners to adjust the anode preparation. The resulting cells met the customer’s cycling requirements in the project’s testing. By carrying practical processing feedback back into the research discussion, the collaboration enabled the team to evaluate its material in cells and understand which material characteristics mattered as development moved beyond the initial laboratory work."
+  },
+  {
     "id": "sodium-ion-pouch-validation",
-    "projectCode": "PBT-004",
+    "projectCode": "PBTXX",
     "title": "Using ampere-hour pouch cells to guide sodium-ion development",
     "category": "Sodium-ion battery development",
     "summary": "A research team tested its sodium-ion concept in ampere-hour pouch cells and used the gap between expected and observed results to identify what needed to change.",
@@ -79,7 +150,8 @@ export const cases = [
     "deliverable": "Polymer material batches",
     "serviceId": "polymer-resin-synthesis",
     "serviceName": "Polymer & resin synthesis",
-    "story": "A research team needed repeated batches of a custom polymer for its continuing material-development work. JAFORD organized the synthesis with specialist partners and carried the material requirement through to batch delivery. The team received the polymer material needed for further investigation, making repeated custom synthesis a practical part of its ongoing research."
+    "story": "A research team needed repeated batches of a custom polymer for its continuing material-development work. JAFORD organized the synthesis with specialist partners and carried the material requirement through to batch delivery. The team received the polymer material needed for further investigation, making repeated custom synthesis a practical part of its ongoing research.",
+    "projectCode": "PFMXX"
   },
   {
     "id": "resin-batch-11kg",
@@ -92,6 +164,7 @@ export const cases = [
     "deliverable": "11 kg of resin",
     "serviceId": "polymer-resin-synthesis",
     "serviceName": "Polymer & resin synthesis",
-    "story": "A custom resin project required material at a scale beyond small-sample preparation. JAFORD worked with synthesis partners to organize a larger batch and carry the material requirement through to delivery. The team received 11 kg of custom resin, making a kilogram-scale quantity available for its next stage of development and further work with the material."
+    "story": "A custom resin project required material at a scale beyond small-sample preparation. JAFORD worked with synthesis partners to organize a larger batch and carry the material requirement through to delivery. The team received 11 kg of custom resin, making a kilogram-scale quantity available for its next stage of development and further work with the material.",
+    "projectCode": "PFMXX"
   }
 ];

@@ -96,3 +96,12 @@ Case narratives were reframed at the owner’s request around customer research 
 The owner requested compact title/reference/excerpt case previews and a single flowing story on detail pages, with no chapter labels or bottom return link. Custom R&D now pairs existing representative process, framework and instrument artwork with concise descriptions. Added characterization methods (TEM, SEM, XPS, XRD, FTIR, Raman, NMR, BET and thermal analysis) and functional-material families are project-assessed partner scopes, not claims of instrument ownership or completed outcomes. No new product specifications or microscopy results were created.
 
 At the owner’s request, the homepage hero slogan and adjacent introduction were removed. Innovation in practice now begins the page directly below navigation. The browser title no longer repeats the old slogan.
+
+
+## Additional owner-supplied project accounts
+
+Seven English anonymous stories were adapted from the owner's project-experience document. Public references preserve its business numbers: 5 → PBT005 (battery application confirmed by the owner), 12 → PBT012, 14 → PFM014, 16 → PFM016, 40 → PBT040, 44 → PFM044, 54 → PBT054. The private source document is not included in the repository. Customer location, recipes, operating parameters and private commercial details are omitted.
+
+Business 12 describes an achieved experimental objective after formation-process revision. Business 14 describes staged synthesis and a validated SOP. Business 16 provides samples and IR/NMR records. Business 40 describes performance-oriented preparation work, not a measured rate outcome or confirmed final delivery quantity. Business 44 records a reviewed initial synthesis followed by a larger batch and NMR records. Business 54 records project-specific cycling success; no numeric cycling/rate guarantee or general performance specification is published.
+
+The older battery accounts use PBTXX until internal-number mapping is confirmed. The older synthesis accounts retain their URLs and use PFMXX; the owner confirmed these are separate projects from businesses 14 and 16, so they remain independently displayed. Homepage display order alternates research areas where practical; codes never follow display order.
