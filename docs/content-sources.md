@@ -129,3 +129,8 @@ The owner requested that every homepage sector be a selection from a larger corr
 ## Slogan correction
 
 The owner confirmed the exact slogan is “We scale innovation”. This supersedes the earlier “We scale up innovation” wording.
+
+
+## Category-specific project collections
+
+The owner requested project-first browsing within Battery Technology and Functional Materials. Existing published stories are filtered by their confirmed PBT/PFM prefixes, preserving homepage wording, order and detail routes. No new cases, project identifiers or outcome claims were added. Product and service directories remain complete below the relevant project collection.

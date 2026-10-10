@@ -23,6 +23,7 @@ export const technologies = [
     ], links: [],
   },
   {
+    casePrefix: "PBT", hideDescription: true,
     id: "battery-technology", nav: "Battery Technology", name: "Battery Technology",
     featuredIds: ["resin-derived-hard-carbon", "biomass-derived-hard-carbon", "spherical-porous-carbon", "cvd-silicon-carbon", "nfpp-powder", "al-3001a"],
     description: "Materials, binders, electrolytes, electrodes and cells for lithium-ion and sodium-ion battery research.",
@@ -37,12 +38,14 @@ export const technologies = [
     serviceIds: [], links: [],
   },
   {
+    casePrefix: "PFM", hideDescription: true,
     id: "functional-materials", nav: "Functional Materials", name: "Functional Materials",
     description: "MOFs, COFs, functional polymers and related materials. Custom development is assessed against the target structure, application and agreed characterization requirements.",
     featuredIds: functionalCapabilities.slice(0, 6).map(s => s.id),
     productIds: [], serviceIds: functionalCapabilities.map(s => s.id), links: [],
   },
   {
+    hideDescription: true,
     id: "testing-characterization", nav: "Testing & Characterization", name: "Testing & Characterization",
     description: "Battery testing, comparative validation and project-specific material characterization coordinated through partner laboratories.",
     featuredIds: [...testingCapabilities.slice(0, 5).map(s => s.id), "renewable-coupled-testing"],
@@ -50,6 +53,7 @@ export const technologies = [
     productIds: [], serviceIds: [...testingCapabilities.slice(0, 5).map(s => s.id), "renewable-coupled-testing", ...testingCapabilities.slice(5).map(s => s.id)], links: [],
   },
   {
+    hideDescription: true,
     id: "equipment-supplies", nav: "Equipment & Supplies", name: "Equipment & Supplies",
     featuredIds: ["chi760f", "vacuum-sealer", "glass-reactor-2000ml", "glass-fiber-1823-047", "nickel-boat", "imperial-reducer"],
     homeLabels: {"chi760f": "Electrochemical workstation", "vacuum-sealer": "Vacuum sealer", "glass-reactor-2000ml": "Glass reaction assembly", "glass-fiber-1823-047": "Glass-fiber filters", "nickel-boat": "Nickel sample boats", "imperial-reducer": "Reducing fittings"},

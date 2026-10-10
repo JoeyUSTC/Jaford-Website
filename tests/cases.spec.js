@@ -86,3 +86,50 @@ test("merged orders use one case and unnumbered legacy URLs remain available", a
     await expect(page.locator("main")).not.toContainText("XX");
   }
 });
+
+for (const [area, prefix, directorySelector] of [
+  ['battery-technology', 'PBT', '.product-module'],
+  ['functional-materials', 'PFM', '.capability-row'],
+]) {
+  test(`${area} leads with only its own project stories before the full directory`, async ({page}) => {
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.goto(`/#/technologies/${area}`);
+    const selected = cases.filter(item=>item.projectCode.startsWith(prefix));
+    const track = page.locator('#case-track');
+    await expect(track.locator('.project-code')).toHaveText(selected.map(item=>item.projectCode));
+    await expect(track.locator('.case-excerpt')).toHaveText(selected.map(item=>item.summary));
+    await expect(page.locator('.hero-description')).toHaveCount(0);
+    await expect(page.locator('main > section').nth(1)).toHaveAttribute('id','project-cases');
+    await expect(page.locator('.area-cases + .catalog-section')).toBeAttached();
+    await expect(page.locator(directorySelector).first()).toBeAttached();
+    const overflow = await track.evaluate(el=>el.scrollWidth > el.clientWidth + 2);
+    await expect(page.getByRole('button',{name:'Previous cases',exact:true})).toBeDisabled();
+    if (overflow) {
+      await page.getByRole('button',{name:'Next cases',exact:true}).click();
+      await expect.poll(()=>track.evaluate(el=>el.scrollLeft)).toBeGreaterThan(30);
+      await page.getByRole('button',{name:'Previous cases',exact:true}).click();
+      await expect.poll(()=>track.evaluate(el=>el.scrollLeft)).toBeLessThan(3);
+      await track.focus();
+      await page.keyboard.press('ArrowRight');
+      await expect.poll(()=>track.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0);
+    } else {
+      await expect(page.getByRole('button',{name:'Next cases',exact:true})).toBeDisabled();
+    }
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
+    await track.getByRole('link',{name:selected[0].title,exact:true}).click();
+    await expect(page.locator('.case-narrative')).toHaveText(selected[0].story);
+    await page.goBack();
+    await expect(track.locator('.project-code')).toHaveText(selected.map(item=>item.projectCode));
+    await page.reload();
+    await expect(track.locator('.project-code')).toHaveText(selected.map(item=>item.projectCode));
+  });
+}
+
+test('testing and equipment categories start directly with their offerings', async ({page}) => {
+  await page.goto('/#/technologies/testing-characterization');
+  await expect(page.locator('.hero-description, .area-services-heading, #case-track')).toHaveCount(0);
+  await expect(page.locator('.capability-row')).toHaveCount(10);
+  await page.goto('/#/technologies/equipment-supplies');
+  await expect(page.locator('.hero-description, #case-track')).toHaveCount(0);
+  await expect(page.locator('.product-module')).toHaveCount(12);
+});
