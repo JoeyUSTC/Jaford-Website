@@ -179,6 +179,16 @@ test("navigation reaches services and mobile menu closes", async ({ page }) => {
     .click();
   await expect(page).toHaveURL(/#\/technologies\/custom-rd$/);
   await expect(page.locator("h1")).toHaveText("Custom R&D");
+  await expect(page.getByText("Technology area", {exact:true})).toHaveCount(0);
+  await expect(page.locator(".capability-row")).toHaveCount(13);
+  await expect(page.locator(".capability-row").first()).toContainText("Polymer & resin synthesis");
+  await expect(page.locator(".capability-row").last()).toContainText("Material characterization");
+  await expect(page.locator(".capability-row").last()).toContainText("XPS");
+  for (const img of await page.locator(".capability-row img").all()) {
+    await img.scrollIntoViewIfNeeded();
+    await expect.poll(() => img.evaluate(el => el.complete && el.naturalWidth > 0)).toBe(true);
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
   if (mobile) {
     await expect(
       page.getByRole("button", { name: "Open navigation" }),
@@ -190,10 +200,8 @@ test("navigation reaches services and mobile menu closes", async ({ page }) => {
   await page
     .getByRole("link", { name: "Polymer & resin synthesis", exact: true })
     .click();
-  await page.getByRole("button", { name: "Discuss this service" }).click();
-  await expect(
-    page.getByLabel("Product / service and selected option"),
-  ).toHaveValue("Polymer & resin synthesis");
+  await expect(page.locator("h1")).toHaveText("Polymer & resin synthesis");
+  await expect(page.getByRole("button", {name: "Discuss this service"})).toHaveCount(0);
 });
 
 test("prepared inquiry can be copied and whitespace-only requirements are rejected", async ({

@@ -38,7 +38,7 @@ The owner has made this repository public and enabled GitHub Pages with GitHub A
 
 - Custom R&D homepage images depict pilot-scale synthesis and processing equipment, not finished material or cell products. Use representative equipment imagery without claiming JAFORD ownership or universal process availability.
 
-- R&D service detail pages show a title, one concise capability paragraph, representative image and quiet inquiry action. Do not display scope/input/deliverable/acceptance checklists, repeated contact sections or related-area blocks. Keep detailed reference data internally for later discussion.
+- R&D service detail pages show a title, one concise capability paragraph, representative image. Do not add a service inquiry action. Do not display scope/input/deliverable/acceptance checklists, repeated contact sections or related-area blocks. Keep detailed reference data internally for later discussion.
 
 - No technology-area overview page or “All technology areas” entry. Navigation goes directly to individual categories; old `#/technologies` links redirect to the homepage. Detail breadcrumbs use Home and their specific category.
 
@@ -46,4 +46,6 @@ The owner has made this repository public and enabled GitHub Pages with GitHub A
 
 - Featured battery case studies use stable public IDs PBT-001 through PBT-004. Keep IDs when reordering or rewriting. PWE/PFC/PFM are reserved for future confirmed cases. Cumulative impact metrics remain a proposal in docs/project-metrics-proposal.md until the owner approves verified totals; do not equate published case counts with company project totals.
 
-- Case detail pages are narrative-only: project reference, title, short introduction and the research goal / development / customer value. No Project at a glance, associated service links, or project inquiry CTA. Frame value as an enabled research platform, larger-scale evaluation or evidence for iteration; do not lead with MOQ, procurement savings or supplier coordination, and never turn delivered prototypes into claimed validated performance.
+- Case detail pages are narrative-only: title, project reference and one flowing story paragraph, without a repeated summary, chapter headings or a bottom return link. No Project at a glance, associated service links, or project inquiry CTA. Case previews contain only a linked title, optional project reference and excerpt; no rules, category/scale labels or Read more links. Frame value as an enabled research platform, larger-scale evaluation or evidence for iteration; do not lead with MOQ, procurement savings or supplier coordination, and never turn delivered prototypes into claimed validated performance.
+
+- Custom R&D category uses image-and-text rows: linked representative image with title on the left, concise explanation on the right. Order synthesis, scale-up and processing first, then procurement support, then testing; material characterization is last. No Technology area eyebrow on category pages. Use existing representative artwork, and describe additional methods/material routes as project-assessed partner capabilities, not accredited or in-house facilities.

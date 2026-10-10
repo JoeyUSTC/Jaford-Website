@@ -464,7 +464,7 @@ export const services = [
   s(
     "material-characterization",
     "Material characterization",
-    "Connect your material development with specialist characterization resources, including SEM and TEM, to understand structure and morphology as you validate samples and scale your process.",
+    "Connect your material development with TEM, SEM, XPS, XRD, FTIR, Raman, NMR, BET surface-area analysis and thermal analysis through specialist laboratories. Methods are selected for each project to understand morphology, structure, composition and material behavior as you validate samples and scale your process.",
     ["SEM and TEM imaging to examine surface morphology and microstructure, subject to sample and method assessment.", "Review of the material, characterization objective and suitable test methods.", "Coordination of the agreed measurements and reporting scope."],
     ["Sample composition, form, quantity, handling and safety information.", "Characterization objectives, requested methods, reference data and acceptance criteria."],
     ["Agreed characterization results and available raw data.", "Method and test-condition information within the agreed reporting scope."],
@@ -473,7 +473,7 @@ export const services = [
   s(
     "functional-materials-development",
     "Functional materials development",
-    "We connect synthesis expertise, equipment and characterization resources to advance MOFs, COFs and functional materials from milligram-scale discovery toward gram- and kilogram-scale development.",
+    "Develop MOFs, COFs, advanced membrane materials, functional polymers and porous materials with specialist synthesis, processing and characterization resources. We assess the route and application together to move from small samples toward larger batches and material validation.",
     [
       "Route assessment and synthesis coordination for metal–organic frameworks (MOFs) and covalent organic frameworks (COFs).",
       "Functional polymers, resins, ligands and related intermediates; process reproduction or optimization when agreed.",

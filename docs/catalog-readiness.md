@@ -67,3 +67,7 @@ CVD 沉硅一体化代工、控氧浸出、回收石墨、特殊硬碳、干法�
 ## Testing scopes added at owner request
 
 Confirm partner access and method/sample compatibility for SEM/TEM; cell fixtures and test conditions for Li-ion, solid-state and pouch tests; stack interfaces, power ranges and gas/safety requirements for short/full-stack tests; and actual renewable source versus reproduced profiles and interface feasibility for direct-coupling tests. No fixed capacity is published.
+
+## Expanded R&D directory scope
+
+Confirm method-specific partner availability, sample compatibility and reporting scope before quoting TEM/SEM, XPS/XRD, FTIR/Raman/NMR, BET or thermal analysis. Advanced membranes, MOFs/COFs, functional polymers and porous materials require route/application assessment. Directory images remain conceptual instrument/material illustrations, not measured micrographs or owned equipment.

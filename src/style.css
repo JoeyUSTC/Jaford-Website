@@ -1444,3 +1444,24 @@ h1[tabindex="-1"]:focus,
 .case-study .detail-description { max-width: 76ch; }
 .case-narrative { margin-top: 40px; }
 .case-study .case-chapter p { max-width: 80ch; font-size: 16px; line-height: 1.85; }
+
+/* Quiet case previews: title, reference and excerpt only. */
+.home-case-track .case-summary, .case-index .case-summary { border: 0; padding-top: 0; }
+.case-summary .project-code, .home-case-track .case-summary .project-code { margin: 10px 0 12px; font-size: 12px; color: var(--muted); font-weight: 400; }
+.case-study .project-code { margin: 18px 0 0; font-size: 13px; color: var(--muted); font-weight: 400; }
+.case-study .case-narrative { margin-top: 26px; }
+.case-narrative > p { margin: 0; font-size: 17px; line-height: 1.9; color: var(--muted); }
+
+/* Capabilities pair a representative image and title with a concise explanation. */
+.capability-row { display: grid; grid-template-columns: 260px minmax(0, 1fr); align-items: center; gap: 64px; padding: 30px 0; border-bottom: 1px solid var(--line); }
+.capability-row:first-of-type { padding-top: 0; }
+.capability-visual { display: block; color: var(--brand-blue); }
+.capability-visual figure { margin: 0 0 16px; }
+.capability-visual h3 { margin: 0; font-size: 20px; line-height: 1.4; font-weight: 500; }
+.capability-visual:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+.capability-row > p { margin: 0; max-width: 66ch; color: var(--muted); font-size: 17px; line-height: 1.85; }
+@media(max-width:640px) {
+ .capability-row { grid-template-columns: 1fr; gap: 20px; padding-block: 28px; }
+ .capability-visual figure { max-width: 260px; }
+ .capability-row > p, .case-narrative > p { font-size: 16px; }
+}

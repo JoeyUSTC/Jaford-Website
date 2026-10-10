@@ -14,7 +14,8 @@ export const cases = [
     "result": "A custom pouch-cell platform for further validation",
     "engagement": "Custom cell sourcing & development coordination",
     "serviceId": "pouch-cell-customization",
-    "serviceName": "Pouch-cell customization"
+    "serviceName": "Pouch-cell customization",
+    "story": "A research team wanted to take its proposed electrode system into a pouch-cell format so it could pursue the next stage of battery development. Working with JAFORD, the team translated that concept into a custom cell build, bringing its chosen materials and cell configuration together with specialist manufacturing experience. The collaboration resulted in a batch of 50 dry pouch cells. With those cells in hand, the researchers had a physical platform for further experiments on the proposed system, moving their work from a specification toward validation in a larger cell format."
   },
   {
     "id": "electrolyte-validation-platform",
@@ -30,7 +31,8 @@ export const cases = [
     "result": "A pouch-cell platform for the planned electrolyte study",
     "engagement": "Joint specification refinement & procurement",
     "serviceId": "pouch-cell-customization",
-    "serviceName": "Pouch-cell customization"
+    "serviceName": "Pouch-cell customization",
+    "story": "A research team wanted to investigate an electrolyte in a defined pouch-cell system. Together, we refined the cell specification and research batch size around that question, then brought the custom dry cells and supporting electrolyte together. The collaboration gave the team the materials and cell platform needed to move its planned study into experimental work. With the platform in place, the researchers could focus their next experiments on how the electrolyte interacted with the chosen electrode system in pouch cells."
   },
   {
     "id": "resin-to-hard-carbon",
@@ -46,7 +48,8 @@ export const cases = [
     "result": "An executable processing study and data for further development",
     "engagement": "Process development & laboratory coordination",
     "serviceId": "carbonization-activation",
-    "serviceName": "Carbonization & activation"
+    "serviceName": "Carbonization & activation",
+    "story": "A sodium-ion materials team wanted to take a proposed resin-to-hard-carbon route beyond very small laboratory trials. The project involved kilogram-scale resin feedstock, so the process needed to be adapted to practical equipment and batch conditions. JAFORD worked with the researchers, processing specialists and a laboratory to turn the proposed carbonization and activation sequence into an executable study. The team gained a workable processing route and supporting experimental data, creating a basis for evaluating the material at a larger working scale and deciding how to refine the process next."
   },
   {
     "id": "sodium-ion-pouch-validation",
@@ -62,7 +65,8 @@ export const cases = [
     "result": "Larger-cell evidence to guide the next design iteration",
     "engagement": "Joint cell development & validation",
     "serviceId": "pouch-cell-customization",
-    "serviceName": "Pouch-cell customization"
+    "serviceName": "Pouch-cell customization",
+    "story": "A research team wanted to find out how its proposed sodium-ion system would behave in ampere-hour pouch cells. Working together, we brought the materials, electrolyte, electrode coating and cell assembly into one development project, making the research and manufacturing assumptions explicit along the way. The cell results differed from the customer’s initial expectations. Rather than treating that gap as the end of the project, we examined the design and assumptions with the team to identify what needed to change. The collaboration took the concept into a larger-cell validation platform and produced evidence to guide the next iteration."
   },
   {
     "id": "repeat-polymer-synthesis",
@@ -74,7 +78,8 @@ export const cases = [
     "outcome": "The team received repeated batches of the custom polymer, providing material for continued investigation. This made custom synthesis a practical part of the team’s ongoing material-development work.",
     "deliverable": "Polymer material batches",
     "serviceId": "polymer-resin-synthesis",
-    "serviceName": "Polymer & resin synthesis"
+    "serviceName": "Polymer & resin synthesis",
+    "story": "A research team needed repeated batches of a custom polymer for its continuing material-development work. JAFORD organized the synthesis with specialist partners and carried the material requirement through to batch delivery. The team received the polymer material needed for further investigation, making repeated custom synthesis a practical part of its ongoing research."
   },
   {
     "id": "resin-batch-11kg",
@@ -86,6 +91,7 @@ export const cases = [
     "outcome": "The team received 11 kg of custom resin. This made a larger quantity of the custom material available for the next stage of development, extending the work beyond small-sample preparation.",
     "deliverable": "11 kg of resin",
     "serviceId": "polymer-resin-synthesis",
-    "serviceName": "Polymer & resin synthesis"
+    "serviceName": "Polymer & resin synthesis",
+    "story": "A custom resin project required material at a scale beyond small-sample preparation. JAFORD worked with synthesis partners to organize a larger batch and carry the material requirement through to delivery. The team received 11 kg of custom resin, making a kilogram-scale quantity available for its next stage of development and further work with the material."
   }
 ];

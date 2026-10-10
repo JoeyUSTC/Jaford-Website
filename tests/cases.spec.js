@@ -8,14 +8,16 @@ test("case stories retain their URLs and show the narrative without promotional 
     await page.goto(`/#/cases/${item.id}`);
     await page.reload();
     await expect(page.locator("h1")).toHaveText(item.title);
-    await expect(page.locator(".case-narrative")).toContainText(item.outcome);
-    if (item.projectCode) await expect(page.locator(".case-study .eyebrow")).toContainText(item.projectCode);
+    await expect(page.locator(".case-narrative")).toHaveText(item.story);
+    if (item.projectCode) await expect(page.locator(".case-study .project-code")).toContainText(item.projectCode);
     await expect(page.locator(".case-study aside, .case-study button, .case-study a[href^=\"#/services/\"]")).toHaveCount(0);
     await expect(page.getByText("Project at a glance", {exact: true})).toHaveCount(0);
-    await expect(page.getByRole("heading", {name: "What this enabled", exact: true})).toBeVisible();
+    await expect(page.locator(".case-study h2, .case-study .detail-description")).toHaveCount(0);
+    await expect(page.locator(".case-narrative > p")).toHaveCount(1);
+    await expect(page.getByRole("link", {name: "All case studies", exact:true})).toHaveCount(0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
   }
-  await page.getByRole("link", {name: "All case studies", exact:true}).click();
+  await page.getByRole("navigation", {name: "Breadcrumb"}).getByRole("link", {name: "Case studies", exact:true}).click();
   await expect(page.locator(".case-summary")).toHaveCount(cases.length);
   await page.goto("/#/cases/missing");
   await expect(page.locator("h1")).toHaveText("Page not found");
@@ -36,6 +38,8 @@ test("homepage case collection scrolls and opens the new validation stories", as
   await page.goto("/");
   const track=page.locator("#case-track");
   await expect(track.locator("article")).toHaveCount(4);
+  await expect(track.getByRole("link", {name: "Read more", exact:true})).toHaveCount(0);
+  await expect(track.locator(".case-meta")).toHaveCount(0);
   await expect(page.locator("main > section").nth(1)).toHaveAttribute("id", "project-cases");
   await expect(track.locator(".project-code")).toHaveText(["PBT-001", "PBT-002", "PBT-003", "PBT-004"]);
   await expect(page.getByRole("button",{name:"Previous cases",exact:true})).toBeDisabled();
@@ -46,7 +50,7 @@ test("homepage case collection scrolls and opens the new validation stories", as
   await track.getByRole("link",{name:cases[0].title,exact:true}).click();
   await expect(page.locator("h1")).toHaveText(cases[0].title);
   await page.goto("/#/cases/sodium-ion-pouch-validation");
-  await expect(page.locator(".case-chapter").last()).toContainText("differed from the customer’s initial expectations");
+  await expect(page.locator(".case-narrative")).toContainText("differed from the customer’s initial expectations");
   await page.goto("/#/cases");
   await expect(page.locator(".case-summary")).toHaveCount(6);
   await expect(page.locator("main")).not.toContainText("400 Wh/kg");

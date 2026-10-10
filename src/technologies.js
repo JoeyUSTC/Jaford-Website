@@ -11,7 +11,12 @@ export const technologies = [
   {
     id: "custom-rd", nav: "Custom R&D", name: "Custom R&D",
     description: "Connect your lab innovation with specialist synthesis, processing and validation resources—from small samples to larger batches and working prototypes.",
-    productIds: [], serviceIds: services.map(s => s.id), links: [],
+    productIds: [], serviceIds: [
+      "polymer-resin-synthesis", "small-molecule-synthesis", "synthesis-scale-up",
+      "functional-materials-development", "carbonization-activation", "sintering-heat-treatment",
+      "electrode-processing", "pouch-cell-customization", "research-procurement",
+      "battery-testing", "stack-testing", "renewable-coupled-testing", "material-characterization",
+    ], links: [],
   },
   {
     id: "battery-technology", nav: "Battery Technology", name: "Battery Technology",

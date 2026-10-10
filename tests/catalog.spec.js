@@ -140,7 +140,7 @@ test("representative detail pages preserve technical boundaries and fit the view
   expect(errors).toEqual([]);
 });
 
-test("every product and service has a working detail route and an inquiry", async ({
+test("every product and service has a working detail route", async ({
   page,
 }, testInfo) => {
   test.skip(
@@ -174,7 +174,7 @@ test("every product and service has a working detail route and an inquiry", asyn
     await expect(page.locator(".service-overview img")).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Discuss this service" }),
-    ).toBeVisible();
+    ).toHaveCount(0);
   }
   await page.goto("/#/products/does-not-exist");
   await expect(page.locator("h1")).toHaveText("Page not found");
