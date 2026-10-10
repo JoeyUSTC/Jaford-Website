@@ -44,6 +44,7 @@ test("header and footer open the shared independent contact page", async ({ page
   await expect(page).toHaveURL(/#\/contact$/);
   await expect(page.locator("#main")).toBeFocused();
   await page.locator(".wordmark").click();
+  await expect(page.locator(".impact-stats dd")).toHaveText(["9", "20", "88"]);
   await footer.getByRole("link", { name: "Contact Us", exact: true }).click();
   await expect(page.locator("h1")).toHaveText("Contact Us");
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
@@ -72,6 +73,8 @@ test("homepage counters finish in one second and restart cleanly after navigatio
   await expect(page.locator("h1")).toHaveText("Contact Us");
   await page.clock.runFor(2000);
   await page.locator(".wordmark").click();
+  await expect(page.locator("h1")).toHaveText("We scale innovation");
+  await expect(numbers).toHaveText(["0", "0", "0"]);
   await page.clock.runFor(1100);
   await expect(numbers).toHaveText(["9", "20", "88"]);
   await page.emulateMedia({ reducedMotion: "reduce" });
