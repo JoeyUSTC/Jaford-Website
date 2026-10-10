@@ -1,20 +1,19 @@
 import { test, expect } from "@playwright/test";
 import { cases } from "../src/cases.js";
 
-test("case summaries open independently addressable cases and retain inquiry context", async ({ page }) => {
+test("case stories retain their URLs and show the narrative without promotional panels", async ({ page }) => {
   await page.goto("/#/cases");
   await page.locator('.completed-project-list a[href="#/cases/resin-batch-11kg"]').first().click();
   for (const item of cases) {
     await page.goto(`/#/cases/${item.id}`);
     await page.reload();
     await expect(page.locator("h1")).toHaveText(item.title);
-    await expect(page.locator(".case-facts")).toContainText(item.deliverable);
-    if (item.projectCode) await expect(page.locator(".case-facts")).toContainText(item.projectCode);
-    await expect(page.getByRole("heading", {name: "What changed", exact: true})).toBeVisible();
+    await expect(page.locator(".case-narrative")).toContainText(item.outcome);
+    if (item.projectCode) await expect(page.locator(".case-study .eyebrow")).toContainText(item.projectCode);
+    await expect(page.locator(".case-study aside, .case-study button, .case-study a[href^=\"#/services/\"]")).toHaveCount(0);
+    await expect(page.getByText("Project at a glance", {exact: true})).toHaveCount(0);
+    await expect(page.getByRole("heading", {name: "What this enabled", exact: true})).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
-    await page.getByRole("button", { name: "Discuss a similar project" }).click();
-    await expect(page.getByLabel("Product / service and selected option")).toHaveValue(item.title);
-    await page.getByRole("button", { name: "Close inquiry", exact: true }).click();
   }
   await page.getByRole("link", {name: "All case studies", exact:true}).click();
   await expect(page.locator(".case-summary")).toHaveCount(cases.length);

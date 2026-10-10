@@ -1438,3 +1438,9 @@ h1[tabindex="-1"]:focus,
 
 /* Stable project references across story previews and detail pages. */
 .project-code { color: var(--ink); font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
+
+/* Project stories keep the reader focused on the research and its value. */
+.case-study { max-width: 920px; }
+.case-study .detail-description { max-width: 76ch; }
+.case-narrative { margin-top: 40px; }
+.case-study .case-chapter p { max-width: 80ch; font-size: 16px; line-height: 1.85; }
