@@ -9,6 +9,7 @@ test("case summaries open independently addressable cases and retain inquiry con
     await page.reload();
     await expect(page.locator("h1")).toHaveText(item.title);
     await expect(page.locator(".case-facts")).toContainText(item.deliverable);
+    if (item.projectCode) await expect(page.locator(".case-facts")).toContainText(item.projectCode);
     await expect(page.getByRole("heading", {name: "What changed", exact: true})).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
     await page.getByRole("button", { name: "Discuss a similar project" }).click();
@@ -36,6 +37,8 @@ test("homepage case collection scrolls and opens the new validation stories", as
   await page.goto("/");
   const track=page.locator("#case-track");
   await expect(track.locator("article")).toHaveCount(4);
+  await expect(page.locator("main > section").nth(1)).toHaveAttribute("id", "project-cases");
+  await expect(track.locator(".project-code")).toHaveText(["PBT-001", "PBT-002", "PBT-003", "PBT-004"]);
   await expect(page.getByRole("button",{name:"Previous cases",exact:true})).toBeDisabled();
   await page.getByRole("button",{name:"Next cases",exact:true}).click();
   await expect.poll(()=>track.evaluate(el=>el.scrollLeft)).toBeGreaterThan(50);

@@ -73,7 +73,7 @@ test("technology navigation groups products and related services", async ({
     "Custom R&D", "Battery Technology", "Fuel Cells & Electrolyzers",
     "Functional Materials", "Testing & Characterization", "Equipment & Supplies",
   ]);
-  await expect(page.locator("main > section").nth(1)).toHaveAttribute("id", "custom-rd");
+  await expect(page.locator("main > section").nth(2)).toHaveAttribute("id", "custom-rd");
   for (const item of links) {
     await page.goto("/" + item.href);
     await expect(page.locator("h1")).toHaveText(item.name);

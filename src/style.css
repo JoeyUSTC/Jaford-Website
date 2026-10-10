@@ -1435,3 +1435,6 @@ h1[tabindex="-1"]:focus,
  .case-index .case-summary p { font-size: 15px; }
  .home-case-track .case-summary { padding: 20px 8px 8px 0; }
 }
+
+/* Stable project references across story previews and detail pages. */
+.project-code { color: var(--ink); font-weight: 600; letter-spacing: .04em; white-space: nowrap; }

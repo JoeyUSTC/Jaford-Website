@@ -88,3 +88,5 @@ No customer identity, supplier identity, price, budget amount, formulation, heat
 ## Owner-supplied WeGreened screenshots
 
 The owner supplied mobile screenshots of the firm's homepage and case-story listing. The listing informs the new editorial presentation: prominent linked titles, subject/scale metadata, narrative excerpts, Read more links and restrained separators. JAFORD's existing facts, warm background and brand blue are retained. No reference-company claims, dates, authors, testimonials, approval metrics or branding are copied. The case directory is a vertical list; homepage cases retain horizontal browsing without card boxes.
+
+The owner requested first-position homepage project stories and battery project references. PBT-001–PBT-004 follow the four supplied project briefs; these identifiers are not cumulative project totals. Aggregate metrics remain an unpublished proposal pending reconciled records and owner agreement.

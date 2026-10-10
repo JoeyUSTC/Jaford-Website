@@ -10,7 +10,7 @@ The owner works from mobile Codex Cloud sessions and wants to describe website c
 
 ## Make and deliver changes
 
-- Use only the owner-supplied logo in `public/brand/jaford-brand.png` with the current partner headline; the owner requested a new short scale-up headline for discussion. Do not invent alternative logos, favicons or slogans. Remove the old “From Innovation…” lead. The primary message is scaling and validating laboratory innovations. Keep engagement-model explanations off the homepage; the owner now requests a scrollable anonymous case-study collection after Custom R&D; never publish client-specific workbook responses.
+- Use only the owner-supplied logo in `public/brand/jaford-brand.png` with the current partner headline; the owner requested a new short scale-up headline for discussion. Do not invent alternative logos, favicons or slogans. Remove the old “From Innovation…” lead. The primary message is scaling and validating laboratory innovations. Keep engagement-model explanations off the homepage; the owner now requests a scrollable anonymous case-study collection immediately after the hero, before Custom R&D; never publish client-specific workbook responses.
 - All visitor-facing website content must be English only, including captions, specifications, navigation, accessibility labels and inquiry messages. Do not add bilingual Chinese labels.
 
 - Prioritize desktop usability and visual layout when desktop/mobile design tradeoffs arise. Homepage products should read as a horizontal collection on wide PC screens, with responsive readable layouts on mobile; avoid making desktop inherit narrow mobile composition.
@@ -43,3 +43,5 @@ The owner has made this repository public and enabled GitHub Pages with GitHub A
 - No technology-area overview page or “All technology areas” entry. Navigation goes directly to individual categories; old `#/technologies` links redirect to the homepage. Detail breadcrumbs use Home and their specific category.
 
 - Cases: retain the two prior synthesis stories and add four owner-confirmed research projects. The homepage features the new four in a manual, keyboard/touch-accessible horizontal collection. Do not publish confidential recipes or process parameters. Distinguish requested targets, feedstock quantities, delivered quantities and actual outcomes; the sodium-ion validation case explicitly reports results below initial expectations.
+
+- Featured battery case studies use stable public IDs PBT-001 through PBT-004. Keep IDs when reordering or rewriting. PWE/PFC/PFM are reserved for future confirmed cases. Cumulative impact metrics remain a proposal in docs/project-metrics-proposal.md until the owner approves verified totals; do not equate published case counts with company project totals.

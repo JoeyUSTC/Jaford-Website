@@ -2,6 +2,7 @@
 export const cases = [
   {
   "id": "small-batch-dry-pouch-cells",
+  "projectCode": "PBT-001",
   "title": "From a cell concept to a 50-cell research batch",
   "category": "Pouch cell development",
   "summary": "A research team needed custom dry pouch cells in a quantity that fell between laboratory preparation and conventional manufacturing. Together, we turned that requirement into a workable small-batch project.",
@@ -17,9 +18,10 @@ export const cases = [
 },
   {
   "id": "electrolyte-validation-platform",
+  "projectCode": "PBT-002",
   "title": "Making a small-batch electrolyte study practical",
   "category": "Electrolyte validation",
-  "summary": "We worked with a research team to align a custom dry-cell request with a feasible batch size and specification, then coordinated the cells and electrolyte needed for the study.",
+  "summary": "An electrolyte study needed custom dry cells, but the initial requirements were difficult to source at research scale. Together, we refined the specification and batch size, then coordinated the cells and supporting electrolyte.",
   "requirement": "The customer wanted a dry pouch-cell platform for evaluating an electrolyte. The initial combination of technical targets, quantity and budget was difficult to source.",
   "scope": "After reviewing multiple suppliers, JAFORD worked with the team to redefine the purchase quantity and cell specification while keeping the electrolyte study at the centre of the project.",
   "outcome": "The revised cells were successfully procured, along with the supporting electrolyte. This brought cell preparation and electrolyte sourcing into one coordinated research package.",
@@ -32,6 +34,7 @@ export const cases = [
 },
   {
   "id": "resin-to-hard-carbon",
+  "projectCode": "PBT-003",
   "title": "A practical scale-up route from resin to hard carbon",
   "category": "Carbonization & activation",
   "summary": "A sodium-ion research project needed to move resin processing beyond very small trials. We connected the team with suitable laboratory capacity and refined the process into an executable development route.",
@@ -47,6 +50,7 @@ export const cases = [
 },
   {
   "id": "sodium-ion-pouch-validation",
+  "projectCode": "PBT-004",
   "title": "Taking a sodium-ion concept into ampere-hour pouch cells",
   "category": "Sodium-ion battery development",
   "summary": "We coordinated materials, electrode coating and pouch-cell assembly to test a customer’s sodium-ion concept at a larger cell scale—and used the results to examine where the design needed refinement.",
