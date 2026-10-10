@@ -1,3 +1,4 @@
+import { fuelCellProducts } from "./fuel-cell-products.js";
 import { products, services } from "./catalog.js";
 
 export const areaAliases = {
@@ -21,16 +22,14 @@ export const technologies = [
   {
     id: "battery-technology", nav: "Battery Technology", name: "Battery Technology",
     description: "Materials, binders, electrolytes, electrodes and cells for lithium-ion and sodium-ion battery research.",
-    productIds: products.filter(p => p.category !== "lab-supplies").map(p => p.id),
+    productIds: products.filter(p => ["battery-materials", "binders-electrolytes", "electrodes-cells"].includes(p.category)).map(p => p.id),
     serviceIds: [], links: [],
   },
   {
     id: "fuel-cells-electrolyzers", nav: "Fuel Cells & Electrolyzers", name: "Fuel Cells & Electrolyzers",
     description: "Fuel-cell and electrolyzer materials, components, catalysts and electrochemical hardware.",
-    productIds: [], serviceIds: [], links: [
-      { name: "Fuel-cell & electrolyzer materials and components", url: "https://www.jaford.com/products/fuel-cell-and-electrolyzer#electrolyzer-solutions" },
-      { name: "Electrocatalysts, CCS/CCM and electrolysis hardware", url: "https://www.jaford.com/products/fuel-cell-and-electrolyzer#electrocatalysis-solutions" },
-    ],
+    productIds: fuelCellProducts.map(p => p.id),
+    serviceIds: [], links: [],
   },
   {
     id: "functional-materials", nav: "Functional Materials", name: "Functional Materials",

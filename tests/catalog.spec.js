@@ -6,7 +6,7 @@ test("catalog filtering, search, empty state and browser history", async ({
   page,
 }) => {
   await page.goto("/#/products");
-  await expect(page.locator(".catalog-row")).toHaveCount(26);
+  await expect(page.locator(".catalog-row")).toHaveCount(products.length);
   await page
     .getByLabel("Category", { exact: true })
     .selectOption("binders-electrolytes");
@@ -31,7 +31,7 @@ test("catalog filtering, search, empty state and browser history", async ({
     page.getByRole("heading", { name: "No products match these filters" }),
   ).toBeVisible();
   await page.getByRole("link", { name: "Reset filters" }).click();
-  await expect(page.locator(".catalog-row")).toHaveCount(26);
+  await expect(page.locator(".catalog-row")).toHaveCount(products.length);
 });
 
 test("selected material is carried into the email draft without sending", async ({
@@ -179,7 +179,7 @@ test("every product and service has a working detail route", async ({
   await page.goto("/#/products/does-not-exist");
   await expect(page.locator("h1")).toHaveText("Page not found");
   await page.getByRole("link", { name: "Browse products" }).click();
-  await expect(page.locator(".catalog-row")).toHaveCount(26);
+  await expect(page.locator(".catalog-row")).toHaveCount(products.length);
 });
 
 test("multi-keyword search preserves filters through the detail return link", async ({

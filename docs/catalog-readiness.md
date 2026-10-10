@@ -71,3 +71,7 @@ Confirm partner access and method/sample compatibility for SEM/TEM; cell fixture
 ## Expanded R&D directory scope
 
 Confirm method-specific partner availability, sample compatibility and reporting scope before quoting TEM/SEM, XPS/XRD, FTIR/Raman/NMR, BET or thermal analysis. Advanced membranes, MOFs/COFs, functional polymers and porous materials require route/application assessment. Directory images remain conceptual instrument/material illustrations, not measured micrographs or owned equipment.
+
+## Fuel-cell and electrolyzer family entries
+
+Eight family-level pages are now browsable. Model specifications remain absent until documented. Obtain membrane chemistry/thickness/dimensions; GDL substrate, treatment and porosity; MEA layer configuration/active area; CCM membrane/catalyst/coated area; CCS substrate/coating details; catalyst composition/test conditions; plate material/channel geometry; and seal material/compatibility. Confirm applicability separately for fuel cells and each electrolyzer chemistry. Do not interpret an illustration as an offered layer count or universal system compatibility.

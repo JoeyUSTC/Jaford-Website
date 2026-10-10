@@ -1,5 +1,8 @@
 // Representative AI-generated artwork, not model photographs. See docs/product-images.md.
 export const productImages = {
+  "fuel-mea": { src: "images/products/fuel-mea.svg", alt: "Conceptual layered membrane electrode assembly; not a specific layer configuration" },
+  "fuel-ccm": { src: "images/products/fuel-ccm.svg", alt: "Conceptual catalyst layers on a membrane" },
+  "fuel-ccs": { src: "images/products/fuel-ccs.svg", alt: "Conceptual catalyst coating on a porous substrate" },
   "polymer-structure": { sheet: "functional-structures", column: 0, row: 0, alt: "Conceptual polymer chain with representative granules; not a specific composition" },
   "resin-structure": { sheet: "functional-structures", column: 1, row: 0, alt: "Conceptual cross-linked resin network with representative resin granules" },
   "ligand-structure": { sheet: "functional-structures", column: 0, row: 1, alt: "Conceptual ligand skeleton and donor groups with a representative powder sample" },

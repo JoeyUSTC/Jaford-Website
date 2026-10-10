@@ -76,3 +76,5 @@ The latest homepage adds Testing & Characterization and Equipment & Supplies aft
 The standalone technology overview is removed. Old `#/technologies` links redirect to home; category and detail routes remain available directly.
 
 Case studies are at `#/cases` with individual `#/cases/{id}` routes. The homepage opens with all published project stories in a horizontal, manually scrollable collection, before Custom R&D. Project references preserve internal business numbers with PBT/PFM prefixes and no hyphen; unmapped cases remain accessible through existing detail URLs but stay out of public listings until numbered.
+
+Fuel Cells & Electrolyzers now uses eight family-level entries from `src/fuel-cell-products.js`, shared by the homepage, category directory and product detail pages. The total directory has 34 entries (26 original products plus eight families). Family-level entries do not imply model-specific specifications; missing specs and options stay hidden. Homepage links and the category Browse all remain inside this site.

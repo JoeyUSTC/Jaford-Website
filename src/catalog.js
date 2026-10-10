@@ -1,5 +1,7 @@
+import { fuelCellProducts } from "./fuel-cell-products.js";
 // Curated from the owner's supplied catalog brief. No unverified numeric specs.
 export const categories = [
+  { id: "fuel-cells-electrolyzers", name: "Fuel cells & electrolyzers", description: "Membranes, electrodes, catalysts and cell components for fuel-cell and water-electrolysis development." },
   {
     id: "battery-materials",
     name: "Battery materials",
@@ -56,6 +58,7 @@ const p = (
   note,
 });
 export const products = [
+  ...fuelCellProducts,
   p(
     "resin-derived-hard-carbon",
     "battery-materials",

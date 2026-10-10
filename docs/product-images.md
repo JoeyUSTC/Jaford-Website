@@ -33,3 +33,6 @@ At the owner's request, `frameworks-powders.png` pairs conceptual network schema
 ## Functional material structure-and-sample illustrations
 
 The owner approved extending the MOF/COF visual format to the other four functional-material cards. `functional-structures.png` pairs a conceptual polymer chain, cross-linked resin network, ligand skeleton and small-molecule intermediate with representative granules or powder. These are family-level explanatory illustrations, not identified chemical structures, formulations, measured morphology or confirmed product colors. Homepage links and specifications are unchanged.
+
+
+MEA, CCM and CCS now use original neutral SVG schematics (`fuel-mea.svg`, `fuel-ccm.svg`, `fuel-ccs.svg`). They are conceptual layer/coating diagrams, not microscopy, actual products or a specified layer count. Membranes/GDL/plates/seals reuse the existing fuel-materials atlas; electrocatalysts reuse the generic visible powder sample, without attributing silicon-carbon composition to it. Homepage, category and details select imagery from the same product-family data.

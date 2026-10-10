@@ -1,3 +1,4 @@
+import { featuredFuelCellProducts } from "./fuel-cell-products.js";
 import { cases } from "./cases.js";
 import { productImages } from "./product-images.js";
 import { categories, products, services } from "./catalog.js";
@@ -25,8 +26,9 @@ const inquiry = (label, topic, item = "") =>
   `<button class="button button-dark" data-inquiry data-topic="${e(topic)}" data-item="${e(item)}">${label}</button>`;
 const category = (id) => categories.find((c) => c.id === id);
 const productArtwork = (p, detail = false) => {
-  const art = productImages[p.id];
+  const art = productImages[p.image || p.id];
   if (!art) return `<img src="${import.meta.env.BASE_URL}product-placeholder.svg" alt="Product illustration pending" width="640" height="440">`;
+  if (art.src) return `<div class="product-artwork artwork-single"><img src="${import.meta.env.BASE_URL}${art.src}" alt="${e(art.alt)} — illustration" loading="${detail ? "eager" : "lazy"}"></div>`;
   return `<div class="product-artwork" style="--art-column:${art.column};--art-row:${art.row}"><img src="${import.meta.env.BASE_URL}images/products/${art.sheet}.png" alt="${e(art.alt)} — illustration" loading="${detail ? "eager" : "lazy"}"></div>`;
 };
 const productModule = (p, href) =>
@@ -36,7 +38,7 @@ const contact = () =>
 const header = (eyebrow, title, text) =>
   `<section class="hero container">${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ""}<h1 tabindex="-1">${title}</h1><p class="hero-description">${text}</p></section>`;
 const legacy = () =>
-  `<aside class="legacy-ranges"><h3>Other JAFORD ranges</h3><p>Existing information on fuel cells, electrolyzers, electrocatalysis and advanced materials remains available.</p>${link("https://www.jaford.com/products/fuel-cell-and-electrolyzer", "Fuel cells, electrolyzers & electrocatalysis")}${link("https://www.jaford.com/products/membranes-polymers", "Advanced materials & synthesis")}</aside>`;
+  `<aside class="legacy-ranges"><h3>Other JAFORD ranges</h3><p>Existing information on fuel cells, electrolyzers, electrocatalysis and advanced materials remains available.</p>${link("#/technologies/fuel-cells-electrolyzers", "Fuel cells, electrolyzers & electrocatalysis")}${link("https://www.jaford.com/products/membranes-polymers", "Advanced materials & synthesis")}</aside>`;
 const areaURL = (id) => `#/technologies/${id}`;
 // Family entries describe established ranges, not newly invented model specifications.
 const homeCard = (name, href, imageId, description = "") => `<article class="sector-card"><a href="${e(href)}"><figure>${productArtwork({ id: imageId })}</figure><h3>${e(name)}</h3>${description ? `<p class="sector-card-description">${e(description)}</p>` : ""}</a></article>`;
@@ -52,7 +54,6 @@ export function caseDetail(item) {
 }
 export function home() {
   const serviceCard = (name, id, image) => [name, serviceURL(id), image];
-  const fuelURL = "https://www.jaford.com/products/fuel-cell-and-electrolyzer";
   return `<section class="container scale-intro" aria-labelledby="scale-title"><h1 id="scale-title" tabindex="-1">We scale up innovation</h1><div class="impact-preview" aria-describedby="impact-preview-note"><p id="impact-preview-note" class="impact-preview-note">Illustrative figures for layout preview.</p><dl class="impact-stats"><div><dt>Countries & regions</dt><dd>15</dd></div><div><dt>Research teams</dt><dd>32</dd></div><div><dt>Projects delivered</dt><dd>109</dd></div></dl></div></section>
   ${homeCases()}
   ${homeSector("custom-rd", "Custom R&D", [
@@ -64,14 +65,7 @@ export function home() {
     serviceCard("Pouch cell development", "pouch-cell-customization", "rd-stacking"),
   ], "Scale your materials and processes with partner facilities and expertise—from lab samples to larger batches, electrodes and cell prototypes.")}
   ${homeSector("battery-technology", "Battery Technology", ["resin-derived-hard-carbon", "biomass-derived-hard-carbon", "spherical-porous-carbon", "cvd-silicon-carbon", "nfpp-powder", "al-3001a"].map(id => [products.find(p => p.id === id).name, productURL(id, "battery-technology"), id]))}
-  ${homeSector("fuel-cells-electrolyzers", "Fuel Cells & Electrolyzers", [
-    ["Membranes", fuelURL, "fuel-membranes"],
-    ["Gas diffusion layers", fuelURL, "gas-diffusion-layers"],
-    ["Flow-field plates", fuelURL, "flow-field-plates"],
-    ["Gaskets & seals", fuelURL, "gaskets-seals"],
-    ["Electrocatalysts", fuelURL + "#electrocatalysis-solutions", "cvd-silicon-carbon"],
-    ["CCS / CCM electrodes", fuelURL, "nfpp-electrode"],
-  ])}
+  ${homeSector("fuel-cells-electrolyzers", "Fuel Cells & Electrolyzers", featuredFuelCellProducts.map(p => [p.name, productURL(p.id, "fuel-cells-electrolyzers"), p.image]))}
   ${homeSector("functional-materials", "Functional Materials", [
     serviceCard("MOFs", "functional-materials-development", "mof-framework"),
     serviceCard("COFs", "functional-materials-development", "cof-framework"),

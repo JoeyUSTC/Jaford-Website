@@ -114,3 +114,8 @@ The owner approved the new slogan “We scale up innovation” and requested sam
 The owner identified the two earlier dry-pouch/electrolyte orders as one internal project 17.1. They are now one story under PBT017; the old electrolyte URL redirects to the retained pouch-cell story. PBT018 is the resin-to-hard-carbon account; PBT042 is the NFM sodium-ion validation account, distinct from NFPP project PBT012. Only identity, grouping and the plain-language narrative were updated. Confidential process conditions, formulations, requested energy-density targets and unverified quantities remain off the website.
 
 The older repeat-polymer and 11 kg resin cases have no provided internal numbers. Their stories remain available at existing URLs, without a code, while homepage and index listings exclude them pending mapping. This supersedes prior XX placeholder instructions. No internal identifier is invented to fill the gap.
+
+
+## Fuel-cell and electrolysis navigation parity
+
+The owner identified a mismatch between illustrated homepage offerings and an empty category destination, explicitly naming MEA and CCM. Eight family-level entries now represent the established scope: membranes, gas diffusion layers, MEA, CCM, CCS, electrocatalysts, flow-field plates and gaskets/seals. Names, descriptions, images and internal routes are shared between homepage, category and detail renderers. These are product families, not newly verified stock models; no numeric performance, loading, dimensions, inventory or ownership claims were introduced. Existing CCS/CCM and electrocatalysis scope is supported by the earlier owner brief and recorded source summary. No new live-site retrieval was needed for these changes.
