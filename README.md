@@ -74,3 +74,5 @@ The homepage now uses four concise six-image rows: Custom R&D, Battery Technolog
 The latest homepage adds Testing & Characterization and Equipment & Supplies after Functional Materials. All six sectors have six image-led entries; testing cards include short descriptions. Testing services now number thirteen, including project-assessed stack and renewable-coupling tests. The contact section retains the existing local email-draft workflow.
 
 The standalone technology overview is removed. Old `#/technologies` links redirect to home; category and detail routes remain available directly.
+
+Case studies are at `#/cases` with individual `#/cases/{id}` routes. The homepage now features four owner-supplied development stories in a horizontal, manually scrollable collection after Custom R&D; the two earlier synthesis cases remain in the full directory.

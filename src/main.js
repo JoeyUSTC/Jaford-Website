@@ -250,6 +250,25 @@ function renderRoute(focus = false) {
   }
   document.querySelector("#main").innerHTML = html;
   document.title = title;
+  const track = document.querySelector("#case-track");
+  if (track) {
+    const previous = document.querySelector('[data-case-scroll="-1"]');
+    const next = document.querySelector('[data-case-scroll="1"]');
+    const updateControls = () => {
+      previous.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+    };
+    for (const button of [previous, next]) button.addEventListener("click", () => {
+      const card = track.querySelector("article");
+      const step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap);
+      track.scrollBy({ left: Number(button.dataset.caseScroll) * step, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    });
+    track.addEventListener("scroll", updateControls, {passive:true});
+    const observer = new ResizeObserver(updateControls);
+    observer.observe(track);
+    window.addEventListener("hashchange", () => observer.disconnect(), {once:true});
+    updateControls();
+  }
   closeMenu();
   if (dialog.open) dialog.close();
   for (const a of nav.querySelectorAll("a")) {

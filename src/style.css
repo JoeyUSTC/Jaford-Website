@@ -1397,3 +1397,20 @@ h1[tabindex="-1"]:focus,
  .concise-service .detail-description { font-size: 16px; }
  .service-overview .product-artwork { max-width: 280px; }
 }
+
+/* Case studies: a manually scrollable research-project collection. */
+.home-cases { padding-block: 38px 40px; }
+.home-cases .sector-description { max-width: 760px; }
+.home-case-track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 48px) / 3); gap: 24px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; padding: 4px 2px 16px; }
+.home-case-track .case-summary { scroll-snap-align: start; min-width: 0; padding: 24px; border: 1px solid var(--line); background: var(--surface); }
+.home-case-track .case-summary h3 { font-size: 21px; line-height: 1.35; margin: 12px 0; }
+.home-case-track .case-summary > p:not(.eyebrow) { font-size: 14px; line-height: 1.75; color: var(--muted); }
+.home-case-track .case-summary .eyebrow { font-size: 10px; }
+.home-case-track .case-summary .case-result { margin-block: 16px 24px; }
+.home-case-track .case-summary .text-link { font-size: 13px; }
+.case-scroll-controls { display: flex; justify-content: flex-end; gap: 18px; margin-top: 14px; }
+.case-scroll { border: 0; border-bottom: 1px solid var(--line); padding: 6px 0; background: transparent; color: var(--accent); font: inherit; font-size: 13px; cursor: pointer; }
+.case-scroll:disabled { opacity: .4; cursor: default; }
+@media(max-width:1100px) { .home-case-track { grid-auto-columns: calc((100% - 24px) / 2); } }
+@media(max-width:640px) { .home-case-track { grid-auto-columns: 88%; gap: 16px; } .home-case-track .case-summary { padding: 20px; } }
+@media(prefers-reduced-motion:reduce) { .home-case-track { scroll-behavior: auto; } }

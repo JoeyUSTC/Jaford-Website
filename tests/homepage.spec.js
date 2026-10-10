@@ -7,7 +7,7 @@ test("homepage presents readable product information without errors or overflow"
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD — From Innovation to Industrial Impact");
-  await expect(page.locator("main > section")).toHaveCount(8);
+  await expect(page.locator("main > section")).toHaveCount(9);
   await expect(page.locator(".sector-card")).toHaveCount(36);
   await expect(page.locator("h1")).toHaveText("Long-term Partner in Technology Translation");
   await expect(page.locator(".brand-lead")).toHaveCount(0);
