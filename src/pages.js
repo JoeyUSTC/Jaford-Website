@@ -1,3 +1,4 @@
+import { optionsFor } from "./specifications.js";
 import { cases } from "./cases.js";
 import { productImages } from "./product-images.js";
 import { categories, products, services } from "./catalog.js";
@@ -46,7 +47,7 @@ const homeCard = (name, href, imageId, description = "") => `<article class="sec
 const homeSector = (id, title, cards, description = "") => `<section class="section container home-sector" id="${id}"><div class="sector-heading"><h2>${title}</h2>${link(areaURL(id), "Browse all")}</div>${description ? `<p class="sector-description">${description}</p>` : ""}<div class="sector-grid">${cards.map(card => homeCard(...card)).join("")}</div></section>`;
 const caseSummary = (item) => `<article class="case-summary"><h3><a href="#/cases/${item.id}">${e(item.title)}</a></h3>${item.projectCode ? `<p class="project-code">${e(item.projectCode)}</p>` : ""}<p class="case-excerpt">${e(item.summary)}</p></article>`;
 const caseSummaries = () => cases.map(caseSummary).join("");
-const homeCases = (items = cases, area = null) => `<section class="section container home-cases${area ? " area-cases" : ""}" id="project-cases" aria-labelledby="project-cases-title"><div class="sector-heading"><h2 id="project-cases-title">Innovation in practice</h2>${area ? "" : link("#/cases", "View all cases")}</div>${area ? "" : `<p class="sector-description">How research teams work with JAFORD to move ideas into larger-scale trials and validation.</p>`}<div id="case-track" class="home-case-track" tabindex="0" role="region" aria-label="${area ? e(area.name) : "Custom development"} case studies">${items.map(caseSummary).join("")}</div><div class="case-scroll-controls"><button type="button" class="case-scroll" data-case-scroll="-1" aria-controls="case-track" aria-label="Previous cases">Previous</button><button type="button" class="case-scroll" data-case-scroll="1" aria-controls="case-track" aria-label="Next cases">Next</button></div></section>`;
+const homeCases = (items = cases, area = null) => `<section class="section container home-cases${area ? " area-cases" : ""}" id="project-cases" aria-labelledby="project-cases-title"><div class="sector-heading"><h2 id="project-cases-title">Innovation in Practice</h2>${area ? "" : link("#/cases", "View all cases")}</div>${area ? "" : `<p class="sector-description">How research teams work with JAFORD to move ideas into larger-scale trials and validation.</p>`}<div id="case-track" class="home-case-track" tabindex="0" role="region" aria-label="${area ? e(area.name) : "Custom development"} case studies">${items.map(caseSummary).join("")}</div><div class="case-scroll-controls"><button type="button" class="case-scroll" data-case-scroll="-1" aria-controls="case-track" aria-label="Previous cases">Previous</button><button type="button" class="case-scroll" data-case-scroll="1" aria-controls="case-track" aria-label="Next cases">Next</button></div></section>`;
 export function caseCatalog() {
   return `${header("", "Custom development cases", "")}<section class="container catalog-section case-index"><div class="completed-project-list">${caseSummaries()}</div></section>`;
 }
@@ -59,7 +60,7 @@ export function contactPage() {
   return contactForm(true);
 }
 export function home() {
-  return `<section class="container scale-intro" aria-labelledby="scale-title"><h1 id="scale-title" tabindex="-1">We scale innovation</h1><div class="impact-preview"><dl class="impact-stats"><div><dt>Countries & regions</dt><dd data-count-target="9">9</dd></div><div><dt>Research teams</dt><dd data-count-target="20">20</dd></div><div><dt>Projects delivered</dt><dd data-count-target="88">88</dd></div></dl></div></section>
+  return `<section class="container scale-intro" aria-labelledby="scale-title"><h1 id="scale-title" tabindex="-1">We Scale Innovation</h1><div class="impact-preview"><dl class="impact-stats"><div><dt>Countries & regions</dt><dd data-count-target="9">9</dd></div><div><dt>Research teams</dt><dd data-count-target="20">20</dd></div><div><dt>Projects delivered</dt><dd data-count-target="88">88</dd></div></dl></div></section>
   ${homeCases()}
   ${technologies.map(area => homeSector(area.id, area.name, featuredItemsForArea(area).map(({kind, item}) => [area.homeLabels?.[item.id] || item.name, kind === "product" ? productURL(item.id, area.id) : serviceURL(item.id, area.id), kind === "product" ? item.image || item.id : item.image || serviceArtwork[item.id], item.preview || ""]), area.homeDescription || "")).join("")}
   ${contactForm()}`;
@@ -67,7 +68,7 @@ export function home() {
 export function technologyDetail(area) {
   const items = itemsForArea(area);
   const areaCases = area.casePrefix ? cases.filter(item => item.projectCode?.startsWith(area.casePrefix)) : [];
-  return `${header("", area.name, area.hideDescription ? "" : area.description)}${areaCases.length ? homeCases(areaCases, area) : ""}<section class="container catalog-section" aria-label="Materials, equipment and development support">${area.links.length ? `<div class="area-range"><h2>Materials & capabilities</h2>${area.links.map((item) => `<a class="text-link" href="${item.url}">${item.name}</a>`).join("")}</div>` : ""}${items.products.length ? `<div class="product-grid" aria-label="Products">${items.products.map((p) => productModule(p, productURL(p.id, area.id))).join("")}</div>` : ""}${items.services.length ? `<div class="area-services">${area.id === "testing-characterization" ? "" : `<h2 class="area-services-heading">Development capabilities</h2>`}${items.services.map((s) => servicePreview(s, area.id)).join("")}</div>` : ""}</section>`;
+  return `${header("", area.name, area.hideDescription ? "" : area.description)}${areaCases.length ? homeCases(areaCases, area) : ""}<section class="container catalog-section" aria-label="Materials, equipment and development support">${area.links.length ? `<div class="area-range"><h2>Materials & capabilities</h2>${area.links.map((item) => `<a class="text-link" href="${item.url}">${item.name}</a>`).join("")}</div>` : ""}${items.products.length ? `<div class="product-grid" aria-label="Products">${items.products.map((p) => productModule(p, productURL(p.id, area.id))).join("")}</div>` : ""}${items.services.length ? `<div class="area-services">${area.id === "testing-characterization" ? "" : `<h2 class="area-services-heading">Development capabilities</h2>`}<div class="product-grid">${items.services.map((s) => servicePreview(s, area.id)).join("")}</div></div>` : ""}</section>`;
 }
 export function productCatalog(params) {
   const selected = categories.some((c) => c.id === params.get("category"))
@@ -110,19 +111,10 @@ export function productDetail(p, areaId, params = new URLSearchParams()) {
   const area =
     areasForProduct(p.id).find((t) => t.id === areaId) ||
     areasForProduct(p.id)[0];
-  return `<section class="container detail-page product-detail-page">${backLink}<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><div class="detail-intro"><div><p class="eyebrow">${c.name}</p><h1 tabindex="-1">${e(p.name)}</h1><p class="detail-description">${e(p.description)}</p>${p.models.length ? `<label class="model-label" for="product-model">Model / option<select id="product-model">${p.models.map((m) => `<option>${e(m)}</option>`).join("")}</select></label>` : ""}${Object.keys(p.specs).length ? `<button class="text-link spec-jump" data-show-spec>View specifications</button>` : ""}</div><figure class="product-figure">${productArtwork(p, true)}<figcaption>Representative illustration. Generic product type; actual appearance, packaging and included components depend on the confirmed model.${p.id === "spherical-porous-carbon" ? " Conceptual drawing, not microscopy or measured morphology." : ""}${p.id.startsWith("nickel-boat") ? " Boat and lid are quoted separately." : ""}</figcaption></figure></div>${Object.keys(p.specs).length ? `<section class="spec-section" aria-labelledby="spec-title"><h2 id="spec-title">Specifications</h2><table class="spec-table"><caption>${e(p.name)} — model-specific specifications</caption><tbody>${Object.entries(
-    p.specs,
-  )
-    .map(
-      ([key, value]) =>
-        `<tr><th scope="row">${e(key)}</th><td>${e(value)}</td></tr>`,
-    )
-    .join(
-      "",
-    )}</tbody></table></section>` : ""}${p.note ? `<p class="technical-note">${e(p.note)}</p>` : ""}<div class="product-contact"><button class="text-link product-inquiry" data-inquiry data-topic="${e(c.name)}" data-item="${e(p.name)}">Request a quotation</button></div></section>`;
+  return `<section class="container detail-page product-detail-page">${backLink}<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><div class="detail-intro"><div><p class="eyebrow">${c.name}</p><h1 tabindex="-1">${e(p.name)}</h1><p class="detail-description">${e(p.description)}</p></div><figure class="product-figure">${productArtwork(p, true)}<figcaption>Representative illustration. Actual appearance and packaging depend on the confirmed model.</figcaption></figure></div>${modelList(p)}${p.note ? `<p class="technical-note">${e(p.note)}</p>` : ""}</section>`;
 }
 export function serviceCatalog() {
-  return `${header("Service index", "All services", "Specialist resources and process expertise to scale and validate your lab innovations.")}<section class="container catalog-section" aria-label="Service directory">${services.map((s) => `<article class="catalog-row"><h2><a href="${serviceURL(s.id)}">${s.name}</a></h2><div><p>${s.description}</p>${link(serviceURL(s.id), "Explore this capability")}</div></article>`).join("")}</section>${contact()}`;
+  return `${header("Service index", "All services", "Specialist resources and process expertise to scale and validate your lab innovations.")}<section class="container catalog-section product-grid" aria-label="Service directory">${services.map(s => servicePreview(s)).join("")}</section>${contact()}`;
 }
 const serviceArtwork = {
   "polymer-resin-synthesis": "rd-polymer-reactor",
@@ -139,10 +131,16 @@ const serviceArtwork = {
   "renewable-coupled-testing": "renewable-testing",
   "research-procurement": "glass-reactor-2000ml",
 };
-const servicePreview = (s, areaId) => `<article class="capability-row"><a class="capability-visual" href="${serviceURL(s.id, areaId)}" aria-label="${e(s.name)}"><figure>${productArtwork({id: s.image || serviceArtwork[s.id]})}</figure><h3>${e(s.name)}</h3></a><p>${e(s.description)}</p></article>`;
+const servicePreview = (s, areaId) => `<article class="catalog-row product-module capability-card"><a class="product-module-link" href="${serviceURL(s.id, areaId)}" aria-label="${e(s.name)}"><figure class="module-figure">${productArtwork({id: s.image || serviceArtwork[s.id]})}</figure><div class="module-content"><h2>${e(s.name)}</h2><p class="module-description">${e(s.description)}</p><span class="module-cta">View details</span></div></a></article>`;
+const modelList = (item, kind = "product") => `<section class="model-options" aria-label="Models and specifications"><h2>${kind === "service" ? "Types & applications" : "Models / options"}</h2>${optionsFor(item, kind).map(spec => `<div class="model-option"><div><h3>${e(spec.name)}</h3>${spec.use !== item.description ? `<p>${e(spec.use)}</p>` : ""}</div><button type="button" class="button button-outline" data-spec-id="${e(spec.id)}" aria-label="View Spec: ${e(spec.name)}">View Spec</button></div>`).join("")}</section>`;
 export function serviceDetail(s, areaId) {
   const area = areasForService(s.id).find(t => t.id === areaId) || areasForService(s.id)[0];
-  return `<section class="container detail-page service-detail concise-service"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><div class="service-overview"><div><h1 tabindex="-1">${e(s.name)}</h1><p class="detail-description">${e(s.description)}</p></div><figure>${productArtwork({id:s.image || serviceArtwork[s.id]},true)}</figure></div></section>`;
+  return `<section class="container detail-page service-detail concise-service"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><div class="service-overview"><div><h1 tabindex="-1">${e(s.name)}</h1><p class="detail-description">${e(s.description)}</p></div><figure>${productArtwork({id:s.image || serviceArtwork[s.id]},true)}</figure></div>${modelList(s, "service")}</section>`;
+}
+const specTable = fields => `<table class="spec-table"><tbody>${Object.entries(fields).map(([key,value]) => `<tr><th scope="row">${e(key)}</th><td>${e(value)}</td></tr>`).join("")}</tbody></table>`;
+export function specContent(spec) {
+  const pdf = `${import.meta.env.BASE_URL}${spec.pdf}`;
+  return `<h2 id="spec-title">${e(spec.family)} — ${e(spec.name)}</h2><p>${e(spec.use)}</p><h3>Catalog information</h3>${specTable(spec.fields)}${spec.scope.length ? `<ul>${spec.scope.map(text => `<li>${e(text)}</li>`).join("")}</ul>` : ""}${spec.reference ? `<section class="reference-spec"><h3>Public reference specification</h3><p>Reference data describes a published material or comparable product. It is not a JAFORD measurement, batch specification or guaranteed performance limit.</p>${specTable(spec.reference.fields)}<p class="spec-source">Source: ${e(spec.reference.source.title)}<br>${e(spec.reference.source.url)}<br>Reviewed ${e(spec.reference.source.reviewed)}</p></section>` : ""}${spec.note ? `<p>${e(spec.note)}</p>` : ""}<p class="technical-note">Confirm the supplied grade and specifications before purchase. This technical profile is not a certificate of analysis or safety data sheet.</p><div class="spec-actions"><button class="button button-outline" data-pdf-preview>Preview PDF</button><a class="text-link" href="${e(pdf)}" download>Download PDF</a></div><div class="pdf-preview" hidden><object data="${e(pdf)}" type="application/pdf" aria-label="Specification PDF"><p>PDF preview is unavailable in this browser. Use Download PDF above.</p></object></div>`;
 }
 export function notFound() {
   return `${header("JAFORD", "Page not found", "This product or service link is not in the current catalog.")}<div class="container detail-next">${link("#/products", "Browse products")}${link("#/services", "Browse services")}</div>`;

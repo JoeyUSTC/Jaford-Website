@@ -73,7 +73,7 @@ test("homepage counters finish in one second and restart cleanly after navigatio
   await expect(page.locator("h1")).toHaveText("Contact Us");
   await page.clock.runFor(2000);
   await page.locator(".wordmark").click();
-  await expect(page.locator("h1")).toHaveText("We scale innovation");
+  await expect(page.locator("h1")).toHaveText("We Scale Innovation");
   await expect(numbers).toHaveText(["0", "0", "0"]);
   await page.clock.runFor(1100);
   await expect(numbers).toHaveText(["9", "20", "88"]);

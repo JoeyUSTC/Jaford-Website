@@ -1,4 +1,5 @@
 import { functionalCapabilities, testingCapabilities } from "./specialist-capabilities.js";
+import { workstationOptions } from "./spec-data.js";
 import { fuelCellProducts } from "./fuel-cell-products.js";
 // Curated from the owner's supplied catalog brief. No unverified numeric specs.
 export const categories = [
@@ -58,7 +59,7 @@ const p = (
   missingSpecs: fields.filter((key) => !Object.hasOwn(specs, key)),
   note,
 });
-export const products = [
+export const legacyProducts = [
   ...fuelCellProducts,
   p(
     "resin-derived-hard-carbon",
@@ -455,6 +456,27 @@ export const products = [
     ],
   ),
 ];
+// Product families retain the original model records and legacy detail URLs.
+const groups = [
+  ["hard-carbon", "Hard Carbon", "Hard-carbon anode materials for sodium-ion battery research.", ["resin-derived-hard-carbon", "biomass-derived-hard-carbon"]],
+  ["electrolyte", "Electrolyte", "Electrolytes for battery research, supplied by model and compatible chemistry.", ["qms029d", "xyss-dghykj118", "nfm-electrolyte"]],
+  ["battery-binders", "Battery Binders", "Binders for battery electrode development.", ["al-3001a", "jone-174"]],
+  ["cathode-electrodes", "Cathode Electrodes", "NFPP and P2 cathode electrodes for sodium-ion research.", ["nfpp-electrode", "p2-electrode"]],
+  ["nickel-sample-boats", "Nickel Sample Boats", "Nickel boats and matching lids for laboratory processing.", ["nickel-boat", "nickel-boat-lid"]],
+  ["electrochemical-workstation", "Electrochemical Workstation", "We supply CH Instruments electrochemical workstations for laboratory measurements and research.", ["chi760f"]],
+];
+export const productAliases = Object.fromEntries(groups.flatMap(([id, , , children]) => children.map(child => [child, id])));
+productAliases["sodium-hard-carbon"] = "hard-carbon";
+const grouped = groups.map(([id, name, description, children]) => {
+  const records = children.map(child => legacyProducts.find(p => p.id === child));
+  const variants = id === "electrochemical-workstation" ? workstationOptions.map(o => ({ ...o, specs: { Model: o.name }, reference: { source: o.source, fields: o.fields } })) : records.flatMap(record => (record.models.length ? record.models : [record.name]).map(model => ({ name: id === "cathode-electrodes" ? `${record.id === "p2-electrode" ? "P2" : "NFPP"} — ${model}` : model, specs: record.specs, note: record.note, originalId: record.id })));
+  return { ...records[0], id, name, description, image: records[0].image || records[0].id, models: variants.map(v => v.name), specs: {}, variants, memberIds: children, note: "" };
+});
+// Replace each family at its first original position, preserving directory order.
+export const products = legacyProducts.flatMap(product => {
+  const family = grouped.find(group => group.memberIds.includes(product.id));
+  return family ? (family.memberIds[0] === product.id ? [family] : []) : [product];
+});
 const s = (id, name, description, scope, inputs, deliverables, boundary) => ({
   id,
   name,

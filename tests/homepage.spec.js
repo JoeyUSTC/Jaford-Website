@@ -9,14 +9,14 @@ test("homepage presents readable product information without errors or overflow"
   await expect(page).toHaveTitle("JAFORD");
   await expect(page.locator("main > section")).toHaveCount(9);
   await expect(page.locator(".sector-card")).toHaveCount(36);
-  await expect(page.locator("h1")).toHaveText("We scale innovation");
+  await expect(page.locator("h1")).toHaveText("We Scale Innovation");
   await expect(page.locator(".impact-stats dd")).toHaveText(["9", "20", "88"]);
   await expect(page.locator("#impact-preview-note")).toHaveCount(0);
   await expect(page.locator(".home-hero, .brand-statement, .brand-lead")).toHaveCount(0);
   expect(await page.locator(".brand-logo img").evaluate(async (img) => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
   await expect(page.locator("#custom-rd")).toContainText("partner facilities and expertise");
   await expect(page.locator("#functional-materials")).toContainText("MOFs");
-  await expect(page.locator("#equipment-supplies .sector-card h3").first()).toHaveText("Electrochemical workstation");
+  await expect(page.locator("#equipment-supplies .sector-card h3").first()).toHaveText("Electrochemical Workstation");
   await expect(page.locator("#testing-characterization")).toContainText("SEM & TEM");
   await expect(page.locator("#testing-characterization")).toContainText("Wind & solar direct-coupling tests");
   await expect(page.locator("#completed-projects")).toHaveCount(0);
@@ -84,7 +84,7 @@ test("technology navigation groups products and related services", async ({
   await page.goto("/#/technologies/battery-materials");
   await expect(
     page.getByRole("link", {
-      name: "Resin-Derived Hard Carbon",
+      name: "Hard Carbon",
       exact: true,
     }),
   ).toBeVisible();
@@ -182,11 +182,11 @@ test("navigation reaches services and mobile menu closes", async ({ page }) => {
   await expect(page).toHaveURL(/#\/technologies\/custom-rd$/);
   await expect(page.locator("h1")).toHaveText("Custom R&D");
   await expect(page.getByText("Technology area", {exact:true})).toHaveCount(0);
-  await expect(page.locator(".capability-row")).toHaveCount(13);
-  await expect(page.locator(".capability-row").first()).toContainText("Polymer & resin synthesis");
-  await expect(page.locator(".capability-row").last()).toContainText("Material characterization");
-  await expect(page.locator(".capability-row").last()).toContainText("XPS");
-  for (const img of await page.locator(".capability-row img").all()) {
+  await expect(page.locator(".capability-card")).toHaveCount(13);
+  await expect(page.locator(".capability-card").first()).toContainText("Polymer & resin synthesis");
+  await expect(page.locator(".capability-card").last()).toContainText("Material characterization");
+  await expect(page.locator(".capability-card").last()).toContainText("XPS");
+  for (const img of await page.locator(".capability-card img").all()) {
     await img.scrollIntoViewIfNeeded();
     await expect.poll(() => img.evaluate(el => el.complete && el.naturalWidth > 0)).toBe(true);
   }

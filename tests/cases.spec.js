@@ -26,7 +26,7 @@ test("case stories retain their URLs and show the narrative without promotional 
 test("product category navigation filters the quote-only modules", async ({page}) => {
   await page.goto("/#/products");
   await page.getByRole("navigation", {name:"Product categories"}).getByRole("link", {name:/Binders & electrolytes/}).click();
-  await expect(page.locator(".product-module")).toHaveCount(5);
+  await expect(page.locator(".product-module")).toHaveCount(2);
   await expect(page.getByLabel("Category",{exact:true})).toHaveValue("binders-electrolytes");
   await expect(page.locator('.catalog-sidebar a[aria-current="page"]')).toContainText("Binders & electrolytes");
   await expect(page.locator(".quote-label")).toHaveCount(0);
@@ -89,7 +89,7 @@ test("merged orders use one case and unnumbered legacy URLs remain available", a
 
 for (const [area, prefix, directorySelector] of [
   ['battery-technology', 'PBT', '.product-module'],
-  ['functional-materials', 'PFM', '.capability-row'],
+  ['functional-materials', 'PFM', '.capability-card'],
 ]) {
   test(`${area} leads with only its own project stories before the full directory`, async ({page}) => {
     await page.emulateMedia({reducedMotion:'reduce'});
@@ -128,8 +128,8 @@ for (const [area, prefix, directorySelector] of [
 test('testing and equipment categories start directly with their offerings', async ({page}) => {
   await page.goto('/#/technologies/testing-characterization');
   await expect(page.locator('.hero-description, .area-services-heading, #case-track')).toHaveCount(0);
-  await expect(page.locator('.capability-row')).toHaveCount(10);
+  await expect(page.locator('.capability-card')).toHaveCount(10);
   await page.goto('/#/technologies/equipment-supplies');
   await expect(page.locator('.hero-description, #case-track')).toHaveCount(0);
-  await expect(page.locator('.product-module')).toHaveCount(12);
+  await expect(page.locator('.product-module')).toHaveCount(11);
 });

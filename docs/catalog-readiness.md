@@ -75,3 +75,7 @@ Confirm method-specific partner availability, sample compatibility and reporting
 ## Fuel-cell and electrolyzer family entries
 
 Eight family-level pages are now browsable. Model specifications remain absent until documented. Obtain membrane chemistry/thickness/dimensions; GDL substrate, treatment and porosity; MEA layer configuration/active area; CCM membrane/catalyst/coated area; CCS substrate/coating details; catalyst composition/test conditions; plate material/channel geometry; and seal material/compatibility. Confirm applicability separately for fuel cells and each electrolyzer chemistry. Do not interpret an illustration as an offered layer count or universal system compatibility.
+
+## 2026-10-10 reference profiles
+
+The owner authorized sourced reference specs, model/type grouping and in-page View Spec dialogs. Every displayed model/type now has an original local PDF profile. These files supplement, rather than replace, the missing approved supplier/batch datasheets listed above. Reference fields are attributed separately from owner-confirmed catalog facts; no grade chemistry, cutoff or measured performance is inferred from a model designation. See `docs/spec-sources.md` and the shared `src/specifications.js` registry. Old product URLs resolve to the new family pages without deleting original model records.

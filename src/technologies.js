@@ -25,7 +25,7 @@ export const technologies = [
   {
     casePrefix: "PBT", hideDescription: true,
     id: "battery-technology", nav: "Battery Technology", name: "Battery Technology",
-    featuredIds: ["resin-derived-hard-carbon", "biomass-derived-hard-carbon", "spherical-porous-carbon", "cvd-silicon-carbon", "nfpp-powder", "al-3001a"],
+    featuredIds: ["hard-carbon", "spherical-porous-carbon", "cvd-silicon-carbon", "nfpp-powder", "battery-binders", "electrolyte"],
     description: "Materials, binders, electrolytes, electrodes and cells for lithium-ion and sodium-ion battery research.",
     productIds: products.filter(p => ["battery-materials", "binders-electrolytes", "electrodes-cells"].includes(p.category)).map(p => p.id),
     serviceIds: [], links: [],
@@ -56,10 +56,10 @@ export const technologies = [
   {
     hideDescription: true,
     id: "equipment-supplies", nav: "Equipment & Supplies", name: "Equipment & Supplies",
-    featuredIds: ["chi760f", "vacuum-sealer", "glass-reactor-2000ml", "glass-fiber-1823-047", "nickel-boat", "imperial-reducer"],
-    homeLabels: {"chi760f": "Electrochemical workstation", "vacuum-sealer": "Vacuum sealer", "glass-reactor-2000ml": "Glass reaction assembly", "glass-fiber-1823-047": "Glass-fiber filters", "nickel-boat": "Nickel sample boats", "imperial-reducer": "Reducing fittings"},
+    featuredIds: ["electrochemical-workstation", "vacuum-sealer", "glass-reactor-2000ml", "glass-fiber-1823-047", "nickel-sample-boats", "imperial-reducer"],
+    homeLabels: {"electrochemical-workstation": "Electrochemical Workstation", "vacuum-sealer": "Vacuum sealer", "glass-reactor-2000ml": "Glass reaction assembly", "glass-fiber-1823-047": "Glass-fiber filters", "nickel-sample-boats": "Nickel sample boats", "imperial-reducer": "Reducing fittings"},
     description: "Laboratory equipment, reaction assemblies, filtration media, consumables and accessories.",
-    productIds: ["chi760f", "vacuum-sealer", "glass-reactor-2000ml", ...products.filter(p => p.category === "lab-supplies" && !["chi760f", "vacuum-sealer", "glass-reactor-2000ml"].includes(p.id)).map(p => p.id)], serviceIds: [], links: [],
+    productIds: ["electrochemical-workstation", "vacuum-sealer", "glass-reactor-2000ml", ...products.filter(p => p.category === "lab-supplies" && !["electrochemical-workstation", "vacuum-sealer", "glass-reactor-2000ml"].includes(p.id)).map(p => p.id)], serviceIds: [], links: [],
   },
 ];
 export const areasForProduct = id => technologies.filter(t => t.productIds.includes(id));

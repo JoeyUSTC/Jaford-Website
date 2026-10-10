@@ -1,6 +1,7 @@
+import { specifications } from "./specifications.js";
 import { cases, unnumberedCases, caseAliases } from "./cases.js";
 import { technologies, areaAliases } from "./technologies.js";
-import { products, services } from "./catalog.js";
+import { products, services, productAliases } from "./catalog.js";
 import {
   home,
   contactPage,
@@ -12,6 +13,7 @@ import {
   serviceCatalog,
   serviceDetail,
   notFound,
+  specContent,
 } from "./pages.js";
 
 document.querySelector("#navigation").innerHTML = technologies
@@ -45,6 +47,13 @@ document.addEventListener("keydown", (event) => {
 });
 window.matchMedia("(min-width: 1101px)").addEventListener("change", closeMenu);
 
+const specDialog = document.querySelector("#spec-dialog");
+specDialog.querySelector(".spec-close").addEventListener("click", () => specDialog.close());
+specDialog.addEventListener("close", () => document.body.classList.remove("dialog-open"));
+specDialog.addEventListener("click", event => {
+  const rect = specDialog.getBoundingClientRect();
+  if (event.target === specDialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) specDialog.close();
+});
 const dialog = document.querySelector("#inquiry-dialog");
 const form = document.querySelector("#inquiry-form");
 const result = document.querySelector("#inquiry-result");
@@ -74,11 +83,19 @@ document.addEventListener("click", (event) => {
     window.scrollTo(0, 0);
     return;
   }
-  if (event.target.closest("[data-show-spec]")) {
-    const spec = document.querySelector("#spec-title");
-    spec.setAttribute("tabindex", "-1");
-    spec.focus({ preventScroll: true });
-    spec.scrollIntoView({ block: "start" });
+  const specButton = event.target.closest("[data-spec-id]");
+  if (specButton) {
+    const spec = specifications.get(specButton.dataset.specId);
+    if (!spec) return;
+    document.querySelector("#spec-content").innerHTML = specContent(spec);
+    specDialog.showModal();
+    document.body.classList.add("dialog-open");
+    return;
+  }
+  if (event.target.closest("[data-pdf-preview]")) {
+    const preview = specDialog.querySelector(".pdf-preview");
+    preview.hidden = !preview.hidden;
+    event.target.textContent = preview.hidden ? "Preview PDF" : "Hide PDF";
     return;
   }
   const button = event.target.closest("[data-inquiry]");
@@ -214,10 +231,6 @@ function renderRoute(focus = false) {
     location.replace("#/");
     return;
   }
-  if (path === "/products/sodium-hard-carbon") {
-    location.replace("#/products?category=battery-materials&q=hard+carbon");
-    return;
-  }
   const oldArea = path.startsWith("/technologies/") ? path.slice("/technologies/".length) : null;
   if (areaAliases[oldArea]) {
     location.replace(`#/technologies/${areaAliases[oldArea]}${query ? `?${query}` : ""}`);
@@ -231,7 +244,8 @@ function renderRoute(focus = false) {
   const params = new URLSearchParams(query);
   if (areaAliases[params.get("area")]) params.set("area", areaAliases[params.get("area")]);
   const area = technologies.find((t) => path === `/technologies/${t.id}`);
-  const product = products.find((p) => path === `/products/${p.id}`);
+  const productId = path.startsWith("/products/") ? path.slice("/products/".length) : "";
+  const product = products.find(p => p.id === (productAliases[productId] || productId));
   const service = services.find((s) => path === `/services/${s.id}`);
   const caseItem = [...cases, ...unnumberedCases].find((item) => path === `/cases/${item.id}`);
   let html;
@@ -299,6 +313,7 @@ function renderRoute(focus = false) {
   }
   closeMenu();
   if (dialog.open) dialog.close();
+  if (specDialog.open) specDialog.close();
   for (const a of nav.querySelectorAll("a")) {
     if (location.hash.startsWith(a.hash))
       a.setAttribute("aria-current", "page");

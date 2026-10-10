@@ -1,279 +1,120 @@
-import { test, expect } from "@playwright/test";
-import { products, services } from "../src/catalog.js";
-import { technologies } from "../src/technologies.js";
+import { test, expect } from '@playwright/test';
+import { products, services, productAliases } from '../src/catalog.js';
+import { optionsFor, specifications } from '../src/specifications.js';
+import { cases } from '../src/cases.js';
 
-test("catalog filtering, search, empty state and browser history", async ({
-  page,
-}) => {
-  await page.goto("/#/products");
-  await expect(page.locator(".catalog-row")).toHaveCount(products.length);
-  await page
-    .getByLabel("Category", { exact: true })
-    .selectOption("binders-electrolytes");
-  await expect(page.locator(".catalog-row")).toHaveCount(5);
-  await page.getByLabel("Search products").fill("QMS029D");
-  await page.getByRole("button", { name: "Search", exact: true }).click();
-  await expect(page.locator(".catalog-row")).toHaveCount(1);
-  await page
-    .getByRole("link", { name: "QMS029D electrolyte", exact: true })
-    .click();
-  await expect(page.locator("h1")).toHaveText("QMS029D electrolyte");
+test('family search keeps model keywords and return filters', async ({page}) => {
+  await page.goto('/#/products?category=binders-electrolytes&q=electrolyte%20qms029d');
+  await expect(page.locator('.product-module')).toHaveCount(1);
+  await page.getByRole('link',{name:'Electrolyte',exact:true}).click();
+  await expect(page.locator('h1')).toHaveText('Electrolyte');
+  await expect(page.locator('.model-option')).toHaveCount(3);
   await page.reload();
-  await expect(page.locator("h1")).toHaveText("QMS029D electrolyte");
-  await page.goBack();
-  await expect(page.getByLabel("Search products")).toHaveValue("QMS029D");
-  await expect(page.getByLabel("Category", { exact: true })).toHaveValue(
-    "binders-electrolytes",
-  );
-  await page.getByLabel("Search products").fill("no-matching-product");
-  await page.getByRole("button", { name: "Search", exact: true }).click();
-  await expect(
-    page.getByRole("heading", { name: "No products match these filters" }),
-  ).toBeVisible();
-  await page.getByRole("link", { name: "Reset filters" }).click();
-  await expect(page.locator(".catalog-row")).toHaveCount(products.length);
+  await page.getByRole('link',{name:'Back to search results'}).click();
+  await expect(page.getByLabel('Search products')).toHaveValue('electrolyte qms029d');
+  await expect(page.getByLabel('Category',{exact:true})).toHaveValue('binders-electrolytes');
+  await page.getByLabel('Search products').fill('no-matching-product');
+  await page.getByRole('button',{name:'Search',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'No products match these filters'})).toBeVisible();
 });
 
-test("selected material is carried into the email draft without sending", async ({
-  page,
-}) => {
-  await page.goto("/#/products/resin-derived-hard-carbon");
-  await expect(page.locator("#product-model")).toHaveCount(0);
-  await page.getByRole("button", { name: "Request a quotation" }).click();
-  await expect(page.getByLabel("Area of interest")).toHaveValue(
-    "Battery materials",
-  );
-  await expect(
-    page.getByLabel("Product / service and selected option"),
-  ).toHaveValue(
-    "Resin-Derived Hard Carbon",
-  );
-  await page.getByLabel("Your name").fill("Test Researcher");
-  await page.getByLabel("Work email").fill("research@example.com");
-  await page
-    .getByLabel("Your requirements")
-    .fill("Please provide the specification for this selected grade.");
-  await page.getByLabel("Required quantity").fill("20 samples");
-  await page.getByLabel("Required timeline").fill("Within 6 weeks");
-  await page.getByRole("button", { name: "Prepare my inquiry" }).click();
-  const mail = new URL(
-    await page
-      .getByRole("link", { name: "Open email draft" })
-      .getAttribute("href"),
-  );
-  expect(mail.pathname).toBe("kiki.li@jaford.com");
-  expect(mail.searchParams.get("body")).toContain("Quantity: 20 samples");
-  expect(mail.searchParams.get("body")).toContain(
-    "Required timeline: Within 6 weeks",
-  );
-  expect(mail.searchParams.get("body")).toContain(
-    "Resin-Derived Hard Carbon",
-  );
-  await expect(page.locator("#inquiry-result")).toContainText(
-    "Nothing has been sent.",
-  );
-  await page
-    .getByRole("button", { name: "Close inquiry", exact: true })
-    .click();
-  await page.locator("footer").getByRole("link", { name: "Contact Us", exact: true }).click();
-  const contact = page.locator("#home-contact-form");
-  await contact.getByLabel("Your Name").fill("New Researcher");
-  await contact.getByLabel("E-Mail Address").fill("new@example.com");
-  await contact.getByRole("textbox", { name: "Enquiry", exact: true }).fill("Please discuss a new synthesis project.");
-  await contact.getByRole("button", { name: "Prepare email" }).click();
-  await expect(page.locator("#inquiry-preview")).not.toContainText("Resin-Derived Hard Carbon");
-  await expect(page.locator("#inquiry-preview")).toContainText("New Researcher");
-
+test('hard carbon modal stays in page, supports PDF, Escape and focus return', async ({page,request}) => {
+  await page.goto('/#/products/hard-carbon');
+  await expect(page.locator('.model-option')).toHaveCount(2);
+  const button = page.getByRole('button',{name:'View Spec: Resin-Derived Hard Carbon',exact:true});
+  await button.click();
+  const modal=page.locator('#spec-dialog');
+  await expect(modal).toBeVisible();
+  await expect(modal).toContainText('Resin-derived');
+  await expect(modal).toContainText('not a JAFORD measurement');
+  await expect(page).toHaveURL(/#\/products\/hard-carbon$/);
+  const response=await request.get(await modal.getByRole('link',{name:'Download PDF'}).getAttribute('href'));
+  expect(response.ok()).toBe(true);
+  expect((await response.body()).subarray(0,5).toString()).toBe('%PDF-');
+  await modal.getByRole('button',{name:'Preview PDF',exact:true}).click();
+  await expect(modal.locator('object')).toBeVisible();
+  expect(await modal.evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
+  await page.keyboard.press('Escape');
+  await expect(modal).not.toBeVisible();
+  await expect(button).toBeFocused();
+  await page.getByRole('button',{name:'View Spec: Biomass-Derived Hard Carbon',exact:true}).click();
+  await expect(modal).toContainText('wood-derived');
+  await modal.getByRole('button',{name:'Close specification'}).click();
+  await expect(modal).not.toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
 });
 
-test("representative detail pages preserve technical boundaries and fit the viewport", async ({
-  page,
-}, testInfo) => {
-  const errors = [];
-  page.on("pageerror", (error) => errors.push(error.message));
-  for (const route of [
-    "products",
-    "products/p2-electrode",
-    "products/glass-reactor-2000ml",
-    "services",
-    "services/sintering-heat-treatment",
-  ]) {
-    await page.goto("/#/" + route);
-    await expect(page.locator("h1")).toBeVisible();
-    expect(
-      await page.evaluate(() => document.documentElement.scrollWidth),
-    ).toBeLessThanOrEqual(page.viewportSize().width);
-    for (const img of await page.locator("main img").all()) {
-      await img.scrollIntoViewIfNeeded();
-      expect(
-        await img.evaluate(async (el) => {
-          await el.decode();
-          return el.naturalWidth > 0;
-        }),
-      ).toBe(true);
-    }
-    if (route === "products/p2-electrode") {
-      await expect(page.locator("table")).toContainText("7.5 × 5.4 cm");
-      await expect(page.locator("table")).not.toContainText(
-        "Areal capacity (mAh/cm²)",
-      );
-      await expect(page.locator("table")).not.toContainText(
-        "Mass loading (mg/cm²)",
-      );
-      await expect(page.locator("figcaption")).toContainText("Representative illustration");
-    }
-    if (route === "products/glass-reactor-2000ml")
-      await expect(page.locator("main")).toContainText(
-        "No pressure rating is claimed",
-      );
-    if (route === "services/sintering-heat-treatment")
-      await expect(page.locator("main")).toContainText(
-        "evaluate kilogram-scale sintering",
-      );
-    if (["desktop", "mobile"].includes(testInfo.project.name)) {
-      await page.screenshot({
-        path: `/tmp/jaford-${route.replaceAll("/", "-")}-${testInfo.project.name}.png`,
-        fullPage: true,
-      });
+test('known electrode dimensions remain separate from unconfirmed performance',async({page})=>{
+  await page.goto('/#/products/p2-electrode');
+  await expect(page.locator('h1')).toHaveText('Cathode Electrodes');
+  await page.locator('.model-option').filter({hasText:'P2'}).getByRole('button').click();
+  await expect(page.locator('#spec-dialog')).toContainText('7.5 × 5.4 cm');
+  await expect(page.locator('#spec-dialog')).not.toContainText('Areal capacity (mAh/cm²)');
+  await expect(page.locator('#spec-dialog')).not.toContainText('Mass loading (mg/cm²)');
+});
+
+test('all offerings, legacy links and PDFs remain available',async({page,request},info)=>{
+  test.skip(info.project.name!=='desktop','Exhaustive coverage once; modal responsiveness in every viewport.');
+  test.setTimeout(90_000);
+  for (const [kind,items] of [['product',products],['service',services]]) for(const item of items){
+    await page.goto(`/#/${kind}s/${item.id}`);
+    await expect(page.locator('h1')).toHaveText(item.name);
+    await expect(page.locator('[data-spec-id]')).toHaveCount(optionsFor(item,kind).length);
+    await expect(page.getByRole('button',{name:/Request.*quotation/i})).toHaveCount(0);
+    for(const image of await page.locator('main img').all()) expect(await image.evaluate(async el=>{await el.decode();return el.naturalWidth>0;})).toBe(true);
+  }
+  for(const [old,family] of Object.entries(productAliases)){
+    await page.goto('/#/products/'+old);
+    await expect(page.locator('h1')).toHaveText(products.find(p=>p.id===family).name);
+  }
+  for(const spec of specifications.values()){
+    const response=await request.get('/'+spec.pdf);
+    expect(response.ok(),spec.id).toBe(true);
+    expect((await response.body()).subarray(0,5).toString(),spec.id).toBe('%PDF-');
+  }
+});
+
+test('newest project references lead every case collection',async({page})=>{
+  const numbers=cases.map(c=>Number(c.projectCode.slice(3)));
+  expect(numbers).toEqual([...numbers].sort((a,b)=>b-a));
+  for(const [route,prefix] of [['',''],['technologies/battery-technology','PBT'],['technologies/functional-materials','PFM'],['cases','']]){
+    await page.goto('/#/'+route);
+    await expect(page.locator('.case-summary .project-code')).toHaveText(cases.filter(c=>c.projectCode.startsWith(prefix)).map(c=>c.projectCode));
+  }
+});
+
+test('material types show uses and sourced spec dialogs',async({page})=>{
+  for(const [id,names] of [
+    ['mof-development',['ZIF-8','ZIF-67','UiO-66','HKUST-1 (Cu-BTC)']],
+    ['cof-development',['COF-5','COF-300','TpPa-1']],
+    ['functional-polymer-development',['Polyethylene glycol (PEG)','Poly(acrylic acid) (PAA)','Poly(vinylidene fluoride) (PVDF)','Polyaniline (PANI)']],
+    ['resin-development',['Epoxy resins','Ion-exchange resins']],
+    ['ligand-development',["2-Methylimidazole — ligands for ZIFs","Terephthalic acid — ligands for UiO frameworks","Trimesic acid — ligands for Cu-BTC frameworks","2,2'-Bipyridine — ligands for coordination catalysts"]],
+  ]){
+    await page.goto('/#/services/'+id);
+    await expect(page.locator('.model-option h3')).toHaveText(names);
+    await expect(page.locator('.model-option p')).toHaveCount(names.length);
+    for(const row of await page.locator('.model-option').all()){
+      await row.getByRole('button').click();
+      await expect(page.locator('#spec-dialog .spec-source')).toContainText('Source:');
+      await expect(page.locator('#spec-dialog')).toContainText('not a JAFORD measurement');
+      await page.getByRole('button',{name:'Close specification'}).click();
     }
   }
-  expect(errors).toEqual([]);
 });
 
-test("every product and service has a working detail route", async ({
-  page,
-}, testInfo) => {
-  test.skip(
-    testInfo.project.name !== "desktop",
-    "Full route coverage once; responsive checks run on every viewport.",
-  );
-  expect(new Set(technologies.flatMap((t) => t.productIds))).toEqual(
-    new Set(products.map((p) => p.id)),
-  );
-  expect(new Set(technologies.flatMap((t) => t.serviceIds))).toEqual(
-    new Set(services.map((s) => s.id)),
-  );
-  for (const product of products) {
-    await page.goto("/#/products/" + product.id);
-    await expect(page.locator("h1")).toHaveText(product.name);
-    if (Object.keys(product.specs).length) await expect(page.locator("table")).toBeVisible();
-    else await expect(page.locator(".spec-section")).toHaveCount(0);
-    await expect(page.getByLabel("Model / option")).toHaveCount(product.models.length ? 1 : 0);
-    await expect(page.locator("main")).not.toContainText("Contact us for the specification");
-    await expect(page.locator("main")).not.toContainText("to confirm");
-    await expect(
-      page.getByRole("button", { name: "Request a quotation" }),
-    ).toBeVisible();
-    await expect(page.locator("main a[download]")).toHaveCount(0);
+test('workstation model table preserves official feature differences',async({page},info)=>{
+  await page.goto('/#/products/electrochemical-workstation');
+  await expect(page.locator('.model-option')).toHaveCount(14);
+  for(const [model,eis,galvano] of [['CHI600F',false,false],['CHI604F',true,false],['CHI660F',true,true],['CHI700F',false,false],['CHI760F',true,true]]){
+    await page.getByRole('button',{name:'View Spec: '+model,exact:true}).click();
+    const dialog=page.locator('#spec-dialog');
+    await expect(dialog.locator('tr').filter({hasText:'AC impedance'}).locator('td')).toHaveText(eis?'Included; 0.00001 Hz to 3 MHz':'Not included in the model comparison');
+    await expect(dialog.locator('tr').filter({hasText:'Galvanostat'}).locator('td')).toHaveText(galvano?'Included':'Not included in the model comparison');
+    await page.keyboard.press('Escape');
   }
-  for (const service of services) {
-    await page.goto("/#/services/" + service.id);
-    await expect(page.locator("h1")).toHaveText(service.name);
-    await expect(page.locator(".detail-description")).toHaveText(service.description);
-    await expect(page.locator(".service-scope, .related-areas, .technical-note, .contact-section")).toHaveCount(0);
-    await expect(page.locator(".service-overview img")).toBeVisible();
-    await expect(
-      page.getByRole("button", { name: "Discuss this service" }),
-    ).toHaveCount(0);
-  }
-  await page.goto("/#/products/does-not-exist");
-  await expect(page.locator("h1")).toHaveText("Page not found");
-  await page.getByRole("link", { name: "Browse products" }).click();
-  await expect(page.locator(".catalog-row")).toHaveCount(products.length);
-});
-
-test("multi-keyword search preserves filters through the detail return link", async ({
-  page,
-}) => {
-  await page.goto(
-    "/#/products?category=binders-electrolytes&q=electrolyte%20qms029d",
-  );
-  await expect(page.locator(".catalog-row")).toHaveCount(1);
-  await expect(page.locator(".catalog-models")).toContainText("QMS029D");
-  await page
-    .getByRole("link", { name: "QMS029D electrolyte", exact: true })
-    .click();
-  await page.reload();
-  await page.getByRole("link", { name: "Back to search results" }).click();
-  await expect(page.getByLabel("Search products")).toHaveValue(
-    "electrolyte qms029d",
-  );
-  await expect(page.getByLabel("Category", { exact: true })).toHaveValue(
-    "binders-electrolytes",
-  );
-  await expect(page.locator(".catalog-row")).toHaveCount(1);
-});
-
-test("product modules open specs from the image or keyboard and retain inquiry context", async ({
-  page,
-}) => {
-  await page.goto("/#/technologies/battery-materials");
-  await expect(page.locator(".product-module")).toHaveCount(14);
-  const module = page
-    .locator(".product-module")
-    .filter({
-      has: page.getByRole("heading", {
-        name: "NFPP cathode powder",
-        exact: true,
-      }),
-    });
-  await expect(module).toContainText("View specs");
-  await expect(module.locator("figcaption")).toHaveCount(0);
-  await module.locator("img").click();
-  await expect(page.locator("h1")).toHaveText("NFPP cathode powder");
-  await page
-    .getByRole("button", { name: "View specifications", exact: true })
-    .click();
-  await expect(
-    page.getByRole("heading", { name: "Specifications", exact: true }),
-  ).toBeFocused();
-  await expect(page.locator("table")).toBeVisible();
-  await page
-    .getByRole("button", { name: "Request a quotation", exact: true })
-    .click();
-  await expect(
-    page.getByLabel("Product / service and selected option"),
-  ).toHaveValue(/NFPP cathode powder/);
-  await page
-    .getByRole("button", { name: "Close inquiry", exact: true })
-    .click();
-  await page
-    .getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", { name: "Battery Technology", exact: true })
-    .click();
-  const productLink = page
-    .locator(".product-module")
-    .getByRole("link", { name: "NFPP cathode powder", exact: true });
-  await productLink.focus();
-  await page.keyboard.press("Enter");
-  await expect(page.locator("h1")).toHaveText("NFPP cathode powder");
-});
-
-
-test("missing specifications stay absent while known specifications and inquiry remain usable", async ({ page }) => {
-  await page.goto("/#/products/vacuum-sealer");
-  await expect(page.locator(".spec-section, #product-model, [data-show-spec]")).toHaveCount(0);
-  await page.getByRole("button", {name: "Request a quotation", exact:true}).click();
-  await expect(page.getByLabel("Product / service and selected option")).toHaveValue("Vacuum sealing machine");
-  await page.goto("/#/products/p2-electrode");
-  await expect(page.locator(".spec-table tbody tr")).toHaveCount(2);
-  await expect(page.locator(".spec-table")).toContainText("7.5 × 5.4 cm");
-  await expect(page.locator(".spec-table")).toContainText("Double-sided");
-});
-
-
-test("hard carbon forms are separate and product pages keep a technical focus", async ({page}) => {
-  await page.goto("/#/products/sodium-hard-carbon?area=battery-materials");
-  await expect(page.locator(".product-module")).toHaveCount(2);
-  for (const [name, feedstock] of [["Resin-Derived Hard Carbon", "Resin-derived"], ["Biomass-Derived Hard Carbon", "Biomass-derived"]]) {
-    await page.getByRole("link", {name,exact:true}).click();
-    await page.reload();
-    await expect(page.locator("h1")).toHaveText(name);
-    await expect(page.locator(".spec-table")).toContainText(feedstock);
-    await expect(page.locator("#product-model, .related-areas, #contact, .detail-next")).toHaveCount(0);
-    const action=page.getByRole("button", {name:"Request a quotation",exact:true});
-    await expect(action).not.toHaveClass(/button-dark/);
-    await action.click();
-    await expect(page.getByLabel("Product / service and selected option")).toHaveValue(name);
-    await page.goto("/#/products?category=battery-materials&q=hard+carbon");
+  if(['desktop','mobile'].includes(info.project.name)){
+    await page.getByRole('button',{name:'View Spec: CHI760F',exact:true}).click();
+    await page.screenshot({path:`/tmp/jaford-spec-${info.project.name}.png`});
   }
 });

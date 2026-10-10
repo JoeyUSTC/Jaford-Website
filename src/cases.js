@@ -1,6 +1,6 @@
 // Anonymous project accounts based on owner-confirmed records.
 // Codes preserve internal business numbers; publication requires a confirmed mapping.
-export const cases = [
+const publishedCases = [
   {
     "id": "small-batch-dry-pouch-cells",
     "projectCode": "PBT017",
@@ -125,6 +125,9 @@ export const cases = [
 ];
 
 // Preserve previously shared URLs while awaiting the internal business numbers.
+// Higher internal business numbers represent more recent projects.
+export const cases = publishedCases.toSorted((a, b) => Number(b.projectCode.slice(3)) - Number(a.projectCode.slice(3)));
+
 export const unnumberedCases = [
   {
     "id": "repeat-polymer-synthesis",

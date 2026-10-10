@@ -134,3 +134,7 @@ The owner confirmed the exact slogan is “We scale innovation”. This supersed
 ## Category-specific project collections
 
 The owner requested project-first browsing within Battery Technology and Functional Materials. Existing published stories are filtered by their confirmed PBT/PFM prefixes, preserving homepage wording, order and detail routes. No new cases, project identifiers or outcome claims were added. Product and service directories remain complete below the relevant project collection.
+
+## 2026-10-10 family catalog iteration
+
+The owner requested boxed directory cards throughout, grouped material/model families, removal of product quotation actions, and View Spec dialogs with PDF support. Hard Carbon combines resin-derived and biomass-derived options; Electrolyte preserves all three existing model options. Related binders, cathode electrodes and nickel boat/lid offerings also share family pages with legacy URL aliases. CHI 600F/700F model names and feature differences come from official comparison tables. Common MOF/COF, polymer, resin and ligand types were added under the owner's stated supply/development scope, with public references documented separately. Reference profiles are not claims of JAFORD batch measurements. The headline is now capitalized “We Scale Innovation”. All published case collections sort descending by the original numeric internal identifier; no project was renumbered.

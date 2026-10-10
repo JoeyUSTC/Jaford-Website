@@ -13,7 +13,7 @@ for (const area of technologies) {
     expect(new Set(featured.map(item=>item.href)).size).toBe(6);
     await section.getByRole('link', {name:'Browse all',exact:true}).click();
     await expect(page.locator('h1')).toHaveText(area.name);
-    const directory = page.locator('.product-module, .capability-row');
+    const directory = page.locator('.product-module');
     const items = itemsForArea(area);
     const total = items.products.length + items.services.length;
     expect(total).toBeGreaterThan(featured.length);

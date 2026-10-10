@@ -25,11 +25,10 @@ test('homepage, category and detail pages share fuel-cell products and imagery',
     await expect(page.locator('.detail-description')).toHaveText(product.description);
     const img = page.locator('.product-figure img');
     await expect.poll(()=>img.evaluate(el=>el.complete && el.naturalWidth>0)).toBe(true);
-    await expect(page.locator('.spec-table, #product-model, main a[download]')).toHaveCount(0);
-    await page.getByRole('button',{name:'Request a quotation'}).click();
-    await expect(page.getByLabel('Area of interest')).toHaveValue('Fuel cells & electrolyzers');
-    await expect(page.getByLabel('Product / service and selected option')).toHaveValue(product.name);
-    await page.getByRole('button',{name:'Close inquiry',exact:true}).click();
+    await page.locator('[data-spec-id]').first().click();
+    await expect(page.locator('#spec-dialog')).toBeVisible();
+    await expect(page.locator('#spec-dialog a[download]')).toBeVisible();
+    await page.getByRole('button',{name:'Close specification',exact:true}).click();
     expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
     await page.getByRole('navigation',{name:'Breadcrumb'}).getByRole('link',{name:'Fuel Cells & Electrolyzers',exact:true}).click();
   }

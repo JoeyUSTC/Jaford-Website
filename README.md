@@ -49,13 +49,13 @@ For this manual fallback only, GitHub Pages would use **Deploy from a branch →
 
 ## Content and inquiries
 
-The homepage and navigation follow six technology areas: Custom R&D, Battery Technology, Fuel Cells & Electrolyzers, Functional Materials, Testing & Characterization, and Equipment & Supplies. `src/technologies.js` defines each complete directory and its six homepage selections. `src/catalog.js` contains 34 product entries and 29 service views (13 broad services plus 16 focused functional-material/testing views). `src/pages.js` renders these shared records into the homepage, directories and detail pages.
+The homepage and navigation follow six technology areas: Custom R&D, Battery Technology, Fuel Cells & Electrolyzers, Functional Materials, Testing & Characterization, and Equipment & Supplies. `src/technologies.js` defines each complete directory and its six homepage selections. `src/catalog.js` contains 28 product families and 29 service views (13 broad services plus 16 focused functional-material/testing views). `src/pages.js` renders these shared records into the homepage, directories and detail pages.
 
 Routes use hashes (`#/technologies/{id}`, `#/products`, `#/products/{id}`, `#/services`, `#/services/{id}`), so direct links and refreshes work on GitHub Pages without server rewrites. Product filters and search are encoded in the route, preserving them when returning from a detail page. Unknown routes show a recovery page.
 
-All items require quotation; the catalog does not promise stock. Missing model specifications are omitted from public pages and tracked internally. No formal specification files or authorized product photos were supplied, so there are no datasheet download links and every detail image is labeled as a neutral illustration. See `docs/catalog-readiness.md` for the complete specification, image and confirmation checklist, and `docs/content-sources.md` for provenance. No raw private order data is stored in this public repository.
+All items require quotation; the catalog does not promise stock. Every listed model/type has a View Spec dialog and a locally hosted PDF technical profile. Confirmed catalog facts and sourced comparable-product/literature facts are presented separately; reference profiles are not JAFORD batch certificates. Missing approved supplier specifications remain tracked internally. Detail images remain representative illustrations. See `docs/catalog-readiness.md` for the complete specification, image and confirmation checklist, and `docs/content-sources.md` for provenance. No raw private order data is stored in this public repository.
 
-The inquiry dialog includes the selected product/service and model, prepares a text brief locally and opens a `mailto:` draft to `kiki.li@jaford.com`. The user reviews and sends it in their own email application. Copy and download remain available. It does not automatically submit inquiries, send email or claim delivery. No personal data is persisted by the site.
+The shared Contact Us form prepares a text brief locally and opens a `mailto:` draft to `kiki.li@jaford.com`. The user reviews and sends it in their own email application. Copy and download remain available. It does not automatically submit inquiries, send email or claim delivery. No personal data is persisted by the site.
 
 ## Cloud tasks
 
@@ -78,3 +78,7 @@ Fuel Cells & Electrolyzers now uses eight family-level entries from `src/fuel-ce
 Battery Technology and Functional Materials begin with a horizontally browsable Innovation in practice collection, filtered to PBT and PFM respectively. These use the same published case records as the homepage, before the full product/capability directory. Testing and equipment pages start directly with their offerings; redundant introductory copy and the testing development heading are omitted.
 
 Contact Us in the header and footer opens `#/contact`, which reuses the unchanged homepage form and local email-draft workflow. The footer retains only copyright/location, Contact Us and Back to Top. Homepage figures (9 countries/regions, 20 research teams, 88 delivered projects) count up in one second, with final values shown immediately for reduced motion.
+
+## Specification maintenance
+
+`src/spec-data.js` records researched options, source URLs and reference facts. `src/specifications.js` derives the complete model/type registry. Regenerate checked-in `public/specs/*.pdf` using `python scripts/generate-specs.py` with Python ReportLab installed. Normal CI builds serve these files without Python. Reference source URLs are printed as attribution, not visitor navigation links. Old model detail URLs resolve to their family pages. See `docs/spec-sources.md`.
