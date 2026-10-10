@@ -75,7 +75,7 @@ test("selected material is carried into the email draft without sending", async 
   await page
     .getByRole("button", { name: "Close inquiry", exact: true })
     .click();
-  await page.getByRole("link", { name: "Contact JAFORD", exact: true }).click();
+  await page.locator("footer").getByRole("link", { name: "Contact Us", exact: true }).click();
   const contact = page.locator("#home-contact-form");
   await contact.getByLabel("Your Name").fill("New Researcher");
   await contact.getByLabel("E-Mail Address").fill("new@example.com");

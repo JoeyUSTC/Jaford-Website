@@ -3,6 +3,7 @@ import { technologies, areaAliases } from "./technologies.js";
 import { products, services } from "./catalog.js";
 import {
   home,
+  contactPage,
   caseCatalog,
   caseDetail,
   technologyDetail,
@@ -15,7 +16,7 @@ import {
 
 document.querySelector("#navigation").innerHTML = technologies
   .map((t) => `<a href="#/technologies/${t.id}">${t.nav}</a>`)
-  .join("");
+  .join("") + '<a href="#/contact">Contact Us</a>';
 document.querySelector("#year").textContent = new Date().getFullYear();
 const menu = document.querySelector(".menu-toggle");
 const nav = document.querySelector("#navigation");
@@ -158,7 +159,7 @@ document.querySelector("#edit-inquiry").addEventListener("click", () => {
   form.elements.requirements.focus();
 });
 
-// The inline homepage form prepares a reviewable email; it never claims delivery.
+// The shared homepage/contact form prepares a reviewable email; it never claims delivery.
 document.addEventListener("input", (event) => {
   if (event.target.closest("#home-contact-form")) event.target.setCustomValidity("");
 });
@@ -187,7 +188,26 @@ document.addEventListener("submit", (event) => {
   email.focus();
 });
 
+let counterFrame = null;
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+function animateStats() {
+  const counters = [...document.querySelectorAll("[data-count-target]")];
+  if (!counters.length || reducedMotion.matches) return;
+  for (const counter of counters) counter.textContent = "0";
+  const started = performance.now();
+  const update = (now) => {
+    const progress = reducedMotion.matches ? 1 : Math.min((now - started) / 1000, 1);
+    for (const counter of counters) {
+      counter.textContent = String(Math.round(Number(counter.dataset.countTarget) * progress));
+    }
+    counterFrame = progress < 1 ? requestAnimationFrame(update) : null;
+  };
+  counterFrame = requestAnimationFrame(update);
+}
+
 function renderRoute(focus = false) {
+  cancelAnimationFrame(counterFrame);
+  counterFrame = null;
   const raw = location.hash.slice(1) || "/";
   const [path, query = ""] = raw.split("?");
   if (path === "/technologies" || path === "/technologies/") {
@@ -219,6 +239,9 @@ function renderRoute(focus = false) {
   if (area) {
     html = technologyDetail(area);
     title = `${area.name} — JAFORD`;
+  } else if (path === "/contact") {
+    html = contactPage();
+    title = "Contact Us — JAFORD";
   } else if (path === "/products") {
     html = productCatalog(params);
     title = "Products — JAFORD";
@@ -240,7 +263,6 @@ function renderRoute(focus = false) {
   } else if (
     [
       "/",
-      "/contact",
       "main",
       "products",
       "custom-rd",
@@ -255,6 +277,7 @@ function renderRoute(focus = false) {
   }
   document.querySelector("#main").innerHTML = html;
   document.title = title;
+  animateStats();
   const track = document.querySelector("#case-track");
   if (track) {
     const previous = document.querySelector('[data-case-scroll="-1"]');
@@ -282,7 +305,7 @@ function renderRoute(focus = false) {
     else a.removeAttribute("aria-current");
   }
   const anchor =
-    path === "/contact" ? "contact" : !path.startsWith("/") ? path : null;
+    !path.startsWith("/") ? path : null;
   const target = anchor
     ? document.getElementById(anchor)
     : document.querySelector("h1");

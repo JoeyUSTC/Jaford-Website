@@ -31,6 +31,7 @@ export const technologies = [
     serviceIds: [], links: [],
   },
   {
+    hideDescription: true,
     id: "fuel-cells-electrolyzers", nav: "Fuel Cells & Electrolyzers", name: "Fuel Cells & Electrolyzers",
     featuredIds: fuelCellProducts.slice(0, 6).map(p => p.id),
     description: "Fuel-cell and electrolyzer materials, components, catalysts and electrochemical hardware.",

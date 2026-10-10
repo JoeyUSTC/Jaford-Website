@@ -1492,3 +1492,10 @@ h1[tabindex="-1"]:focus,
 .hero + .area-cases { padding-top: 0; border-top: 0; }
 .area-cases + .catalog-section { padding-top: 24px; }
 .area-services:not(:has(.area-services-heading)) { margin-top: 0; }
+
+/* The standalone contact page reuses the homepage form styling. */
+.home-contact h1 { font-size: 25px; color: var(--ink); padding-bottom: 16px; border-bottom: 1px solid var(--line); margin: 0 0 24px; }
+@media (min-width: 1101px) and (max-width: 1280px) {
+  .header-inner { gap: 16px; }
+  #navigation { gap: 8px; }
+}

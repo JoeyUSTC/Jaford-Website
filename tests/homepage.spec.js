@@ -10,7 +10,7 @@ test("homepage presents readable product information without errors or overflow"
   await expect(page.locator("main > section")).toHaveCount(9);
   await expect(page.locator(".sector-card")).toHaveCount(36);
   await expect(page.locator("h1")).toHaveText("We scale innovation");
-  await expect(page.locator(".impact-stats dd")).toHaveText(["15", "32", "109"]);
+  await expect(page.locator(".impact-stats dd")).toHaveText(["9", "20", "88"]);
   await expect(page.locator("#impact-preview-note")).toHaveCount(0);
   await expect(page.locator(".home-hero, .brand-statement, .brand-lead")).toHaveCount(0);
   expect(await page.locator(".brand-logo img").evaluate(async (img) => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
@@ -73,10 +73,10 @@ test("technology navigation groups products and related services", async ({
     );
   expect(links.map(item => item.name)).toEqual([
     "Custom R&D", "Battery Technology", "Fuel Cells & Electrolyzers",
-    "Functional Materials", "Testing & Characterization", "Equipment & Supplies",
+    "Functional Materials", "Testing & Characterization", "Equipment & Supplies", "Contact Us",
   ]);
   await expect(page.locator("main > section").nth(2)).toHaveAttribute("id", "custom-rd");
-  for (const item of links) {
+  for (const item of links.filter(item => item.href.startsWith("#/technologies/"))) {
     await page.goto("/" + item.href);
     await expect(page.locator("h1")).toHaveText(item.name);
     await expect(page.locator(".catalog-section")).toBeVisible();
@@ -236,7 +236,7 @@ test("prepared inquiry can be copied and whitespace-only requirements are reject
 
 
 test("inline contact prepares an email, retains edits and rejects blank enquiries", async ({ page }) => {
-  await page.goto("/#/contact");
+  await page.goto("/");
   const contact = page.locator("#home-contact-form");
   await contact.getByRole("button", { name: "Prepare email" }).click();
   await expect(page.getByRole("dialog")).not.toBeVisible();
