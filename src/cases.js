@@ -1,12 +1,12 @@
 // Anonymous project accounts based on owner-confirmed records.
-// Public codes preserve internal business numbers; XX means the mapping is not yet confirmed.
+// Codes preserve internal business numbers; publication requires a confirmed mapping.
 export const cases = [
   {
     "id": "small-batch-dry-pouch-cells",
-    "projectCode": "PBTXX",
-    "title": "Turning a cell concept into a platform for pouch-cell research",
+    "projectCode": "PBT017",
+    "title": "Building a pouch-cell platform for battery and electrolyte research",
     "category": "Pouch cell development",
-    "summary": "A research team gained a custom dry pouch-cell platform for its next stage of battery development, translating its chosen electrode system into a 50-cell research batch.",
+    "summary": "A research team gained custom dry pouch cells and supporting electrolyte, bringing related development requests into one platform for further cell and electrolyte evaluation.",
     "requirement": "The team wanted to take a proposed electrode combination into a pouch-cell format. The next step required physical cells built around that system, giving the researchers a platform for further experimental work.",
     "scope": "Working with the team and a specialist manufacturing partner, JAFORD translated the research requirements into a custom cell build. The collaboration brought the proposed materials and cell configuration together in a research batch.",
     "outcome": "The delivery of 50 custom dry pouch cells gave the team a platform on which to pursue its next stage of validation. The value was the transition from a cell specification to physical research cells; subsequent testing would establish how the proposed system performed.",
@@ -16,7 +16,7 @@ export const cases = [
     "engagement": "Custom cell sourcing & development coordination",
     "serviceId": "pouch-cell-customization",
     "serviceName": "Pouch-cell customization",
-    "story": "A research team wanted to take its proposed electrode system into a pouch-cell format so it could pursue the next stage of battery development. Working with JAFORD, the team translated that concept into a custom cell build, bringing its chosen materials and cell configuration together with specialist manufacturing experience. The collaboration resulted in a batch of 50 dry pouch cells. With those cells in hand, the researchers had a physical platform for further experiments on the proposed system, moving their work from a specification toward validation in a larger cell format."
+    "story": "A research team wanted to take its proposed electrode systems into dry pouch cells, including a platform for evaluating an electrolyte. What began as two related orders became one coordinated development project. Working with JAFORD, the team translated its research requirements into practical cell specifications and batch sizes, bringing together the chosen electrode materials, cell builds and supporting electrolyte. The work included delivery of a 50-cell dry pouch batch and the cells and electrolyte arranged for the related study. Together, these gave the researchers a physical platform on which to investigate their battery materials and electrolyte in pouch-cell formats, moving from proposed specifications toward further experimental validation."
   },
   {
     "id": "resin-route-process-scale-up",
@@ -47,23 +47,6 @@ export const cases = [
     "title": "Turning a PEG polymer route into characterized research samples",
     "summary": "A team gained custom PEG-related polymer samples, a more complete synthesis procedure and analytical data to support further material development.",
     "story": "A research team needed a custom PEG-related polymer prepared from specified starting materials and a proposed synthesis route. JAFORD worked with the team and synthesis partners to carry that route into sample preparation, filling in the practical details that became clear during the work. Those refinements were brought together in a more complete, reproducible SOP, and the finished samples were sent for independent infrared and NMR characterization. The customer received the polymer samples, the refined procedure and the analytical reports. This gave the team a documented material platform and evidence with which to assess the synthesis and plan its next experiments."
-  },
-  {
-    "id": "electrolyte-validation-platform",
-    "projectCode": "PBTXX",
-    "title": "Creating a pouch-cell platform for electrolyte development",
-    "category": "Electrolyte validation",
-    "summary": "A research team gained the custom dry cells and supporting electrolyte needed to take its electrolyte study into a pouch-cell platform.",
-    "requirement": "The customer wanted to investigate an electrolyte in a defined pouch-cell system. Cell design and preparation needed to support that research question so the team could move from a proposed study to experimental work.",
-    "scope": "JAFORD and the research team refined the cell specification and batch size around the intended electrolyte evaluation. We then brought the custom dry cells and supporting electrolyte together for the study.",
-    "outcome": "The cells and electrolyte were delivered, establishing a physical platform for the team’s planned evaluation. With the cell platform in place, the researchers could focus their next experiments on the electrolyte and its interaction with the chosen electrode system.",
-    "deliverable": "Custom dry cells and supporting electrolyte",
-    "scale": "Small-batch research platform",
-    "result": "A pouch-cell platform for the planned electrolyte study",
-    "engagement": "Joint specification refinement & procurement",
-    "serviceId": "pouch-cell-customization",
-    "serviceName": "Pouch-cell customization",
-    "story": "A research team wanted to investigate an electrolyte in a defined pouch-cell system. Together, we refined the cell specification and research batch size around that question, then brought the custom dry cells and supporting electrolyte together. The collaboration gave the team the materials and cell platform needed to move its planned study into experimental work. With the platform in place, the researchers could focus their next experiments on how the electrolyte interacted with the chosen electrode system in pouch cells."
   },
   {
     "id": "carbon-activation-research",
@@ -97,7 +80,7 @@ export const cases = [
   },
   {
     "id": "resin-to-hard-carbon",
-    "projectCode": "PBTXX",
+    "projectCode": "PBT018",
     "title": "Taking a hard-carbon process beyond small laboratory trials",
     "category": "Carbonization & activation",
     "summary": "A sodium-ion materials team turned a proposed resin-to-carbon route into a practical processing study, with experimental data to inform further material development.",
@@ -124,7 +107,7 @@ export const cases = [
   },
   {
     "id": "sodium-ion-pouch-validation",
-    "projectCode": "PBTXX",
+    "projectCode": "PBT042",
     "title": "Using ampere-hour pouch cells to guide sodium-ion development",
     "category": "Sodium-ion battery development",
     "summary": "A research team tested its sodium-ion concept in ampere-hour pouch cells and used the gap between expected and observed results to identify what needed to change.",
@@ -138,7 +121,11 @@ export const cases = [
     "serviceId": "pouch-cell-customization",
     "serviceName": "Pouch-cell customization",
     "story": "A research team wanted to find out how its proposed sodium-ion system would behave in ampere-hour pouch cells. Working together, we brought the materials, electrolyte, electrode coating and cell assembly into one development project, making the research and manufacturing assumptions explicit along the way. The cell results differed from the customer’s initial expectations. Rather than treating that gap as the end of the project, we examined the design and assumptions with the team to identify what needed to change. The collaboration took the concept into a larger-cell validation platform and produced evidence to guide the next iteration."
-  },
+  }
+];
+
+// Preserve previously shared URLs while awaiting the internal business numbers.
+export const unnumberedCases = [
   {
     "id": "repeat-polymer-synthesis",
     "title": "Repeat polymer synthesis for continued material development",
@@ -150,8 +137,7 @@ export const cases = [
     "deliverable": "Polymer material batches",
     "serviceId": "polymer-resin-synthesis",
     "serviceName": "Polymer & resin synthesis",
-    "story": "A research team needed repeated batches of a custom polymer for its continuing material-development work. JAFORD organized the synthesis with specialist partners and carried the material requirement through to batch delivery. The team received the polymer material needed for further investigation, making repeated custom synthesis a practical part of its ongoing research.",
-    "projectCode": "PFMXX"
+    "story": "A research team needed repeated batches of a custom polymer for its continuing material-development work. JAFORD organized the synthesis with specialist partners and carried the material requirement through to batch delivery. The team received the polymer material needed for further investigation, making repeated custom synthesis a practical part of its ongoing research."
   },
   {
     "id": "resin-batch-11kg",
@@ -164,7 +150,10 @@ export const cases = [
     "deliverable": "11 kg of resin",
     "serviceId": "polymer-resin-synthesis",
     "serviceName": "Polymer & resin synthesis",
-    "story": "A custom resin project required material at a scale beyond small-sample preparation. JAFORD worked with synthesis partners to organize a larger batch and carry the material requirement through to delivery. The team received 11 kg of custom resin, making a kilogram-scale quantity available for its next stage of development and further work with the material.",
-    "projectCode": "PFMXX"
+    "story": "A custom resin project required material at a scale beyond small-sample preparation. JAFORD worked with synthesis partners to organize a larger batch and carry the material requirement through to delivery. The team received 11 kg of custom resin, making a kilogram-scale quantity available for its next stage of development and further work with the material."
   }
 ];
+
+export const caseAliases = {
+  "electrolyte-validation-platform": "small-batch-dry-pouch-cells",
+};

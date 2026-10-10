@@ -107,3 +107,10 @@ Business 12 describes an achieved experimental objective after formation-process
 The older battery accounts use PBTXX until internal-number mapping is confirmed. The older synthesis accounts retain their URLs and use PFMXX; the owner confirmed these are separate projects from businesses 14 and 16, so they remain independently displayed. Homepage display order alternates research areas where practical; codes never follow display order.
 
 The owner approved the new slogan “We scale up innovation” and requested sample statistics for layout exploration: 15 countries/regions, 32 research teams, 109 projects delivered. All three figures are illustrative, not verified operating data, and are visibly identified as such. No savings metric is displayed.
+
+
+## Reconciled earlier project references
+
+The owner identified the two earlier dry-pouch/electrolyte orders as one internal project 17.1. They are now one story under PBT017; the old electrolyte URL redirects to the retained pouch-cell story. PBT018 is the resin-to-hard-carbon account; PBT042 is the NFM sodium-ion validation account, distinct from NFPP project PBT012. Only identity, grouping and the plain-language narrative were updated. Confidential process conditions, formulations, requested energy-density targets and unverified quantities remain off the website.
+
+The older repeat-polymer and 11 kg resin cases have no provided internal numbers. Their stories remain available at existing URLs, without a code, while homepage and index listings exclude them pending mapping. This supersedes prior XX placeholder instructions. No internal identifier is invented to fill the gap.

@@ -1,4 +1,4 @@
-import { cases } from "./cases.js";
+import { cases, unnumberedCases, caseAliases } from "./cases.js";
 import { technologies, areaAliases } from "./technologies.js";
 import { products, services } from "./catalog.js";
 import {
@@ -203,12 +203,17 @@ function renderRoute(focus = false) {
     location.replace(`#/technologies/${areaAliases[oldArea]}${query ? `?${query}` : ""}`);
     return;
   }
+  const oldCase = path.startsWith("/cases/") ? path.slice("/cases/".length) : null;
+  if (caseAliases[oldCase]) {
+    location.replace(`#/cases/${caseAliases[oldCase]}${query ? `?${query}` : ""}`);
+    return;
+  }
   const params = new URLSearchParams(query);
   if (areaAliases[params.get("area")]) params.set("area", areaAliases[params.get("area")]);
   const area = technologies.find((t) => path === `/technologies/${t.id}`);
   const product = products.find((p) => path === `/products/${p.id}`);
   const service = services.find((s) => path === `/services/${s.id}`);
-  const caseItem = cases.find((item) => path === `/cases/${item.id}`);
+  const caseItem = [...cases, ...unnumberedCases].find((item) => path === `/cases/${item.id}`);
   let html;
   let title = "JAFORD";
   if (area) {

@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
-import { cases } from "../src/cases.js";
+import { cases, unnumberedCases } from "../src/cases.js";
 
 test("case stories retain their URLs and show the narrative without promotional panels", async ({ page }) => {
   await page.goto("/#/cases");
-  await page.locator('.completed-project-list a[href="#/cases/resin-batch-11kg"]').first().click();
+  await page.locator('.completed-project-list a').first().click();
   for (const item of cases) {
     await page.goto(`/#/cases/${item.id}`);
     await page.reload();
@@ -42,10 +42,10 @@ test("homepage case collection scrolls and opens the new validation stories", as
   await expect(track.locator(".case-meta")).toHaveCount(0);
   await expect(page.locator("main > section").nth(1)).toHaveAttribute("id", "project-cases");
   await expect(track.locator(".project-code")).toHaveText(cases.map(item => item.projectCode));
-  const confirmedCodes = cases.map(item => item.projectCode).filter(code => !code.endsWith("XX"));
-  expect(confirmedCodes.sort()).toEqual(["PBT005", "PBT012", "PBT040", "PBT054", "PFM014", "PFM016", "PFM044"]);
+  const confirmedCodes = cases.map(item => item.projectCode);
+  expect(confirmedCodes.sort()).toEqual(["PBT005", "PBT012", "PBT017", "PBT018", "PBT040", "PBT042", "PBT054", "PFM014", "PFM016", "PFM044"]);
   expect(new Set(confirmedCodes).size).toBe(confirmedCodes.length);
-  for (const item of cases) expect(item.projectCode).toMatch(/^(PBT|PFM)(\d{3}|XX)$/);
+  for (const item of cases) expect(item.projectCode).toMatch(/^(PBT|PFM)\d{3}$/);
   await expect(page.getByRole("button",{name:"Previous cases",exact:true})).toBeDisabled();
   await page.getByRole("button",{name:"Next cases",exact:true}).click();
   await expect.poll(()=>track.evaluate(el=>el.scrollLeft)).toBeGreaterThan(50);
@@ -64,4 +64,25 @@ test("homepage case collection scrolls and opens the new validation stories", as
   await expect(page.locator(".case-summary")).toHaveCount(cases.length);
   await expect(page.locator("main")).not.toContainText("400 Wh/kg");
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
+});
+
+
+test("merged orders use one case and unnumbered legacy URLs remain available", async ({page}) => {
+  await page.goto("/#/cases/electrolyte-validation-platform");
+  await expect(page).toHaveURL(/#\/cases\/small-batch-dry-pouch-cells$/);
+  await expect(page.locator(".project-code")).toHaveText("PBT017");
+  await expect(page.locator(".case-narrative")).toContainText("two related orders");
+  await expect(page.locator(".case-narrative")).toContainText("electrolyte");
+  for (const item of unnumberedCases) {
+    await page.goto(`/#/cases/${item.id}`);
+    await expect(page.locator("h1")).toHaveText(item.title);
+    await expect(page.locator(".project-code")).toHaveCount(0);
+  }
+  for (const route of ["/", "/#/cases"]) {
+    await page.goto(route);
+    await expect(page.locator(".case-summary")).toHaveCount(10);
+    for (const item of unnumberedCases) await expect(page.locator(`.case-summary a[href="#/cases/${item.id}"]`)).toHaveCount(0);
+    await expect(page.locator('.case-summary a[href="#/cases/electrolyte-validation-platform"]')).toHaveCount(0);
+    await expect(page.locator("main")).not.toContainText("XX");
+  }
 });
