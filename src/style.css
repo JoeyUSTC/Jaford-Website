@@ -1529,3 +1529,23 @@ h1[tabindex="-1"]:focus,
 .spec-dialog h3 { font-size: 1rem; margin: 1.5rem 0 .75rem; }
 .spec-dialog p { margin: .75rem 0; }
 .spec-close { background: var(--surface); }
+
+.region-stat { position: relative; }
+.region-trigger { padding: 0; border: 0; color: inherit; background: transparent; font: inherit; text-align: left; cursor: pointer; }
+.regions-popup { position: absolute; z-index: 10; top: calc(100% - 2px); left: 0; width: min(300px, calc(100vw - 48px)); padding: 20px; border: 1px solid var(--line); background: var(--surface); box-shadow: 0 8px 24px #24364a18; color: var(--ink); }
+.regions-popup h2 { margin: 0 0 12px; color: var(--brand-blue); font-size: 16px; }
+.regions-popup ul { margin: 0; padding: 0; list-style: none; }
+.regions-popup li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 5px 0; font-size: 14px; }
+.regions-popup small { color: var(--muted); font-size: 11px; }
+.regions-popup p { margin: 12px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.social-presence { padding-bottom: 64px; }
+.social-presence h2 { font-size: 20px; margin: 0 0 20px; }
+.social-channels { display: flex; flex-wrap: wrap; gap: 16px 32px; }
+.social-channel { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.social-icon { width: 32px; height: 32px; flex-shrink: 0; }
+.social-wechat { fill: var(--surface); stroke: #278a51; stroke-width: 1.6; }
+.social-wechat circle { fill: #278a51; stroke: none; }
+.social-x { fill: var(--ink); }
+.social-taobao { fill: none; stroke: #dc6628; stroke-width: 2; }
+.social-pending { margin: 16px 0 0; color: var(--muted); font-size: 12px; }
+@media (max-width: 640px) { .social-channels { flex-direction: column; } }

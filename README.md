@@ -82,3 +82,7 @@ Contact Us in the header and footer opens `#/contact`, which reuses the unchange
 ## Specification maintenance
 
 `src/spec-data.js` records researched options, source URLs and reference facts. `src/specifications.js` derives the complete model/type registry. Regenerate checked-in `public/specs/*.pdf` using `python scripts/generate-specs.py` with Python ReportLab installed. Normal CI builds serve these files without Python. Reference source URLs are printed as attribution, not visitor navigation links. Old model detail URLs resolve to their family pages. See `docs/spec-sources.md`.
+
+## Contact presence
+
+`src/contact-presence.js` maintains alphabetized contact/enquiry regions and social channel identities. The homepage countries/regions statistic opens a small pointer/keyboard/touch panel; extra enquiry destinations do not imply historical project coverage. The independent Contact Us page previews WeChat Official Account, X (Twitter) and Taobao. No account links or QR code have been supplied, so these identities are deliberately non-interactive pending real destinations. The shared form and footer are unchanged.

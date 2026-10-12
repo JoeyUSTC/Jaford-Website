@@ -292,6 +292,33 @@ function renderRoute(focus = false) {
   document.querySelector("#main").innerHTML = html;
   document.title = title;
   animateStats();
+  const regionStat = document.querySelector(".region-stat");
+  if (regionStat) {
+    const trigger = regionStat.querySelector(".region-trigger");
+    const popup = regionStat.querySelector(".regions-popup");
+    const setOpen = open => {
+      trigger.setAttribute("aria-expanded", String(open));
+      popup.hidden = !open;
+    };
+    const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
+    trigger.addEventListener("click", event => setOpen(hover.matches && event.detail > 0 ? true : popup.hidden));
+    regionStat.addEventListener("mouseenter", () => { if (hover.matches) setOpen(true); });
+    regionStat.addEventListener("mouseleave", () => { if (hover.matches) setOpen(false); });
+    regionStat.addEventListener("focusout", event => {
+      if (!regionStat.contains(event.relatedTarget)) setOpen(false);
+    });
+    const dismiss = event => {
+      if (event.type === "keydown" && event.key === "Escape") setOpen(false);
+      if (event.type === "click" && !regionStat.contains(event.target)) setOpen(false);
+    };
+    document.addEventListener("keydown", dismiss);
+    document.addEventListener("click", dismiss);
+    window.addEventListener("hashchange", () => {
+      document.removeEventListener("keydown", dismiss);
+      document.removeEventListener("click", dismiss);
+    }, {once: true});
+  }
+
   const track = document.querySelector("#case-track");
   if (track) {
     const previous = document.querySelector('[data-case-scroll="-1"]');

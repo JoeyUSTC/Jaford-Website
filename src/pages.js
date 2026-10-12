@@ -1,3 +1,4 @@
+import { enquiryRegions, socialChannels } from "./contact-presence.js";
 import { optionsFor } from "./specifications.js";
 import { cases } from "./cases.js";
 import { productImages } from "./product-images.js";
@@ -57,10 +58,10 @@ export function caseDetail(item) {
 const contactForm = (standalone = false) =>
   `<section class="section container home-contact" id="contact">${standalone ? '<h1 tabindex="-1">Contact Us</h1>' : "<h2>Contact Us</h2>"}<form id="home-contact-form" class="simple-contact-form"><div class="contact-field"><label for="contact-name"><span aria-hidden="true">*</span> Your Name</label><input id="contact-name" name="name" autocomplete="name" required maxlength="120"></div><div class="contact-field"><label for="contact-email"><span aria-hidden="true">*</span> E-Mail Address</label><input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="200"></div><div class="contact-field"><label for="contact-enquiry"><span aria-hidden="true">*</span> Enquiry</label><textarea id="contact-enquiry" name="enquiry" required minlength="10" maxlength="5000" rows="6"></textarea></div><div class="contact-form-actions"><button class="button button-outline" type="submit">Prepare email</button></div></form><p class="contact-direct">or email <a href="mailto:kiki.li@jaford.com">kiki.li@jaford.com</a></p></section>`;
 export function contactPage() {
-  return contactForm(true);
+  return contactForm(true) + socialPresence();
 }
 export function home() {
-  return `<section class="container scale-intro" aria-labelledby="scale-title"><h1 id="scale-title" tabindex="-1">We Scale Innovation</h1><div class="impact-preview"><dl class="impact-stats"><div><dt>Countries & regions</dt><dd data-count-target="9">9</dd></div><div><dt>Research teams</dt><dd data-count-target="20">20</dd></div><div><dt>Projects delivered</dt><dd data-count-target="88">88</dd></div></dl></div></section>
+  return `<section class="container scale-intro" aria-labelledby="scale-title"><h1 id="scale-title" tabindex="-1">We Scale Innovation</h1><div class="impact-preview"><dl class="impact-stats"><div class="region-stat"><dt><button type="button" class="region-trigger" aria-expanded="false" aria-controls="regions-popup">Countries & regions</button><div id="regions-popup" class="regions-popup" role="region" aria-labelledby="regions-title" hidden><h2 id="regions-title">Contact & enquiry regions</h2><ul>${enquiryRegions.map(region => `<li><span>${e(region.name)}</span>${region.established ? "" : `<small>Enquiries welcome</small>`}</li>`).join("")}</ul><p>Contact locations and additional enquiry destinations.</p></div></dt><dd data-count-target="9">9</dd></div><div><dt>Research teams</dt><dd data-count-target="20">20</dd></div><div><dt>Projects delivered</dt><dd data-count-target="88">88</dd></div></dl></div></section>
   ${homeCases()}
   ${technologies.map(area => homeSector(area.id, area.name, featuredItemsForArea(area).map(({kind, item}) => [area.homeLabels?.[item.id] || item.name, kind === "product" ? productURL(item.id, area.id) : serviceURL(item.id, area.id), kind === "product" ? item.image || item.id : item.image || serviceArtwork[item.id], item.preview || ""]), area.homeDescription || "")).join("")}
   ${contactForm()}`;
@@ -145,3 +146,13 @@ export function specContent(spec) {
 export function notFound() {
   return `${header("JAFORD", "Page not found", "This product or service link is not in the current catalog.")}<div class="container detail-next">${link("#/products", "Browse products")}${link("#/services", "Browse services")}</div>`;
 }
+
+const socialIcon = icon => {
+  const shapes = {
+    wechat: '<path d="M14 5c-6 0-11 3.8-11 8.5 0 2.6 1.5 5 4 6.5l-1 4 4-2.2c1.3.4 2.6.6 4 .6 6 0 11-3.8 11-8.5S20 5 14 5Z"/><path d="M22 15c-5 0-9 3-9 6.8s4 6.8 9 6.8c1.2 0 2.3-.2 3.4-.5l3.4 1.8-.8-3.3c2-1.2 3-2.9 3-4.8 0-3.8-4-6.8-9-6.8Z"/><circle cx="10" cy="12" r="1"/><circle cx="17" cy="12" r="1"/><circle cx="19" cy="21" r=".8"/><circle cx="25" cy="21" r=".8"/>',
+    x: '<path d="M5 4h6l7 9 8-9h3L20 15l10 13h-6l-8-10-9 10H4l10-12L5 4Zm4 2 16 20h2L11 6Z"/>',
+    taobao: '<rect x="5" y="10" width="24" height="20" rx="4"/><path d="M11 10V8a6 6 0 0 1 12 0v2M11 16h12M17 16v9"/>',
+  };
+  return `<svg class="social-icon social-${icon}" viewBox="0 0 34 34" aria-hidden="true" focusable="false">${shapes[icon]}</svg>`;
+};
+const socialPresence = () => `<section class="container social-presence" aria-labelledby="social-title"><h2 id="social-title">Social channels</h2><div class="social-channels">${socialChannels.map(channel => `<div class="social-channel">${socialIcon(channel.icon)}<span>${e(channel.name)}</span></div>`).join("")}</div><p class="social-pending">Account links coming soon.</p></section>`;
