@@ -146,3 +146,7 @@ The owner confirmed contact locations in Saudi Arabia, Malaysia, Singapore, the 
 ## 2026-10-12 custom 3D printing capability
 
 The owner confirmed custom high-precision 3D printing of components, including furniture components, frames and accessories. The capability is placed under Custom R&D, with a seventh homepage card and a matching directory/detail entry. Existing services and all six former featured entries remain available. Design-dependent material, fit, finish and precision are described without invented process technologies, machine ownership, manufacturing scales or numerical tolerances. `public/specs/service-custom-3d-printing-0.pdf` is a capability profile derived from the owner's scope, not a measured-performance datasheet.
+
+## Region panel refinement
+
+The owner requested an obvious hover/click cue and a list-only popup. The Countries & regions label now has a blue dropdown chevron and subtle dotted underline; expansion reverses the chevron. Visible popup headings, enquiry badges and explanatory text are removed. The seven alphabetized names and internal provenance remain unchanged; no new coverage claim or statistic is added.

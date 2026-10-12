@@ -1531,13 +1531,13 @@ h1[tabindex="-1"]:focus,
 .spec-close { background: var(--surface); }
 
 .region-stat { position: relative; }
-.region-trigger { padding: 0; border: 0; color: inherit; background: transparent; font: inherit; text-align: left; cursor: pointer; }
-.regions-popup { position: absolute; z-index: 10; top: calc(100% - 2px); left: 0; width: min(300px, calc(100vw - 48px)); padding: 20px; border: 1px solid var(--line); background: var(--surface); box-shadow: 0 8px 24px #24364a18; color: var(--ink); }
-.regions-popup h2 { margin: 0 0 12px; color: var(--brand-blue); font-size: 16px; }
+.region-trigger { display: inline-flex; align-items: center; gap: 5px; padding: 0 0 2px; border: 0; border-bottom: 1px dotted currentColor; color: inherit; background: transparent; font: inherit; text-align: left; cursor: pointer; }
+.region-chevron { width: 12px; height: 12px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.region-trigger[aria-expanded="true"] .region-chevron { transform: rotate(180deg); }
+.region-trigger:hover, .region-trigger:focus-visible { border-bottom-style: solid; }
+.regions-popup { position: absolute; z-index: 10; top: calc(100% - 2px); left: 0; width: min(220px, calc(100vw - 48px)); padding: 20px; border: 1px solid var(--line); background: var(--surface); box-shadow: 0 8px 24px #24364a18; color: var(--ink); }
 .regions-popup ul { margin: 0; padding: 0; list-style: none; }
 .regions-popup li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 5px 0; font-size: 14px; }
-.regions-popup small { color: var(--muted); font-size: 11px; }
-.regions-popup p { margin: 12px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
 .social-presence { padding-bottom: 64px; }
 .social-presence h2 { font-size: 20px; margin: 0 0 20px; }
 .social-channels { display: flex; flex-wrap: wrap; gap: 16px 32px; }
