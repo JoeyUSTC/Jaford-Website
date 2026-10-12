@@ -1,3 +1,4 @@
+import { specFields } from "./spec-fields.js";
 import { products, services } from "./catalog.js";
 import { materialOptions, analogs } from "./spec-data.js";
 
@@ -12,6 +13,7 @@ export function optionsFor(item, kind = "product") {
     const spec = {
       id, family: item.name, name: option.name, use: option.use || item.description,
       fields: rows, reference,
+      tableFields: specFields(item, option, kind),
       scope: kind === "service" && !option.source ? item.scope || [] : [],
       note: option.note || item.note || "",
       pdf: `specs/${id}.pdf`,

@@ -92,12 +92,6 @@ document.addEventListener("click", (event) => {
     document.body.classList.add("dialog-open");
     return;
   }
-  if (event.target.closest("[data-pdf-preview]")) {
-    const preview = specDialog.querySelector(".pdf-preview");
-    preview.hidden = !preview.hidden;
-    event.target.textContent = preview.hidden ? "Preview PDF" : "Hide PDF";
-    return;
-  }
   const button = event.target.closest("[data-inquiry]");
   if (!button) return;
   homeContactSource = null;

@@ -150,3 +150,7 @@ The owner confirmed custom high-precision 3D printing of components, including f
 ## Region panel refinement
 
 The owner requested an obvious hover/click cue and a list-only popup. The Countries & regions label now has a blue dropdown chevron and subtle dotted underline; expansion reverses the chevron. Visible popup headings, enquiry badges and explanatory text are removed. The seven alphabetized names and internal provenance remain unchanged; no new coverage claim or statistic is added.
+
+## Model bullet and specification-table refinement
+
+The owner requested every model/type as a bullet with an inline Spec action, and only a two-column specification table in the floating dialog. Existing families, model/type counts, routes, images and category cards remain. Descriptive reference sections and PDF controls are removed from the dialog; PDFs remain at their old URLs with synchronized tables. All 95 options were checked for applicability of their values. Unknown electrolyte composition/performance is not filled using the earlier MTI reference formula. Sources, field definitions, exact-model search attempts and missing data are documented in docs/spec-audit.md/json. Published material identities and specific manufacturer-model data may be shown; no generic source is represented as the supplied batch's measured properties.

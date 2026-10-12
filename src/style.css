@@ -1504,30 +1504,22 @@ h1[tabindex="-1"]:focus,
 .capability-card .module-content { display: flex; flex-direction: column; }
 .capability-card .module-cta { margin-top: auto; }
 .model-options { margin-top: 2rem; }
-.model-option { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line, #d8d6ce); }
-.model-option h3 { margin: 0; font-size: 1.1rem; }
-.model-option p { margin: .5rem 0 0; }
-.model-option .button { flex-shrink: 0; }
-.spec-dialog { width: min(850px, calc(100% - 32px)); max-height: 90dvh; padding: 2.5rem; border: 1px solid #d8d6ce; background: #faf8f2; color: #222; overflow: auto; }
+.model-list { margin: 1rem 0 0; padding-left: 1.3rem; list-style: disc; }
+.model-option { display: list-item; padding: .45rem 0; border: 0; line-height: 1.7; }
+.model-name { overflow-wrap: anywhere; }
+.spec-link { display: inline; margin-left: 1.5rem; padding: 0; border: 0; background: transparent; color: var(--brand-blue); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.spec-link:hover { text-decoration-thickness: 2px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.spec-dialog { width: min(680px, calc(100% - 32px)); max-height: 90dvh; padding: 1.5rem; border: 1px solid #d8d6ce; background: #faf8f2; color: #222; overflow: auto; }
 .spec-dialog::backdrop { background: #14223580; }
 .spec-close { position: sticky; top: 0; display: block; margin-left: auto; font-size: 1.8rem; background: #faf8f2; border: 0; cursor: pointer; }
-.spec-dialog h2 { margin-top: 0; padding-right: 1rem; }
 .spec-table { width: 100%; }
 .spec-table th, .spec-table td { overflow-wrap: anywhere; }
-.spec-source { overflow-wrap: anywhere; font-size: .85rem; }
-.reference-spec { margin-top: 2rem; }
-.spec-actions { display: flex; align-items: center; gap: 1.5rem; }
-.pdf-preview object { width: 100%; height: 65dvh; margin-top: 1rem; }
 @media (max-width: 600px) {
   .spec-dialog { padding: 1rem; }
-  .model-option { gap: .75rem; }
-  .model-option .button { padding: .65rem .8rem; }
   .spec-table th { width: 40%; }
 }
 .spec-dialog { font-family: inherit; line-height: 1.65; background: var(--surface); color: var(--ink); }
-.spec-dialog h2 { color: var(--brand-blue); font-size: 1.4rem; line-height: 1.35; margin-bottom: 1rem; }
-.spec-dialog h3 { font-size: 1rem; margin: 1.5rem 0 .75rem; }
-.spec-dialog p { margin: .75rem 0; }
 .spec-close { background: var(--surface); }
 
 .region-stat { position: relative; }
@@ -1551,3 +1543,7 @@ h1[tabindex="-1"]:focus,
 @media (max-width: 640px) { .social-channels { flex-direction: column; } }
 
 @media (min-width: 1280px) { #custom-rd .sector-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); } }
+
+.spec-dialog .spec-table { margin: 0; table-layout: fixed; }
+.spec-dialog .spec-table th { width: 42%; }
+.spec-dialog .spec-table td { width: 58%; }

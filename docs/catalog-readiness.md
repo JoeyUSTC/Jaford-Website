@@ -79,3 +79,7 @@ Eight family-level pages are now browsable. Model specifications remain absent u
 ## 2026-10-10 reference profiles
 
 The owner authorized sourced reference specs, model/type grouping and in-page View Spec dialogs. Every displayed model/type now has an original local PDF profile. These files supplement, rather than replace, the missing approved supplier/batch datasheets listed above. Reference fields are attributed separately from owner-confirmed catalog facts; no grade chemistry, cutoff or measured performance is inferred from a model designation. See `docs/spec-sources.md` and the shared `src/specifications.js` registry. Old product URLs resolve to the new family pages without deleting original model records.
+
+## 2026-10-12 exact-model table audit
+
+The owner now requests bullet model lists and a table-only Spec dialog. Public tables exclude unrelated comparable-product formulations/performance. All 95 options are audited in `docs/spec-audit.md` and `docs/spec-audit.json`. Full-code/variant/supplier-clue searches did not locate reliable specifications for QMS029D or XYSS-DGHYKJ118. Their salt/solvent/additive formulation, water/HF limits, conductivity and density remain outstanding. EMF10 has an Edwards candidate, but brand/element/assembly matching is unconfirmed; UN050 is not assigned Amicon's cutoff, JONE-174 is not assigned PVDF chemistry, and a generic reactor is not assigned IKA's glass grade. Formal supplier/batch specifications listed above are still required for acceptance values.

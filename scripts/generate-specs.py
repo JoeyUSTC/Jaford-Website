@@ -51,22 +51,7 @@ for spec in registry:
     destination.parent.mkdir(parents=True, exist_ok=True)
     document = SimpleDocTemplate(str(destination), pagesize=A4, leftMargin=45, rightMargin=45,
                                  topMargin=40, bottomMargin=40, title=f'{spec["family"]} — {spec["name"]}', author="JAFORD")
-    story = [paragraph("JAFORD · Technical profile", "Heading2"), paragraph(spec["family"], "Heading1"),
-             paragraph(spec["name"], "Heading2"), paragraph(spec["use"]), Spacer(1, 16),
-             paragraph("Catalog information", "Heading2"), table(spec["fields"])]
-    if spec.get("reference"):
-        ref = spec["reference"]
-        story += [Spacer(1, 16), paragraph("Reference specification", "Heading2"),
-                  paragraph("Published reference information, not JAFORD batch measurements or guaranteed acceptance limits. Analog specifications do not establish the formulation or performance of a different model."),
-                  Spacer(1, 8), table(ref["fields"]), Spacer(1, 12),
-                  paragraph("Source: " + ref["source"]["title"]), paragraph(ref["source"]["url"]),
-                  paragraph("Reviewed: " + ref["source"]["reviewed"])]
-    if spec.get("scope"):
-        story += [Spacer(1, 12), paragraph("Development / testing scope", "Heading2")]
-        story += [paragraph(point) for point in spec["scope"]]
-    if spec.get("note"):
-        story += [Spacer(1, 12), paragraph(spec["note"])]
-    story += [Spacer(1, 16), paragraph("Catalog facts: owner-supplied JAFORD product and capability brief. A technical profile is not a batch certificate, safety data sheet or measured performance report."),
-              paragraph("Reference revision: 2026-10-10 · " + spec["id"])]
+    story = [paragraph("JAFORD · Specifications", "Heading2"), paragraph(spec["family"], "Heading1"),
+             paragraph(spec["name"], "Heading2"), Spacer(1, 12), table(spec["tableFields"])]
     document.build(story)
 print(f"Generated {len(registry)} local specification PDFs.")

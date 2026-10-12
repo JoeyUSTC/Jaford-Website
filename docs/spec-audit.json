@@ -1,0 +1,1084 @@
+[
+  {
+    "id": "product-fuel-membranes-0",
+    "family": "Membranes",
+    "model": "Membranes",
+    "publicFields": {
+      "Model / type": "Membranes",
+      "Type": "Ion-exchange membrane",
+      "Application": "Fuel-cell and water-electrolysis research"
+    },
+    "previousReference": "Chemours — Nafion sulfonic membranes"
+  },
+  {
+    "id": "product-fuel-gas-diffusion-layers-0",
+    "family": "Gas diffusion layers",
+    "model": "Gas diffusion layers",
+    "publicFields": {
+      "Model / type": "Gas diffusion layers",
+      "Type": "Gas diffusion layer",
+      "Function": "Reactant transport and electrical contact"
+    },
+    "previousReference": "Fuel Cell Store — Sigracet 28 BC reference"
+  },
+  {
+    "id": "product-fuel-mea-0",
+    "family": "Membrane electrode assemblies (MEA)",
+    "model": "Membrane electrode assemblies (MEA)",
+    "publicFields": {
+      "Model / type": "Membrane electrode assemblies (MEA)",
+      "Type": "Membrane electrode assembly",
+      "Structure": "Integrated membrane and electrode layers"
+    },
+    "previousReference": "Fuel Cells Etc — component and assembly development"
+  },
+  {
+    "id": "product-fuel-ccm-0",
+    "family": "Catalyst-coated membranes (CCM)",
+    "model": "Catalyst-coated membranes (CCM)",
+    "publicFields": {
+      "Model / type": "Catalyst-coated membranes (CCM)",
+      "Type": "Catalyst-coated membrane",
+      "Coating": "Catalyst layers applied directly to the membrane"
+    },
+    "previousReference": "Fuel Cells Etc — component and assembly development"
+  },
+  {
+    "id": "product-fuel-electrocatalysts-0",
+    "family": "Electrocatalysts",
+    "model": "Electrocatalysts",
+    "publicFields": {
+      "Model / type": "Electrocatalysts",
+      "Application": "Hydrogen evolution, oxygen evolution and carbon-dioxide reduction research"
+    },
+    "previousReference": "Fuel Cells Etc — components and manufacturing"
+  },
+  {
+    "id": "product-fuel-flow-field-plates-0",
+    "family": "Flow-field plates",
+    "model": "Flow-field plates",
+    "publicFields": {
+      "Model / type": "Flow-field plates",
+      "Function": "Reactant distribution in fuel-cell and electrolyzer assemblies"
+    },
+    "previousReference": "Fuel Cells Etc — components and manufacturing"
+  },
+  {
+    "id": "product-fuel-gaskets-seals-0",
+    "family": "Gaskets & seals",
+    "model": "Gaskets & seals",
+    "publicFields": {
+      "Model / type": "Gaskets & seals",
+      "Function": "Sealing fuel-cell and electrolyzer assemblies"
+    },
+    "previousReference": "Fuel Cells Etc — component and assembly development"
+  },
+  {
+    "id": "product-fuel-ccs-0",
+    "family": "Catalyst-coated substrates (CCS)",
+    "model": "Catalyst-coated substrates (CCS)",
+    "publicFields": {
+      "Model / type": "Catalyst-coated substrates (CCS)",
+      "Type": "Catalyst-coated substrate",
+      "Structure": "Catalyst layer on a selected support"
+    },
+    "previousReference": "Fuel Cells Etc — component and assembly development"
+  },
+  {
+    "id": "product-hard-carbon-0",
+    "family": "Hard Carbon",
+    "model": "Resin-Derived Hard Carbon",
+    "publicFields": {
+      "Model / type": "Resin-Derived Hard Carbon",
+      "Feedstock type": "Resin-derived",
+      "Application": "Sodium-ion battery anode research"
+    },
+    "previousReference": "MTI — SIB-BHC300 hard carbon reference"
+  },
+  {
+    "id": "product-hard-carbon-1",
+    "family": "Hard Carbon",
+    "model": "Biomass-Derived Hard Carbon",
+    "publicFields": {
+      "Model / type": "Biomass-Derived Hard Carbon",
+      "Feedstock type": "Biomass-derived",
+      "Application": "Sodium-ion battery anode research"
+    },
+    "previousReference": "Nature Communications — wood-derived hard carbon (2023)"
+  },
+  {
+    "id": "product-spherical-porous-carbon-0",
+    "family": "Spherical porous carbon",
+    "model": "Alkali-activated",
+    "publicFields": {
+      "Model / type": "Alkali-activated",
+      "Activation type": "Alkali-activated",
+      "Application": "Carbon host for silicon deposition"
+    },
+    "previousReference": "Shengquan — porous carbon for silicon-carbon anodes"
+  },
+  {
+    "id": "product-spherical-porous-carbon-1",
+    "family": "Spherical porous carbon",
+    "model": "Water-activated",
+    "publicFields": {
+      "Model / type": "Water-activated",
+      "Activation type": "Water-activated",
+      "Application": "Carbon host for silicon deposition"
+    },
+    "previousReference": "Shengquan — porous carbon for silicon-carbon anodes"
+  },
+  {
+    "id": "product-cvd-silicon-carbon-0",
+    "family": "CVD silicon–carbon anode powder",
+    "model": "Spherical, secondary carbon coating",
+    "publicFields": {
+      "Model / type": "Spherical, secondary carbon coating",
+      "Morphology / coating": "Spherical; secondary carbon coating",
+      "Material system": "Silicon-carbon composite",
+      "Application": "Battery anode research"
+    },
+    "previousReference": "MTI — LIB-SC450B silicon-carbon powder reference"
+  },
+  {
+    "id": "product-nfpp-powder-0",
+    "family": "NFPP cathode powder",
+    "model": "NFPP",
+    "publicFields": {
+      "Model / type": "NFPP",
+      "Material": "NFPP",
+      "Material identity": "NFPP",
+      "Chemical formula": "Na4Fe3(PO4)2P2O7",
+      "Application": "Sodium-ion cathode research"
+    },
+    "previousReference": "MTI — sodium-ion research materials and electrodes"
+  },
+  {
+    "id": "product-nfpp-powder-1",
+    "family": "NFPP cathode powder",
+    "model": "Rate-oriented NFPP",
+    "publicFields": {
+      "Model / type": "Rate-oriented NFPP",
+      "Material": "NFPP",
+      "Material identity": "NFPP",
+      "Chemical formula": "Na4Fe3(PO4)2P2O7",
+      "Application": "Sodium-ion cathode research"
+    },
+    "previousReference": "MTI — sodium-ion research materials and electrodes"
+  },
+  {
+    "id": "product-battery-binders-0",
+    "family": "Battery Binders",
+    "model": "AL-3001A",
+    "publicFields": {
+      "Model": "AL-3001A",
+      "Supplier designation": "A&L",
+      "Application": "Negative-electrode binder",
+      "Polymer class": "Styrene-butadiene rubber (SBR)"
+    },
+    "previousReference": "ACS — aqueous SBR binder research"
+  },
+  {
+    "id": "product-battery-binders-1",
+    "family": "Battery Binders",
+    "model": "JONE-174",
+    "publicFields": {
+      "Model": "JONE-174",
+      "Application": "Battery electrode binder"
+    },
+    "previousReference": "Sigma-Aldrich — PVDF membrane material"
+  },
+  {
+    "id": "product-electrolyte-0",
+    "family": "Electrolyte",
+    "model": "QMS029D",
+    "publicFields": {
+      "Model": "QMS029D",
+      "Application": "Battery research electrolyte"
+    },
+    "previousReference": "MTI — SBE-EDE111 sodium-ion electrolyte reference"
+  },
+  {
+    "id": "product-electrolyte-1",
+    "family": "Electrolyte",
+    "model": "XYSS-DGHYKJ118",
+    "publicFields": {
+      "Model": "XYSS-DGHYKJ118",
+      "Application": "Battery research electrolyte"
+    },
+    "previousReference": "MTI — SBE-EDE111 sodium-ion electrolyte reference"
+  },
+  {
+    "id": "product-electrolyte-2",
+    "family": "Electrolyte",
+    "model": "NFM-compatible",
+    "publicFields": {
+      "Model / type": "NFM-compatible",
+      "Application": "NFM sodium-ion systems"
+    },
+    "previousReference": "MTI — SBE-EDE111 sodium-ion electrolyte reference"
+  },
+  {
+    "id": "product-cathode-electrodes-0",
+    "family": "Cathode Electrodes",
+    "model": "NFPP — Single-sided",
+    "publicFields": {
+      "Model / type": "NFPP — Single-sided",
+      "Active material": "NFPP",
+      "Coating sides": "Single-sided"
+    },
+    "previousReference": "MTI — sodium-ion research materials and electrodes"
+  },
+  {
+    "id": "product-cathode-electrodes-1",
+    "family": "Cathode Electrodes",
+    "model": "NFPP — Double-sided",
+    "publicFields": {
+      "Model / type": "NFPP — Double-sided",
+      "Active material": "NFPP",
+      "Coating sides": "Double-sided"
+    },
+    "previousReference": "MTI — sodium-ion research materials and electrodes"
+  },
+  {
+    "id": "product-cathode-electrodes-2",
+    "family": "Cathode Electrodes",
+    "model": "P2 — 7.5 × 5.4 cm, double-sided",
+    "publicFields": {
+      "Model / type": "P2 — 7.5 × 5.4 cm, double-sided",
+      "Dimensions": "7.5 × 5.4 cm",
+      "Coating sides": "Double-sided",
+      "Electrode type": "P2 sodium-ion cathode"
+    },
+    "previousReference": "MTI — sodium-ion research materials and electrodes"
+  },
+  {
+    "id": "product-research-pouch-cells-0",
+    "family": "Research pouch cells",
+    "model": "Sodium-ion — dry cell",
+    "publicFields": {
+      "Model / type": "Sodium-ion — dry cell",
+      "Cell format": "Pouch",
+      "Battery system": "Sodium-ion",
+      "Delivery state": "Dry cell"
+    },
+    "previousReference": "MTI — sodium-ion research materials and electrodes"
+  },
+  {
+    "id": "product-research-pouch-cells-1",
+    "family": "Research pouch cells",
+    "model": "Sodium-ion — filled and formed",
+    "publicFields": {
+      "Model / type": "Sodium-ion — filled and formed",
+      "Cell format": "Pouch",
+      "Battery system": "Sodium-ion",
+      "Delivery state": "Electrolyte-filled and formed"
+    },
+    "previousReference": "MTI — sodium-ion research materials and electrodes"
+  },
+  {
+    "id": "product-research-pouch-cells-2",
+    "family": "Research pouch cells",
+    "model": "Lithium-ion — dry cell",
+    "publicFields": {
+      "Model / type": "Lithium-ion — dry cell",
+      "Cell format": "Pouch",
+      "Battery system": "Lithium-ion",
+      "Delivery state": "Dry cell"
+    },
+    "previousReference": "MTI — sodium-ion research materials and electrodes"
+  },
+  {
+    "id": "product-research-pouch-cells-3",
+    "family": "Research pouch cells",
+    "model": "Lithium-ion — filled and formed",
+    "publicFields": {
+      "Model / type": "Lithium-ion — filled and formed",
+      "Cell format": "Pouch",
+      "Battery system": "Lithium-ion",
+      "Delivery state": "Electrolyte-filled and formed"
+    },
+    "previousReference": "MTI — sodium-ion research materials and electrodes"
+  },
+  {
+    "id": "product-eve-lf100la-0",
+    "family": "EVE LF100LA prismatic cell",
+    "model": "LF100LA",
+    "publicFields": {
+      "Manufacturer designation": "EVE",
+      "Model": "LF100LA",
+      "Format": "Prismatic",
+      "Chemistry": "Lithium iron phosphate (LFP)",
+      "Nominal voltage (published model)": "3.2 V"
+    },
+    "previousReference": "EVE Energy North America — prismatic LFP reference table"
+  },
+  {
+    "id": "product-glass-fiber-1823-047-0",
+    "family": "Glass-fiber filter media 1823-047",
+    "model": "1823-047",
+    "publicFields": {
+      "Model": "1823-047",
+      "Published grade reference": "Whatman GF/D 1823-047",
+      "Diameter (published grade)": "47 mm",
+      "Thickness (published grade)": "0.67 mm",
+      "Pore rating (published grade)": "2.7 µm",
+      "Material (published grade)": "Borosilicate glass microfiber"
+    },
+    "previousReference": "Cytiva — Whatman glass-fibre filtration catalog"
+  },
+  {
+    "id": "product-nickel-sample-boats-0",
+    "family": "Nickel Sample Boats",
+    "model": "Nickel boats",
+    "publicFields": {
+      "Model / type": "Nickel boats",
+      "Material": "Nickel"
+    },
+    "previousReference": null
+  },
+  {
+    "id": "product-nickel-sample-boats-1",
+    "family": "Nickel Sample Boats",
+    "model": "Matching lid",
+    "publicFields": {
+      "Model / type": "Matching lid",
+      "Material": "Nickel"
+    },
+    "previousReference": null
+  },
+  {
+    "id": "product-glass-reactor-2000ml-0",
+    "family": "2,000 mL glass reaction assembly",
+    "model": "2,000 mL",
+    "publicFields": {
+      "Model / type": "2,000 mL",
+      "Volume": "2,000 mL"
+    },
+    "previousReference": "IKA — EasySyn laboratory synthesis reactors"
+  },
+  {
+    "id": "product-emf10-0",
+    "family": "EMF10 filter cartridge",
+    "model": "EMF10",
+    "publicFields": {
+      "Model": "EMF10"
+    },
+    "previousReference": "Millipore — Polygard CC filter reference"
+  },
+  {
+    "id": "product-un050-0",
+    "family": "UN050 ultrafiltration membrane",
+    "model": "UN050",
+    "publicFields": {
+      "Model": "UN050"
+    },
+    "previousReference": "Millipore — Amicon Ultra 50 kDa reference"
+  },
+  {
+    "id": "product-copper-sheet-0",
+    "family": "Laboratory copper sheets",
+    "model": "Laboratory copper sheets",
+    "publicFields": {
+      "Model / type": "Laboratory copper sheets",
+      "Material": "Copper"
+    },
+    "previousReference": "MTI — battery tabs, foils and current collectors"
+  },
+  {
+    "id": "product-check-valve-0",
+    "family": "Laboratory check valves",
+    "model": "Laboratory check valves",
+    "publicFields": {
+      "Model / type": "Laboratory check valves",
+      "Function": "Limit reverse flow in laboratory fluid systems"
+    },
+    "previousReference": "Swagelok — C/CP/CH poppet check valves"
+  },
+  {
+    "id": "product-imperial-reducer-0",
+    "family": "Imperial-size reducing fittings",
+    "model": "Imperial-size reducing fittings",
+    "publicFields": {
+      "Model / type": "Imperial-size reducing fittings",
+      "Function": "Connect differing tubing or connection sizes"
+    },
+    "previousReference": "Swagelok — fractional reducing unions"
+  },
+  {
+    "id": "product-adapter-plug-0",
+    "family": "Adapter plugs",
+    "model": "Adapter plugs",
+    "publicFields": {
+      "Model / type": "Adapter plugs",
+      "Function": "Adapt laboratory equipment connector formats"
+    },
+    "previousReference": null
+  },
+  {
+    "id": "product-electrochemical-workstation-0",
+    "family": "Electrochemical Workstation",
+    "model": "CHI600F",
+    "publicFields": {
+      "Model": "CHI600F",
+      "Series": "600F",
+      "Potential control": "+/-10 V",
+      "Continuous current": "+/-250 mA",
+      "AC impedance": "Not included in the model comparison",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 600F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-1",
+    "family": "Electrochemical Workstation",
+    "model": "CHI602F",
+    "publicFields": {
+      "Model": "CHI602F",
+      "Series": "600F",
+      "Potential control": "+/-10 V",
+      "Continuous current": "+/-250 mA",
+      "AC impedance": "Not included in the model comparison",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 600F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-2",
+    "family": "Electrochemical Workstation",
+    "model": "CHI604F",
+    "publicFields": {
+      "Model": "CHI604F",
+      "Series": "600F",
+      "Potential control": "+/-10 V",
+      "Continuous current": "+/-250 mA",
+      "AC impedance": "Included; 0.00001 Hz to 3 MHz",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 600F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-3",
+    "family": "Electrochemical Workstation",
+    "model": "CHI610F",
+    "publicFields": {
+      "Model": "CHI610F",
+      "Series": "600F",
+      "Potential control": "+/-10 V",
+      "Continuous current": "+/-250 mA",
+      "AC impedance": "Not included in the model comparison",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 600F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-4",
+    "family": "Electrochemical Workstation",
+    "model": "CHI620F",
+    "publicFields": {
+      "Model": "CHI620F",
+      "Series": "600F",
+      "Potential control": "+/-10 V",
+      "Continuous current": "+/-250 mA",
+      "AC impedance": "Not included in the model comparison",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 600F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-5",
+    "family": "Electrochemical Workstation",
+    "model": "CHI630F",
+    "publicFields": {
+      "Model": "CHI630F",
+      "Series": "600F",
+      "Potential control": "+/-10 V",
+      "Continuous current": "+/-250 mA",
+      "AC impedance": "Not included in the model comparison",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 600F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-6",
+    "family": "Electrochemical Workstation",
+    "model": "CHI650F",
+    "publicFields": {
+      "Model": "CHI650F",
+      "Series": "600F",
+      "Potential control": "+/-10 V",
+      "Continuous current": "+/-250 mA",
+      "AC impedance": "Included; 0.00001 Hz to 3 MHz",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 600F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-7",
+    "family": "Electrochemical Workstation",
+    "model": "CHI660F",
+    "publicFields": {
+      "Model": "CHI660F",
+      "Series": "600F",
+      "Potential control": "+/-10 V",
+      "Continuous current": "+/-250 mA",
+      "AC impedance": "Included; 0.00001 Hz to 3 MHz",
+      "Galvanostat": "Included"
+    },
+    "previousReference": "CH Instruments — 600F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-8",
+    "family": "Electrochemical Workstation",
+    "model": "CHI700F",
+    "publicFields": {
+      "Model": "CHI700F",
+      "Series": "700F",
+      "Potential control": "+/-10 V for both channels",
+      "Continuous current": "+/-250 mA (sum of the two channels)",
+      "AC impedance": "Not included in the model comparison",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 700F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-9",
+    "family": "Electrochemical Workstation",
+    "model": "CHI710F",
+    "publicFields": {
+      "Model": "CHI710F",
+      "Series": "700F",
+      "Potential control": "+/-10 V for both channels",
+      "Continuous current": "+/-250 mA (sum of the two channels)",
+      "AC impedance": "Not included in the model comparison",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 700F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-10",
+    "family": "Electrochemical Workstation",
+    "model": "CHI720F",
+    "publicFields": {
+      "Model": "CHI720F",
+      "Series": "700F",
+      "Potential control": "+/-10 V for both channels",
+      "Continuous current": "+/-250 mA (sum of the two channels)",
+      "AC impedance": "Not included in the model comparison",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 700F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-11",
+    "family": "Electrochemical Workstation",
+    "model": "CHI730F",
+    "publicFields": {
+      "Model": "CHI730F",
+      "Series": "700F",
+      "Potential control": "+/-10 V for both channels",
+      "Continuous current": "+/-250 mA (sum of the two channels)",
+      "AC impedance": "Not included in the model comparison",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 700F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-12",
+    "family": "Electrochemical Workstation",
+    "model": "CHI750F",
+    "publicFields": {
+      "Model": "CHI750F",
+      "Series": "700F",
+      "Potential control": "+/-10 V for both channels",
+      "Continuous current": "+/-250 mA (sum of the two channels)",
+      "AC impedance": "Included; 0.00001 Hz to 3 MHz",
+      "Galvanostat": "Not included in the model comparison"
+    },
+    "previousReference": "CH Instruments — 700F series specifications and model comparison"
+  },
+  {
+    "id": "product-electrochemical-workstation-13",
+    "family": "Electrochemical Workstation",
+    "model": "CHI760F",
+    "publicFields": {
+      "Model": "CHI760F",
+      "Series": "700F",
+      "Potential control": "+/-10 V for both channels",
+      "Continuous current": "+/-250 mA (sum of the two channels)",
+      "AC impedance": "Included; 0.00001 Hz to 3 MHz",
+      "Galvanostat": "Included"
+    },
+    "previousReference": "CH Instruments — 700F series specifications and model comparison"
+  },
+  {
+    "id": "product-vacuum-sealer-0",
+    "family": "Vacuum sealing machine",
+    "model": "Vacuum sealing machine",
+    "publicFields": {
+      "Model / type": "Vacuum sealing machine",
+      "Process": "Vacuum sealing for laboratory packaging"
+    },
+    "previousReference": "MTI — MSK-115A-L vacuum sealer reference"
+  },
+  {
+    "id": "service-custom-3d-printing-0",
+    "family": "Custom High-Precision 3D Printing",
+    "model": "Custom High-Precision 3D Printing",
+    "publicFields": {
+      "Model / type": "Custom High-Precision 3D Printing",
+      "Capability / application": "Custom 3D-printed components for furniture, frames and accessories, developed around your design and intended use. Material, dimensions, fit, surface finish and printing precision are assessed for each part before production."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-mof-development-0",
+    "family": "MOFs",
+    "model": "ZIF-8",
+    "publicFields": {
+      "Model / type": "ZIF-8",
+      "Metal node": "Zinc",
+      "Linker": "2-Methylimidazolate",
+      "Framework family": "Zeolitic imidazolate framework",
+      "Application": "Porous-material and catalyst-precursor research"
+    },
+    "previousReference": "Sigma-Aldrich — Metal Organic Frameworks"
+  },
+  {
+    "id": "service-mof-development-1",
+    "family": "MOFs",
+    "model": "ZIF-67",
+    "publicFields": {
+      "Model / type": "ZIF-67",
+      "Metal node": "Cobalt",
+      "Linker": "2-Methylimidazolate",
+      "Framework family": "Zeolitic imidazolate framework",
+      "Application": "Cobalt-based porous materials and catalyst precursors"
+    },
+    "previousReference": "Sigma-Aldrich — ZIF-67(Co) material identity"
+  },
+  {
+    "id": "service-mof-development-2",
+    "family": "MOFs",
+    "model": "UiO-66",
+    "publicFields": {
+      "Model / type": "UiO-66",
+      "Metal node": "Zirconium",
+      "Linker": "Terephthalate",
+      "Framework family": "UiO",
+      "Application": "Adsorption, separation and supported-catalyst research"
+    },
+    "previousReference": "Cavka et al. — zirconium-based UiO framework, JACS (2008)"
+  },
+  {
+    "id": "service-mof-development-3",
+    "family": "MOFs",
+    "model": "HKUST-1 (Cu-BTC)",
+    "publicFields": {
+      "Model / type": "HKUST-1 (Cu-BTC)",
+      "Metal node": "Copper",
+      "Linker": "Benzene-1,3,5-tricarboxylate",
+      "Alias": "MOF-199 / Cu-BTC",
+      "Application": "Gas adsorption and coordination-framework research"
+    },
+    "previousReference": "Sigma-Aldrich — Metal Organic Frameworks"
+  },
+  {
+    "id": "service-cof-development-0",
+    "family": "COFs",
+    "model": "COF-5",
+    "publicFields": {
+      "Model / type": "COF-5",
+      "Linkage": "Boronate ester",
+      "Building blocks": "1,4-Benzenediboronic acid and hexahydroxytriphenylene",
+      "Dimensionality": "2D",
+      "Application": "Ordered porous organic framework research"
+    },
+    "previousReference": "Cote et al. — Porous, Crystalline, Covalent Organic Frameworks (2005)"
+  },
+  {
+    "id": "service-cof-development-1",
+    "family": "COFs",
+    "model": "COF-300",
+    "publicFields": {
+      "Model / type": "COF-300",
+      "Linkage": "Imine",
+      "Building blocks": "Tetrakis(4-aminophenyl)methane and terephthaldehyde",
+      "Dimensionality": "3D",
+      "Application": "Three-dimensional porous organic network research"
+    },
+    "previousReference": "Uribe-Romo et al. — imine-linked COF-300 (2009)"
+  },
+  {
+    "id": "service-cof-development-2",
+    "family": "COFs",
+    "model": "TpPa-1",
+    "publicFields": {
+      "Model / type": "TpPa-1",
+      "Linkage": "Beta-ketoenamine",
+      "Building blocks": "Triformylphloroglucinol and p-phenylenediamine",
+      "Dimensionality": "2D",
+      "Application": "Porous frameworks for separation and functionalization research"
+    },
+    "previousReference": "Kandambeth et al. — keto-enamine COFs (2012)"
+  },
+  {
+    "id": "service-functional-polymer-development-0",
+    "family": "Functional polymers",
+    "model": "Polyethylene glycol (PEG)",
+    "publicFields": {
+      "Model / type": "Polyethylene glycol (PEG)",
+      "Polymer class": "Polyether",
+      "CAS identity": "25322-68-3",
+      "Application": "Hydrophilic modifiers, functional derivatives and polymer blends"
+    },
+    "previousReference": "Sigma-Aldrich — polyethylene glycol technical information"
+  },
+  {
+    "id": "service-functional-polymer-development-1",
+    "family": "Functional polymers",
+    "model": "Poly(acrylic acid) (PAA)",
+    "publicFields": {
+      "Model / type": "Poly(acrylic acid) (PAA)",
+      "Functional group": "Carboxylic acid",
+      "CAS identity": "9003-01-4",
+      "Application": "Carboxyl-functional binders, hydrogels and surface modification"
+    },
+    "previousReference": "Sigma-Aldrich — poly(acrylic acid)"
+  },
+  {
+    "id": "service-functional-polymer-development-2",
+    "family": "Functional polymers",
+    "model": "Poly(vinylidene fluoride) (PVDF)",
+    "publicFields": {
+      "Model / type": "Poly(vinylidene fluoride) (PVDF)",
+      "Polymer class": "Fluoropolymer",
+      "Material form": "Polymer / membrane precursor",
+      "Application": "Membrane, coating and electrode-binder development"
+    },
+    "previousReference": "Sigma-Aldrich — PVDF membrane material"
+  },
+  {
+    "id": "service-functional-polymer-development-3",
+    "family": "Functional polymers",
+    "model": "Polyaniline (PANI)",
+    "publicFields": {
+      "Model / type": "Polyaniline (PANI)",
+      "Polymer class": "Conjugated polymer",
+      "Application": "Conducting coatings and electrode-material research",
+      "Electrical behavior": "Depends on oxidation state and doping"
+    },
+    "previousReference": "Sigma-Aldrich — polyaniline emeraldine base"
+  },
+  {
+    "id": "service-resin-development-0",
+    "family": "Resins",
+    "model": "Epoxy resins",
+    "publicFields": {
+      "Model / type": "Epoxy resins",
+      "Reactive chemistry": "Epoxide-functional precursors",
+      "Processing basis": "Formulation and curing system",
+      "Application": "Coatings, adhesives and composite matrices"
+    },
+    "previousReference": "Sigma-Aldrich — specialty polymers and epoxy prepolymers"
+  },
+  {
+    "id": "service-resin-development-1",
+    "family": "Resins",
+    "model": "Ion-exchange resins",
+    "publicFields": {
+      "Model / type": "Ion-exchange resins",
+      "Application": "Ion separation, purification and functional membrane-composite research",
+      "Function": "Ion exchange using functionalized polymer resins"
+    },
+    "previousReference": "Sigma-Aldrich — strongly basic anion-exchange resin"
+  },
+  {
+    "id": "service-ligand-development-0",
+    "family": "Ligands",
+    "model": "2-Methylimidazole — ligands for ZIFs",
+    "publicFields": {
+      "Model / type": "2-Methylimidazole — ligands for ZIFs",
+      "Donor group": "Imidazole nitrogen",
+      "CAS identity": "693-98-1",
+      "Application": "Linker for ZIF-8 and ZIF-67 development"
+    },
+    "previousReference": "Sigma-Aldrich — 2-methylimidazole"
+  },
+  {
+    "id": "service-ligand-development-1",
+    "family": "Ligands",
+    "model": "Terephthalic acid — ligands for UiO frameworks",
+    "publicFields": {
+      "Model / type": "Terephthalic acid — ligands for UiO frameworks",
+      "Donor group": "Carboxylate",
+      "Linker type": "Dicarboxylic acid",
+      "Application": "Carboxylate linker for UiO-66 development"
+    },
+    "previousReference": "Cavka et al. — zirconium-based UiO framework, JACS (2008)"
+  },
+  {
+    "id": "service-ligand-development-2",
+    "family": "Ligands",
+    "model": "Trimesic acid — ligands for Cu-BTC frameworks",
+    "publicFields": {
+      "Model / type": "Trimesic acid — ligands for Cu-BTC frameworks",
+      "Donor group": "Carboxylate",
+      "Linker type": "Tricarboxylic acid",
+      "Application": "Carboxylate linker for HKUST-1 development"
+    },
+    "previousReference": "Sigma-Aldrich — Metal Organic Frameworks"
+  },
+  {
+    "id": "service-ligand-development-3",
+    "family": "Ligands",
+    "model": "2,2'-Bipyridine — ligands for coordination catalysts",
+    "publicFields": {
+      "Model / type": "2,2'-Bipyridine — ligands for coordination catalysts",
+      "Donor group": "Two pyridyl nitrogen atoms",
+      "CAS identity": "366-18-7",
+      "Application": "Chelating ligand for metal complexes and catalysis research"
+    },
+    "previousReference": "Sigma-Aldrich — 2,2'-bipyridine ligand"
+  },
+  {
+    "id": "service-functional-intermediate-development-0",
+    "family": "Functional intermediates",
+    "model": "Functional intermediates",
+    "publicFields": {
+      "Model / type": "Functional intermediates",
+      "Capability / application": "Develop target molecules and intermediates needed for functional-material synthesis. Route evaluation, small-scale preparation and characterization provide a basis for further synthesis and scale-up."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-advanced-membrane-development-0",
+    "family": "Advanced membrane materials",
+    "model": "Advanced membrane materials",
+    "publicFields": {
+      "Model / type": "Advanced membrane materials",
+      "Capability / application": "Explore functional membrane materials around the intended transport, separation or electrochemical application. Material chemistry, preparation and characterization are assessed together before defining samples and development scale."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-sem-tem-characterization-0",
+    "family": "SEM & TEM",
+    "model": "SEM & TEM",
+    "publicFields": {
+      "Model / type": "SEM & TEM",
+      "Capability / application": "Examine material morphology and microstructure using SEM or TEM through specialist laboratories. Sample preparation, imaging conditions and reporting are selected around the material and the research question."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-li-ion-solid-state-testing-0",
+    "family": "Li-ion & solid-state batteries",
+    "model": "Li-ion & solid-state batteries",
+    "publicFields": {
+      "Model / type": "Li-ion & solid-state batteries",
+      "Capability / application": "Evaluate lithium-ion and solid-state cells through agreed cycling, rate and comparative protocols. Fixtures, pressure where relevant, operating conditions and safety requirements are assessed for the cell format."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-pouch-cell-testing-0",
+    "family": "Pouch cell testing",
+    "model": "Pouch cell testing",
+    "publicFields": {
+      "Model / type": "Pouch cell testing",
+      "Capability / application": "Evaluate pouch-cell capacity, cycling and comparative behavior through partner test facilities. Test protocols and cell handling are matched to the development question, with data and curves defined in the agreed scope."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-short-stack-testing-0",
+    "family": "Short-stack testing",
+    "model": "Short-stack testing",
+    "publicFields": {
+      "Model / type": "Short-stack testing",
+      "Capability / application": "Take fuel-cell or electrolyzer validation from individual cells into a short stack. Interfaces, operating conditions and measurement scope are reviewed with partner facilities to assess performance and stability."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-full-stack-testing-0",
+    "family": "Full-stack testing",
+    "model": "Full-stack testing",
+    "publicFields": {
+      "Model / type": "Full-stack testing",
+      "Capability / application": "Evaluate larger fuel-cell and electrolyzer stacks through compatible partner facilities. Stack interfaces, power range, operating envelope and reporting are assessed for each project."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-spectroscopy-characterization-0",
+    "family": "Spectroscopy: XPS, FTIR, Raman & NMR",
+    "model": "Spectroscopy: XPS, FTIR, Raman & NMR",
+    "publicFields": {
+      "Model / type": "Spectroscopy: XPS, FTIR, Raman & NMR",
+      "Capability / application": "Investigate surface chemistry and molecular features using suitable XPS, FTIR, Raman or NMR methods. The analytical approach, sample preparation and interpretation scope are agreed with specialist laboratories for each material."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-xrd-characterization-0",
+    "family": "X-ray diffraction (XRD)",
+    "model": "X-ray diffraction (XRD)",
+    "publicFields": {
+      "Model / type": "X-ray diffraction (XRD)",
+      "Capability / application": "Investigate crystalline structure and phase composition using X-ray diffraction through specialist laboratories. Sample requirements, measurement conditions and the scope of phase analysis are selected around the material and research objective."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-surface-area-characterization-0",
+    "family": "Surface area & porosity",
+    "model": "Surface area & porosity",
+    "publicFields": {
+      "Model / type": "Surface area & porosity",
+      "Capability / application": "Assess surface area and pore characteristics through suitable adsorption measurements, including BET analysis. Sample conditioning, method suitability and the interpretation of results are reviewed for each material."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-thermal-characterization-0",
+    "family": "Thermal analysis",
+    "model": "Thermal analysis",
+    "publicFields": {
+      "Model / type": "Thermal analysis",
+      "Capability / application": "Investigate material behavior under heating through suitable thermal-analysis methods. Sample compatibility, atmosphere, temperature range and reporting scope are agreed with partner laboratories for each project."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-material-characterization-0",
+    "family": "Material characterization",
+    "model": "Material characterization",
+    "publicFields": {
+      "Model / type": "Material characterization",
+      "Capability / application": "Connect your material development with TEM, SEM, XPS, XRD, FTIR, Raman, NMR, BET surface-area analysis and thermal analysis through specialist laboratories. Methods are selected for each project to understand morphology, structure, composition and material behavior as you validate samples and scale your process."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-functional-materials-development-0",
+    "family": "Functional materials development",
+    "model": "Functional materials development",
+    "publicFields": {
+      "Model / type": "Functional materials development",
+      "Capability / application": "Develop MOFs, COFs, advanced membrane materials, functional polymers and porous materials with specialist synthesis, processing and characterization resources. We assess the route and application together to move from small samples toward larger batches and material validation."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-polymer-resin-synthesis-0",
+    "family": "Polymer & resin synthesis",
+    "model": "Polymer & resin synthesis",
+    "publicFields": {
+      "Model / type": "Polymer & resin synthesis",
+      "Capability / application": "We bring together specialist synthesis facilities and process experience to advance your polymer or resin from milligram-scale lab work to gram- and kilogram-scale development, with characterization alongside scale-up."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-small-molecule-synthesis-0",
+    "family": "Small-molecule & ligand synthesis",
+    "model": "Small-molecule & ligand synthesis",
+    "publicFields": {
+      "Model / type": "Small-molecule & ligand synthesis",
+      "Capability / application": "We connect synthesis, purification and analytical expertise to accelerate the development of your target molecules and ligands, from milligram-scale experiments toward gram- and kilogram-scale batches."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-synthesis-scale-up-0",
+    "family": "Synthesis scale-up & process replication",
+    "model": "Synthesis scale-up & process replication",
+    "publicFields": {
+      "Model / type": "Synthesis scale-up & process replication",
+      "Capability / application": "We connect your lab-scale material or catalyst synthesis with partner equipment and process expertise to develop repeatable gram- and kilogram-scale processes and validate the material as scale increases."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-carbonization-activation-0",
+    "family": "Carbonization & activation",
+    "model": "Carbonization & activation",
+    "publicFields": {
+      "Model / type": "Carbonization & activation",
+      "Capability / application": "We connect your lab-scale carbon work with larger furnaces, activation equipment and processing experience to develop larger batches and validate the resulting carbon structure and properties."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-sintering-heat-treatment-0",
+    "family": "Scale-up sintering & heat treatment",
+    "model": "Scale-up sintering & heat treatment",
+    "publicFields": {
+      "Model / type": "Scale-up sintering & heat treatment",
+      "Capability / application": "We match your material and thermal process with suitable partner furnaces and process expertise to evaluate kilogram-scale sintering and heat treatment beyond the laboratory."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-electrode-processing-0",
+    "family": "Electrode processing",
+    "model": "Electrode processing",
+    "publicFields": {
+      "Model / type": "Electrode processing",
+      "Capability / application": "We connect your materials with slurry, roll-to-roll coating and finishing expertise to advance lab electrodes toward square-metre and larger pilot coating trials, validating uniformity and performance as scale increases."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-pouch-cell-customization-0",
+    "family": "Pouch-cell customization",
+    "model": "Pouch-cell customization",
+    "publicFields": {
+      "Model / type": "Pouch-cell customization",
+      "Capability / application": "We connect electrode processing, cell assembly and testing expertise to advance your coin-cell results into pouch-cell prototypes and validate the technology before the next step toward pack-level development."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-battery-testing-0",
+    "family": "Battery testing",
+    "model": "Battery testing",
+    "publicFields": {
+      "Model / type": "Battery testing",
+      "Capability / application": "We connect lithium-ion, solid-state and pouch-cell development with cycling, rate and comparative testing to validate performance as your technology moves into larger cell formats."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-stack-testing-0",
+    "family": "Fuel-cell & electrolyzer stack testing",
+    "model": "Fuel-cell & electrolyzer stack testing",
+    "publicFields": {
+      "Model / type": "Fuel-cell & electrolyzer stack testing",
+      "Capability / application": "We connect fuel-cell and electrolyzer development with suitable short-stack and full-stack test facilities to evaluate performance as you move from individual cells to larger systems."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-renewable-coupled-testing-0",
+    "family": "Wind & solar direct-coupling tests",
+    "model": "Wind & solar direct-coupling tests",
+    "publicFields": {
+      "Model / type": "Wind & solar direct-coupling tests",
+      "Capability / application": "We bring together electrolysis and power-system expertise to assess wind and solar coupling and validate operation under variable renewable power, matching the test setup to your technology."
+    },
+    "previousReference": null
+  },
+  {
+    "id": "service-research-procurement-0",
+    "family": "Research procurement",
+    "model": "Research procurement",
+    "publicFields": {
+      "Model / type": "Research procurement",
+      "Capability / application": "We connect your research team with materials, equipment and specialist suppliers so you can move from lab experiments to larger-scale development with the right technical resources."
+    },
+    "previousReference": null
+  }
+]

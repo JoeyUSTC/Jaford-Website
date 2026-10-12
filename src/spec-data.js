@@ -35,7 +35,7 @@ export const materialOptions = {
   ],
   "cof-development": [
     option("COF-5", "Ordered porous organic framework research", { Linkage: "Boronate ester", "Building blocks": "1,4-Benzenediboronic acid and hexahydroxytriphenylene", Dimensionality: "2D" }, sources.cof5),
-    option("COF-300", "Three-dimensional porous organic network research", { Linkage: "Imine", "Building blocks": "Tetra-(4-anilyl)methane and terephthaldehyde", Dimensionality: "3D" }, sources.cof300),
+    option("COF-300", "Three-dimensional porous organic network research", { Linkage: "Imine", "Building blocks": "Tetrakis(4-aminophenyl)methane and terephthaldehyde", Dimensionality: "3D" }, sources.cof300),
     option("TpPa-1", "Porous frameworks for separation and functionalization research", { Linkage: "Beta-ketoenamine", "Building blocks": "Triformylphloroglucinol and p-phenylenediamine", Dimensionality: "2D" }, sources.tppa),
   ],
   "functional-polymer-development": [
