@@ -69,3 +69,5 @@ The owner has made this repository public and enabled GitHub Pages with GitHub A
 - Owner-confirmed Custom High-Precision 3D Printing belongs to Custom R&D: furniture components, frames and accessories with design-specific feasibility/precision. Its homepage card is additional to the existing six (seven Custom R&D cards, other sectors six); full directory contains fourteen services. Preserve all earlier cards/routes. Use its shared generic printer/components illustration and capability profile; never invent numerical tolerances, printable materials or load capacity.
 
 - Region entry has a restrained blue chevron and dotted underline; chevron points up when expanded. The owner requested a list-only region panel: show alphabetized names without heading, enquiry badges or explanatory copy. Region data retains established/additional provenance internally; do not interpret the simplified list as verified historical project coverage.
+
+- Temporarily prioritize Custom High-Precision 3D Printing first in both Custom R&D homepage selections and the full directory, per the latest owner request. Preserve the relative order of all other services.

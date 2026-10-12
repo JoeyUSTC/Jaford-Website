@@ -183,7 +183,7 @@ test("navigation reaches services and mobile menu closes", async ({ page }) => {
   await expect(page.locator("h1")).toHaveText("Custom R&D");
   await expect(page.getByText("Technology area", {exact:true})).toHaveCount(0);
   await expect(page.locator(".capability-card")).toHaveCount(14);
-  await expect(page.locator(".capability-card").first()).toContainText("Polymer & resin synthesis");
+  await expect(page.locator(".capability-card").first()).toContainText("Custom High-Precision 3D Printing");
   await expect(page.locator(".capability-card").last()).toContainText("Material characterization");
   await expect(page.locator(".capability-card").last()).toContainText("XPS");
   for (const img of await page.locator(".capability-card img").all()) {
