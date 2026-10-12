@@ -487,6 +487,15 @@ const s = (id, name, description, scope, inputs, deliverables, boundary) => ({
   boundary,
 });
 export const services = [
+  {
+    id: "custom-3d-printing",
+    name: "Custom High-Precision 3D Printing",
+    image: "custom-3d-printing",
+    description: "Custom 3D-printed components for furniture, frames and accessories, developed around your design and intended use. Material, dimensions, fit, surface finish and printing precision are assessed for each part before production.",
+    preview: "Customized furniture components, frames and accessories.",
+    scope: [], inputs: [], deliverables: [],
+    boundary: "Material, dimensional accuracy, load requirements and manufacturing feasibility are assessed per design; no universal numerical tolerance is claimed.",
+  },
   ...functionalCapabilities, ...testingCapabilities,
   s(
     "material-characterization",

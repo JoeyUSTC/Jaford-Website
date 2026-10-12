@@ -1549,3 +1549,5 @@ h1[tabindex="-1"]:focus,
 .social-taobao { fill: none; stroke: #dc6628; stroke-width: 2; }
 .social-pending { margin: 16px 0 0; color: var(--muted); font-size: 12px; }
 @media (max-width: 640px) { .social-channels { flex-direction: column; } }
+
+@media (min-width: 1280px) { #custom-rd .sector-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); } }

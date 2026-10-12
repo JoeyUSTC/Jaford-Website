@@ -9,8 +9,8 @@ for (const area of technologies) {
       href:a.getAttribute('href'), src:a.querySelector('img').getAttribute('src'),
       artwork:a.querySelector('.product-artwork').getAttribute('style'),
     })));
-    expect(featured).toHaveLength(6);
-    expect(new Set(featured.map(item=>item.href)).size).toBe(6);
+    expect(featured).toHaveLength(area.featuredIds.length);
+    expect(new Set(featured.map(item=>item.href)).size).toBe(area.featuredIds.length);
     await section.getByRole('link', {name:'Browse all',exact:true}).click();
     await expect(page.locator('h1')).toHaveText(area.name);
     const directory = page.locator('.product-module');

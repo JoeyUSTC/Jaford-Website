@@ -36,3 +36,7 @@ The owner approved extending the MOF/COF visual format to the other four functio
 
 
 MEA, CCM and CCS now use original neutral SVG schematics (`fuel-mea.svg`, `fuel-ccm.svg`, `fuel-ccs.svg`). They are conceptual layer/coating diagrams, not microscopy, actual products or a specified layer count. Membranes/GDL/plates/seals reuse the existing fuel-materials atlas; electrocatalysts reuse the generic visible powder sample, without attributing silicon-carbon composition to it. Homepage, category and details select imagery from the same product-family data.
+
+## 2026-10-12 custom 3D printing
+
+`public/images/products/custom-3d-printing.png` is an original generated representative illustration of a generic open-frame printer, custom bracket, rectangular frame and furniture connector on the site's warm ivory background. It is not a supplied-part photograph, manufacturer model, owned equipment or facility claim. Shared by the homepage, Custom R&D directory and service detail through `src/product-images.js`.

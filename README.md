@@ -49,7 +49,7 @@ For this manual fallback only, GitHub Pages would use **Deploy from a branch →
 
 ## Content and inquiries
 
-The homepage and navigation follow six technology areas: Custom R&D, Battery Technology, Fuel Cells & Electrolyzers, Functional Materials, Testing & Characterization, and Equipment & Supplies. `src/technologies.js` defines each complete directory and its six homepage selections. `src/catalog.js` contains 28 product families and 29 service views (13 broad services plus 16 focused functional-material/testing views). `src/pages.js` renders these shared records into the homepage, directories and detail pages.
+The homepage and navigation follow six technology areas: Custom R&D, Battery Technology, Fuel Cells & Electrolyzers, Functional Materials, Testing & Characterization, and Equipment & Supplies. `src/technologies.js` defines each complete directory and its six homepage selections. `src/catalog.js` contains 28 product families and 30 service views (14 broad services plus 16 focused functional-material/testing views). `src/pages.js` renders these shared records into the homepage, directories and detail pages.
 
 Routes use hashes (`#/technologies/{id}`, `#/products`, `#/products/{id}`, `#/services`, `#/services/{id}`), so direct links and refreshes work on GitHub Pages without server rewrites. Product filters and search are encoded in the route, preserving them when returning from a detail page. Unknown routes show a recovery page.
 
@@ -67,7 +67,7 @@ Products appear as individual clickable modules in the full catalog and technolo
 
 The homepage prioritizes PC browsing, with six image-led entries per sector from 1280px and fewer columns on smaller viewports. It opens with the owner-approved slogan and owner-requested statistics, followed by the scrollable Innovation in practice stories and six technology sectors. Contact appears at the bottom and uses the local email-draft workflow.
 
-Every sector's Browse all opens a larger internal directory: Custom R&D 13, Battery Technology 14, Fuel Cells & Electrolyzers 8, Functional Materials 7, Testing & Characterization 10, Equipment & Supplies 12. Featured items are selected from those same records using `featuredItemsForArea`; links, images and descriptions stay consistent. Functional-material families and testing methods have focused service pages, while earlier broad-service URLs remain valid. These focused views describe project-assessed partner capabilities and do not introduce new stock models, facilities or measured results.
+Every sector's Browse all opens a larger internal directory: Custom R&D 14, Battery Technology 14, Fuel Cells & Electrolyzers 8, Functional Materials 7, Testing & Characterization 10, Equipment & Supplies 12. Featured items are selected from those same records using `featuredItemsForArea`; links, images and descriptions stay consistent. Functional-material families and testing methods have focused service pages, while earlier broad-service URLs remain valid. These focused views describe project-assessed partner capabilities and do not introduce new stock models, facilities or measured results.
 
 The standalone technology overview is removed. Old `#/technologies` links redirect to home; category and detail routes remain available directly.
 
@@ -86,3 +86,5 @@ Contact Us in the header and footer opens `#/contact`, which reuses the unchange
 ## Contact presence
 
 `src/contact-presence.js` maintains alphabetized contact/enquiry regions and social channel identities. The homepage countries/regions statistic opens a small pointer/keyboard/touch panel; extra enquiry destinations do not imply historical project coverage. The independent Contact Us page previews WeChat Official Account, X (Twitter) and Taobao. No account links or QR code have been supplied, so these identities are deliberately non-interactive pending real destinations. The shared form and footer are unchanged.
+
+Custom High-Precision 3D Printing is an owner-confirmed Custom R&D capability for furniture components, frames and accessories. Its card appears on the homepage and full Custom R&D directory with the same image/detail URL. The Custom R&D homepage row has seven cards; other sectors retain six. Precision, material and mechanical suitability are project-specific, with no invented numerical tolerance. Its local PDF is a capability profile, not a batch or performance specification.
