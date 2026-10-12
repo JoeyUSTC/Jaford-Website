@@ -25,11 +25,7 @@ test('homepage, category and detail pages share fuel-cell products and imagery',
     await expect(page.locator('.detail-description')).toHaveText(product.description);
     const img = page.locator('.product-figure img');
     await expect.poll(()=>img.evaluate(el=>el.complete && el.naturalWidth>0)).toBe(true);
-    await page.locator('[data-spec-id]').first().click();
-    await expect(page.locator('#spec-dialog')).toBeVisible();
-    await expect(page.locator('#spec-dialog table')).toBeVisible();
-    await expect(page.locator('#spec-dialog').locator('p,h2,h3,a,object')).toHaveCount(0);
-    await page.getByRole('button',{name:'Close specification',exact:true}).click();
+    await expect(page.locator('.model-options,[data-spec-id]')).toHaveCount(0);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
     await page.getByRole('navigation',{name:'Breadcrumb'}).getByRole('link',{name:'Fuel Cells & Electrolyzers',exact:true}).click();
   }

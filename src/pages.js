@@ -19,6 +19,8 @@ export const escapeHtml = (value) =>
       ],
   );
 const e = escapeHtml;
+// Temporarily pause model/spec UI until detailed supplier data is available.
+const showModelSpecifications = false;
 const productURL = (id, area) =>
   `#/products/${id}${area ? `?area=${area}` : ""}`;
 const serviceURL = (id, area) =>
@@ -35,7 +37,7 @@ const productArtwork = (p, detail = false) => {
   return `<div class="product-artwork" style="--art-column:${art.column};--art-row:${art.row}"><img src="${import.meta.env.BASE_URL}images/products/${art.sheet}.png" alt="${e(art.alt)} — illustration" loading="${detail ? "eager" : "lazy"}"></div>`;
 };
 const productModule = (p, href) =>
-  `<article class="catalog-row product-module"><a class="product-module-link" href="${e(href)}" aria-label="${e(p.name)}"><figure class="module-figure">${productArtwork(p)}</figure><div class="module-content"><p class="eyebrow">${category(p.category).name}</p><h2>${e(p.name)}</h2><p class="module-description">${e(p.description)}</p>${p.models.length ? `<p class="catalog-models module-models"><span>Models / options</span>${e(p.models.join(" · "))}</p>` : ""}<div class="module-purchase"><span class="module-cta">${Object.keys(p.specs).length ? "View specs" : "View product"}</span></div></div></a></article>`;
+  `<article class="catalog-row product-module"><a class="product-module-link" href="${e(href)}" aria-label="${e(p.name)}"><figure class="module-figure">${productArtwork(p)}</figure><div class="module-content"><p class="eyebrow">${category(p.category).name}</p><h2>${e(p.name)}</h2><p class="module-description">${e(p.description)}</p>${showModelSpecifications && p.models.length ? `<p class="catalog-models module-models"><span>Models / options</span>${e(p.models.join(" · "))}</p>` : ""}<div class="module-purchase"><span class="module-cta">View product</span></div></div></a></article>`;
 const contact = () =>
   `<section class="section container service-section contact-section" id="contact"><div class="section-heading"><h2>Discuss your requirements</h2></div><div class="service-content"><p>Share your application, model or material, required quantity and timeline. We will review specifications, availability and scope before quoting.</p><div class="contact-actions">${inquiry("Send an Inquiry", "Other technical requirement")}<a class="contact-email" href="mailto:kiki.li@jaford.com">kiki.li@jaford.com</a></div></div></section>`;
 const header = (eyebrow, title, text) =>
@@ -133,7 +135,7 @@ const serviceArtwork = {
   "research-procurement": "glass-reactor-2000ml",
 };
 const servicePreview = (s, areaId) => `<article class="catalog-row product-module capability-card"><a class="product-module-link" href="${serviceURL(s.id, areaId)}" aria-label="${e(s.name)}"><figure class="module-figure">${productArtwork({id: s.image || serviceArtwork[s.id]})}</figure><div class="module-content"><h2>${e(s.name)}</h2><p class="module-description">${e(s.description)}</p><span class="module-cta">View details</span></div></a></article>`;
-const modelList = (item, kind = "product") => `<section class="model-options" aria-label="Models and specifications"><h2>${kind === "service" ? "Types / options" : "Models / options"}</h2><ul class="model-list">${optionsFor(item, kind).map(spec => `<li class="model-option"><span class="model-name">${e(spec.name)}</span><button type="button" class="spec-link" data-spec-id="${e(spec.id)}" aria-label="Spec: ${e(spec.name)}">Spec</button></li>`).join("")}</ul></section>`;
+const modelList = (item, kind = "product") => !showModelSpecifications ? "" : `<section class="model-options" aria-label="Models and specifications"><h2>${kind === "service" ? "Types / options" : "Models / options"}</h2><ul class="model-list">${optionsFor(item, kind).map(spec => `<li class="model-option"><span class="model-name">${e(spec.name)}</span><button type="button" class="spec-link" data-spec-id="${e(spec.id)}" aria-label="Spec: ${e(spec.name)}">Spec</button></li>`).join("")}</ul></section>`;
 export function serviceDetail(s, areaId) {
   const area = areasForService(s.id).find(t => t.id === areaId) || areasForService(s.id)[0];
   return `<section class="container detail-page service-detail concise-service"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><div class="service-overview"><div><h1 tabindex="-1">${e(s.name)}</h1><p class="detail-description">${e(s.description)}</p></div><figure>${productArtwork({id:s.image || serviceArtwork[s.id]},true)}</figure></div>${modelList(s, "service")}</section>`;

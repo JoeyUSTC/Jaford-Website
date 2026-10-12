@@ -12,7 +12,7 @@ test('region popup supports hover, keyboard and touch without claiming new proje
   await trigger.focus();await page.keyboard.press('Enter');
  }else{await trigger.click();}
  await expect(popup).toBeVisible();
- await expect(popup.locator('li > span')).toHaveText(['Australia','Canada','Hong Kong','Malaysia','Saudi Arabia','Singapore','United States']);
+ await expect(popup.locator('li > span')).toHaveText(['Australia','Canada','Hong Kong','Malaysia','Saudi Arabia','Singapore','Taiwan','United Arab Emirates','United States']);
  await expect(popup.locator('h2,p,small')).toHaveCount(0);
  await expect(trigger.locator('svg')).toBeVisible();
  expect(await popup.evaluate(el=>el.getBoundingClientRect().right)).toBeLessThanOrEqual(page.viewportSize().width);
