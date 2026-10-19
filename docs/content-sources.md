@@ -166,3 +166,7 @@ The owner confirmed Twitter, LinkedIn, Taobao, WeChat Official Account and Douyi
 ## 2026-10-19 combined synthesis service
 
 The owner requested one Molecule and Polymer Synthesis entry covering organic and polymer synthesis, including small molecules, ligands and polymers. The shared homepage, Custom R&D directory, service index and detail now use this combined scope, retaining the existing polymer reactor illustration. Original synthesis records remain in `legacyServices`; the former small-molecule URL resolves to the combined service through `serviceAliases`, including its category context. Existing PDF files and identities remain available, with model/Spec UI still paused. No purity, yield, equipment ownership or universal synthesis outcome is promised.
+
+## 2026-10-19 functional electrochemical printing illustration
+
+The owner requested literature research before replacing the holder-led 3D-printing image. `docs/3d-printing-research.md` records primary fuel-cell flow-field, transparent electrolyzer-cell, porous-electrode and lithium-ion microbattery research, with access limits. The selected visual is a conceptual custom fluidic component integrated into a research flow-cell. Website examples remain project-assessed; specialized electrode printing, research performance and arbitrary resin compatibility are not adopted as JAFORD claims. No supplier guide or third-party artwork is published.

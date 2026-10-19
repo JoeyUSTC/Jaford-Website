@@ -28,13 +28,13 @@ test("new 3D printing service shares its announcement and image across pages", a
   const card = page.locator("#custom-rd .sector-card").first();
   await expect(card.locator("h3")).toHaveText("Custom 3D Printing for R&D");
   await expect(card.locator(".service-badge")).toHaveText("New service");
-  await expect(card).toContainText("Sample holders, test fixtures and prototype parts tailored to your setup.");
+  await expect(card).toContainText("Custom flow paths and research-cell components for electrochemical R&D.");
   const src = await card.locator("img").getAttribute("src");
   await card.locator("a").click();
   await expect(page.locator("h1")).toHaveText("Custom 3D Printing for R&D");
   await expect(page.locator(".service-introduction")).toHaveText("Custom Parts for Your Next Experiment");
   await expect(page.locator(".detail-description").first()).toContainText("materials research and equipment development");
-  await expect(page.locator(".service-story")).toContainText("operating conditions and manufacturing feasibility");
+  await expect(page.locator(".service-story")).toContainText("chemical compatibility, sealing, operating conditions and manufacturing feasibility");
   await expect(page.locator("main img")).toHaveAttribute("src", src);
   expect(await page.locator("main img").evaluate(async img => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
   await expect(page.locator("main a[href$='.pdf'], main iframe, main embed, main object, main [data-inquiry], main [data-spec-id]")).toHaveCount(0);
