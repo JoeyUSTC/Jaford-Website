@@ -1,6 +1,6 @@
 // Representative AI-generated artwork, not model photographs. See docs/product-images.md.
 export const productImages = {
-  "custom-3d-printing": { src: "images/products/custom-3d-rd-parts.webp", alt: "Representative 3D-printed sample holder, test fixture, adapter, bracket and prototype housing" },
+  "custom-3d-printing": { src: "images/products/custom-3d-battery-research.webp", alt: "Representative printed fixture supporting a pouch-cell electrochemical test, with 3D printing in the background" },
   "fuel-mea": { src: "images/products/fuel-mea.svg", alt: "Conceptual layered membrane electrode assembly; not a specific layer configuration" },
   "fuel-ccm": { src: "images/products/fuel-ccm.svg", alt: "Conceptual catalyst layers on a membrane" },
   "fuel-ccs": { src: "images/products/fuel-ccs.svg", alt: "Conceptual catalyst coating on a porous substrate" },

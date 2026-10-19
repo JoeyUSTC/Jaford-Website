@@ -1300,7 +1300,9 @@ h1[tabindex="-1"]:focus,
 .sector-card a { display: block; }
 .sector-card figure { margin: 0; }
 .sector-card figure, .capability-card .module-figure { position: relative; }
-.service-badge { position: absolute; top: 10px; left: 10px; z-index: 1; padding: 4px 7px; border: 1px solid #bacbdb; background: var(--surface); color: var(--brand-blue); font-size: 9px; font-weight: 600; line-height: 1.4; letter-spacing: .05em; text-transform: uppercase; pointer-events: none; }
+.service-badge { position: absolute; top: 10px; left: 10px; z-index: 1; display: inline-flex; align-items: center; gap: 4px; padding: 4px 7px; border: 1px solid #d8bc9e; background: #fff5e8; color: var(--brand-blue); font-size: 9px; font-weight: 600; line-height: 1.4; letter-spacing: .05em; text-transform: uppercase; pointer-events: none; }
+.service-flame { width: 13px; height: 15px; flex-shrink: 0; fill: #e77932; }
+.service-flame .flame-core { fill: #ffd18a; }
 .sector-card .product-artwork { max-width: none; background: var(--surface); }
 .sector-card figcaption { font-size: 10px; color: var(--muted); padding-top: 7px; }
 .sector-card h3 { margin: 12px 0 0; font-size: 15px; line-height: 1.5; font-weight: 500; }
