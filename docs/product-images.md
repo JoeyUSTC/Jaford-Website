@@ -44,3 +44,7 @@ MEA, CCM and CCS now use original neutral SVG schematics (`fuel-mea.svg`, `fuel-
 ## 2026-10-19 delivery optimization
 
 Product PNGs now have WebP derivatives, encoded at quality 84 with ImageMagick (`bash scripts/optimize-images.sh`). The original 1254 × 1254 dimensions, artwork, atlas coordinates and provenance are retained; compression does not add or replace content. All source PNGs and original public URLs remain available. Visitors load the WebP variants through the shared image renderer; the owner's logo and neutral fuel-cell SVGs are unchanged. The 17 unique homepage image resources total 1,717,543 bytes instead of 24,690,956 bytes (93% reduction); lazy loading and shared-atlas browser caching remain in place. This measures asset bytes, not live load duration.
+
+## 2026-10-19 R&D printing announcement
+
+`custom-3d-rd-parts.png` is an original generated representative illustration of a sample holder, test fixture, adapter, bracket and prototype housing on the existing warm background. Its WebP derivative is shared by the existing 3D-printing service and homepage/category cards. It is a conceptual example, not a supplied-part photograph, measured geometry or a claim about a specific printable polymer. The private supplier guide and its artwork are not published or included in the repository; no supplier brand or certification is reproduced. The earlier printer/furniture-component illustration and URLs remain available for compatibility.

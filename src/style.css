@@ -17,6 +17,7 @@
 }
 html {
   scroll-padding-top: 24px;
+  scrollbar-gutter: stable;
 }
 body {
   margin: 0;
@@ -63,7 +64,7 @@ button:focus-visible {
   background: #dce9e3;
 }
 .container {
-  width: min(1080px, calc(100% - 96px));
+  width: min(1440px, calc(100% - 96px));
   margin-inline: auto;
 }
 .wordmark {
@@ -1265,9 +1266,6 @@ h1[tabindex="-1"]:focus,
 .home-product-grid .module-description { font-size: 13px; line-height: 1.7; }
 .home-product-grid .module-figure figcaption { font-size: 10px; padding: 6px 12px; }
 @media (min-width: 1101px) {
-  main:has(.home-cases) > .container,
-  body:has(.home-cases) .header-inner,
-  body:has(.home-cases) .site-footer { width: min(1440px, calc(100% - 96px)); }
   .home-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); column-gap: 72px; padding-block: 60px 54px; }
   .home-hero > .eyebrow { grid-column: 1 / -1; }
   .home-hero h1 { grid-column: 1; grid-row: 2; margin: 18px 0 22px; font-size: clamp(40px, 3.5vw, 54px); }
@@ -1301,6 +1299,8 @@ h1[tabindex="-1"]:focus,
 .sector-card { min-width: 0; }
 .sector-card a { display: block; }
 .sector-card figure { margin: 0; }
+.sector-card figure, .capability-card .module-figure { position: relative; }
+.service-badge { position: absolute; top: 10px; left: 10px; z-index: 1; padding: 4px 7px; border: 1px solid #bacbdb; background: var(--surface); color: var(--brand-blue); font-size: 9px; font-weight: 600; line-height: 1.4; letter-spacing: .05em; text-transform: uppercase; pointer-events: none; }
 .sector-card .product-artwork { max-width: none; background: var(--surface); }
 .sector-card figcaption { font-size: 10px; color: var(--muted); padding-top: 7px; }
 .sector-card h3 { margin: 12px 0 0; font-size: 15px; line-height: 1.5; font-weight: 500; }
@@ -1389,6 +1389,8 @@ h1[tabindex="-1"]:focus,
 .service-overview { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 64px; align-items: center; padding-block: 34px 60px; }
 .concise-service h1 { font-size: clamp(28px, 3vw, 42px); line-height: 1.2; }
 .concise-service .detail-description { font-size: 18px; line-height: 1.8; max-width: 55ch; }
+.service-introduction { margin: 20px 0 12px; color: var(--brand-blue); font-size: 18px; font-weight: 500; line-height: 1.5; }
+.service-story { margin-top: 16px; }
 .service-overview figure { margin: 0; }
 .service-overview .product-artwork { max-width: 400px; margin-inline: auto; }
 .service-inquiry { background: transparent; border: 0; padding: 0; cursor: pointer; font: inherit; font-size: 14px; color: var(--brand-blue); text-decoration: underline; text-underline-offset: 4px; margin-top: 24px; }
@@ -1421,7 +1423,7 @@ h1[tabindex="-1"]:focus,
 .case-meta a { color: var(--brand-blue); }
 .case-meta a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .case-summary .case-excerpt { margin: 0 0 18px; }
-.case-index .completed-project-list { display: block; max-width: 900px; margin-inline: auto; }
+.case-index .completed-project-list { display: block; }
 .case-index .case-summary { border-top: 0; border-bottom: 1px solid var(--line); padding: 0 0 36px; margin-bottom: 36px; }
 .case-index .case-summary h3 { font-size: 29px; font-weight: 400; line-height: 1.4; margin: 0; }
 .case-index .case-summary p { max-width: 80ch; font-size: 16px; line-height: 1.85; }
@@ -1440,7 +1442,6 @@ h1[tabindex="-1"]:focus,
 .project-code { color: var(--ink); font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
 
 /* Project stories keep the reader focused on the research and its value. */
-.case-study { max-width: 920px; }
 .case-study .detail-description { max-width: 76ch; }
 .case-narrative { margin-top: 40px; }
 .case-study .case-chapter p { max-width: 80ch; font-size: 16px; line-height: 1.85; }
@@ -1450,7 +1451,7 @@ h1[tabindex="-1"]:focus,
 .case-summary .project-code, .home-case-track .case-summary .project-code { margin: 10px 0 12px; font-size: 12px; color: var(--muted); font-weight: 400; }
 .case-study .project-code { margin: 18px 0 0; font-size: 13px; color: var(--muted); font-weight: 400; }
 .case-study .case-narrative { margin-top: 26px; }
-.case-narrative > p { margin: 0; font-size: 17px; line-height: 1.9; color: var(--muted); }
+.case-narrative > p { margin: 0; max-width: 80ch; font-size: 17px; line-height: 1.9; color: var(--muted); }
 
 /* Capabilities pair a representative image and title with a concise explanation. */
 .capability-row { display: grid; grid-template-columns: 260px minmax(0, 1fr); align-items: center; gap: 64px; padding: 30px 0; border-bottom: 1px solid var(--line); }

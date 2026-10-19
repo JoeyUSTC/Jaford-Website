@@ -489,10 +489,13 @@ const s = (id, name, description, scope, inputs, deliverables, boundary) => ({
 export const services = [
   {
     id: "custom-3d-printing",
-    name: "Custom High-Precision 3D Printing",
+    name: "Custom 3D Printing for R&D",
     image: "custom-3d-printing",
-    description: "Custom 3D-printed components for furniture, frames and accessories, developed around your design and intended use. Material, dimensions, fit, surface finish and printing precision are assessed for each part before production.",
-    preview: "Customized furniture components, frames and accessories.",
+    badge: "New service",
+    introduction: "Custom Parts for Your Next Experiment",
+    description: "JAFORD now offers custom 3D-printed parts for materials research and equipment development—from sample holders and test fixtures to adapters, brackets and prototype housings.",
+    story: "Create parts around your experimental setup, check the fit and refine the design as your research evolves. Share your design or application requirements to explore a suitable approach. Material, dimensions, operating conditions and manufacturing feasibility are assessed for each part.",
+    preview: "Sample holders, test fixtures and prototype parts tailored to your setup.",
     scope: [], inputs: [], deliverables: [],
     boundary: "Material, dimensional accuracy, load requirements and manufacturing feasibility are assessed per design; no universal numerical tolerance is claimed.",
   },
