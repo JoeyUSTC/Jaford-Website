@@ -14,6 +14,7 @@ export const productImages = {
   "rd-molecule-reactor": { sheet: "rd-synthesis", column: 1, row: 0, alt: "Representative target molecule synthesis reactor and condenser" },
   "rd-scale-up": { sheet: "rd-synthesis", column: 0, row: 1, alt: "Representative multi-vessel synthesis scale-up equipment" },
   "rd-rotary-furnace": { sheet: "rd-processing", column: 0, row: 0, alt: "Representative rotary furnace for carbonization and activation" },
+  "rd-carbonization-furnace": { src: "images/products/compact-carbonization-furnace.webp", alt: "Representative compact development-scale rotary tube furnace for carbonization and activation" },
   "rd-coating": { sheet: "rd-processing", column: 1, row: 0, alt: "Representative roll-to-roll electrode coating equipment" },
   "rd-stacking": { sheet: "rd-processing", column: 0, row: 1, alt: "Representative electrode stacking machine for pouch cell development" },
   "gas-diffusion-layers": { sheet: "fuel-materials", column: 0, row: 0, alt: "Generic carbon gas diffusion sheets" },

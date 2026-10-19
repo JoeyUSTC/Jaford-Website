@@ -125,7 +125,7 @@ const serviceArtwork = {
   "polymer-resin-synthesis": "rd-polymer-reactor",
   "small-molecule-synthesis": "rd-molecule-reactor",
   "synthesis-scale-up": "rd-scale-up",
-  "carbonization-activation": "rd-rotary-furnace",
+  "carbonization-activation": "rd-carbonization-furnace",
   "sintering-heat-treatment": "rd-rotary-furnace",
   "electrode-processing": "rd-coating",
   "pouch-cell-customization": "rd-stacking",
