@@ -209,9 +209,9 @@ test("navigation reaches services and mobile menu closes", async ({ page }) => {
     ).not.toBeVisible();
   }
   await page
-    .getByRole("link", { name: "Polymer & resin synthesis", exact: true })
+    .getByRole("link", { name: "Molecule and Polymer Synthesis", exact: true })
     .click();
-  await expect(page.locator("h1")).toHaveText("Polymer & resin synthesis");
+  await expect(page.locator("h1")).toHaveText("Molecule and Polymer Synthesis");
   await expect(page.getByRole("button", {name: "Discuss this service"})).toHaveCount(0);
 });
 
