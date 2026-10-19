@@ -43,7 +43,9 @@ npm run build:preview
 npm run deploy:preview
 ```
 
-The build uses `/Jaford-Website/` as its base path and outputs to ignored `.preview-dist/`. The publish script pushes only those static assets to `gh-pages` without force-pushing, switching branches, or changing the working index. It uses existing Git authentication. No credentials or source files are included in the deployed build.
+The build uses relative asset paths (`./`) and outputs to ignored `.preview-dist/`. The same artifact works at the custom-domain root and the original `/Jaford-Website/` path; hash-based subpages keep the document path stable. The publish script pushes only those static assets to `gh-pages` without force-pushing, switching branches, or changing the working index. It uses existing Git authentication. No credentials or source files are included in the deployed build.
+
+The owner is binding `jaford.com` through GitHub Pages Settings and Aliyun DNS. Once DNS and the HTTPS certificate are ready, verify `https://jaford.com/`, representative hash routes and `https://jaford.com/version.json`. The root DNS uses GitHub Pages' four documented A addresses; `www` is a CNAME to `joeyustc.github.io`. Preserve all mail records and the old hosting project for rollback. Do not claim the domain is live from a settings screenshot or a successful deployment alone. The preview build currently retains its existing `noindex, nofollow` policy.
 
 For this manual fallback only, GitHub Pages would use **Deploy from a branch → gh-pages → / (root)**. The automatic workflow above uses **GitHub Actions** instead; do not switch the Pages source during routine iterations. Pushing the branch alone does not confirm the site is enabled or ready.
 

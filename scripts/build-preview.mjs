@@ -3,7 +3,9 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-execFileSync(process.execPath, ["node_modules/vite/bin/vite.js", "build", "--base", "/Jaford-Website/", "--outDir", ".preview-dist"], { cwd: root, stdio: "inherit" });
+// Hash routes keep the document path stable. Relative assets work at both the
+// custom-domain root and the original GitHub Pages repository path.
+execFileSync(process.execPath, ["node_modules/vite/bin/vite.js", "build", "--base", "./", "--outDir", ".preview-dist"], { cwd: root, stdio: "inherit" });
 const output = new URL("../.preview-dist/", import.meta.url);
 const index = new URL("index.html", output);
 writeFileSync(index, readFileSync(index, "utf8").replace("</head>", '<meta name="robots" content="noindex, nofollow" />\n</head>'));
