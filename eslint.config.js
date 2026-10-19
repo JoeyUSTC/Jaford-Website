@@ -5,6 +5,7 @@ export default [
   {
     ignores: [
       "dist/**",
+      ".preview-dist/**",
       "node_modules/**",
       "test-results/**",
       "playwright-report/**",

@@ -69,6 +69,8 @@ Products appear as individual clickable modules in the full catalog and technolo
 
 The homepage prioritizes PC browsing, with six image-led entries per sector from 1280px and fewer columns on smaller viewports. It opens with the owner-approved slogan and owner-requested statistics, followed by the scrollable Innovation in practice stories and six technology sectors. Contact appears at the bottom and uses the local email-draft workflow.
 
+Product artwork uses checked-in WebP derivatives at the original dimensions and atlas coordinates, with lazy loading in directories and asynchronous decoding. Source PNGs and their public URLs remain intact. Regenerate derivatives with `bash scripts/optimize-images.sh` (maintenance tool: ImageMagick with WebP support; not needed by CI). The homepage's 17 unique image files total 1,717,543 bytes, down from 24,690,956 bytes (93% less); this is the full image set, not the first-screen payload or a measured live load time. The homepage browser check enforces a 2 MiB image budget.
+
 Every sector's Browse all opens a larger internal directory: Custom R&D 14, Battery Technology 14, Fuel Cells & Electrolyzers 8, Functional Materials 7, Testing & Characterization 10, Equipment & Supplies 12. Featured items are selected from those same records using `featuredItemsForArea`; links, images and descriptions stay consistent. Functional-material families and testing methods have focused service pages, while earlier broad-service URLs remain valid. These focused views describe project-assessed partner capabilities and do not introduce new stock models, facilities or measured results.
 
 The standalone technology overview is removed. Old `#/technologies` links redirect to home; category and detail routes remain available directly.

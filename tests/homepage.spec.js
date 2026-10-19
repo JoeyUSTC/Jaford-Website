@@ -34,6 +34,15 @@ test("homepage presents readable product information without errors or overflow"
     expect(await product.locator("img").evaluate(async img => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
     await expect(product.getByRole("heading", { level: 3 })).toBeVisible();
   }
+  // Count each shared atlas once, just as the browser cache does. Keep a
+  // payload budget so replacement artwork cannot silently restore the slow page.
+  const imageURLs = await page.locator("img").evaluateAll(imgs => [...new Set(imgs.map(img => img.src))]);
+  const imageSizes = await Promise.all(imageURLs.map(async url => {
+    const response = await page.request.get(url);
+    expect(response.ok()).toBeTruthy();
+    return (await response.body()).length;
+  }));
+  expect(imageSizes.reduce((sum, size) => sum + size, 0)).toBeLessThan(2 * 1024 * 1024);
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(page.viewportSize().width);

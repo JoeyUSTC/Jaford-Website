@@ -33,8 +33,8 @@ const category = (id) => categories.find((c) => c.id === id);
 const productArtwork = (p, detail = false) => {
   const art = productImages[p.image || p.id];
   if (!art) return `<img src="${import.meta.env.BASE_URL}product-placeholder.svg" alt="Product illustration pending" width="640" height="440">`;
-  if (art.src) return `<div class="product-artwork artwork-single"><img src="${import.meta.env.BASE_URL}${art.src}" alt="${e(art.alt)} — illustration" loading="${detail ? "eager" : "lazy"}"></div>`;
-  return `<div class="product-artwork" style="--art-column:${art.column};--art-row:${art.row}"><img src="${import.meta.env.BASE_URL}images/products/${art.sheet}.png" alt="${e(art.alt)} — illustration" loading="${detail ? "eager" : "lazy"}"></div>`;
+  if (art.src) return `<div class="product-artwork artwork-single"><img src="${import.meta.env.BASE_URL}${art.src}" alt="${e(art.alt)} — illustration" loading="${detail ? "eager" : "lazy"}" decoding="async"></div>`;
+  return `<div class="product-artwork" style="--art-column:${art.column};--art-row:${art.row}"><img src="${import.meta.env.BASE_URL}images/products/${art.sheet}.webp" alt="${e(art.alt)} — illustration" loading="${detail ? "eager" : "lazy"}" decoding="async"></div>`;
 };
 const productModule = (p, href) =>
   `<article class="catalog-row product-module"><a class="product-module-link" href="${e(href)}" aria-label="${e(p.name)}"><figure class="module-figure">${productArtwork(p)}</figure><div class="module-content"><p class="eyebrow">${category(p.category).name}</p><h2>${e(p.name)}</h2><p class="module-description">${e(p.description)}</p>${showModelSpecifications && p.models.length ? `<p class="catalog-models module-models"><span>Models / options</span>${e(p.models.join(" · "))}</p>` : ""}<div class="module-purchase"><span class="module-cta">View product</span></div></div></a></article>`;

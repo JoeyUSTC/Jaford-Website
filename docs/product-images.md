@@ -40,3 +40,7 @@ MEA, CCM and CCS now use original neutral SVG schematics (`fuel-mea.svg`, `fuel-
 ## 2026-10-12 custom 3D printing
 
 `public/images/products/custom-3d-printing.png` is an original generated representative illustration of a generic open-frame printer, custom bracket, rectangular frame and furniture connector on the site's warm ivory background. It is not a supplied-part photograph, manufacturer model, owned equipment or facility claim. Shared by the homepage, Custom R&D directory and service detail through `src/product-images.js`.
+
+## 2026-10-19 delivery optimization
+
+Product PNGs now have WebP derivatives, encoded at quality 84 with ImageMagick (`bash scripts/optimize-images.sh`). The original 1254 × 1254 dimensions, artwork, atlas coordinates and provenance are retained; compression does not add or replace content. All source PNGs and original public URLs remain available. Visitors load the WebP variants through the shared image renderer; the owner's logo and neutral fuel-cell SVGs are unchanged. The 17 unique homepage image resources total 1,717,543 bytes instead of 24,690,956 bytes (93% reduction); lazy loading and shared-atlas browser caching remain in place. This measures asset bytes, not live load duration.
