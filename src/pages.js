@@ -115,7 +115,7 @@ export function productDetail(p, areaId, params = new URLSearchParams()) {
   const c = category(p.category);
   const area =
     areasForProduct(p.id).find((t) => t.id === areaId) ||
-    areasForProduct(p.id)[0];
+    areasForProduct(p.id)[0] || technologies.find(t => t.id === "equipment-supplies");
   return `<section class="container detail-page product-detail-page">${backLink}<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><div class="detail-intro"><div><p class="eyebrow">${c.name}</p><h1 tabindex="-1">${e(p.name)}</h1><p class="detail-description">${e(p.description)}</p></div><figure class="product-figure">${productArtwork(p, true)}<figcaption>Representative illustration. Actual appearance and packaging depend on the confirmed model.</figcaption></figure></div>${modelList(p)}${p.note ? `<p class="technical-note">${e(p.note)}</p>` : ""}</section>`;
 }
 export function serviceCatalog() {

@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test';
 import {technologies, itemsForArea} from '../src/technologies.js';
 
 for (const area of technologies) {
-  test(`${area.name}: every homepage selection belongs to a larger illustrated directory`, async ({page}) => {
+  test(`${area.name}: every homepage selection belongs to its illustrated directory`, async ({page}) => {
     await page.goto('/');
     const section = page.locator(`#${area.id}`);
     const featured = await section.locator('.sector-card a').evaluateAll(links => links.map(a => ({
@@ -16,8 +16,12 @@ for (const area of technologies) {
     const directory = page.locator('.product-module');
     const items = itemsForArea(area);
     const total = items.products.length + items.services.length;
-    expect(total).toBeGreaterThan(featured.length);
+    expect(total).toBeGreaterThanOrEqual(featured.length);
     await expect(directory).toHaveCount(total);
+    if (area.id === 'functional-materials') {
+      await expect(directory.locator('h2')).toHaveText(['MOFs', 'COFs', 'Functional polymers', 'Ligands', 'Advanced materials', 'Advanced membranes']);
+    }
+    await expect(page.locator('main a[href*="/imperial-reducer"], main a[href*="/resin-development"], main a[href*="/functional-intermediate-development"]')).toHaveCount(0);
     await expect(page.locator('main a[href^="https://www.jaford.com"]')).toHaveCount(0);
     for (const selected of featured) {
       const row = directory.filter({has:page.locator(`a[href="${selected.href}"]`)});
@@ -39,8 +43,10 @@ for (const area of technologies) {
       await expect(directory).toHaveCount(total);
     }
     const additional = [...items.products, ...items.services].find(item=>!area.featuredIds.includes(item.id));
-    await directory.getByRole('link',{name:additional.name,exact:true}).click();
-    await page.reload();
-    await expect(page.locator('h1')).toHaveText(additional.name);
+    if (additional) {
+      await directory.getByRole('link',{name:additional.name,exact:true}).click();
+      await page.reload();
+      await expect(page.locator('h1')).toHaveText(additional.name);
+    }
   });
 }

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { products, services, productAliases, serviceAliases } from '../src/catalog.js';
+import { products, retiredProducts, services, productAliases, serviceAliases } from '../src/catalog.js';
+import { areasForService } from '../src/technologies.js';
 import { specifications } from '../src/specifications.js';
 import { cases } from '../src/cases.js';
 
@@ -21,7 +22,12 @@ test('family search keeps model keywords and return filters', async ({page}) => 
 test('all offerings, legacy links and PDFs remain available',async({page,request},info)=>{
   test.skip(info.project.name!=='desktop','Exhaustive coverage once; modal responsiveness in every viewport.');
   test.setTimeout(90_000);
-  for (const [kind,items] of [['product',products],['service',services]]) for(const item of items){
+  await page.goto('/#/products');
+  await expect(page.locator('a[href*="/imperial-reducer"]')).toHaveCount(0);
+  await page.getByRole('link', {name:'Glass Fiber Filter',exact:true}).click();
+  await expect(page.locator('h1')).toHaveText('Glass Fiber Filter');
+  await expect(page.locator('main')).not.toContainText('1823-047');
+  for (const [kind,items] of [['product',[...products,...retiredProducts]],['service',services]]) for(const item of items){
     await page.goto(`/#/${kind}s/${item.id}`);
     await expect(page.locator('h1')).toHaveText(item.name);
     await expect(page.locator('.model-options, .model-list, [data-spec-id]')).toHaveCount(0);
@@ -36,7 +42,8 @@ test('all offerings, legacy links and PDFs remain available',async({page,request
     await page.goto('/#/services/'+old+'?area=custom-rd');
     await expect(page.locator('h1')).toHaveText(services.find(s=>s.id===current).name);
     await page.reload();
-    await expect(page.locator('.breadcrumbs')).toContainText('Custom R&D');
+    const areas = areasForService(current);
+    await expect(page.locator('.breadcrumbs')).toContainText((areas.find(area=>area.id==='custom-rd') || areas[0]).name);
   }
   for(const spec of specifications.values()){
     const response=await request.get('/'+spec.pdf);

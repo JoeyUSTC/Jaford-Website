@@ -2,6 +2,11 @@ import { functionalCapabilities, testingCapabilities } from "./specialist-capabi
 import { fuelCellProducts } from "./fuel-cell-products.js";
 import { products, services } from "./catalog.js";
 
+const functionalMaterialIds = [
+  ...functionalCapabilities.slice(0, 4).map(item => item.id),
+  "functional-materials-development", "advanced-membrane-development",
+];
+
 export const areaAliases = {
   "battery-materials": "battery-technology",
   "battery-cells": "battery-technology",
@@ -42,8 +47,8 @@ export const technologies = [
     casePrefix: "PFM", hideDescription: true,
     id: "functional-materials", nav: "Functional Materials", name: "Functional Materials",
     description: "MOFs, COFs, functional polymers and related materials. Custom development is assessed against the target structure, application and agreed characterization requirements.",
-    featuredIds: functionalCapabilities.slice(0, 6).map(s => s.id),
-    productIds: [], serviceIds: functionalCapabilities.map(s => s.id), links: [],
+    featuredIds: functionalMaterialIds,
+    productIds: [], serviceIds: functionalMaterialIds, links: [],
   },
   {
     hideDescription: true,
@@ -56,8 +61,8 @@ export const technologies = [
   {
     hideDescription: true,
     id: "equipment-supplies", nav: "Equipment & Supplies", name: "Equipment & Supplies",
-    featuredIds: ["electrochemical-workstation", "vacuum-sealer", "glass-reactor-2000ml", "glass-fiber-1823-047", "nickel-sample-boats", "imperial-reducer"],
-    homeLabels: {"electrochemical-workstation": "Electrochemical Workstation", "vacuum-sealer": "Vacuum sealer", "glass-reactor-2000ml": "Glass reaction assembly", "glass-fiber-1823-047": "Glass-fiber filters", "nickel-sample-boats": "Nickel sample boats", "imperial-reducer": "Reducing fittings"},
+    featuredIds: ["electrochemical-workstation", "vacuum-sealer", "glass-reactor-2000ml", "glass-fiber-1823-047", "nickel-sample-boats"],
+    homeLabels: {"electrochemical-workstation": "Electrochemical Workstation", "vacuum-sealer": "Vacuum sealer", "glass-reactor-2000ml": "Glass reaction assembly", "glass-fiber-1823-047": "Glass Fiber Filter", "nickel-sample-boats": "Nickel sample boats"},
     description: "Laboratory equipment, reaction assemblies, filtration media, consumables and accessories.",
     productIds: ["electrochemical-workstation", "vacuum-sealer", "glass-reactor-2000ml", ...products.filter(p => p.category === "lab-supplies" && !["electrochemical-workstation", "vacuum-sealer", "glass-reactor-2000ml"].includes(p.id)).map(p => p.id)], serviceIds: [], links: [],
   },

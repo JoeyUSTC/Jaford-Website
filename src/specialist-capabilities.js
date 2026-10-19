@@ -3,15 +3,17 @@ const capability = (id, name, image, description, preview = "") => ({
   id, name, image, description, preview, scope: [], inputs: [], deliverables: [],
   boundary: "Route, sample compatibility, facilities and reporting scope are reviewed for each project.",
 });
-export const functionalCapabilities = [
+const functionalRecords = [
   capability("mof-development", "MOFs", "mof-framework", "Develop metal–organic frameworks around your target structure and intended function. We bring together synthesis, processing and characterization expertise to assess the route, prepare research samples and plan larger batches where feasible."),
   capability("cof-development", "COFs", "cof-framework", "Develop covalent organic frameworks from a proposed structure or literature route. Synthesis and characterization are considered together so the team can evaluate the material and refine preparation before progressing to larger quantities."),
   capability("functional-polymer-development", "Functional polymers", "polymer-structure", "Translate a target polymer structure or function into research material through specialist synthesis and characterization. Route reproduction, sample preparation and scale-up are assessed around the intended application."),
   capability("resin-development", "Resins", "resin-structure", "Develop custom resins and precursors from a target composition or proposed synthesis route. We connect process development, repeat preparation and larger-batch synthesis so researchers can evaluate the material beyond an initial sample."),
   capability("ligand-development", "Ligands", "ligand-structure", "Prepare target ligands for coordination chemistry and functional-material development. Synthesis, purification and characterization are matched to the requested structure and the next stage of the research."),
   capability("functional-intermediate-development", "Functional intermediates", "intermediate-structure", "Develop target molecules and intermediates needed for functional-material synthesis. Route evaluation, small-scale preparation and characterization provide a basis for further synthesis and scale-up."),
-  capability("advanced-membrane-development", "Advanced membrane materials", "fuel-membranes", "Explore functional membrane materials around the intended transport, separation or electrochemical application. Material chemistry, preparation and characterization are assessed together before defining samples and development scale."),
+  capability("advanced-membrane-development", "Advanced membranes", "fuel-membranes", "Explore functional membrane materials around the intended transport, separation or electrochemical application. Material chemistry, preparation and characterization are assessed together before defining samples and development scale."),
 ];
+export const legacyFunctionalCapabilities = functionalRecords.filter(item => ["resin-development", "functional-intermediate-development"].includes(item.id));
+export const functionalCapabilities = functionalRecords.filter(item => !legacyFunctionalCapabilities.includes(item));
 export const testingCapabilities = [
   capability("sem-tem-characterization", "SEM & TEM", "tem-testing", "Examine material morphology and microstructure using SEM or TEM through specialist laboratories. Sample preparation, imaging conditions and reporting are selected around the material and the research question.", "Surface morphology and microstructure imaging."),
   capability("li-ion-solid-state-testing", "Li-ion & solid-state batteries", "battery-cycling", "Evaluate lithium-ion and solid-state cells through agreed cycling, rate and comparative protocols. Fixtures, pressure where relevant, operating conditions and safety requirements are assessed for the cell format.", "Cycling, rate performance and protocol-based comparison."),

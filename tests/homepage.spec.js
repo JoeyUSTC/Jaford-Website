@@ -8,7 +8,7 @@ test("homepage presents readable product information without errors or overflow"
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD");
   await expect(page.locator("main > section")).toHaveCount(10);
-  await expect(page.locator(".sector-card")).toHaveCount(36);
+  await expect(page.locator(".sector-card")).toHaveCount(35);
   await expect(page.locator("h1")).toHaveText("We Scale Innovation");
   await expect(page.locator(".impact-stats dd")).toHaveText(["9", "20", "88"]);
   await expect(page.locator("#impact-preview-note")).toHaveCount(0);
@@ -23,7 +23,7 @@ test("homepage presents readable product information without errors or overflow"
   await expect(page.locator("#home-contact-form")).toHaveCount(1);
   await expect(page.locator(".home-hero a, .home-hero button")).toHaveCount(0);
   for (const sector of await page.locator(".home-sector").all()) {
-    await expect(sector.locator(".sector-card")).toHaveCount(6);
+    await expect(sector.locator(".sector-card")).toHaveCount(await sector.getAttribute("id") === "equipment-supplies" ? 5 : 6);
     if (page.viewportSize().width >= 1280) {
       const tops = await sector.locator("figure").evaluateAll(items => items.map(item => item.getBoundingClientRect().top));
       expect(new Set(tops).size).toBe(1);

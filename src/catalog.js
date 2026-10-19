@@ -1,4 +1,4 @@
-import { functionalCapabilities, testingCapabilities } from "./specialist-capabilities.js";
+import { functionalCapabilities, legacyFunctionalCapabilities, testingCapabilities } from "./specialist-capabilities.js";
 import { workstationOptions } from "./spec-data.js";
 import { fuelCellProducts } from "./fuel-cell-products.js";
 // Curated from the owner's supplied catalog brief. No unverified numeric specs.
@@ -270,7 +270,7 @@ export const legacyProducts = [
   p(
     "glass-fiber-1823-047",
     "lab-supplies",
-    "Glass-fiber filter media 1823-047",
+    "Glass Fiber Filter",
     "Glass-fiber filter membrane / paper for laboratory workflows.",
     ["1823-047"],
     { Model: "1823-047" },
@@ -473,7 +473,8 @@ const grouped = groups.map(([id, name, description, children]) => {
   return { ...records[0], id, name, description, image: records[0].image || records[0].id, models: variants.map(v => v.name), specs: {}, variants, memberIds: children, note: "" };
 });
 // Replace each family at its first original position, preserving directory order.
-export const products = legacyProducts.flatMap(product => {
+export const retiredProducts = legacyProducts.filter(product => product.id === "imperial-reducer");
+export const products = legacyProducts.filter(product => !retiredProducts.includes(product)).flatMap(product => {
   const family = grouped.find(group => group.memberIds.includes(product.id));
   return family ? (family.memberIds[0] === product.id ? [family] : []) : [product];
 });
@@ -499,7 +500,7 @@ const serviceRecords = [
     scope: [], inputs: [], deliverables: [],
     boundary: "Material, dimensional accuracy, load requirements and manufacturing feasibility are assessed per design; no universal numerical tolerance is claimed.",
   },
-  ...functionalCapabilities, ...testingCapabilities,
+  ...functionalCapabilities, ...legacyFunctionalCapabilities, ...testingCapabilities,
   s(
     "material-characterization",
     "Material characterization",
@@ -511,7 +512,7 @@ const serviceRecords = [
   ),
   s(
     "functional-materials-development",
-    "Functional materials development",
+    "Advanced materials",
     "Develop MOFs, COFs, advanced membrane materials, functional polymers and porous materials with specialist synthesis, processing and characterization resources. We assess the route and application together to move from small samples toward larger batches and material validation.",
     [
       "Route assessment and synthesis coordination for metal–organic frameworks (MOFs) and covalent organic frameworks (COFs).",
@@ -711,8 +712,12 @@ const serviceRecords = [
 ];
 
 // Keep the original synthesis records and PDF identities for later spec work.
-export const legacyServices = serviceRecords.filter(item => ["polymer-resin-synthesis", "small-molecule-synthesis"].includes(item.id));
-export const serviceAliases = { "small-molecule-synthesis": "polymer-resin-synthesis" };
+export const legacyServices = serviceRecords.filter(item => ["polymer-resin-synthesis", "small-molecule-synthesis", "resin-development", "functional-intermediate-development"].includes(item.id));
+export const serviceAliases = {
+  "small-molecule-synthesis": "polymer-resin-synthesis",
+  "resin-development": "functional-polymer-development",
+  "functional-intermediate-development": "polymer-resin-synthesis",
+};
 export const services = serviceRecords
   .filter(item => !serviceAliases[item.id])
   .map(item => item.id === "polymer-resin-synthesis" ? {
@@ -720,9 +725,9 @@ export const services = serviceRecords
     name: "Molecule and Polymer Synthesis",
     description: "Custom organic and polymer synthesis for materials research and development, covering small molecules and ligands, functional intermediates, monomers, resins and functional polymers. We bring together route development, reaction optimization, polymerization, purification and characterization through specialist partner laboratories and factories—from exploratory samples and repeat synthesis to larger-batch development. Share a target structure, reference procedure or required material function so we can assess the synthesis route, quantities and analytical requirements.",
     preview: "Organic and polymer synthesis, from small molecules and ligands to resins and functional polymers.",
-    scope: legacyServices.flatMap(service => service.scope),
-    inputs: legacyServices.flatMap(service => service.inputs),
-    deliverables: legacyServices.flatMap(service => service.deliverables),
+    scope: legacyServices.filter(service => ["polymer-resin-synthesis", "small-molecule-synthesis"].includes(service.id)).flatMap(service => service.scope),
+    inputs: legacyServices.filter(service => ["polymer-resin-synthesis", "small-molecule-synthesis"].includes(service.id)).flatMap(service => service.inputs),
+    deliverables: legacyServices.filter(service => ["polymer-resin-synthesis", "small-molecule-synthesis"].includes(service.id)).flatMap(service => service.deliverables),
     boundary: "Route feasibility, repeatability, quantity, analytical methods and acceptance criteria are assessed for each project; no blanket purity, yield or performance guarantee.",
   } : item);
 

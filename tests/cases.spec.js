@@ -131,5 +131,5 @@ test('testing and equipment categories start directly with their offerings', asy
   await expect(page.locator('.capability-card')).toHaveCount(10);
   await page.goto('/#/technologies/equipment-supplies');
   await expect(page.locator('.hero-description, #case-track')).toHaveCount(0);
-  await expect(page.locator('.product-module')).toHaveCount(11);
+  await expect(page.locator('.product-module')).toHaveCount(10);
 });

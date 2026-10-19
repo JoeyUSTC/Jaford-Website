@@ -1,7 +1,7 @@
 import { specifications } from "./specifications.js";
 import { cases, unnumberedCases, caseAliases } from "./cases.js";
 import { technologies, areaAliases } from "./technologies.js";
-import { products, services, productAliases, serviceAliases } from "./catalog.js";
+import { products, retiredProducts, services, productAliases, serviceAliases } from "./catalog.js";
 import {
   home,
   contactPage,
@@ -239,7 +239,7 @@ function renderRoute(focus = false) {
   if (areaAliases[params.get("area")]) params.set("area", areaAliases[params.get("area")]);
   const area = technologies.find((t) => path === `/technologies/${t.id}`);
   const productId = path.startsWith("/products/") ? path.slice("/products/".length) : "";
-  const product = products.find(p => p.id === (productAliases[productId] || productId));
+  const product = [...products, ...retiredProducts].find(p => p.id === (productAliases[productId] || productId));
   const serviceId = path.startsWith("/services/") ? path.slice("/services/".length) : "";
   const service = services.find(s => s.id === (serviceAliases[serviceId] || serviceId));
   const caseItem = [...cases, ...unnumberedCases].find((item) => path === `/cases/${item.id}`);
