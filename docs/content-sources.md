@@ -162,3 +162,7 @@ The owner requested removing model lists and Spec entries until detailed specifi
 ## 2026-10-19 compact social logo placeholders
 
 The owner confirmed Twitter, LinkedIn, Taobao, WeChat Official Account and Douyin, excluding Xiaohongshu and Amazon for now. One shared logo-only row follows the contact form on both the homepage and independent Contact Us page. Visible channel names, the Social channels heading and coming-soon paragraph are removed; English accessible labels and title tooltips remain. Account URLs/WeChat destination have not been supplied, so these are static marks without links, buttons or tab stops. The form behavior and minimal footer are unchanged. The local vector source and CC0 license are documented in docs/social-icons.md; no runtime third-party icon requests are introduced.
+
+## 2026-10-19 combined synthesis service
+
+The owner requested one Molecule and Polymer Synthesis entry covering organic and polymer synthesis, including small molecules, ligands and polymers. The shared homepage, Custom R&D directory, service index and detail now use this combined scope, retaining the existing polymer reactor illustration. Original synthesis records remain in `legacyServices`; the former small-molecule URL resolves to the combined service through `serviceAliases`, including its category context. Existing PDF files and identities remain available, with model/Spec UI still paused. No purity, yield, equipment ownership or universal synthesis outcome is promised.

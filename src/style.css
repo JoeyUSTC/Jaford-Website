@@ -1543,8 +1543,6 @@ h1[tabindex="-1"]:focus,
 .social-wechat { color: #07c160; }
 .social-douyin { color: #161823; }
 
-@media (min-width: 1280px) { #custom-rd .sector-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); } }
-
 .spec-dialog .spec-table { margin: 0; table-layout: fixed; }
 .spec-dialog .spec-table th { width: 42%; }
 .spec-dialog .spec-table td { width: 58%; }

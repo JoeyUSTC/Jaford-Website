@@ -1,5 +1,5 @@
 import { specFields } from "./spec-fields.js";
-import { products, services } from "./catalog.js";
+import { products, services, legacyServices } from "./catalog.js";
 import { materialOptions, analogs } from "./spec-data.js";
 
 export const specifications = new Map();
@@ -24,4 +24,4 @@ export function optionsFor(item, kind = "product") {
 }
 // The PDF build and browser use the same complete registry.
 for (const item of products) optionsFor(item);
-for (const item of services) optionsFor(item, "service");
+for (const item of [...legacyServices, ...services]) optionsFor(item, "service");

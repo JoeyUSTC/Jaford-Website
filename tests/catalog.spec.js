@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { products, services, productAliases } from '../src/catalog.js';
+import { products, services, productAliases, serviceAliases } from '../src/catalog.js';
 import { specifications } from '../src/specifications.js';
 import { cases } from '../src/cases.js';
 
@@ -31,6 +31,12 @@ test('all offerings, legacy links and PDFs remain available',async({page,request
   for(const [old,family] of Object.entries(productAliases)){
     await page.goto('/#/products/'+old);
     await expect(page.locator('h1')).toHaveText(products.find(p=>p.id===family).name);
+  }
+  for(const [old,current] of Object.entries(serviceAliases)){
+    await page.goto('/#/services/'+old+'?area=custom-rd');
+    await expect(page.locator('h1')).toHaveText(services.find(s=>s.id===current).name);
+    await page.reload();
+    await expect(page.locator('.breadcrumbs')).toContainText('Custom R&D');
   }
   for(const spec of specifications.values()){
     const response=await request.get('/'+spec.pdf);

@@ -486,7 +486,7 @@ const s = (id, name, description, scope, inputs, deliverables, boundary) => ({
   deliverables,
   boundary,
 });
-export const services = [
+const serviceRecords = [
   {
     id: "custom-3d-printing",
     name: "Custom 3D Printing for R&D",
@@ -709,5 +709,21 @@ export const services = [
     "Price, availability, lead time and documentation are confirmed by quotation. No stock or authorized-distributor status is implied.",
   ),
 ];
+
+// Keep the original synthesis records and PDF identities for later spec work.
+export const legacyServices = serviceRecords.filter(item => ["polymer-resin-synthesis", "small-molecule-synthesis"].includes(item.id));
+export const serviceAliases = { "small-molecule-synthesis": "polymer-resin-synthesis" };
+export const services = serviceRecords
+  .filter(item => !serviceAliases[item.id])
+  .map(item => item.id === "polymer-resin-synthesis" ? {
+    ...item,
+    name: "Molecule and Polymer Synthesis",
+    description: "Custom organic and polymer synthesis for materials research and development, covering small molecules and ligands, functional intermediates, monomers, resins and functional polymers. We bring together route development, reaction optimization, polymerization, purification and characterization through specialist partner laboratories and factories—from exploratory samples and repeat synthesis to larger-batch development. Share a target structure, reference procedure or required material function so we can assess the synthesis route, quantities and analytical requirements.",
+    preview: "Organic and polymer synthesis, from small molecules and ligands to resins and functional polymers.",
+    scope: legacyServices.flatMap(service => service.scope),
+    inputs: legacyServices.flatMap(service => service.inputs),
+    deliverables: legacyServices.flatMap(service => service.deliverables),
+    boundary: "Route feasibility, repeatability, quantity, analytical methods and acceptance criteria are assessed for each project; no blanket purity, yield or performance guarantee.",
+  } : item);
 
 services.find(s => s.id === "renewable-coupled-testing").preview = "Electrolysis validation under variable renewable power.";

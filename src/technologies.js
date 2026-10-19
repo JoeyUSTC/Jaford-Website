@@ -12,11 +12,11 @@ export const areaAliases = {
 export const technologies = [
   {
     id: "custom-rd", nav: "Custom R&D", name: "Custom R&D",
-    featuredIds: ["custom-3d-printing", "polymer-resin-synthesis", "small-molecule-synthesis", "synthesis-scale-up", "carbonization-activation", "electrode-processing", "pouch-cell-customization"],
+    featuredIds: ["custom-3d-printing", "polymer-resin-synthesis", "synthesis-scale-up", "carbonization-activation", "electrode-processing", "pouch-cell-customization"],
     homeDescription: "Scale your materials and processes with partner facilities and expertise—from lab samples to larger batches, electrodes and cell prototypes.",
     description: "Connect your lab innovation with specialist synthesis, processing and validation resources—from small samples to larger batches and working prototypes.",
     productIds: [], serviceIds: [
-      "custom-3d-printing", "polymer-resin-synthesis", "small-molecule-synthesis", "synthesis-scale-up",
+      "custom-3d-printing", "polymer-resin-synthesis", "synthesis-scale-up",
       "functional-materials-development", "carbonization-activation", "sintering-heat-treatment",
       "electrode-processing", "pouch-cell-customization", "research-procurement",
       "battery-testing", "stack-testing", "renewable-coupled-testing", "material-characterization",

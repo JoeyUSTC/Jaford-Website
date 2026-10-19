@@ -44,3 +44,26 @@ test("new 3D printing service shares its announcement and image across pages", a
   await expect(directoryCard.locator(".service-badge")).toHaveText("New service");
   await expect(directoryCard.locator("img")).toHaveAttribute("src", src);
 });
+
+test("molecule and polymer synthesis has one listing and preserves the former molecule link", async ({ page }) => {
+  const name = "Molecule and Polymer Synthesis";
+  await page.goto("/");
+  const cards = page.locator("#custom-rd .sector-card");
+  await expect(cards).toHaveCount(6);
+  await expect(cards.nth(1).locator("h3")).toHaveText(name);
+  await cards.nth(1).locator("a").click();
+  await expect(page.locator("h1")).toHaveText(name);
+  await expect(page.locator(".detail-description")).toContainText("small molecules and ligands");
+  await expect(page.locator(".detail-description")).toContainText("resins and functional polymers");
+  await expect(page.locator(".detail-description")).toContainText("polymerization, purification and characterization");
+  await page.goto("/#/services");
+  await expect(page.getByRole("link", { name, exact: true })).toHaveCount(1);
+  await expect(page.getByRole("link", { name: "Polymer & resin synthesis", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Small-molecule & ligand synthesis", exact: true })).toHaveCount(0);
+  await page.goto("/#/services/small-molecule-synthesis?area=custom-rd");
+  await page.reload();
+  await expect(page.locator("h1")).toHaveText(name);
+  await page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", { name: "Custom R&D", exact: true }).click();
+  await expect(page.locator(".capability-card")).toHaveCount(13);
+  await expect(page.getByRole("link", { name, exact: true })).toHaveCount(1);
+});

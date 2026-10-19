@@ -1,7 +1,7 @@
 import { specifications } from "./specifications.js";
 import { cases, unnumberedCases, caseAliases } from "./cases.js";
 import { technologies, areaAliases } from "./technologies.js";
-import { products, services, productAliases } from "./catalog.js";
+import { products, services, productAliases, serviceAliases } from "./catalog.js";
 import {
   home,
   contactPage,
@@ -240,7 +240,8 @@ function renderRoute(focus = false) {
   const area = technologies.find((t) => path === `/technologies/${t.id}`);
   const productId = path.startsWith("/products/") ? path.slice("/products/".length) : "";
   const product = products.find(p => p.id === (productAliases[productId] || productId));
-  const service = services.find((s) => path === `/services/${s.id}`);
+  const serviceId = path.startsWith("/services/") ? path.slice("/services/".length) : "";
+  const service = services.find(s => s.id === (serviceAliases[serviceId] || serviceId));
   const caseItem = [...cases, ...unnumberedCases].find((item) => path === `/cases/${item.id}`);
   let html;
   let title = "JAFORD";

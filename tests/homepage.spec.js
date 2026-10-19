@@ -8,7 +8,7 @@ test("homepage presents readable product information without errors or overflow"
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD");
   await expect(page.locator("main > section")).toHaveCount(10);
-  await expect(page.locator(".sector-card")).toHaveCount(37);
+  await expect(page.locator(".sector-card")).toHaveCount(36);
   await expect(page.locator("h1")).toHaveText("We Scale Innovation");
   await expect(page.locator(".impact-stats dd")).toHaveText(["9", "20", "88"]);
   await expect(page.locator("#impact-preview-note")).toHaveCount(0);
@@ -23,7 +23,7 @@ test("homepage presents readable product information without errors or overflow"
   await expect(page.locator("#home-contact-form")).toHaveCount(1);
   await expect(page.locator(".home-hero a, .home-hero button")).toHaveCount(0);
   for (const sector of await page.locator(".home-sector").all()) {
-    await expect(sector.locator(".sector-card")).toHaveCount(await sector.getAttribute("id") === "custom-rd" ? 7 : 6);
+    await expect(sector.locator(".sector-card")).toHaveCount(6);
     if (page.viewportSize().width >= 1280) {
       const tops = await sector.locator("figure").evaluateAll(items => items.map(item => item.getBoundingClientRect().top));
       expect(new Set(tops).size).toBe(1);
@@ -191,7 +191,7 @@ test("navigation reaches services and mobile menu closes", async ({ page }) => {
   await expect(page).toHaveURL(/#\/technologies\/custom-rd$/);
   await expect(page.locator("h1")).toHaveText("Custom R&D");
   await expect(page.getByText("Technology area", {exact:true})).toHaveCount(0);
-  await expect(page.locator(".capability-card")).toHaveCount(14);
+  await expect(page.locator(".capability-card")).toHaveCount(13);
   await expect(page.locator(".capability-card").first()).toContainText("Custom 3D Printing for R&D");
   await expect(page.locator(".capability-card").last()).toContainText("Material characterization");
   await expect(page.locator(".capability-card").last()).toContainText("XPS");
