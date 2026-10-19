@@ -158,3 +158,7 @@ The owner requested every model/type as a bullet with an inline Spec action, and
 ## Temporary pause of public model/spec entries
 
 The owner requested removing model lists and Spec entries until detailed specifications are available. The shared presentation flag hides product/service model sections and catalog model previews, and uses View product instead of View specs. Underlying records, audits, static PDFs and route aliases are preserved. The owner also requested Taiwan and United Arab Emirates in the list-only region panel, bringing the displayed destination list to nine without changing the existing counter. These additions remain enquiry destinations in internal metadata; no historical client or project claim is inferred.
+
+## 2026-10-19 compact social logo placeholders
+
+The owner confirmed Twitter, LinkedIn, Taobao, WeChat Official Account and Douyin, excluding Xiaohongshu and Amazon for now. One shared logo-only row follows the contact form on both the homepage and independent Contact Us page. Visible channel names, the Social channels heading and coming-soon paragraph are removed; English accessible labels and title tooltips remain. Account URLs/WeChat destination have not been supplied, so these are static marks without links, buttons or tab stops. The form behavior and minimal footer are unchanged. The local vector source and CC0 license are documented in docs/social-icons.md; no runtime third-party icon requests are introduced.

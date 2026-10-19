@@ -7,7 +7,7 @@ test("homepage presents readable product information without errors or overflow"
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD");
-  await expect(page.locator("main > section")).toHaveCount(9);
+  await expect(page.locator("main > section")).toHaveCount(10);
   await expect(page.locator(".sector-card")).toHaveCount(37);
   await expect(page.locator("h1")).toHaveText("We Scale Innovation");
   await expect(page.locator(".impact-stats dd")).toHaveText(["9", "20", "88"]);

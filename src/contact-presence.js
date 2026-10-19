@@ -13,7 +13,9 @@ export const enquiryRegions = [
 
 // Account URLs/WeChat QR code will be supplied by the owner. No placeholder destinations.
 export const socialChannels = [
-  {name: 'WeChat Official Account', icon: 'wechat'},
-  {name: 'X (Twitter)', icon: 'x'},
+  {name: 'Twitter', icon: 'twitter'},
+  {name: 'LinkedIn', icon: 'linkedin'},
   {name: 'Taobao', icon: 'taobao'},
+  {name: 'WeChat Official Account', icon: 'wechat'},
+  {name: 'Douyin', icon: 'douyin'},
 ];

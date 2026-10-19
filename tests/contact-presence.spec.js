@@ -24,16 +24,28 @@ test('region popup supports hover, keyboard and touch without claiming new proje
  await trigger.focus();await page.keyboard.press('Enter');await expect(popup).toBeVisible();
 });
 
-test('social identities have no fake links and the shared contact form is unchanged',async({page})=>{
- await page.goto('/#/contact');
- const social=page.locator('.social-presence');
- await expect(social.locator('.social-channel')).toHaveText(['WeChat Official Account','X (Twitter)','Taobao']);
- await expect(social.locator('svg')).toHaveCount(3);
- await expect(social.locator('a,button')).toHaveCount(0);
- await expect(social).toContainText('Account links coming soon.');
- await expect(page.locator('#home-contact-form input')).toHaveCount(2);
- await expect(page.locator('#home-contact-form textarea')).toHaveCount(1);
- await expect(page.getByRole('button',{name:'Prepare email',exact:true})).toBeVisible();
- expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
- await page.goto('/');await expect(page.locator('.social-presence')).toHaveCount(0);
+test('five compact social logos follow both contact forms without fake links',async({page})=>{
+ const names=['Twitter','LinkedIn','Taobao','WeChat Official Account','Douyin'];
+ for(const route of ['/#/contact','/']){
+  await page.goto(route);
+  const social=page.getByRole('region',{name:'Social channels'});
+  await expect(social.locator('svg')).toHaveCount(5);
+  await expect(social.locator('a,button,[tabindex],h2,p')).toHaveCount(0);
+  await expect(social).toHaveText('');
+  for(const name of names) await expect(social.getByRole('img',{name,exact:true})).toBeVisible();
+  const boxes=await social.locator('.social-channel').evaluateAll(items=>items.map(el=>{
+   const box=el.getBoundingClientRect();return {top:box.top,right:box.right,width:box.width};
+  }));
+  expect(new Set(boxes.map(box=>box.top)).size).toBe(1);
+  expect(Math.max(...boxes.map(box=>box.right))).toBeLessThanOrEqual(page.viewportSize().width);
+  expect(Math.max(...boxes.map(box=>box.width))).toBeLessThanOrEqual(36);
+  const contactBox=await page.locator('.home-contact').boundingBox();
+  const socialBox=await social.boundingBox();
+  expect(socialBox.y).toBeGreaterThanOrEqual(contactBox.y+contactBox.height);
+  await expect(page.locator('#home-contact-form input')).toHaveCount(2);
+  await expect(page.locator('#home-contact-form textarea')).toHaveCount(1);
+  await expect(page.getByRole('button',{name:'Prepare email',exact:true})).toBeVisible();
+  await expect(page.locator('footer a')).toHaveText(['Contact Us','Back to Top']);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
+ }
 });

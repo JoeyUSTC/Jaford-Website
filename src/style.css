@@ -1531,17 +1531,15 @@ h1[tabindex="-1"]:focus,
 .regions-popup { position: absolute; z-index: 10; top: calc(100% - 2px); left: 0; width: min(220px, calc(100vw - 48px)); padding: 20px; border: 1px solid var(--line); background: var(--surface); box-shadow: 0 8px 24px #24364a18; color: var(--ink); }
 .regions-popup ul { margin: 0; padding: 0; list-style: none; }
 .regions-popup li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 5px 0; font-size: 14px; }
-.social-presence { padding-bottom: 64px; }
-.social-presence h2 { font-size: 20px; margin: 0 0 20px; }
-.social-channels { display: flex; flex-wrap: wrap; gap: 16px 32px; }
-.social-channel { display: flex; align-items: center; gap: 10px; font-size: 14px; }
-.social-icon { width: 32px; height: 32px; flex-shrink: 0; }
-.social-wechat { fill: var(--surface); stroke: #278a51; stroke-width: 1.6; }
-.social-wechat circle { fill: #278a51; stroke: none; }
-.social-x { fill: var(--ink); }
-.social-taobao { fill: none; stroke: #dc6628; stroke-width: 2; }
-.social-pending { margin: 16px 0 0; color: var(--muted); font-size: 12px; }
-@media (max-width: 640px) { .social-channels { flex-direction: column; } }
+.social-presence { padding-bottom: 36px; }
+.social-channels { display: flex; align-items: center; gap: 16px; }
+.social-channel { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex-shrink: 0; }
+.social-icon { display: block; width: 24px; height: 24px; fill: currentColor; }
+.social-twitter { color: #1da1f2; }
+.social-linkedin { color: #0a66c2; }
+.social-taobao { color: #e94f20; }
+.social-wechat { color: #07c160; }
+.social-douyin { color: #161823; }
 
 @media (min-width: 1280px) { #custom-rd .sector-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); } }
 

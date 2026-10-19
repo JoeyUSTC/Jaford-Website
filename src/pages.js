@@ -1,4 +1,5 @@
 import { enquiryRegions, socialChannels } from "./contact-presence.js";
+import { socialIconPaths } from "./social-icons.js";
 import { optionsFor } from "./specifications.js";
 import { cases } from "./cases.js";
 import { productImages } from "./product-images.js";
@@ -67,7 +68,7 @@ export function home() {
   return `<section class="container scale-intro" aria-labelledby="scale-title"><h1 id="scale-title" tabindex="-1">We Scale Innovation</h1><div class="impact-preview"><dl class="impact-stats"><div class="region-stat"><dt><button type="button" id="regions-trigger" class="region-trigger" aria-expanded="false" aria-controls="regions-popup"><span>Countries & regions</span><svg class="region-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="m2 4 4 4 4-4"/></svg></button><div id="regions-popup" class="regions-popup" role="region" aria-labelledby="regions-trigger" hidden><ul>${enquiryRegions.map(region => `<li><span>${e(region.name)}</span></li>`).join("")}</ul></div></dt><dd data-count-target="9">9</dd></div><div><dt>Research teams</dt><dd data-count-target="20">20</dd></div><div><dt>Projects delivered</dt><dd data-count-target="88">88</dd></div></dl></div></section>
   ${homeCases()}
   ${technologies.map(area => homeSector(area.id, area.name, featuredItemsForArea(area).map(({kind, item}) => [area.homeLabels?.[item.id] || item.name, kind === "product" ? productURL(item.id, area.id) : serviceURL(item.id, area.id), kind === "product" ? item.image || item.id : item.image || serviceArtwork[item.id], item.preview || "", item.badge || ""]), area.homeDescription || "")).join("")}
-  ${contactForm()}`;
+  ${contactForm()}${socialPresence()}`;
 }
 export function technologyDetail(area) {
   const items = itemsForArea(area);
@@ -150,11 +151,6 @@ export function notFound() {
 }
 
 const socialIcon = icon => {
-  const shapes = {
-    wechat: '<path d="M14 5c-6 0-11 3.8-11 8.5 0 2.6 1.5 5 4 6.5l-1 4 4-2.2c1.3.4 2.6.6 4 .6 6 0 11-3.8 11-8.5S20 5 14 5Z"/><path d="M22 15c-5 0-9 3-9 6.8s4 6.8 9 6.8c1.2 0 2.3-.2 3.4-.5l3.4 1.8-.8-3.3c2-1.2 3-2.9 3-4.8 0-3.8-4-6.8-9-6.8Z"/><circle cx="10" cy="12" r="1"/><circle cx="17" cy="12" r="1"/><circle cx="19" cy="21" r=".8"/><circle cx="25" cy="21" r=".8"/>',
-    x: '<path d="M5 4h6l7 9 8-9h3L20 15l10 13h-6l-8-10-9 10H4l10-12L5 4Zm4 2 16 20h2L11 6Z"/>',
-    taobao: '<rect x="5" y="10" width="24" height="20" rx="4"/><path d="M11 10V8a6 6 0 0 1 12 0v2M11 16h12M17 16v9"/>',
-  };
-  return `<svg class="social-icon social-${icon}" viewBox="0 0 34 34" aria-hidden="true" focusable="false">${shapes[icon]}</svg>`;
+  return `<svg class="social-icon social-${icon}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${socialIconPaths[icon]}"></path></svg>`;
 };
-const socialPresence = () => `<section class="container social-presence" aria-labelledby="social-title"><h2 id="social-title">Social channels</h2><div class="social-channels">${socialChannels.map(channel => `<div class="social-channel">${socialIcon(channel.icon)}<span>${e(channel.name)}</span></div>`).join("")}</div><p class="social-pending">Account links coming soon.</p></section>`;
+const socialPresence = () => `<section class="container social-presence" aria-label="Social channels"><div class="social-channels">${socialChannels.map(channel => `<span class="social-channel" role="img" aria-label="${e(channel.name)}" title="${e(channel.name)}">${socialIcon(channel.icon)}</span>`).join("")}</div></section>`;
