@@ -18,6 +18,9 @@ jobs:
   publish:
     if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
+    env:
+      VITE_ANALYTICS_COLLECT_URL: ${{ vars.VITE_ANALYTICS_COLLECT_URL }}
+      VITE_ANALYTICS_ADMIN_URL: ${{ vars.VITE_ANALYTICS_ADMIN_URL }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -30,6 +33,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+      - run: npm run test:analytics
       - run: npx playwright install --with-deps chromium
       - run: npm test
       - run: npm run build:preview

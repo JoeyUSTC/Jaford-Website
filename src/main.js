@@ -1,4 +1,5 @@
 import { specifications } from "./specifications.js";
+import { recordHomepageView, ownerInsightsPage } from "./analytics.js";
 import { cases, unnumberedCases, caseAliases } from "./cases.js";
 import { technologies, areaAliases } from "./technologies.js";
 import { products, retiredProducts, services, productAliases, serviceAliases } from "./catalog.js";
@@ -245,7 +246,10 @@ function renderRoute(focus = false) {
   const caseItem = [...cases, ...unnumberedCases].find((item) => path === `/cases/${item.id}`);
   let html;
   let title = "JAFORD";
-  if (area) {
+  if (path === "/owner-insights") {
+    html = ownerInsightsPage();
+    title = "Website insights — JAFORD";
+  } else if (area) {
     html = technologyDetail(area);
     title = `${area.name} — JAFORD`;
   } else if (path === "/contact") {
@@ -286,6 +290,15 @@ function renderRoute(focus = false) {
   }
   document.querySelector("#main").innerHTML = html;
   document.title = title;
+  document.querySelector('meta[data-private-insights]')?.remove();
+  if (path === '/owner-insights') {
+    const robots = document.createElement('meta');
+    robots.name = 'robots';
+    robots.content = 'noindex, nofollow, noarchive';
+    robots.dataset.privateInsights = '';
+    document.head.append(robots);
+  }
+  recordHomepageView(Boolean(document.querySelector('.scale-intro')));
   animateStats();
   const regionStat = document.querySelector(".region-stat");
   if (regionStat) {

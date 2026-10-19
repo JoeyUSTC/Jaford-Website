@@ -6,3 +6,6 @@ playwright-report/
 .env
 .env.*
 !.env.example
+analytics/.wrangler/
+analytics/wrangler.jsonc
+analytics/.dev.vars

@@ -1,5 +1,7 @@
 # JAFORD website
 
+Optional private homepage analytics is prepared under `analytics/`, with an unlisted `#/owner-insights` entry. Collection is **off** until a Cloudflare Worker/D1 backend, exact-owner email Access policy and visitor disclosure are configured and verified. GitHub Pages never stores or serves visit/IP data. See [analytics/README.md](analytics/README.md) for activation, limitations and retention. No analytics account is connected yet.
+
 A responsive English homepage for JAFORD's advanced materials and R&D offering, aimed at startups and research teams. Built with Vite, vanilla JavaScript and CSS. The layout uses plain typography and directly visible product information, without decorative imagery or external fonts.
 
 ## Develop
