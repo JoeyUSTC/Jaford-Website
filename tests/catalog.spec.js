@@ -55,7 +55,7 @@ test('model and spec presentation is paused without breaking family pages',async
   for(const route of ['products/electrolyte','products/hard-carbon','products/electrochemical-workstation','services/mof-development','services/custom-3d-printing']){
     await page.goto('/#/'+route);
     await expect(page.locator('h1')).toBeVisible();
-    await expect(page.locator('.detail-description')).toBeVisible();
+    await expect(page.locator('.detail-description').first()).toBeVisible();
     await expect(page.locator('main img')).toBeVisible();
     await expect(page.locator('.model-options,[data-spec-id]')).toHaveCount(0);
     await expect(page.locator('#spec-dialog')).not.toBeVisible();
