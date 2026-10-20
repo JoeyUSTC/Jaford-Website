@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { socialChannels } from "../src/contact-presence.js";
 
 test("header and footer open the shared independent contact page", async ({ page }) => {
   await page.goto("/");
@@ -86,7 +87,7 @@ test("category and case headings are concise and visitor links stay internal", a
   for (const route of ["/", "/contact", "/technologies/fuel-cells-electrolyzers", "/technologies/battery-technology", "/technologies/functional-materials", "/technologies/custom-rd", "/technologies/testing-characterization", "/technologies/equipment-supplies", "/products", "/services", "/cases"]) {
     await page.goto(`/#${route}`);
     const external = await page.locator("a[href]").evaluateAll(links => links.filter(a => !["mailto:"].some(scheme => a.href.startsWith(scheme)) && new URL(a.href).origin !== location.origin).map(a => a.getAttribute("href")));
-    expect(external).toEqual([]);
+    expect(external.sort()).toEqual((["/", "/contact"].includes(route) ? socialChannels.filter(channel => channel.url).map(channel => channel.url) : []).sort());
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize().width);
     if (route === "/technologies/fuel-cells-electrolyzers") {
       await expect(page.locator(".hero")).toHaveText("Fuel Cells & Electrolyzers");

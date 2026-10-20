@@ -11,11 +11,12 @@ export const enquiryRegions = [
   {name: 'United Arab Emirates', established: false},
 ].sort((a,b) => a.name.localeCompare(b.name, 'en'));
 
-// Account URLs/WeChat QR code will be supplied by the owner. No placeholder destinations.
+// Owner-supplied account links. Taobao remains unlinked until its shop URL is supplied.
 export const socialChannels = [
-  {name: 'Twitter', icon: 'twitter'},
-  {name: 'LinkedIn', icon: 'linkedin'},
+  {name: 'Twitter', icon: 'twitter', url: 'https://x.com/jafordadvisory?s=11'},
+  {name: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/company/jaford-advisory-pte-ltd/'},
   {name: 'Taobao', icon: 'taobao'},
-  {name: 'WeChat Official Account', icon: 'wechat'},
-  {name: 'Douyin', icon: 'douyin'},
+  {name: 'WeChat Official Account', icon: 'wechat', url: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzcwNTM5NjE5OA=='},
+  {name: 'Douyin', icon: 'douyin', url: 'https://v.douyin.com/_hYZqMd3ITY/'},
+  {name: 'Xiaohongshu', icon: 'xiaohongshu', url: 'https://www.xiaohongshu.com/user/profile/68d8b17b000000002101992c'},
 ];

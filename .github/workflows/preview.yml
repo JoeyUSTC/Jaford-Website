@@ -49,3 +49,6 @@ jobs:
       - name: Notify participating search engines of published content changes
         continue-on-error: true
         run: node scripts/indexnow.mjs submit
+      - name: Check public social link access
+        continue-on-error: true
+        run: node scripts/check-social-links.mjs

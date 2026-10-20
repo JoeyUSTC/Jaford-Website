@@ -154,4 +154,6 @@ export function notFound() {
 const socialIcon = icon => {
   return `<svg class="social-icon social-${icon}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${socialIconPaths[icon]}"></path></svg>`;
 };
-const socialPresence = () => `<section class="container social-presence" aria-label="Social channels"><div class="social-channels">${socialChannels.map(channel => `<span class="social-channel" role="img" aria-label="${e(channel.name)}" title="${e(channel.name)}">${socialIcon(channel.icon)}</span>`).join("")}</div></section>`;
+const socialPresence = () => `<section class="container social-presence" aria-label="Social channels"><div class="social-channels">${socialChannels.map(channel => channel.url
+  ? `<a class="social-channel" href="${e(channel.url)}" target="_blank" rel="noopener noreferrer" aria-label="${e(channel.name)}" title="${e(channel.name)} — opens in a new tab">${socialIcon(channel.icon)}</a>`
+  : `<span class="social-channel" role="img" aria-label="${e(channel.name)}" title="${e(channel.name)}">${socialIcon(channel.icon)}</span>`).join("")}</div></section>`;
