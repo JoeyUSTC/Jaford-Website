@@ -495,7 +495,7 @@ const serviceRecords = [
     badge: "New service",
     introduction: "Custom Parts for Your Next Experiment",
     description: "Custom 3D-printed components for materials research and equipment development, including project-assessed cell housings, sealing features and test interfaces for lithium-ion battery experiments.",
-    story: "Develop research-cell geometry around electrode stacks, electrical contacts and analytical-window requirements. Iterate fit and assembly as your experiment evolves. Material, dimensions, electrolyte compatibility, sealing, operating conditions and manufacturing feasibility are assessed for each part.",
+    story: "Material options for filament-based printing include PLA, PETG, ABS, TPU, ASA, PP, PC and PA (nylon), plus PCL, PVB and PC-ABS. Carbon-fiber-filled PLA/PETG and transparent grades can also be assessed for your design. Rigid and flexible materials support geometry, fit and assembly trials; water-soluble PVA supports enable more complex shapes where suitable. Material, dimensional accuracy, electrolyte compatibility, sealing, operating conditions and manufacturing feasibility are assessed for each part.",
     preview: "Custom research-cell components for lithium-ion battery experiments.",
     scope: [], inputs: [], deliverables: [],
     boundary: "Material, dimensional accuracy, load requirements and manufacturing feasibility are assessed per design; no universal numerical tolerance is claimed.",
