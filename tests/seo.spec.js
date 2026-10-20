@@ -2,11 +2,12 @@ import {test, expect} from '@playwright/test';
 import {createServer} from 'node:http';
 import {readFileSync, existsSync, statSync} from 'node:fs';
 import {resolve, extname} from 'node:path';
+import {technologies} from '../src/technologies.js';
 
 test('public pages have complete content and navigation without JavaScript', async({browser},testInfo)=>{
   const context=await browser.newContext({javaScriptEnabled:false,viewport:testInfo.project.use.viewport,isMobile:testInfo.project.use.isMobile,hasTouch:testInfo.project.use.hasTouch});
   const page=await context.newPage();
-  for(const [path,title] of [['/','We Scale Innovation'],['/technologies/battery-technology/','Battery Technology'],['/services/custom-3d-printing/','Custom 3D Printing for R&D'],['/products/hard-carbon/','Hard Carbon'],['/cases/resin-route-process-scale-up/','Taking a proposed resin route into kilogram-scale synthesis'],['/contact/','Contact Us']]){
+  for(const [path,title] of [['/','We Scale Innovation'],['/battery-technology/','Battery Technology'],['/services/custom-3d-printing/','Custom 3D Printing for R&D'],['/products/hard-carbon/','Hard Carbon'],['/cases/resin-route-process-scale-up/','Taking a proposed resin route into kilogram-scale synthesis'],['/contact/','Contact Us']]){
     const response=await page.goto(`http://127.0.0.1:4173${path}`);
     expect(response.status()).toBe(200);
     await expect(page.locator('h1')).toHaveText(title);
@@ -23,13 +24,43 @@ test('public pages have complete content and navigation without JavaScript', asy
   expect(await page.locator('main img').evaluate(img=>img.complete&&img.naturalWidth>0)).toBe(true);
   await page.goto('http://127.0.0.1:4173/owner-insights/');
   await expect(page.locator('meta[name=robots]')).toHaveAttribute('content',/^noindex,/);
+  await page.goto('http://127.0.0.1:4173/technologies/battery-technology/');
+  await expect(page).toHaveURL('http://127.0.0.1:4173/battery-technology/');
+  await expect(page.locator('h1')).toHaveText('Battery Technology');
   await context.close();
+});
+
+test('all categories use flat URLs and old paths, fragments and queries migrate safely',async({page})=>{
+  for(const area of technologies){
+    const response=await page.goto(`/${area.id}/`);
+    expect(response.status()).toBe(200);
+    await expect(page.locator('h1')).toHaveText(area.name);
+    await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href',`https://jaford.com/${area.id}/`);
+    const link=page.locator('#navigation').getByRole('link',{name:area.nav,exact:true,includeHidden:true});
+    await expect(link).toHaveAttribute('href',`/${area.id}/`);
+    await expect(link).toHaveAttribute('aria-current','page');
+  }
+  await page.goto('/technologies/battery-materials/?utm_source=old#project-cases');
+  await expect(page).toHaveURL(/\/battery-technology\/\?utm_source=old#project-cases$/);
+  await expect(page.locator('h1')).toHaveText('Battery Technology');
+  await page.goto('/products/glass-fiber-1823-047/?utm_source=old');
+  await expect(page).toHaveURL(/\/products\/glass-fiber-filter\/\?utm_source=old$/);
+  await expect(page.locator('h1')).toHaveText('Glass Fiber Filter');
+  await page.reload();
+  await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://jaford.com/products/glass-fiber-filter/');
+  await page.goto('/services/polymer-resin-synthesis/');
+  await expect(page).toHaveURL(/\/services\/molecule-polymer-synthesis\/$/);
+  await expect(page.locator('h1')).toHaveText('Molecule and Polymer Synthesis');
+  await page.locator('.breadcrumbs').getByRole('link',{name:'Custom R&D',exact:true}).click();
+  await expect(page).toHaveURL(/\/custom-rd\/$/);
+  await page.goBack();
+  await expect(page.locator('h1')).toHaveText('Molecule and Polymer Synthesis');
 });
 
 test('clean URLs, legacy links, history and metadata stay in sync',async({page})=>{
   const errors=[]; page.on('pageerror',e=>errors.push(e.message));
   await page.goto('/?utm_source=compat#/products/qms029d?area=battery-materials');
-  await expect(page).toHaveURL(/\/products\/electrolyte\/\?area=battery-technology&utm_source=compat$/);
+  await expect(page).toHaveURL(/\/products\/electrolyte\/\?utm_source=compat$/);
   await expect(page.locator('h1')).toHaveText('Electrolyte');
   await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://jaford.com/products/electrolyte/');
   await page.reload();
@@ -41,7 +72,7 @@ test('clean URLs, legacy links, history and metadata stay in sync',async({page})
   await page.goForward();
   await expect(page.locator('h1')).toHaveText('We Scale Innovation');
   await page.goto('/#/services/small-molecule-synthesis');
-  await expect(page).toHaveURL(/\/services\/polymer-resin-synthesis\/$/);
+  await expect(page).toHaveURL(/\/services\/molecule-polymer-synthesis\/$/);
   await expect(page.locator('meta[name=description]')).toHaveAttribute('content',/Custom organic and polymer synthesis/);
   const graph=JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
   expect(graph['@graph'].find(node=>node['@type']==='Service').name).toBe('Molecule and Polymer Synthesis');
@@ -89,8 +120,8 @@ test('static documents also work beneath the original GitHub Pages mount',async(
     await page.reload();
     await expect(page.locator('.service-story')).toContainText('PLA, PETG');
     await page.goto(`${base}/#/technologies/advanced-materials`);
-    await expect(page).toHaveURL(`${base}/technologies/functional-materials/`);
+    await expect(page).toHaveURL(`${base}/functional-materials/`);
     await expect(page.locator('h1')).toHaveText('Functional Materials');
-    await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://jaford.com/technologies/functional-materials/');
+    await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://jaford.com/functional-materials/');
   }finally{await new Promise(resolve=>server.close(resolve));}
 });

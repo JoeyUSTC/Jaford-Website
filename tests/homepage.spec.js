@@ -85,7 +85,7 @@ test("technology navigation groups products and related services", async ({
     "Functional Materials", "Testing & Characterization", "Equipment & Supplies", "Contact Us",
   ]);
   await expect(page.locator("main > section").nth(2)).toHaveAttribute("id", "custom-rd");
-  for (const item of links.filter(item => item.href.startsWith("/technologies/"))) {
+  for (const item of links.filter(item => item.name !== "Contact Us")) {
     await page.goto(item.href);
     await expect(page.locator("h1")).toHaveText(item.name);
     await expect(page.locator(".catalog-section")).toBeVisible();
@@ -112,7 +112,7 @@ test("technology navigation groups products and related services", async ({
     .getByRole("navigation", { name: "Breadcrumb" })
     .getByRole("link", { name: "Custom R&D", exact: true })
     .click();
-  await expect(page).toHaveURL(/\/technologies\/custom-rd\/$/);
+  await expect(page).toHaveURL(/\/custom-rd\/$/);
   await page.goto("/#/technologies/battery-cells");
   await page
     .getByRole("link", { name: "Spherical porous carbon", exact: true })
@@ -188,7 +188,7 @@ test("navigation reaches services and mobile menu closes", async ({ page }) => {
     .getByRole("navigation", { name: "Main navigation" })
     .getByRole("link", { name: "Custom R&D", exact: true })
     .click();
-  await expect(page).toHaveURL(/\/technologies\/custom-rd\/$/);
+  await expect(page).toHaveURL(/\/custom-rd\/$/);
   await expect(page.locator("h1")).toHaveText("Custom R&D");
   await expect(page.getByText("Technology area", {exact:true})).toHaveCount(0);
   await expect(page.locator(".capability-card")).toHaveCount(13);

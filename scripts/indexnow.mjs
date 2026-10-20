@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, existsSync, appendFileSync } from "node:fs";
 import { origin } from "../src/seo.js";
+import { categorySlugs } from "../src/url-paths.js";
 
 const mode = process.argv[2];
 const baseline = ".seo-indexnow-previous.json";
@@ -7,7 +8,8 @@ const request = (url, options = {}) => fetch(url, {signal:AbortSignal.timeout(20
 function pagesFrom(manifest) {
   if (manifest?.schemaVersion !== 1 || !manifest.pages || Array.isArray(manifest.pages) || Object.keys(manifest.pages).length > 10000) throw new Error("Invalid SEO manifest.");
   for (const [url,digest] of Object.entries(manifest.pages)) {
-    if (!/^https:\/\/jaford\.com\/(?:|(?:contact|products|services|cases)\/|(?:technologies|products|services|cases)\/[a-z0-9-]+\/)$/.test(url) || !/^[a-f0-9]{64}$/.test(digest)) throw new Error("Unexpected manifest URL/digest.");
+    const flatCategory = categorySlugs.some(slug => url === `${origin}/${slug}/`);
+    if ((!flatCategory && !/^https:\/\/jaford\.com\/(?:|(?:contact|products|services|cases)\/|(?:technologies|products|services|cases)\/[a-z0-9-]+\/)$/.test(url)) || !/^[a-f0-9]{64}$/.test(digest)) throw new Error("Unexpected manifest URL/digest.");
   }
   return manifest.pages;
 }

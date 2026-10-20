@@ -1,6 +1,7 @@
 import { products, retiredProducts, services, productAliases, serviceAliases } from "./catalog.js";
 import { cases, unnumberedCases, caseAliases } from "./cases.js";
 import { technologies, areaAliases, areasForProduct, areasForService, itemsForArea } from "./technologies.js";
+import { publicPath, internalPath, movedPaths } from "./url-paths.js";
 
 export const homeDescription = "JAFORD provides materials, consumables and equipment for research teams, and coordinates custom synthesis, processing and development through partner factories and laboratories.";
 const shortDescription = value => {
@@ -11,7 +12,7 @@ const shortDescription = value => {
 };
 export function resolveRoute(raw = "/") {
   const [input, query = ""] = raw.replace(/^#/, "").split("?");
-  let path = "/" + input.replace(/\/index\.html$/, "").replace(/^\/+|\/+$/g, "");
+  let path = internalPath("/" + input.replace(/\/index\.html$/, "").replace(/^\/+|\/+$/g, ""));
   const params = new URLSearchParams(query);
   if (areaAliases[params.get("area")]) params.set("area", areaAliases[params.get("area")]);
   if (path === "/technologies") path = "/";
@@ -45,22 +46,24 @@ export function resolveRoute(raw = "/") {
   } else if ((item = [...products, ...retiredProducts].find(p => path === `/products/${p.id}`))) {
     type = "product"; title = `${item.name} — JAFORD`; description = item.description;
     area = areasForProduct(item.id).find(t => t.id === params.get("area")) || areasForProduct(item.id)[0] || technologies.find(t => t.id === "equipment-supplies");
+    if (area.id === areasForProduct(item.id)[0]?.id) params.delete("area");
     indexable = !retiredProducts.includes(item);
   } else if ((item = services.find(s => path === `/services/${s.id}`))) {
     type = "service"; title = `${item.name} — JAFORD`; description = item.description;
     area = areasForService(item.id).find(t => t.id === params.get("area")) || areasForService(item.id)[0];
+    if (area.id === areasForService(item.id)[0]?.id) params.delete("area");
   } else if ((item = [...cases, ...unnumberedCases].find(c => path === `/cases/${c.id}`))) {
     type = "case"; title = `${item.title} — JAFORD`; description = item.summary;
     indexable = cases.includes(item);
   } else indexable = false;
-  return {path, params, type, item, area, title, description: shortDescription(description), indexable};
+  return {path:publicPath(path), params, type, item, area, title, description: shortDescription(description), indexable};
 }
 
 export const publicRoutes = ["/", "/contact", "/products", "/services", "/cases",
   ...technologies.map(t => `/technologies/${t.id}`),
   ...products.map(p => `/products/${p.id}`), ...services.map(s => `/services/${s.id}`),
-  ...cases.map(c => `/cases/${c.id}`)];
-export const compatibilityRoutes = ["/technologies",
+  ...cases.map(c => `/cases/${c.id}`)].map(publicPath);
+export const compatibilityRoutes = ["/technologies", ...Object.keys(movedPaths),
   ...Object.keys(areaAliases).map(id => `/technologies/${id}`),
   ...Object.keys(productAliases).map(id => `/products/${id}`),
   ...Object.keys(serviceAliases).map(id => `/services/${id}`),

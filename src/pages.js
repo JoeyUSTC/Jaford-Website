@@ -24,9 +24,9 @@ const e = escapeHtml;
 // Temporarily pause model/spec UI until detailed supplier data is available.
 const showModelSpecifications = false;
 const productURL = (id, area) =>
-  siteURL(`/products/${id}${area ? `?area=${area}` : ""}`);
+  siteURL(`/products/${id}${area && areasForProduct(id)[0]?.id !== area ? `?area=${area}` : ""}`);
 const serviceURL = (id, area) =>
-  siteURL(`/services/${id}${area ? `?area=${area}` : ""}`);
+  siteURL(`/services/${id}${area && areasForService(id)[0]?.id !== area ? `?area=${area}` : ""}`);
 const link = (href, label) =>
   `<a class="text-link" href="${href}">${label}</a>`;
 const inquiry = (label, topic, item = "") =>

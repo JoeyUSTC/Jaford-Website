@@ -21,6 +21,16 @@ Local delivery checks: lint and both builds passed; eight SEO/notification check
 
 `public/indexnow-key.txt` is intentionally hosted for the IndexNow ownership protocol; it grants no login or access to site data. Never use it as an analytics credential or account password. The ignored local previous-manifest file contains only public URL digests.
 
+## URL simplification, 2026-10-20
+
+The six category URLs now sit directly below the domain: `/custom-rd/`, `/battery-technology/`, `/fuel-cells-electrolyzers/`, `/functional-materials/`, `/testing-characterization/` and `/equipment-supplies/`. Product, service and case pages keep one descriptive collection prefix; `/contact/` stays unchanged. Public addresses consistently use lowercase hyphenated words and trailing slashes. The renamed Glass Fiber Filter and merged synthesis service now use `/products/glass-fiber-filter/` and `/services/molecule-polymer-synthesis/`, without changing catalog IDs, specification PDFs or visible content.
+
+`src/url-paths.js` centralizes the public/internal path mapping. Navigation, cards, breadcrumbs, canonical/social metadata, structured data, sitemap and digest manifests use these public addresses. Default-category `area` queries are removed; secondary-category context, filters and attribution parameters remain supported. IndexNow accepts both the previous and current manifest category patterns so moved public URLs can be notified after deployment verification.
+
+All older directory and hash addresses remain compatible. Moved static directories contain the target content and canonical URL, plus a `location.replace` redirect preserving query strings and fragments and a noscript refresh fallback. These are client-side redirects, not HTTP 301 responses: GitHub Pages does not provide custom server redirect rules. Browser tests cover each flat category, legacy aliases/hash links, moved product/service details, query/fragment preservation, refresh, history and the repository mount. SEO checks cover all 75 canonical documents and each of the eight moved canonical paths. Shorter URLs improve consistency and readability; shortening alone does not establish a ranking improvement.
+
+Local URL-migration validation passed lint, both builds, nine SEO/notification checks against each artifact, nine analytics checks and all 150 applicable browser checks across four viewport projects (six intentionally inapplicable checks skipped, suite run in two disjoint batches). All 75 public page templates are identical to the preceding revision after normalizing href attributes; CSS, business records, artwork and PDFs are unchanged. After deployment, `scripts/check-published-urls.mjs` verifies the exact source revision and 18 public new/legacy URLs, checking HTTP status, rendered static content, canonical metadata and old-path redirect markup from the GitHub Actions runner. Its separately reported result is required evidence before claiming those live checks passed.
+
 ## Owner-dependent steps still required
 
 These need access to the owner's Google/Bing accounts; creating files or publishing this build does not complete them.

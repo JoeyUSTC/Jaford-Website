@@ -1,5 +1,6 @@
 import {test, expect} from '@playwright/test';
 import {technologies, itemsForArea} from '../src/technologies.js';
+import {resolveRoute} from '../src/routes.js';
 
 for (const area of technologies) {
   test(`${area.name}: every homepage selection belongs to its illustrated directory`, async ({page}) => {
@@ -32,7 +33,7 @@ for (const area of technologies) {
     for (const selected of featured) {
       await page.goto('/');
       await page.locator(`#${area.id} .sector-card a[href="${selected.href}"]`).click();
-      const item = [...items.products, ...items.services].find(item => selected.href.includes(`/${item.id}/?`));
+      const item = resolveRoute(new URL(selected.href, 'https://jaford.com').pathname).item;
       await expect(page.locator('h1')).toHaveText(item.name);
       const img = page.locator('.detail-page figure img');
       await expect(img).toHaveAttribute('src', selected.src);

@@ -7,22 +7,25 @@ import { publicRoutes, compatibilityRoutes, resolveRoute } from "../src/routes.j
 import { renderPage } from "../src/render-page.js";
 import { seoTags, canonicalURL, origin } from "../src/seo.js";
 import { technologies } from "../src/technologies.js";
+import { siteURL } from "../src/urls.js";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const output = resolve(root, process.argv[2] || "dist");
 if (![join(root, "dist"), join(root, ".preview-dist")].includes(output)) throw new Error("Unexpected output directory.");
 const shell = readFileSync(join(output, "index.html"), "utf8");
-const navigation = technologies.map(t => `<a href="/technologies/${t.id}/">${t.nav.replace(/&/g,"&amp;")}</a>`).join("") + '<a href="/contact/">Contact Us</a>';
+const navigation = technologies.map(t => `<a href="${siteURL(`/technologies/${t.id}`)}">${t.nav.replace(/&/g,"&amp;")}</a>`).join("") + '<a href="/contact/">Contact Us</a>';
 const revision = execFileSync("git", ["rev-parse", "HEAD"], {cwd:root,encoding:"utf8"}).trim();
 
 function documentFor(route, notFound = false) {
   const page = resolveRoute(route);
   const depth = route.split("/").filter(Boolean).length;
   const prefix = notFound ? "/" : depth ? "../".repeat(depth) : "./";
+  const destination = `${prefix}${page.path === "/" ? "" : page.path.slice(1) + "/"}`;
+  const redirect = route !== page.path && page.type !== "not-found" ? `<script>location.replace(${JSON.stringify(destination)} + location.search + location.hash);</script><noscript><meta http-equiv="refresh" content="0;url=${destination}"></noscript>` : "";
   let html = shell
     .replace(/<title>[\s\S]*?<\/title>/, "")
     .replace(/\s*<meta\s+name="description"[\s\S]*?>/, "")
-    .replace("</head>", () => seoTags(page) + "\n</head>")
+    .replace("</head>", () => seoTags(page) + redirect + "\n</head>")
     .replace('<main id="main" tabindex="-1"></main>', () => `<main id="main" tabindex="-1">${renderPage(page)}</main>`)
     .replace('<nav id="navigation" aria-label="Main navigation"></nav>', () => `<nav id="navigation" aria-label="Main navigation">${navigation}</nav>`)
     .replace('href="#/"', 'href="/"').replace('href="#/contact"','href="/contact/"')

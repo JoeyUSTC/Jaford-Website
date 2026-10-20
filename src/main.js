@@ -221,7 +221,7 @@ document.addEventListener('click', event => {
   if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.download || (link.target && link.target !== '_self')) return;
   const url = new URL(link.href);
   if (url.origin !== location.origin || !url.pathname.startsWith(siteBase) || (url.hash && !url.hash.startsWith('#/'))) return;
-  if (!url.hash.startsWith('#/') && !/^\/(?:$|technologies(?:\/|$)|products(?:\/|$)|services(?:\/|$)|cases(?:\/|$)|contact(?:\/|$)|owner-insights(?:\/|$))/.test('/' + url.pathname.slice(siteBase.length))) return;
+  if (!url.hash.startsWith('#/') && resolveRoute(pathFromURL(url)).type === 'not-found') return;
   event.preventDefault();
   navigate(url.href);
 });

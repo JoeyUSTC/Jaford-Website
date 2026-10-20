@@ -1,4 +1,5 @@
 import { escapeHtml } from "./pages.js";
+import { publicPath } from "./url-paths.js";
 
 export const origin = "https://jaford.com";
 export const canonicalURL = page => origin + (page.path === "/" ? "/" : `${page.path}/`);
@@ -11,7 +12,7 @@ export function structuredData(page) {
   const webpage = {"@type":page.type === "contact" ? "ContactPage" : ["products","services","cases","technology"].includes(page.type) ? "CollectionPage" : "WebPage", "@id":`${url}#webpage`, url, name:page.title, description:page.description, inLanguage:"en", isPartOf:{"@id":website["@id"]}};
   const graph = [organization, website, webpage];
   if (["product", "service", "case"].includes(page.type)) {
-    const parent = page.type === "case" ? {name:"Case studies",path:"/cases/"} : {name:page.area.name,path:`/technologies/${page.area.id}/`};
+    const parent = page.type === "case" ? {name:"Case studies",path:"/cases/"} : {name:page.area.name,path:`${publicPath(`/technologies/${page.area.id}`)}/`};
     const crumbs = [{name:"Home",url:`${origin}/`},{name:parent.name,url:origin+parent.path},{name:page.item.name || page.item.title,url}];
     graph.push({"@type":"BreadcrumbList","@id":`${url}#breadcrumb`,itemListElement:crumbs.map((crumb,i)=>({"@type":"ListItem",position:i+1,name:crumb.name,item:crumb.url}))});
     webpage.breadcrumb = {"@id":`${url}#breadcrumb`};

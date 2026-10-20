@@ -1,9 +1,10 @@
 // Bundled modules live in assets/; source modules live in src/. Both are one
 // level below the mount root. This also supports the original Pages subpath.
+import { publicPath } from "./url-paths.js";
 export const siteBase = typeof window === "undefined" ? "/" : new URL(/* @vite-ignore */ "../", import.meta.url).pathname;
 export const siteURL = (route = "/") => {
   const [path, query = ""] = route.replace(/^#/, "").split("?");
-  const clean = path.replace(/^\/+|\/+$/g, "");
+  const clean = publicPath('/' + path.replace(/^\/+|\/+$/g, "")).slice(1);
   return siteBase + (clean ? `${clean}/` : "") + (query ? `?${query}` : "");
 };
 
