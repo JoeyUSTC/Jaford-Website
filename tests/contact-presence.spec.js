@@ -36,6 +36,7 @@ test('six compact social logos follow both contact forms with owner-supplied lin
   await page.goto(route);
   const social=page.getByRole('region',{name:'Social channels'});
   await expect(social.locator('svg')).toHaveCount(6);
+  expect(await social.locator('.social-channel').evaluateAll(items=>items.map(el=>el.getAttribute('aria-label')))).toEqual(['LinkedIn','Xiaohongshu','Douyin','WeChat Official Account','Twitter','Taobao']);
   await expect(social.locator('a')).toHaveCount(5);
   await expect(social.locator('button,[tabindex],h2,p')).toHaveCount(0);
   await expect(social).toHaveText('');
