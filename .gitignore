@@ -9,3 +9,4 @@ playwright-report/
 analytics/.wrangler/
 analytics/wrangler.jsonc
 analytics/.dev.vars
+.seo-indexnow-previous.json

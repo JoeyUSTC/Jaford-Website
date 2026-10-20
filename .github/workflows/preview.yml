@@ -30,16 +30,22 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - run: node scripts/indexnow.mjs prepare
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+      - run: npm run test:seo
       - run: npm run test:analytics
       - run: npx playwright install --with-deps chromium
       - run: npm test
       - run: npm run build:preview
+      - run: SEO_BUILD_DIR=.preview-dist npm run test:seo
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .preview-dist
       - name: Publish to the stable preview address
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Notify participating search engines of published content changes
+        continue-on-error: true
+        run: node scripts/indexnow.mjs submit

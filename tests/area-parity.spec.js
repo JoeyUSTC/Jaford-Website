@@ -32,7 +32,7 @@ for (const area of technologies) {
     for (const selected of featured) {
       await page.goto('/');
       await page.locator(`#${area.id} .sector-card a[href="${selected.href}"]`).click();
-      const item = [...items.products, ...items.services].find(item => selected.href.includes(`/${item.id}?`));
+      const item = [...items.products, ...items.services].find(item => selected.href.includes(`/${item.id}/?`));
       await expect(page.locator('h1')).toHaveText(item.name);
       const img = page.locator('.detail-page figure img');
       await expect(img).toHaveAttribute('src', selected.src);

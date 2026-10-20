@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "vite build --base ./ && node scripts/prerender.mjs dist",
     "build:preview": "node scripts/build-preview.mjs",
     "deploy:preview": "node scripts/publish-preview.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "lint": "eslint .",
+    "test:seo": "node --test scripts/seo.test.mjs scripts/indexnow.test.mjs",
     "test": "playwright test",
     "test:analytics": "node --test analytics/analytics.test.js"
   },

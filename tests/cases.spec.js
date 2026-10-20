@@ -10,7 +10,7 @@ test("case stories retain their URLs and show the narrative without promotional 
     await expect(page.locator("h1")).toHaveText(item.title);
     await expect(page.locator(".case-narrative")).toHaveText(item.story);
     if (item.projectCode) await expect(page.locator(".case-study .project-code")).toContainText(item.projectCode);
-    await expect(page.locator(".case-study aside, .case-study button, .case-study a[href^=\"#/services/\"]")).toHaveCount(0);
+    await expect(page.locator(".case-study aside, .case-study button, .case-study a[href^=\"/services/\"]")).toHaveCount(0);
     await expect(page.getByText("Project at a glance", {exact: true})).toHaveCount(0);
     await expect(page.locator(".case-study h2, .case-study .detail-description")).toHaveCount(0);
     await expect(page.locator(".case-narrative > p")).toHaveCount(1);
@@ -69,7 +69,7 @@ test("homepage case collection scrolls and opens the new validation stories", as
 
 test("merged orders use one case and unnumbered legacy URLs remain available", async ({page}) => {
   await page.goto("/#/cases/electrolyte-validation-platform");
-  await expect(page).toHaveURL(/#\/cases\/small-batch-dry-pouch-cells$/);
+  await expect(page).toHaveURL(/\/cases\/small-batch-dry-pouch-cells\/$/);
   await expect(page.locator(".project-code")).toHaveText("PBT017");
   await expect(page.locator(".case-narrative")).toContainText("two related orders");
   await expect(page.locator(".case-narrative")).toContainText("electrolyte");
@@ -81,8 +81,8 @@ test("merged orders use one case and unnumbered legacy URLs remain available", a
   for (const route of ["/", "/#/cases"]) {
     await page.goto(route);
     await expect(page.locator(".case-summary")).toHaveCount(10);
-    for (const item of unnumberedCases) await expect(page.locator(`.case-summary a[href="#/cases/${item.id}"]`)).toHaveCount(0);
-    await expect(page.locator('.case-summary a[href="#/cases/electrolyte-validation-platform"]')).toHaveCount(0);
+    for (const item of unnumberedCases) await expect(page.locator(`.case-summary a[href="/cases/${item.id}/"]`)).toHaveCount(0);
+    await expect(page.locator('.case-summary a[href="/cases/electrolyte-validation-platform/"]')).toHaveCount(0);
     await expect(page.locator("main")).not.toContainText("XX");
   }
 });

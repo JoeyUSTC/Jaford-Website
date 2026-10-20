@@ -1,8 +1,9 @@
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, rmSync, existsSync } from "node:fs";
+import { mkdtempSync, rmSync, existsSync, readdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { publicRoutes, compatibilityRoutes } from "../src/routes.js";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const output = join(root, ".preview-dist");
@@ -19,7 +20,10 @@ try {
   git(["--work-tree", output, "-C", output, "add", "--all", "--", "."], env);
   const tree = git(["write-tree"], env);
   const files = git(["ls-tree", "-r", "--name-only", tree]).split("\n");
-  if (!files.includes("index.html") || files.some((file) => !/^(index\.html|version\.json|favicon\.svg|\.nojekyll|assets\/[^/]+|images\/[^/]+)$/.test(file))) {
+  const publicFiles = readdirSync(join(root,"public"),{recursive:true,withFileTypes:true}).filter(entry=>entry.isFile()).map(entry=>join(entry.parentPath,entry.name).slice(join(root,"public").length+1));
+  const generated = new Set(["index.html","404.html","version.json","sitemap.xml","robots.txt","seo-manifest.json",".nojekyll",...publicFiles,
+    ...[...publicRoutes,...compatibilityRoutes,"/owner-insights"].map(route=>join(route.slice(1),"index.html"))]);
+  if (!files.includes("index.html") || files.some(file => !generated.has(file) && !/^assets\/[A-Za-z0-9_-]+\.(?:js|css)$/.test(file))) {
     throw new Error("Unexpected files in the preview artifact; publication stopped.");
   }
   const commit = git(["commit-tree", tree, ...(previous ? ["-p", previous] : []), "-m", "Publish JAFORD homepage preview"]);

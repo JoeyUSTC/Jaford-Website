@@ -7,7 +7,7 @@ test('homepage, category and detail pages share fuel-cell products and imagery',
   await expect(home.locator('.sector-card')).toHaveCount(6);
   for (const product of featuredFuelCellProducts) {
     const card = home.locator('.sector-card').filter({has:page.getByRole('heading',{name:product.name,exact:true})});
-    await expect(card.locator('a')).toHaveAttribute('href', `#/products/${product.id}?area=fuel-cells-electrolyzers`);
+    await expect(card.locator('a')).toHaveAttribute('href', `/products/${product.id}/?area=fuel-cells-electrolyzers`);
     const src = await card.locator('img').getAttribute('src');
     await card.locator('a').click();
     await expect(page.locator('h1')).toHaveText(product.name);

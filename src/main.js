@@ -1,25 +1,17 @@
 import { specifications } from "./specifications.js";
-import { recordHomepageView, ownerInsightsPage } from "./analytics.js";
-import { cases, unnumberedCases, caseAliases } from "./cases.js";
-import { technologies, areaAliases } from "./technologies.js";
-import { products, retiredProducts, services, productAliases, serviceAliases } from "./catalog.js";
-import {
-  home,
-  contactPage,
-  caseCatalog,
-  caseDetail,
-  technologyDetail,
-  productCatalog,
-  productDetail,
-  serviceCatalog,
-  serviceDetail,
-  notFound,
-  specContent,
-} from "./pages.js";
+import { recordHomepageView } from "./analytics.js";
+import { technologies } from "./technologies.js";
+import { specContent } from "./pages.js";
+import { resolveRoute } from "./routes.js";
+import { renderPage } from "./render-page.js";
+import { applySEO } from "./seo.js";
+import { siteBase, siteURL, pathFromURL } from "./urls.js";
 
 document.querySelector("#navigation").innerHTML = technologies
-  .map((t) => `<a href="#/technologies/${t.id}">${t.nav}</a>`)
-  .join("") + '<a href="#/contact">Contact Us</a>';
+  .map((t) => `<a href="${siteURL(`/technologies/${t.id}`)}">${t.nav}</a>`)
+  .join("") + `<a href="${siteURL('/contact')}">Contact Us</a>`;
+document.querySelector('.wordmark').href = siteURL();
+document.querySelector('.site-footer a').href = siteURL('/contact');
 document.querySelector("#year").textContent = new Date().getFullYear();
 const menu = document.querySelector(".menu-toggle");
 const nav = document.querySelector("#navigation");
@@ -217,87 +209,41 @@ function animateStats() {
   counterFrame = requestAnimationFrame(update);
 }
 
+let routeCleanups = [];
+function navigate(href, replace = false) {
+  const url = new URL(href, location.href);
+  history[replace ? 'replaceState' : 'pushState']({}, '', url.pathname + url.search + url.hash);
+  renderRoute(true);
+}
+
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href]');
+  if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.download || (link.target && link.target !== '_self')) return;
+  const url = new URL(link.href);
+  if (url.origin !== location.origin || !url.pathname.startsWith(siteBase) || (url.hash && !url.hash.startsWith('#/'))) return;
+  if (!url.hash.startsWith('#/') && !/^\/(?:$|technologies(?:\/|$)|products(?:\/|$)|services(?:\/|$)|cases(?:\/|$)|contact(?:\/|$)|owner-insights(?:\/|$))/.test('/' + url.pathname.slice(siteBase.length))) return;
+  event.preventDefault();
+  navigate(url.href);
+});
+
 function renderRoute(focus = false) {
+  routeCleanups.forEach(cleanup => cleanup());
+  routeCleanups = [];
   cancelAnimationFrame(counterFrame);
   counterFrame = null;
-  const raw = location.hash.slice(1) || "/";
-  const [path, query = ""] = raw.split("?");
-  if (path === "/technologies" || path === "/technologies/") {
-    location.replace("#/");
-    return;
+  const url = new URL(location.href);
+  const page = resolveRoute(pathFromURL(url));
+  const anchor = !url.hash.startsWith('#/') ? url.hash.slice(1) : '';
+  const params = page.params;
+  // Migrate shared hash URLs and aliases without losing tracking parameters.
+  if (url.hash.startsWith('#/')) {
+    for (const [key,value] of url.searchParams) if (!params.has(key)) params.set(key,value);
   }
-  const oldArea = path.startsWith("/technologies/") ? path.slice("/technologies/".length) : null;
-  if (areaAliases[oldArea]) {
-    location.replace(`#/technologies/${areaAliases[oldArea]}${query ? `?${query}` : ""}`);
-    return;
-  }
-  const oldCase = path.startsWith("/cases/") ? path.slice("/cases/".length) : null;
-  if (caseAliases[oldCase]) {
-    location.replace(`#/cases/${caseAliases[oldCase]}${query ? `?${query}` : ""}`);
-    return;
-  }
-  const params = new URLSearchParams(query);
-  if (areaAliases[params.get("area")]) params.set("area", areaAliases[params.get("area")]);
-  const area = technologies.find((t) => path === `/technologies/${t.id}`);
-  const productId = path.startsWith("/products/") ? path.slice("/products/".length) : "";
-  const product = [...products, ...retiredProducts].find(p => p.id === (productAliases[productId] || productId));
-  const serviceId = path.startsWith("/services/") ? path.slice("/services/".length) : "";
-  const service = services.find(s => s.id === (serviceAliases[serviceId] || serviceId));
-  const caseItem = [...cases, ...unnumberedCases].find((item) => path === `/cases/${item.id}`);
-  let html;
-  let title = "JAFORD";
-  if (path === "/owner-insights") {
-    html = ownerInsightsPage();
-    title = "Website insights — JAFORD";
-  } else if (area) {
-    html = technologyDetail(area);
-    title = `${area.name} — JAFORD`;
-  } else if (path === "/contact") {
-    html = contactPage();
-    title = "Contact Us — JAFORD";
-  } else if (path === "/products") {
-    html = productCatalog(params);
-    title = "Products — JAFORD";
-  } else if (path === "/cases") {
-    html = caseCatalog();
-    title = "Case studies — JAFORD";
-  } else if (caseItem) {
-    html = caseDetail(caseItem);
-    title = `${caseItem.title} — JAFORD`;
-  } else if (path === "/services") {
-    html = serviceCatalog();
-    title = "Custom R&D & Services — JAFORD";
-  } else if (product) {
-    html = productDetail(product, params.get("area"), params);
-    title = `${product.name} — JAFORD`;
-  } else if (service) {
-    html = serviceDetail(service, params.get("area"));
-    title = `${service.name} — JAFORD`;
-  } else if (
-    [
-      "/",
-      "main",
-      "products",
-      "custom-rd",
-      "synthesis",
-      "contact",
-    ].includes(path)
-  )
-    html = home();
-  else {
-    html = notFound();
-    title = "Page not found — JAFORD";
-  }
-  document.querySelector("#main").innerHTML = html;
-  document.title = title;
-  document.querySelector('meta[data-private-insights]')?.remove();
-  if (path === '/owner-insights') {
-    const robots = document.createElement('meta');
-    robots.name = 'robots';
-    robots.content = 'noindex, nofollow, noarchive';
-    robots.dataset.privateInsights = '';
-    document.head.append(robots);
-  }
+  const query = params.size ? `?${params}` : '';
+  const destination = siteURL(page.path) + query + (anchor ? `#${anchor}` : '');
+  if (url.pathname + url.search + url.hash !== destination) history.replaceState({}, '', destination);
+  document.querySelector("#main").innerHTML = renderPage(page);
+  applySEO(page);
   recordHomepageView(Boolean(document.querySelector('.scale-intro')));
   animateStats();
   const regionStat = document.querySelector(".region-stat");
@@ -321,10 +267,10 @@ function renderRoute(focus = false) {
     };
     document.addEventListener("keydown", dismiss);
     document.addEventListener("click", dismiss);
-    window.addEventListener("hashchange", () => {
+    routeCleanups.push(() => {
       document.removeEventListener("keydown", dismiss);
       document.removeEventListener("click", dismiss);
-    }, {once: true});
+    });
   }
 
   const track = document.querySelector("#case-track");
@@ -343,19 +289,17 @@ function renderRoute(focus = false) {
     track.addEventListener("scroll", updateControls, {passive:true});
     const observer = new ResizeObserver(updateControls);
     observer.observe(track);
-    window.addEventListener("hashchange", () => observer.disconnect(), {once:true});
+    routeCleanups.push(() => observer.disconnect());
     updateControls();
   }
   closeMenu();
   if (dialog.open) dialog.close();
   if (specDialog.open) specDialog.close();
   for (const a of nav.querySelectorAll("a")) {
-    if (location.hash.startsWith(a.hash))
+    if (location.pathname === a.pathname || (a.pathname !== siteURL() && location.pathname.startsWith(a.pathname)))
       a.setAttribute("aria-current", "page");
     else a.removeAttribute("aria-current");
   }
-  const anchor =
-    !path.startsWith("/") ? path : null;
   const target = anchor
     ? document.getElementById(anchor)
     : document.querySelector("h1");
@@ -373,7 +317,7 @@ function renderRoute(focus = false) {
         next.set("category", filters.elements.category.value);
       if (filters.elements.q.value.trim())
         next.set("q", filters.elements.q.value.trim());
-      location.hash = "/products" + (next.size ? "?" + next.toString() : "");
+      navigate(siteURL("/products") + (next.size ? "?" + next.toString() : ""));
     };
     filters.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -383,4 +327,5 @@ function renderRoute(focus = false) {
   }
 }
 window.addEventListener("hashchange", () => renderRoute(true));
+window.addEventListener("popstate", () => renderRoute(true));
 renderRoute();
