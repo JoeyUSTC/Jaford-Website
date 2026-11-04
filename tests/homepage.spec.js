@@ -8,22 +8,22 @@ test("homepage presents readable product information without errors or overflow"
   await page.goto("/");
   await expect(page).toHaveTitle("JAFORD");
   await expect(page.locator("main > section")).toHaveCount(9);
-  await expect(page.locator(".sector-card")).toHaveCount(26);
+  await expect(page.locator(".sector-card")).toHaveCount(30);
   await expect(page.locator("h1")).toHaveText("We Scale Innovation");
   await expect(page.locator(".impact-stats dd")).toHaveText(["9", "20", "88"]);
   await expect(page.locator("#impact-preview-note")).toHaveCount(0);
   await expect(page.locator(".home-hero, .brand-statement, .brand-lead")).toHaveCount(0);
   expect(await page.locator(".brand-logo img").evaluate(async (img) => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
-  await expect(page.locator("#custom-rd")).toContainText("partner facilities and expertise");
+  await expect(page.locator(".home-sector .sector-description, .sector-card-description")).toHaveCount(0);
   await expect(page.locator("#functional-materials")).toContainText("MOFs");
   await expect(page.locator("#equipment-supplies .sector-card h3").first()).toHaveText("Electrochemical Workstation");
-  await expect(page.locator("#testing-characterization")).toContainText("SEM & TEM");
+  await expect(page.locator("#testing-characterization .sector-card h3")).toHaveText(["SEM & TEM", "Li-ion & solid-state batteries", "Pouch cell testing", "Spectroscopy: XPS, FTIR, Raman & NMR", "X-ray diffraction (XRD)", "Surface area & porosity"]);
   await expect(page.locator("#testing-characterization")).not.toContainText("Wind & solar direct-coupling tests");
   await expect(page.locator("#completed-projects")).toHaveCount(0);
   await expect(page.locator("#home-contact-form")).toHaveCount(1);
   await expect(page.locator(".home-hero a, .home-hero button")).toHaveCount(0);
   for (const sector of await page.locator(".home-sector").all()) {
-    await expect(sector.locator(".sector-card")).toHaveCount(({ "equipment-supplies": 5, "testing-characterization": 3 })[await sector.getAttribute("id")] || 6);
+    await expect(sector.locator(".sector-card")).toHaveCount(6);
     if (page.viewportSize().width >= 1280) {
       const tops = await sector.locator("figure").evaluateAll(items => items.map(item => item.getBoundingClientRect().top));
       expect(new Set(tops).size).toBe(1);
@@ -33,6 +33,7 @@ test("homepage presents readable product information without errors or overflow"
     await product.locator("img").scrollIntoViewIfNeeded();
     expect(await product.locator("img").evaluate(async img => { await img.decode(); return img.naturalWidth; })).toBeGreaterThan(0);
     await expect(product.getByRole("heading", { level: 3 })).toBeVisible();
+    expect(await product.locator(".product-artwork").evaluate(el => getComputedStyle(el).backgroundColor)).toBe("rgb(245, 241, 233)");
   }
   // Count each shared atlas once, just as the browser cache does. Keep a
   // payload budget so replacement artwork cannot silently restore the slow page.

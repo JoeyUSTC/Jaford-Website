@@ -1300,12 +1300,15 @@ h1[tabindex="-1"]:focus,
 .sector-card a { display: block; }
 .sector-card figure { margin: 0; }
 .sector-card figure, .capability-card .module-figure { position: relative; }
-.service-badge { position: absolute; top: 10px; left: 10px; z-index: 1; display: inline-flex; align-items: center; gap: 4px; padding: 4px 7px; border: 1px solid #d8bc9e; background: #fff5e8; color: var(--brand-blue); font-size: 9px; font-weight: 600; line-height: 1.4; letter-spacing: .05em; text-transform: uppercase; pointer-events: none; }
+.service-badge { display: inline-flex; align-items: center; gap: 4px; margin-left: 7px; padding: 3px 6px; border: 1px solid #df9950; border-radius: 3px; background: #ffe2bc; color: #743c14; font-size: 10px; font-weight: 700; line-height: 1.4; letter-spacing: .035em; text-transform: uppercase; white-space: nowrap; vertical-align: middle; pointer-events: none; }
 .service-flame { width: 13px; height: 15px; flex-shrink: 0; fill: #e77932; }
 .service-flame .flame-core { fill: #ffd18a; }
-.sector-card .product-artwork { max-width: none; background: var(--surface); }
+.sector-card .product-artwork { max-width: none; background: var(--canvas); }
 .sector-card figcaption { font-size: 10px; color: var(--muted); padding-top: 7px; }
-.sector-card h3 { margin: 12px 0 0; font-size: 15px; line-height: 1.5; font-weight: 500; }
+.card-title { margin-top: 12px; line-height: 1.5; }
+.capability-title { margin-bottom: 8px; }
+.capability-title h2, .sector-card h3 { display: inline; }
+.sector-card h3 { margin: 0; font-size: 15px; line-height: 1.5; font-weight: 500; }
 .sector-card a:hover h3 { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
 .home-contact { display: flex; justify-content: space-between; align-items: center; gap: 28px; padding-block: 48px; }
 .home-contact .contact-actions { margin: 0; }
@@ -1550,3 +1553,7 @@ a.social-channel:focus-visible { outline: 2px solid var(--brand-blue); outline-o
 .spec-dialog .spec-table { margin: 0; table-layout: fixed; }
 .spec-dialog .spec-table th { width: 42%; }
 .spec-dialog .spec-table td { width: 58%; }
+
+/* Shared canvas for isolated illustrations, with pale raster backdrops blended away. */
+.product-artwork { background: var(--canvas); isolation: isolate; }
+.product-artwork img { mix-blend-mode: darken; filter: brightness(1.04); }

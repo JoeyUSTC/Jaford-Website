@@ -27,8 +27,8 @@ test("new 3D printing service shares its announcement and image across pages", a
   await page.goto("/");
   const card = page.locator("#custom-rd .sector-card").first();
   await expect(card.locator("h3")).toHaveText("Custom 3D Printing for R&D");
-  await expect(card.locator(".service-badge")).toHaveText("New service");
-  await expect(card).toContainText("Custom research-cell components for lithium-ion battery experiments.");
+  await expect(card.locator(".card-title .service-badge")).toHaveText("New service");
+  await expect(card.locator("p, figure .service-badge")).toHaveCount(0);
   const src = await card.locator("img").getAttribute("src");
   await card.locator("a").click();
   await expect(page.locator("h1")).toHaveText("Custom 3D Printing for R&D");
@@ -41,7 +41,7 @@ test("new 3D printing service shares its announcement and image across pages", a
   await page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", { name: "Custom R&D", exact: true }).click();
   const directoryCard = page.locator(".capability-card").first();
   await expect(directoryCard.locator("h2")).toHaveText("Custom 3D Printing for R&D");
-  await expect(directoryCard.locator(".service-badge")).toHaveText("New service");
+  await expect(directoryCard.locator(".capability-title .service-badge")).toHaveText("New service");
   await expect(directoryCard.locator("img")).toHaveAttribute("src", src);
 });
 
