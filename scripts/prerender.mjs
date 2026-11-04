@@ -6,14 +6,14 @@ import { fileURLToPath } from "node:url";
 import { publicRoutes, compatibilityRoutes, resolveRoute } from "../src/routes.js";
 import { renderPage } from "../src/render-page.js";
 import { seoTags, canonicalURL, origin } from "../src/seo.js";
-import { technologies } from "../src/technologies.js";
+import { listedTechnologies } from "../src/technologies.js";
 import { siteURL } from "../src/urls.js";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const output = resolve(root, process.argv[2] || "dist");
 if (![join(root, "dist"), join(root, ".preview-dist")].includes(output)) throw new Error("Unexpected output directory.");
 const shell = readFileSync(join(output, "index.html"), "utf8");
-const navigation = technologies.map(t => `<a href="${siteURL(`/technologies/${t.id}`)}">${t.nav.replace(/&/g,"&amp;")}</a>`).join("") + '<a href="/contact/">Contact Us</a>';
+const navigation = listedTechnologies.map(t => `<a href="${siteURL(`/technologies/${t.id}`)}">${t.nav.replace(/&/g,"&amp;")}</a>`).join("") + '<a href="/contact/">Contact Us</a>';
 const revision = execFileSync("git", ["rev-parse", "HEAD"], {cwd:root,encoding:"utf8"}).trim();
 
 function documentFor(route, notFound = false) {

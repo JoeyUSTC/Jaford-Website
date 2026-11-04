@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test';
 import {createServer} from 'node:http';
 import {readFileSync, existsSync, statSync} from 'node:fs';
 import {resolve, extname} from 'node:path';
-import {technologies} from '../src/technologies.js';
+import {listedTechnologies} from '../src/technologies.js';
 
 test('public pages have complete content and navigation without JavaScript', async({browser},testInfo)=>{
   const context=await browser.newContext({javaScriptEnabled:false,viewport:testInfo.project.use.viewport,isMobile:testInfo.project.use.isMobile,hasTouch:testInfo.project.use.hasTouch});
@@ -13,7 +13,7 @@ test('public pages have complete content and navigation without JavaScript', asy
     await expect(page.locator('h1')).toHaveText(title);
     await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href',`https://jaford.com${path}`);
     await expect(page.locator('meta[name=robots]')).toHaveAttribute('content',/^index,/);
-    await expect(page.locator('#navigation a')).toHaveCount(7);
+    await expect(page.locator('#navigation a')).toHaveCount(6);
     await expect(page.locator('main a[href^="#/"]')).toHaveCount(0);
     expect(await page.locator('main').innerText()).not.toBe('');
   }
@@ -31,7 +31,7 @@ test('public pages have complete content and navigation without JavaScript', asy
 });
 
 test('all categories use flat URLs and old paths, fragments and queries migrate safely',async({page})=>{
-  for(const area of technologies){
+  for(const area of listedTechnologies){
     const response=await page.goto(`/${area.id}/`);
     expect(response.status()).toBe(200);
     await expect(page.locator('h1')).toHaveText(area.name);

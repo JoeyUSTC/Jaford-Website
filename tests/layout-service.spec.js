@@ -64,6 +64,6 @@ test("molecule and polymer synthesis has one listing and preserves the former mo
   await page.reload();
   await expect(page.locator("h1")).toHaveText(name);
   await page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link", { name: "Custom R&D", exact: true }).click();
-  await expect(page.locator(".capability-card")).toHaveCount(13);
+  await expect(page.locator(".capability-card")).toHaveCount(11);
   await expect(page.getByRole("link", { name, exact: true })).toHaveCount(1);
 });

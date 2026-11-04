@@ -6,6 +6,8 @@ import { publicRoutes, compatibilityRoutes, resolveRoute } from "../src/routes.j
 import { renderPage } from "../src/render-page.js";
 import { canonicalURL } from "../src/seo.js";
 import { categorySlugs, movedPaths } from "../src/url-paths.js";
+import { isAreaListed } from "../src/visibility.js";
+import { fuelCellProducts } from "../src/fuel-cell-products.js";
 
 const output = resolve(process.env.SEO_BUILD_DIR || "dist");
 const read = route => readFileSync(resolve(output, route.slice(1), "index.html"),"utf8");
@@ -16,7 +18,7 @@ test("every sitemap URL has static original content, one canonical and valid loc
   assert.equal(new Set(locations).size, publicRoutes.length);
   assert.equal(new Set(publicRoutes).size, publicRoutes.length);
   for (const slug of categorySlugs) {
-    assert.ok(locations.includes(`https://jaford.com/${slug}/`));
+    assert.equal(locations.includes(`https://jaford.com/${slug}/`), isAreaListed({id:slug}));
     assert.ok(!sitemap.includes(`/technologies/${slug}/`));
   }
   const manifest = JSON.parse(readFileSync(resolve(output,"seo-manifest.json"),"utf8"));
@@ -92,4 +94,24 @@ test("moved URLs retain identity, content, parameters and static redirects",()=>
   const secondary=resolveRoute('/services/functional-materials-development?area=functional-materials');
   assert.equal(secondary.area.id,'functional-materials');
   assert.equal(secondary.params.get('area'),'functional-materials');
+});
+
+test("paused business stays out of public discovery while its static details remain", () => {
+  const paused = new Set(["/fuel-cells-electrolyzers", ...fuelCellProducts.map(item => "/products/" + item.id),
+    ...["stack-testing", "short-stack-testing", "full-stack-testing", "renewable-coupled-testing"].map(id => "/services/" + id)]);
+  for (const path of paused) {
+    assert.equal(resolveRoute(path).indexable, false, path);
+    assert.ok(!publicRoutes.includes(path), path);
+    const html = read(path);
+    assert.match(html, /name="robots" content="noindex/);
+    assert.match(html, /<h1\b/);
+  }
+  for (const route of publicRoutes) {
+    const base = new URL(route === "/" ? "/" : route + "/", "https://jaford.com");
+    for (const match of read(route).matchAll(/\bhref="([^"]+)"/g)) {
+      const target = new URL(match[1].replace(/&amp;/g, "&"), base);
+      if (target.origin !== base.origin) continue;
+      assert.ok(!paused.has(resolveRoute(target.pathname).path), `${route}: paused link ${target.pathname}`);
+    }
+  }
 });

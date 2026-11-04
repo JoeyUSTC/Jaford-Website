@@ -1,6 +1,7 @@
 import { functionalCapabilities, testingCapabilities } from "./specialist-capabilities.js";
 import { fuelCellProducts } from "./fuel-cell-products.js";
 import { products, services } from "./catalog.js";
+import { isAreaListed, isProductListed, isServiceListed } from "./visibility.js";
 
 const functionalMaterialIds = [
   ...functionalCapabilities.slice(0, 4).map(item => item.id),
@@ -67,11 +68,12 @@ export const technologies = [
     productIds: ["electrochemical-workstation", "vacuum-sealer", "glass-reactor-2000ml", ...products.filter(p => p.category === "lab-supplies" && !["electrochemical-workstation", "vacuum-sealer", "glass-reactor-2000ml"].includes(p.id)).map(p => p.id)], serviceIds: [], links: [],
   },
 ];
+export const listedTechnologies = technologies.filter(isAreaListed);
 export const areasForProduct = id => technologies.filter(t => t.productIds.includes(id));
 export const areasForService = id => technologies.filter(t => t.serviceIds.includes(id));
 export const itemsForArea = area => ({
-  products: area.productIds.map(id => products.find(p => p.id === id)),
-  services: area.serviceIds.map(id => services.find(s => s.id === id)),
+  products: area.productIds.map(id => products.find(p => p.id === id)).filter(item => !isAreaListed(area) || isProductListed(item)),
+  services: area.serviceIds.map(id => services.find(s => s.id === id)).filter(item => !isAreaListed(area) || isServiceListed(item)),
 });
 
 // Homepage selections are always drawn from the category's full directory.
@@ -81,4 +83,4 @@ export const featuredItemsForArea = area => area.featuredIds.map(id => {
   const item = (kind === "product" ? products : services).find(item => item.id === id);
   if (!allowed.includes(id) || !item) throw new Error(`Invalid featured item ${id} in ${area.id}`);
   return {kind, item};
-});
+}).filter(({kind, item}) => kind === "product" ? isProductListed(item) : isServiceListed(item));

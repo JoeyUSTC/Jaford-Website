@@ -128,7 +128,7 @@ for (const [area, prefix, directorySelector] of [
 test('testing and equipment categories start directly with their offerings', async ({page}) => {
   await page.goto('/#/technologies/testing-characterization');
   await expect(page.locator('.hero-description, .area-services-heading, #case-track')).toHaveCount(0);
-  await expect(page.locator('.capability-card')).toHaveCount(10);
+  await expect(page.locator('.capability-card')).toHaveCount(7);
   await page.goto('/#/technologies/equipment-supplies');
   await expect(page.locator('.hero-description, #case-track')).toHaveCount(0);
   await expect(page.locator('.product-module')).toHaveCount(10);

@@ -1,8 +1,8 @@
 import {test, expect} from '@playwright/test';
-import {technologies, itemsForArea} from '../src/technologies.js';
+import {listedTechnologies, itemsForArea, featuredItemsForArea} from '../src/technologies.js';
 import {resolveRoute} from '../src/routes.js';
 
-for (const area of technologies) {
+for (const area of listedTechnologies) {
   test(`${area.name}: every homepage selection belongs to its illustrated directory`, async ({page}) => {
     await page.goto('/');
     const section = page.locator(`#${area.id}`);
@@ -10,8 +10,8 @@ for (const area of technologies) {
       href:a.getAttribute('href'), src:a.querySelector('img').getAttribute('src'),
       artwork:a.querySelector('.product-artwork').getAttribute('style'),
     })));
-    expect(featured).toHaveLength(area.featuredIds.length);
-    expect(new Set(featured.map(item=>item.href)).size).toBe(area.featuredIds.length);
+    expect(featured).toHaveLength(featuredItemsForArea(area).length);
+    expect(new Set(featured.map(item=>item.href)).size).toBe(featuredItemsForArea(area).length);
     await section.getByRole('link', {name:'Browse all',exact:true}).click();
     await expect(page.locator('h1')).toHaveText(area.name);
     const directory = page.locator('.product-module');

@@ -1,13 +1,13 @@
 import { specifications } from "./specifications.js";
 import { recordHomepageView } from "./analytics.js";
-import { technologies } from "./technologies.js";
+import { listedTechnologies } from "./technologies.js";
 import { specContent } from "./pages.js";
 import { resolveRoute } from "./routes.js";
 import { renderPage } from "./render-page.js";
 import { applySEO } from "./seo.js";
 import { siteBase, siteURL, pathFromURL } from "./urls.js";
 
-document.querySelector("#navigation").innerHTML = technologies
+document.querySelector("#navigation").innerHTML = listedTechnologies
   .map((t) => `<a href="${siteURL(`/technologies/${t.id}`)}">${t.nav}</a>`)
   .join("") + `<a href="${siteURL('/contact')}">Contact Us</a>`;
 document.querySelector('.wordmark').href = siteURL();

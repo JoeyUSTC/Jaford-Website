@@ -2,6 +2,7 @@ import { products, retiredProducts, services, productAliases, serviceAliases } f
 import { cases, unnumberedCases, caseAliases } from "./cases.js";
 import { technologies, areaAliases, areasForProduct, areasForService, itemsForArea } from "./technologies.js";
 import { publicPath, internalPath, movedPaths } from "./url-paths.js";
+import { isAreaListed, isProductListed, isServiceListed } from "./visibility.js";
 
 export const homeDescription = "JAFORD provides materials, consumables and equipment for research teams, and coordinates custom synthesis, processing and development through partner factories and laboratories.";
 const shortDescription = value => {
@@ -56,14 +57,16 @@ export function resolveRoute(raw = "/") {
     type = "case"; title = `${item.title} — JAFORD`; description = item.summary;
     indexable = cases.includes(item);
   } else indexable = false;
+  if ((type === "technology" && !isAreaListed(area)) || (type === "product" && !isProductListed(item)) || (type === "service" && !isServiceListed(item))) indexable = false;
   return {path:publicPath(path), params, type, item, area, title, description: shortDescription(description), indexable};
 }
 
-export const publicRoutes = ["/", "/contact", "/products", "/services", "/cases",
+const canonicalRoutes = ["/", "/contact", "/products", "/services", "/cases",
   ...technologies.map(t => `/technologies/${t.id}`),
   ...products.map(p => `/products/${p.id}`), ...services.map(s => `/services/${s.id}`),
   ...cases.map(c => `/cases/${c.id}`)].map(publicPath);
-export const compatibilityRoutes = ["/technologies", ...Object.keys(movedPaths),
+export const publicRoutes = canonicalRoutes.filter(route => resolveRoute(route).indexable);
+export const compatibilityRoutes = [...canonicalRoutes.filter(route => !resolveRoute(route).indexable), "/technologies", ...Object.keys(movedPaths),
   ...Object.keys(areaAliases).map(id => `/technologies/${id}`),
   ...Object.keys(productAliases).map(id => `/products/${id}`),
   ...Object.keys(serviceAliases).map(id => `/services/${id}`),

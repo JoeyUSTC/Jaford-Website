@@ -11,12 +11,12 @@ export const enquiryRegions = [
   {name: 'United Arab Emirates', established: false},
 ].sort((a,b) => a.name.localeCompare(b.name, 'en'));
 
-// Owner-supplied account links. Taobao remains unlinked until its shop URL is supplied.
+// Owner-supplied account links, shared by homepage and Contact Us.
 export const socialChannels = [
   {name: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/company/jaford-advisory-pte-ltd/'},
   {name: 'Xiaohongshu', icon: 'xiaohongshu', url: 'https://www.xiaohongshu.com/user/profile/68d8b17b000000002101992c'},
   {name: 'Douyin', icon: 'douyin', url: 'https://v.douyin.com/_hYZqMd3ITY/'},
   {name: 'WeChat Official Account', icon: 'wechat', url: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzcwNTM5NjE5OA=='},
   {name: 'Twitter', icon: 'twitter', url: 'https://x.com/jafordadvisory?s=11'},
-  {name: 'Taobao', icon: 'taobao'},
+  {name: 'Taobao', icon: 'taobao', url: 'https://m.tb.cn/h.j7jVMHuaEDPYyXV'},
 ];

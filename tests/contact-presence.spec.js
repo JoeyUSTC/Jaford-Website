@@ -31,18 +31,16 @@ test('six compact social logos follow both contact forms with owner-supplied lin
   ['WeChat Official Account','https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzcwNTM5NjE5OA=='],
   ['Douyin','https://v.douyin.com/_hYZqMd3ITY/'],
   ['Xiaohongshu','https://www.xiaohongshu.com/user/profile/68d8b17b000000002101992c'],
+  ['Taobao','https://m.tb.cn/h.j7jVMHuaEDPYyXV'],
  ];
  for(const route of ['/contact/','/']){
   await page.goto(route);
   const social=page.getByRole('region',{name:'Social channels'});
   await expect(social.locator('svg')).toHaveCount(6);
   expect(await social.locator('.social-channel').evaluateAll(items=>items.map(el=>el.getAttribute('aria-label')))).toEqual(['LinkedIn','Xiaohongshu','Douyin','WeChat Official Account','Twitter','Taobao']);
-  await expect(social.locator('a')).toHaveCount(5);
+  await expect(social.locator('a')).toHaveCount(6);
   await expect(social.locator('button,[tabindex],h2,p')).toHaveCount(0);
   await expect(social).toHaveText('');
-  const pending=social.getByRole('img',{name:'Taobao',exact:true});
-  await expect(pending).toBeVisible();
-  await expect(pending).not.toHaveAttribute('href');
   for(const [name,url] of accounts){
    const link=social.getByRole('link',{name,exact:true});
    await expect(link).toBeVisible();

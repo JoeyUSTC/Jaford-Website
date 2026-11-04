@@ -5,12 +5,14 @@ import { optionsFor } from "./specifications.js";
 import { cases } from "./cases.js";
 import { productImages } from "./product-images.js";
 import { categories, products, services } from "./catalog.js";
+import { isAreaListed, isProductListed, isServiceListed } from "./visibility.js";
 import {
   areasForProduct,
   areasForService,
   itemsForArea,
   featuredItemsForArea,
   technologies,
+  listedTechnologies,
 } from "./technologies.js";
 export const escapeHtml = (value) =>
   String(value).replace(
@@ -44,7 +46,7 @@ const contact = () =>
   `<section class="section container service-section contact-section" id="contact"><div class="section-heading"><h2>Discuss your requirements</h2></div><div class="service-content"><p>Share your application, model or material, required quantity and timeline. We will review specifications, availability and scope before quoting.</p><div class="contact-actions">${inquiry("Send an Inquiry", "Other technical requirement")}<a class="contact-email" href="mailto:kiki.li@jaford.com">kiki.li@jaford.com</a></div></div></section>`;
 const header = (eyebrow, title, text) =>
   `<section class="hero container">${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ""}<h1 tabindex="-1">${title}</h1>${text ? `<p class="hero-description">${text}</p>` : ""}</section>`;
-const legacy = () =>
+const legacy = () => !isAreaListed({id: "fuel-cells-electrolyzers"}) ? "" :
   `<aside class="legacy-ranges"><h3>Other JAFORD ranges</h3><p>Existing information on fuel cells, electrolyzers, electrocatalysis and advanced materials remains available.</p>${link(siteURL("/technologies/fuel-cells-electrolyzers"), "Fuel cells, electrolyzers & electrocatalysis")}${link(siteURL("/technologies/functional-materials"), "Advanced materials & synthesis")}</aside>`;
 const areaURL = (id) => siteURL(`/technologies/${id}`);
 // Family entries describe established ranges, not newly invented model specifications.
@@ -68,7 +70,7 @@ export function contactPage() {
 export function home() {
   return `<section class="container scale-intro" aria-labelledby="scale-title"><h1 id="scale-title" tabindex="-1">We Scale Innovation</h1><div class="impact-preview"><dl class="impact-stats"><div class="region-stat"><dt><button type="button" id="regions-trigger" class="region-trigger" aria-expanded="false" aria-controls="regions-popup"><span>Countries & regions</span><svg class="region-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="m2 4 4 4 4-4"/></svg></button><div id="regions-popup" class="regions-popup" role="region" aria-labelledby="regions-trigger" hidden><ul>${enquiryRegions.map(region => `<li><span>${e(region.name)}</span></li>`).join("")}</ul></div></dt><dd data-count-target="9">9</dd></div><div><dt>Research teams</dt><dd data-count-target="20">20</dd></div><div><dt>Projects delivered</dt><dd data-count-target="88">88</dd></div></dl></div></section>
   ${homeCases()}
-  ${technologies.map(area => homeSector(area.id, area.name, featuredItemsForArea(area).map(({kind, item}) => [area.homeLabels?.[item.id] || item.name, kind === "product" ? productURL(item.id, area.id) : serviceURL(item.id, area.id), kind === "product" ? item.image || item.id : item.image || serviceArtwork[item.id], item.preview || "", item.badge || ""]), area.homeDescription || "")).join("")}
+  ${listedTechnologies.map(area => homeSector(area.id, area.name, featuredItemsForArea(area).map(({kind, item}) => [area.homeLabels?.[item.id] || item.name, kind === "product" ? productURL(item.id, area.id) : serviceURL(item.id, area.id), kind === "product" ? item.image || item.id : item.image || serviceArtwork[item.id], item.preview || "", item.badge || ""]), area.homeDescription || "")).join("")}
   ${contactForm()}${socialPresence()}`;
 }
 export function technologyDetail(area) {
@@ -77,7 +79,9 @@ export function technologyDetail(area) {
   return `${header("", area.name, area.hideDescription ? "" : area.description)}${areaCases.length ? homeCases(areaCases, area) : ""}<section class="container catalog-section" aria-label="Materials, equipment and development support">${area.links.length ? `<div class="area-range"><h2>Materials & capabilities</h2>${area.links.map((item) => `<a class="text-link" href="${item.url}">${item.name}</a>`).join("")}</div>` : ""}${items.products.length ? `<div class="product-grid" aria-label="Products">${items.products.map((p) => productModule(p, productURL(p.id, area.id))).join("")}</div>` : ""}${items.services.length ? `<div class="area-services">${area.id === "testing-characterization" ? "" : `<h2 class="area-services-heading">Development capabilities</h2>`}<div class="product-grid">${items.services.map((s) => servicePreview(s, area.id)).join("")}</div></div>` : ""}</section>`;
 }
 export function productCatalog(params) {
-  const selected = categories.some((c) => c.id === params.get("category"))
+  const listedProducts = products.filter(isProductListed);
+  const listedCategories = categories.filter(isAreaListed);
+  const selected = listedCategories.some((c) => c.id === params.get("category"))
     ? params.get("category")
     : "";
   const query = (params.get("q") || "").trim();
@@ -89,7 +93,7 @@ export function productCatalog(params) {
   const terms = normalize(query).split(/\s+/).filter(Boolean);
   const detailURL = (id) =>
     `${productURL(id)}?${new URLSearchParams({ from: "catalog", category: selected, q: query })}`;
-  const matches = products.filter(
+  const matches = listedProducts.filter(
     (p) =>
       (!selected || p.category === selected) &&
       terms.every((term) =>
@@ -98,8 +102,8 @@ export function productCatalog(params) {
         ).includes(term),
       ),
   );
-  const categoryNav = `<aside class="catalog-sidebar"><h2>Product categories</h2><nav aria-label="Product categories"><a href="${siteURL(`/products${query ? `?q=${encodeURIComponent(query)}` : ""}`)}" ${!selected ? 'aria-current="page"' : ""}>All products <span>${products.length}</span></a>${categories.map(c=>`<a href="${e(siteURL(`/products?${new URLSearchParams({category:c.id,...(query?{q:query}:{})})}`))}" ${selected===c.id?'aria-current="page"':""}>${e(c.name)} <span>${products.filter(p=>p.category===c.id).length}</span></a>`).join("")}</nav><p>Model specifications and availability are confirmed with your quotation.</p></aside>`;
-  return `${header("Product index", "All products", "Browse materials, consumables and equipment by category or model. Specifications, quantity, lead time and availability are confirmed by quotation; this catalog is not a stock list.")}<section class="container catalog-section" aria-label="Product catalog"><div class="catalog-layout">${categoryNav}<div class="catalog-results"><form id="catalog-filters" class="catalog-filters"><label>Category<select name="category" id="category-filter" aria-label="Category"><option value="">All categories</option>${categories.map((c) => `<option value="${c.id}" ${c.id === selected ? "selected" : ""}>${c.name}</option>`).join("")}</select></label><label>Search products<input type="search" name="q" value="${e(query)}" placeholder="Name, model or keywords"></label><button class="button button-dark" type="submit">Search</button>${link(siteURL("/products"), "Reset filters")}</form><p class="catalog-count" role="status">${matches.length} ${matches.length === 1 ? "product" : "products"}${query ? ` matching “${e(query)}”` : ""}${selected ? ` in ${e(category(selected).name)}` : ""}</p><div class="catalog-list product-grid">${matches.map((p) => productModule(p, detailURL(p.id))).join("") || '<div class="empty-state"><h2>No products match these filters</h2><p>Try a model code, another category or reset the filters.</p></div>'}</div></div></div>${legacy()}</section>${contact()}`;
+  const categoryNav = `<aside class="catalog-sidebar"><h2>Product categories</h2><nav aria-label="Product categories"><a href="${siteURL(`/products${query ? `?q=${encodeURIComponent(query)}` : ""}`)}" ${!selected ? 'aria-current="page"' : ""}>All products <span>${listedProducts.length}</span></a>${listedCategories.map(c=>`<a href="${e(siteURL(`/products?${new URLSearchParams({category:c.id,...(query?{q:query}:{})})}`))}" ${selected===c.id?'aria-current="page"':""}>${e(c.name)} <span>${listedProducts.filter(p=>p.category===c.id).length}</span></a>`).join("")}</nav><p>Model specifications and availability are confirmed with your quotation.</p></aside>`;
+  return `${header("Product index", "All products", "Browse materials, consumables and equipment by category or model. Specifications, quantity, lead time and availability are confirmed by quotation; this catalog is not a stock list.")}<section class="container catalog-section" aria-label="Product catalog"><div class="catalog-layout">${categoryNav}<div class="catalog-results"><form id="catalog-filters" class="catalog-filters"><label>Category<select name="category" id="category-filter" aria-label="Category"><option value="">All categories</option>${listedCategories.map((c) => `<option value="${c.id}" ${c.id === selected ? "selected" : ""}>${c.name}</option>`).join("")}</select></label><label>Search products<input type="search" name="q" value="${e(query)}" placeholder="Name, model or keywords"></label><button class="button button-dark" type="submit">Search</button>${link(siteURL("/products"), "Reset filters")}</form><p class="catalog-count" role="status">${matches.length} ${matches.length === 1 ? "product" : "products"}${query ? ` matching “${e(query)}”` : ""}${selected ? ` in ${e(category(selected).name)}` : ""}</p><div class="catalog-list product-grid">${matches.map((p) => productModule(p, detailURL(p.id))).join("") || '<div class="empty-state"><h2>No products match these filters</h2><p>Try a model code, another category or reset the filters.</p></div>'}</div></div></div>${legacy()}</section>${contact()}`;
 }
 export function productDetail(p, areaId, params = new URLSearchParams()) {
   const backParams = new URLSearchParams();
@@ -120,7 +124,7 @@ export function productDetail(p, areaId, params = new URLSearchParams()) {
   return `<section class="container detail-page product-detail-page">${backLink}<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="${siteURL()}">Home</a><span>/</span><a href="${areaURL(area.id)}">${area.name}</a></nav><div class="detail-intro"><div><p class="eyebrow">${c.name}</p><h1 tabindex="-1">${e(p.name)}</h1><p class="detail-description">${e(p.description)}</p></div><figure class="product-figure">${productArtwork(p, true)}<figcaption>Representative illustration. Actual appearance and packaging depend on the confirmed model.</figcaption></figure></div>${modelList(p)}${p.note ? `<p class="technical-note">${e(p.note)}</p>` : ""}</section>`;
 }
 export function serviceCatalog() {
-  return `${header("Service index", "All services", "Specialist resources and process expertise to scale and validate your lab innovations.")}<section class="container catalog-section product-grid" aria-label="Service directory">${services.map(s => servicePreview(s)).join("")}</section>${contact()}`;
+  return `${header("Service index", "All services", "Specialist resources and process expertise to scale and validate your lab innovations.")}<section class="container catalog-section product-grid" aria-label="Service directory">${services.filter(isServiceListed).map(s => servicePreview(s)).join("")}</section>${contact()}`;
 }
 const serviceArtwork = {
   "polymer-resin-synthesis": "rd-polymer-reactor",
