@@ -1,0 +1,25 @@
+name: Prepare homepage artwork
+on:
+  push:
+    branches: [artwork/home-refresh-20261104]
+permissions:
+  contents: write
+jobs:
+  artwork:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install temporary image exporter
+        run: npm install --prefix "$RUNNER_TEMP/jaford-artwork" --no-audit --no-fund --package-lock=false sharp@0.34.5
+      - name: Export optimized transparent artwork
+        run: node scripts/prepare-home-artwork-once.cjs
+      - name: Save optimized asset on artwork branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images/products/custom-3d-printing-process.webp
+          git commit -m "Export transparent 3D printing process artwork"
+          git push origin HEAD:artwork/home-refresh-20261104
