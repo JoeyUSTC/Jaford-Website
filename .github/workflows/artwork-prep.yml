@@ -1,25 +1,33 @@
-name: Prepare homepage artwork
+name: Review homepage visuals
 on:
   push:
     branches: [artwork/home-refresh-20261104]
 permissions:
-  contents: write
+  contents: read
 jobs:
-  artwork:
+  review:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: d8f428a083357dbcc5e1f06a95cef5cb8c7f902b
+          path: site
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Install temporary image exporter
-        run: npm install --prefix "$RUNNER_TEMP/jaford-artwork" --no-audit --no-fund --package-lock=false sharp@0.34.5
-      - name: Export optimized transparent artwork
-        run: node scripts/prepare-home-artwork-once.cjs
-      - name: Save optimized asset on artwork branch
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/images/products/custom-3d-printing-process.webp
-          git commit -m "Export transparent 3D printing process artwork"
-          git push origin HEAD:artwork/home-refresh-20261104
+      - run: npm ci
+        working-directory: site
+      - run: npx playwright install --with-deps chromium
+        working-directory: site
+      - run: npm run lint && npm run build && npm run test:seo
+        working-directory: site
+      - run: npx playwright test tests/homepage.spec.js tests/layout-service.spec.js
+        working-directory: site
+      - run: npm install --prefix "$RUNNER_TEMP/jaford-artwork" --no-audit --no-fund --package-lock=false sharp@0.34.5
+      - run: node scripts/review-home-artwork-once.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: homepage-visual-review
+          path: review/
+          retention-days: 2
