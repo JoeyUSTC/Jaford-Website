@@ -8,6 +8,8 @@ import { canonicalURL } from "../src/seo.js";
 import { categorySlugs, movedPaths } from "../src/url-paths.js";
 import { isAreaListed } from "../src/visibility.js";
 import { fuelCellProducts } from "../src/fuel-cell-products.js";
+import { contactEmail } from "../src/contact-presence.js";
+import { hardCarbonOptions } from "../src/hard-carbon-options.js";
 
 const output = resolve(process.env.SEO_BUILD_DIR || "dist");
 const read = route => readFileSync(resolve(output, route.slice(1), "index.html"),"utf8");
@@ -113,5 +115,30 @@ test("paused business stays out of public discovery while its static details rem
       if (target.origin !== base.origin) continue;
       assert.ok(!paused.has(resolveRoute(target.pathname).path), `${route}: paused link ${target.pathname}`);
     }
+  }
+});
+
+test("only hard carbon exposes researched route guides; public contact stays consistent", () => {
+  for (const route of new Set([...publicRoutes, ...compatibilityRoutes, '/owner-insights'])) {
+    const page = resolveRoute(route), html = read(route);
+    assert.ok(!html.includes('kiki.li@jaford.com'), route);
+    assert.ok(html.includes(`mailto:${contactEmail}`), route);
+    if (page.indexable) {
+      const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+      assert.equal(graph['@graph'].find(node=>node['@type']==='Organization').email, contactEmail, route);
+      const list = graph['@graph'].find(node=>node['@type']==='ItemList');
+      if (page.item?.id === 'hard-carbon') {
+        assert.equal(list.numberOfItems, 6);
+        assert.deepEqual(list.itemListElement.map(item=>item.name), hardCarbonOptions.map(item=>item.name));
+      } else assert.equal(list, undefined, route);
+    }
+    if (page.item?.id === 'hard-carbon') {
+      assert.equal((html.match(/class="material-route"/g)||[]).length, 6, route);
+      for (const item of hardCarbonOptions) {
+        assert.ok(html.includes(item.name), route);
+        assert.ok(html.includes(`id="material-profile-${item.id}"`), route);
+      }
+      assert.ok(!html.includes('data-spec-id'), route);
+    } else assert.ok(!html.includes('class="hard-carbon-options"'), route);
   }
 });

@@ -61,7 +61,7 @@ CVD 沉硅一体化代工、控氧浸出、回收石墨、特殊硬碳、干法�
 
 - 目录数据：`src/catalog.js`；页面模板：`src/pages.js`；导航及询价：`src/main.js`。
 - 产品：`#/products`、`#/products/{id}`；服务：`#/services`、`#/services/{id}`。Hash 路由支持 GitHub Pages 子路径下直接分享、刷新及浏览器返回。
-- 询价继承产品/服务及所选型号，生成本地文本与发往 `kiki.li@jaford.com` 的邮件草稿。用户需在邮件客户端发送；网页不会自动提交或确认成功。
+- 询价继承产品/服务及所选型号，生成本地文本与发往 `info@jaford.com` 的邮件草稿。用户需在邮件客户端发送；网页不会自动提交或确认成功。
 - 合作工厂/实验室用于组织服务；JAFORD 为网站品牌。没有将合作伙伴品牌用作 JAFORD 品牌，也没有自有实验室/自产/授权代理声明。
 
 ## Testing scopes added at owner request

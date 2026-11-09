@@ -33,6 +33,8 @@ Local URL-migration validation passed lint, both builds, nine SEO/notification c
 
 ## Owner-dependent steps still required
 
+Current website state (2026-11-09): 62 listed public pages are indexable; the thirteen paused fuel-cell/electrolysis pages remain generated with noindex and are omitted from public discovery and the sitemap. Public contact copy and Organization metadata now share info@jaford.com. The Hard Carbon page adds six researched precursor-route profiles as real static text, progressive native details and a matching unordered ItemList, without supplier SKUs, stock promises, prices or invented numeric specifications. This improves readable product context; it does not establish an indexing or AI-citation outcome. No new account access, DNS verification or Search Console submission is claimed.
+
 These need access to the owner's Google/Bing accounts; creating files or publishing this build does not complete them.
 
 1. Open [Google Search Console](https://search.google.com/search-console/), add a **Domain property** for `jaford.com`, and obtain its exact DNS TXT verification value. Add only that supplied TXT value in Aliyun DNS. Preserve all existing A/CNAME/MX/TXT mail and hosting records. A URL-prefix property with an actual HTML verification file is another option if the owner prefers it; no fabricated token is added.

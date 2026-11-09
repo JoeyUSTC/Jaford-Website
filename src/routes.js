@@ -2,6 +2,7 @@ import { products, retiredProducts, services, productAliases, serviceAliases } f
 import { cases, unnumberedCases, caseAliases } from "./cases.js";
 import { technologies, areaAliases, areasForProduct, areasForService, itemsForArea } from "./technologies.js";
 import { publicPath, internalPath, movedPaths } from "./url-paths.js";
+import { contactEmail } from "./contact-presence.js";
 import { isAreaListed, isProductListed, isServiceListed } from "./visibility.js";
 
 export const homeDescription = "JAFORD provides materials, consumables and equipment for research teams, and coordinates custom synthesis, processing and development through partner factories and laboratories.";
@@ -27,7 +28,7 @@ export function resolveRoute(raw = "/") {
   if (path === "/") {
     type = "home"; title = "JAFORD"; description = homeDescription;
   } else if (path === "/contact") {
-    type = "contact"; title = "Contact Us — JAFORD"; description = "Contact JAFORD at kiki.li@jaford.com. Prepare an email enquiry with your name, email address and requirements.";
+    type = "contact"; title = "Contact Us — JAFORD"; description = `Contact JAFORD at ${contactEmail}. Prepare an email enquiry with your name, email address and requirements.`;
   } else if (path === "/owner-insights") {
     type = "owner"; title = "Website insights — JAFORD"; description = "Private website insights."; indexable = false;
   } else if (path === "/products") {

@@ -61,7 +61,7 @@ Previous directory and `#/…` links remain compatible. Moved directories contai
 
 All items require quotation; the catalog does not promise stock. Public model/type lists and Spec actions are temporarily paused. Their underlying data and table renderer are preserved for restoration when detailed data is available. Tables use confirmed catalog facts, exactly identified manufacturer models and standard material identities; unmatched analog formulations and performance values are excluded. Existing PDF URLs are retained with the same factual tables; there are no PDF controls in the dialog. Missing approved supplier specifications remain tracked internally. Detail images remain representative illustrations. See `docs/catalog-readiness.md` for the complete specification, image and confirmation checklist, and `docs/content-sources.md` for provenance. No raw private order data is stored in this public repository.
 
-The shared Contact Us form prepares a text brief locally and opens a `mailto:` draft to `kiki.li@jaford.com`. The user reviews and sends it in their own email application. Copy and download remain available. It does not automatically submit inquiries, send email or claim delivery. No personal data is persisted by the site.
+The shared Contact Us form prepares a text brief locally and opens a `mailto:` draft to `info@jaford.com`. The user reviews and sends it in their own email application. Copy and download remain available. It does not automatically submit inquiries, send email or claim delivery. No personal data is persisted by the site.
 
 ## Cloud tasks
 
@@ -119,3 +119,6 @@ Run `npm run test:seo` after a normal build and `SEO_BUILD_DIR=.preview-dist npm
 
 
 Homepage presentation (2026-11-04): five sectors each show six image-and-name cards, without sector/card introduction paragraphs. The New service label is a small brighter static badge beside the 3D-printing name, outside the image. The shared transparent `custom-3d-printing-process.webp` illustrates filament printing of a lithium-ion research-cell housing and separate conventional electrode assembly/testing. Existing detail descriptions, cases, routes and paused business visibility remain intact. All illustration containers use the page canvas with consistent pale-background blending; see `docs/product-images.md`.
+
+
+Hard Carbon material-route guide (2026-11-09): only `/products/hard-carbon/` shows six precursor-route profiles as a native bullet/details list. Fine-pointer hover opens a side panel; touch and keyboard use the summary, and no-JavaScript browsing still works. General precursor/selection facts are separate from supplier/batch specifications, with no invented numeric performance, stock, supplier model or new PDF. The same content is pre-rendered and represented as an unordered ItemList. Other material model/Spec lists remain paused. Contact displays, drafts and factual Organization metadata use `info@jaford.com`; the shared constant is in `src/contact-presence.js`. Website publication does not establish mailbox delivery or Search Console ownership.

@@ -1,5 +1,7 @@
 import { escapeHtml } from "./pages.js";
 import { publicPath } from "./url-paths.js";
+import { contactEmail } from "./contact-presence.js";
+import { hardCarbonOptions } from "./hard-carbon-options.js";
 
 export const origin = "https://jaford.com";
 export const canonicalURL = page => origin + (page.path === "/" ? "/" : `${page.path}/`);
@@ -7,7 +9,7 @@ const json = value => JSON.stringify(value).replace(/</g, "\\u003c");
 export function structuredData(page) {
   if (!page.indexable) return null;
   const url = canonicalURL(page);
-  const organization = {"@type":"Organization", "@id":`${origin}/#organization`, name:"JAFORD", url:`${origin}/`, email:"kiki.li@jaford.com", logo:{"@type":"ImageObject",url:`${origin}/brand/jaford-brand.png`}};
+  const organization = {"@type":"Organization", "@id":`${origin}/#organization`, name:"JAFORD", url:`${origin}/`, email:contactEmail, logo:{"@type":"ImageObject",url:`${origin}/brand/jaford-brand.png`}};
   const website = {"@type":"WebSite", "@id":`${origin}/#website`, url:`${origin}/`, name:"JAFORD", inLanguage:"en", publisher:{"@id":organization["@id"]}};
   const webpage = {"@type":page.type === "contact" ? "ContactPage" : ["products","services","cases","technology"].includes(page.type) ? "CollectionPage" : "WebPage", "@id":`${url}#webpage`, url, name:page.title, description:page.description, inLanguage:"en", isPartOf:{"@id":website["@id"]}};
   const graph = [organization, website, webpage];
@@ -21,6 +23,11 @@ export function structuredData(page) {
   if (page.type === "service") {
     graph.push({"@type":"Service","@id":`${url}#service`,url,name:page.item.name,description:page.item.description,provider:{"@id":organization["@id"]}});
     webpage.mainEntity = {"@id":`${url}#service`};
+  }
+  if (page.type === "product" && page.item.id === "hard-carbon") {
+    graph.push({"@type":"ItemList", "@id":`${url}#material-options`, name:"Hard Carbon Options", itemListOrder:"https://schema.org/ItemListUnordered", numberOfItems:hardCarbonOptions.length,
+      itemListElement:hardCarbonOptions.map((option,index)=>({"@type":"ListItem",position:index+1,name:option.name,description:`${option.precursor}. ${option.focus} Selection considerations: ${option.selection}`}))});
+    webpage.mainEntity = {"@id":`${url}#material-options`};
   }
   return {"@context":"https://schema.org","@graph":graph};
 }

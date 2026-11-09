@@ -9,7 +9,7 @@ Reviewed on 2026-09-30 from JAFORD's existing public website. The previous V1 us
 | https://www.jaford.com/products/fuel-cell-and-electrolyzer | Fuel-cell and electrolyzer components, stacks and fixtures; CO₂RR/HER/OER catalysts; CCS/CCM electrodes, Ni/Ti felt and custom high-pressure electrolysis hardware         |
 | https://www.jaford.com/products/custom-r-and-d-services    | Material matching, slurry design, coating, calendaring, electrode preparation, custom cells, stack parts, prototype builds and validation planning                         |
 | https://www.jaford.com/products/membranes-polymers         | Resin/polymer and membrane synthesis; MOF/COF and functional intermediates; route feasibility, preparation, purification and basic characterization                        |
-| https://www.jaford.com/contact                             | Singapore location and public business contact kiki.li@jaford.com                                                                                                          |
+| https://www.jaford.com/contact                             | Singapore location and historical contact information; current owner-supplied public email: info@jaford.com                                                                                                          |
 
 ## Owner-supplied catalog brief
 

@@ -154,7 +154,7 @@ test("inquiry validates fields, creates a brief, supports editing and downloads 
       .getAttribute("href"),
   );
   expect(emailDraft.protocol).toBe("mailto:");
-  expect(emailDraft.pathname).toBe("kiki.li@jaford.com");
+  expect(emailDraft.pathname).toBe("info@jaford.com");
   expect(emailDraft.searchParams.get("subject")).toBe(
     "JAFORD inquiry — Custom synthesis",
   );
@@ -260,12 +260,12 @@ test("inline contact prepares an email, retains edits and rejects blank enquirie
   await contact.getByRole("button", { name: "Prepare email" }).click();
   await expect(page.locator("#inquiry-result")).toContainText("Nothing has been sent.");
   const email = new URL(await page.getByRole("link", { name: "Open email draft" }).getAttribute("href"));
-  expect(email.pathname).toBe("kiki.li@jaford.com");
+  expect(email.pathname).toBe("info@jaford.com");
   expect(email.searchParams.get("body")).toContain(message);
   await expect(page.locator("#inquiry-preview sample")).toHaveCount(0);
   await page.getByRole("button", { name: "Edit your inquiry" }).click();
   await expect(page.getByRole("dialog")).not.toBeVisible();
   await expect(contact.getByRole("textbox", { name: "Enquiry", exact: true })).toHaveValue(message);
   await expect(contact.getByRole("textbox", { name: "Enquiry", exact: true })).toBeFocused();
-  await expect(page.locator(".contact-direct a")).toHaveAttribute("href", "mailto:kiki.li@jaford.com");
+  await expect(page.locator(".contact-direct a")).toHaveAttribute("href", "mailto:info@jaford.com");
 });

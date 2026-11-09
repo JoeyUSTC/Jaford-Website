@@ -1,3 +1,5 @@
+export const contactEmail = "info@jaford.com";
+
 // Confirmed contact locations are distinct from additional enquiry destinations.
 export const enquiryRegions = [
   {name: 'Saudi Arabia', established: true},

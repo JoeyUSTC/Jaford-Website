@@ -34,11 +34,11 @@ test("header and footer open the shared independent contact page", async ({ page
   await form.getByRole("button", { name: "Prepare email" }).click();
   await expect(page.locator("#inquiry-result")).toContainText("Nothing has been sent.");
   const mail = new URL(await page.locator("#email-inquiry").getAttribute("href"));
-  expect(mail.pathname).toBe("kiki.li@jaford.com");
+  expect(mail.pathname).toBe("info@jaford.com");
   expect(mail.searchParams.get("body")).toContain(enquiry);
   await page.getByRole("button", { name: "Edit your inquiry" }).click();
   await expect(form.getByRole("textbox", { name: "Enquiry", exact: true })).toHaveValue(enquiry);
-  await expect(page.locator(".contact-direct a")).toHaveAttribute("href", "mailto:kiki.li@jaford.com");
+  await expect(page.locator(".contact-direct a")).toHaveAttribute("href", "mailto:info@jaford.com");
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
   await footer.getByRole("link", { name: "Back to Top", exact: true }).click();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);

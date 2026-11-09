@@ -1,5 +1,7 @@
 import { specifications } from "./specifications.js";
 import { recordHomepageView } from "./analytics.js";
+import { contactEmail } from "./contact-presence.js";
+import { initializeMaterialProfiles } from "./hard-carbon-options.js";
 import { listedTechnologies } from "./technologies.js";
 import { specContent } from "./pages.js";
 import { resolveRoute } from "./routes.js";
@@ -127,7 +129,7 @@ form.addEventListener("submit", (event) => {
   inquiryText = `JAFORD — Product / R&D inquiry\n\nName: ${fields.name.trim()}\nEmail: ${fields.email.trim()}\nOrganization: ${fields.organization.trim() || "Not specified"}\nArea of interest: ${fields.topic}\n${fields.item ? `Product / service: ${fields.item}\n` : ""}\nQuantity: ${fields.quantity.trim() || "To discuss"}\nRequired timeline: ${fields.timeline.trim() || "To discuss"}\n\nRequirements:\n${fields.requirements.trim()}`;
   document.querySelector("#inquiry-preview").textContent = inquiryText;
   const email = document.querySelector("#email-inquiry");
-  email.href = `mailto:kiki.li@jaford.com?subject=${encodeURIComponent(`JAFORD inquiry — ${fields.topic}`)}&body=${encodeURIComponent(inquiryText)}`;
+  email.href = `mailto:${contactEmail}?subject=${encodeURIComponent(`JAFORD inquiry — ${fields.topic}`)}&body=${encodeURIComponent(inquiryText)}`;
   form.hidden = true;
   result.hidden = false;
   email.focus();
@@ -183,7 +185,7 @@ document.addEventListener("submit", (event) => {
   inquiryText = `JAFORD enquiry\n\nName: ${fields.name.trim()}\nEmail: ${fields.email.trim()}\n\nEnquiry:\n${fields.enquiry.trim()}`;
   document.querySelector("#inquiry-preview").textContent = inquiryText;
   const email = document.querySelector("#email-inquiry");
-  email.href = `mailto:kiki.li@jaford.com?subject=${encodeURIComponent("JAFORD enquiry")}&body=${encodeURIComponent(inquiryText)}`;
+  email.href = `mailto:${contactEmail}?subject=${encodeURIComponent("JAFORD enquiry")}&body=${encodeURIComponent(inquiryText)}`;
   form.hidden = true;
   result.hidden = false;
   status.textContent = "";
@@ -243,6 +245,7 @@ function renderRoute(focus = false) {
   const destination = siteURL(page.path) + query + (anchor ? `#${anchor}` : '');
   if (url.pathname + url.search + url.hash !== destination) history.replaceState({}, '', destination);
   document.querySelector("#main").innerHTML = renderPage(page);
+  routeCleanups.push(initializeMaterialProfiles(document.querySelector("#main")));
   applySEO(page);
   recordHomepageView(Boolean(document.querySelector('.scale-intro')));
   animateStats();
